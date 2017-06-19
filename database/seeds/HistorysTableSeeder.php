@@ -12,9 +12,9 @@ class HistorysTableSeeder extends Seeder
     public function run()
     {
         DB::table('historys')->insert([
-            ['id_history'=>1,'content'=>'{"from":"ENGLISH","to":"VIETNAMESE","from_text":"Hello","to_text":"Xin chào","notification":"F"}'],
-            ['id_history'=>2,'content'=>'{"from":"ENGLISH","to":"VIETNAMESE","from_text":"Hello","to_text":"Xin chào","notification":"F"}'],
-            ['id_history'=>3,'content'=>'{"from":"ENGLISH","to":"VIETNAMESE","from_text":"Hello","to_text":"Xin chào","notification":"F"}']
+            ['id_history'=>1,'content'=>'{"from":"english","to":"vietnamese","from_text":"Hello","to_text":"Xin chào","explain":"a greeting","notification":"F"}'],
+            ['id_history'=>2,'content'=>'{"from":"english","to":"vietnamese","from_text":"Hello","to_text":"Xin chào","explain":"a greeting","notification":"F"}'],
+            ['id_history'=>3,'content'=>'{"from":"english","to":"vietnamese","from_text":"Hello","to_text":"Xin chào","explain":"a greeting","notification":"F"}']
             ]);
     }
 }
