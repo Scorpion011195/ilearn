@@ -1,92 +1,68 @@
-<body >
-<div class="header_top"></div>
 
-<div class="menu">
-    <header class="container">
-        <div class="navbar navbar-inner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-menu">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a id="closepage" menuid="0" class="brand" href="#" followlink="true">
-                        LOGO</a>
+<body onload="loadFn()">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <div class="header_top"></div>
+    <script>
+        function loadFn() {
+        @if ($errors -> has('username') || $errors -> has('email') || $errors -> has('password') || $errors -> has('confirm_password'))
+                document.getElementById('idXXX').click();
+        @endif
+        }
+    </script>
+    <div class="menu">
+        <header class="container">
+            <div class="navbar navbar-inner">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-menu">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a id="closepage" menuid="0" class="brand" href="#" followlink="true">
+                            LOGO</a>
 
-                </div>
-                <div class="collapse navbar-collapse pull-right" id="main-menu">
-                    <ul class="nav">
-                        {!! Form::open(['class' => 'brand-btn', 'id' => 'nav-form-login']) !!}
-                        <div class="form-inline row">
-                            {!! Form::text('username', '', ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
-                            {!! Form::text('password', '', ['class' => 'form-control nav-login collapse', 'placeholder' => 'Mật khẩu']) !!}
-                            {!! Form::submit('Đăng nhập', ['class' => 'btn btn-default', 'id' => 'nav-login-btn']) !!}
-                            <button class="btn btn-default facebook-background-color nav-login collapse">
-                                <i class="fa fa-facebook fa-lg facebook-font-color" aria-hidden="true"></i>
-                            </button>
-                            <button class="btn btn-default google-background-color nav-login collapse">
-                                <i class="fa fa-google-plus fa-lg google-font-color" aria-hidden="true"></i>
-                            </button>
-                            <a class="nav-login collapse" data-toggle="modal" href="#modal-register">Đăng ký</a>
-                        </div>
-                        {!! Form::close() !!}
-                    </ul>
-                </div>
-                {{--<div class="collapse navbar-collapse pull-right" id="main-menu">--}}
-                    {{--<ul class="nav">--}}
-                        {{--<li class="fadeInDown animated d1 "><a href="#" class="active" id="home" menuid="0" followlink="true" >Home</a></li>--}}
+                    </div>
+                    <div class="collapse navbar-collapse pull-right" id="main-menu">
+                        <ul class="nav">  
+                            @if(Auth::guest())
+                            {!! Form::open(array( 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
+                            <div class="form-inline row">
+                                {!! Form::text('email', Illuminate\Support\Facades\Input::old('email'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
+                                {{ Form::password('password', array('class' => 'form-control nav-login collapse','placeholder' => 'Mật khẩu')) }}
+                                <input class= "nav-login" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>  <span class="nav-login">Remember</span>
 
-                        {{--<li class="fadeInDown animated d2"><a href="#" menuid="1" followlink="true">About</a></li>--}}
+                                {!! Form::button('Đăng nhập', ['class' => 'btn btn-default', 'id' => 'nav-login-btn', 'onclick' => 'doSubmit()']) !!}
 
-                        {{--<li class="dropdown fadeInDown animated d3">--}}
-                            {{--<a href="#" class="trigger right-caret">Service</a>--}}
-                            {{--<ul class="firstlevel dropdown-menu sub-menu" style="display: none;">--}}
-                                {{--<li class="twolevel">--}}
-                                    {{--<a class="trigger right-caret">Email Support</a>--}}
-                                    {{--<!--   <ul class="thirdlevel dropdown-menu sub-menu" style="margin-left: -563px; display: none;">--}}
-                                           {{--<li><a href="#" menuid="220" followlink="true">ŞİRKET BİRLEŞME & SATIN ALMA</a></li>--}}
-                                           {{--<li><a href="#" menuid="221" followlink="true">HALKA ARZ</a></li>--}}
-                                           {{--<li><a href="#" menuid="222" followlink="true">TAHVİL/BONO İHRACI</a></li>--}}
-                                           {{--<li><a href="#" menuid="223" followlink="true">DANIŞMANLIK</a></li>--}}
+                                <a class="nav-login collapse" data-toggle="modal" href="#modal-register">Đăng ký</a>
+                            </div>
+                            {!! Form::close() !!}
+                            @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                        @endif
+                        </ul>
+                    </div>
+                    </header>
 
-                                       {{--</ul>-->--}}
-                                {{--</li>--}}
-                                {{--<li><a href="#" menuid="224" followlink="true">Router Support</a></li>--}}
-                                {{--<li class="twolevel">--}}
-                                    {{--<a class="trigger right-caret">Antivirus Support</a>--}}
-                                    {{--<!-- <ul class="thirdlevel dropdown-menu sub-menu">--}}
-                                         {{--<li><a href="#Forex" menuid="311" followlink="true">FOREX</a></li>--}}
-                                         {{--<li><a href="#CFD" menuid="312" followlink="true">CFD</a></li>--}}
-                                         {{--<li><a href="#Hisse" menuid="3" followlink="true">HİSSE/VİOP</a></li>--}}
-                                         {{--<li><a href="#Turev" menuid="4" followlink="true">TÜREV</a></li>--}}
-                                         {{--<li><a href="#UluslararasiPiyasalar" menuid="5" followlink="true">ULUSLARARASI PİYASALAR</a></li>--}}
-                                     {{--</ul>-->--}}
-                                {{--</li>--}}
-                                {{--<li><a href="#Varlik-Yonetimi" menuid="10" followlink="true">Quickbook Support</a></li>--}}
-                                {{--<li><a href="#Varlik-Yonetimi" menuid="10" followlink="true">Printer Support</a></li>--}}
-                                {{--<li><a href="#Varlik-Yonetimi" menuid="10" followlink="true">Game Support</a></li>--}}
-                            {{--</ul>--}}
-
-
-                        {{--</li>--}}
-
-                        {{--<li class="fadeInDown animated d3"><a href="#Iletisim" menuid="11" followlink="true">Dislaimer</a></li>--}}
-
-                        {{--<li class="fadeInDown animated d2"><a href="#" menuid="1" followlink="true">Blog</a></li>--}}
-
-                        {{--<li class="fadeInDown animated d2"><a href="#" menuid="1" followlink="true">Contact Us</a></li>--}}
-
-                    {{--</ul>--}}
-
-                {{--</div>--}}
-                <!--/.nav-collapse -->
-            {{--</div>--}}
-
-    </header>
-
-</div><!--menu-->
+                </div><!--menu-->
 
 
 

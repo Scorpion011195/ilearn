@@ -15,10 +15,10 @@ use App\Models\User;
 class UserService extends BaseService implements UserRepository
 {
     public $paginate = 20;
-
+    
     public function __construct(User $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 
     public function setStatus($id, $id_status)
