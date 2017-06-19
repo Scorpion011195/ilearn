@@ -29,7 +29,7 @@
                             @if(Auth::guest())
                             {!! Form::open(array('route' => 'dangnhap', 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
                             <div class="form-inline row">
-                                {!! Form::text('username','', ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
+                                {!! Form::text('username', Illuminate\Support\Facades\Input::old('username'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
                                 {{ Form::password('password', array('class' => 'form-control nav-login collapse','placeholder' => 'Mật khẩu')) }}
                                 <input class= "nav-login" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>  <span class="nav-login">Remember</span>
 

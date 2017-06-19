@@ -60,6 +60,11 @@ class UserController extends Controller implements BaseController
         // TODO: Implement delete() method.
     }
 
+    // public function username()
+    // {
+    //     return 'username';
+    // }
+
     public function getLogin()
     {
         return view('index');
@@ -97,5 +102,5 @@ class UserController extends Controller implements BaseController
           return redirect()->back()->withErrors($errors);
         }
       }
-    }
+  }
 }
