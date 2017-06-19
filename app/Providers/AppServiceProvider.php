@@ -14,6 +14,8 @@ use App\Services\DictionaryService;
 use App\Services\HistoryService;
 use App\Services\NotificationService;
 use App\Services\UserService;
+use App\Services\LanguageService;
+use App\Repositories\LanguageRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(UserRepository::class, UserService::class);
+        $this->app->singleton(LanguageRepository::class, LanguageService::class);
         $this->app->singleton(NotificationRepository::class, NotificationService::class);
         $this->app->singleton(HistoryRepository::class, HistoryService::class);
         $this->app->singleton(DictionaryRepository::class, DictionaryService::class);

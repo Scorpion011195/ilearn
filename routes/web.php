@@ -10,10 +10,19 @@ require __DIR__.'/web_ilearn_partial.php';
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*===================Function Search===============*/
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+Route::get('/result', function () {
+    return view('result');
+});
+
+Route::post('/search', array('as' => 'search', 
+    'uses' => 'LaguageController@search'));
+
+/*=================/Function Search================*/
 
 
 // Route::get('/settings', function () {

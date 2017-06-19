@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\Repositories\BaseRepository;
+use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseService implements BaseRepository
 {
@@ -31,10 +32,6 @@ abstract class BaseService implements BaseRepository
         return $this->model->find($id);
     }
 
-    public function getByColumn($column, $value){
-        return $this->model->where($column, $value)->first();
-    }
-
     abstract public function find(array $attributes);
 
 
@@ -46,11 +43,6 @@ abstract class BaseService implements BaseRepository
     public function update($id, array $attributes)
     {
         $this->model->find($id)->update($attributes);
-    }
-
-    public function updateByColumn($column, $value, array $attributes)
-    {
-        $this->model->where($column, $value)->update($attributes);
     }
 
     public function delete($id)
