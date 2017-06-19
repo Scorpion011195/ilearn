@@ -29,12 +29,12 @@
                             @if(Auth::guest())
                             {!! Form::open(array('route' => 'dangnhap', 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
                             <div class="form-inline row">
-                                {!! Form::text('email', Illuminate\Support\Facades\Input::old('email'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
+                                {!! Form::text('username', Illuminate\Support\Facades\Input::old('username'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
                                 {{ Form::password('password', array('class' => 'form-control nav-login collapse','placeholder' => 'Mật khẩu')) }}
                                 <input class= "nav-login" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>  <span class="nav-login">Remember</span>
 
                                 {!! Form::button('Đăng nhập', ['class' => 'btn btn-default', 'id' => 'nav-login-btn', 'onclick' => 'doSubmit()']) !!}
-
+                                
                                 <a class="nav-login collapse" data-toggle="modal" href="#modal-register">Đăng ký</a>
                             </div>
                             {!! Form::close() !!}
