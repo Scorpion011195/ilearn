@@ -69,7 +69,7 @@ class UserController extends Controller implements BaseController
   {
 
     $rules = [
-    'username' => 'required|username',
+    'username' => 'required',
     'password' =>'required|min:6|max:32',
     ];
     $messages = [
@@ -92,6 +92,7 @@ class UserController extends Controller implements BaseController
 
       if(Auth()->attempt(['username' =>$username, 'password' => $password],$remember)) {
         return redirect()->intended('/');
+
       }
       else {
         $errors = new MessageBag(['errorLogin' => 'Email hoặc mật khẩu không đúng']);
