@@ -1,20 +1,27 @@
 /**
  * Created by silverhawk on 11/06/2017.
  */
-$( document ).ready(function () {
-    $( '#nav-form-login' ).on('submit', function (event) {
-        $this = $ ( this );
-       event.preventDefault();
-        if($( '.nav-login' ).hasClass('in')) {
+function doSubmit() {
+           if($( '.nav-login' ).hasClass('in')) {
             $( '.nav-login').removeClass('in');
-            $this.find( "input[type=submit]" ).removeClass('btn-success');
+            $('#nav-form-login' ).find( "input[type=submit]" ).removeClass('btn-success');
+            $('#nav-form-login' ).submit();
         }
         else {
             $( '.nav-login').addClass('in');
-            $this.find( "input[name='username']" ).focus();
-            $this.find( "input[type=submit]" ).addClass('btn-success');
-        }
-    });
+            $('#nav-form-login' ).find( "input[name='username']" ).focus();
+            $('#nav-form-login' ).find( "input[type=submit]" ).addClass('btn-success');
+        } 
+}
+function loginToAdd() {
+    if(!$( '.nav-login' ).hasClass('in')) {
+                    $( '.nav-login').addClass('in');
+            $('#nav-form-login' ).find( "input[name='username']" ).focus();
+            $('#nav-form-login' ).find( "input[type=submit]" ).addClass('btn-success');
+    }
+}
+
+$( document ).ready(function () {
 
     var createDictIndexes = [];
     $( document ).on('click', '.create-dict-add', function (event) {
@@ -36,7 +43,7 @@ $( document ).ready(function () {
             }
         });
     });
-
+    
     $( document ).on('click', '.create-dict-remove', function (event) {
         event.preventDefault();
         var $this = $( this );
@@ -52,13 +59,4 @@ $( document ).ready(function () {
         console.log(createDictIndexes);
     })
 
-});
-
-// Set class active for left-sidebar
-$(document).ready(function(){
-    var selector = '.sidebar-menu li';
-    $(selector).on('click', function(){
-        $(selector).removeClass('active');
-        $(this).addClass('active');
-    });
 });

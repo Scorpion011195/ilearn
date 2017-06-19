@@ -1,10 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Repositories\UserRepository;
-
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use DB;
+use Auth;
+use Illuminate\Support\MessageBag;
+
 
 class UserController extends Controller implements BaseController
 {
@@ -52,5 +58,45 @@ class UserController extends Controller implements BaseController
     public function delete($id)
     {
         // TODO: Implement delete() method.
+    }
+
+    public function getLogin()
+    {
+        return view('index');
+    }
+    public function postLogin(Request $request)
+    {
+
+        $rules = [
+        'email' => 'required|email',
+      'password' =>'required|min:6|max:32',
+      ];
+      $messages = [
+      'email.required' => 'Trường email là bắt buộc',
+      'email.email' => 'Bạn chưa nhập đúng định dạng email',
+      'password.required' => 'Mật khẩu là bắt buộc',
+      'password.min' => 'Mật khẩu lớn hơn 6 kí tự',
+      'password.max' => 'Mật khẩu nhỏ hơn 32 kí tự'
+      ];
+      
+      $validator = Validator::make($request->all(), $rules, $messages);
+
+      if($validator->fails())
+      {      
+        return redirect()->back()->withErrors($validator)->withInput();
+      }
+      else {
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $remember = $request->input('remember');
+        
+        if(Auth()->attempt(['email' =>$email, 'password' => $password],$remember)) {
+            return redirect()->intended('/');  
+          }
+        else {
+          $errors = new MessageBag(['errorLogin' => 'Email hoặc mật khẩu không đúng']);
+          return redirect()->back()->withErrors($errors);
+        }
+      }
     }
 }

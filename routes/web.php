@@ -24,6 +24,16 @@ Route::post('/search', array('as' => 'search',
 
 /*=================/Function Search================*/
 
+/*===================Function Login===============*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@getLogin']);
+Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogin']);
+
+/*===================/Function Login===============*/
+
 
 // Route::get('/settings', function () {
 //     return view('frontend.settings');
