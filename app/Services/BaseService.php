@@ -49,4 +49,14 @@ abstract class BaseService implements BaseRepository
     {
         $this->model->delete($id);
     }
+
+    public function getByColumn($column, $value){
+        return $this->model->where($column, $value)->first();
+    }
+
+    public function updateByColumn($column, $value, array $attributes)
+    {
+        $this->model->where($column, $value)->update($attributes);
+    }
+
 }
