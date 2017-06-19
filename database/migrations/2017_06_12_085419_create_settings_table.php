@@ -14,7 +14,7 @@ class CreateSettingsTable extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->increments('id_user');
+            $table->integer('id_user');
             $table->integer('time_to_remind');
             $table->integer('id_reminder');
         });

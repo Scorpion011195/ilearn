@@ -68,7 +68,7 @@ class UserController extends Controller implements BaseController
     {
 
         $rules = [
-      'username' => 'required|username',
+      'username' => 'required',
       'password' =>'required|min:6|max:32',
       ];
       $messages = [
