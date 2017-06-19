@@ -10,17 +10,21 @@ require __DIR__.'/web_ilearn_partial.php';
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 /*===================Function Search===============*/
+
+/*================src_user_register====================  */
+Route::post('/search', array('as' => 'search',
+    'uses' => 'LaguageController@search'));
 
 Route::get('/', function () {
     return view('index');
 });
 Route::get('/result', function () {
     return view('result');
+
 });
 
-Route::post('/search', array('as' => 'search',
-    'uses' => 'LaguageController@search'));
 
 /*=================/Function Search================*/
 
@@ -33,6 +37,10 @@ Route::get('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@getLogin'
 Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogin']);
 
 /*===================/Function Login===============*/
+
+Route::get('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@getRegister']);
+Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister']);
+/*================/src_user_register====================  */
 
 
 // Route::get('/settings', function () {
