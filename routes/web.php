@@ -19,7 +19,7 @@ Route::get('/result', function () {
     return view('result');
 });
 
-Route::post('/search', array('as' => 'search', 
+Route::post('/search', array('as' => 'search',
     'uses' => 'LaguageController@search'));
 
 /*=================/Function Search================*/
@@ -46,6 +46,11 @@ Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogi
 // Route::get('getAddCreateDictMeaning/{index}', function ($index) {
 //    return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
 // });
+//
+Route::get('test', function(){
+     $data = App\Models\User::where('id_user','3')->first()->status->toArray();
+     var_dump($data);
+});
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -62,36 +67,36 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Trang chủ
     Route::get('home', function () {
-            return view('backend.dict.approval');
+        return view('backend.dict.approval');
     })->name('adminHome')->middleware('adminLogin');
 
     // Quản lý từ điển
     Route::group(['prefix' => 'dict','middleware'=>'adminLogin'], function () {
         // Thêm từ
         Route::get('create', function(){
-                return view('backend.dict.create');
+            return view('backend.dict.create');
         })->name('adminDictCreate');
 
         // Duyệt từ
         Route::get('approve', function () {
-                return view('backend.dict.approval');
+            return view('backend.dict.approval');
         })->name('adminDictApprove');
 
         // Thống kê
         Route::get('collect', function () {
-                return view('backend.dict.collect');
+            return view('backend.dict.collect');
         })->name('adminDictCollect');
 
         // Thêm file scv
         Route::get('upload', function () {
-                return view('backend.dict.upload');
+            return view('backend.dict.upload');
         })->name('adminDictUpload');
     });
 
     // Quản lý tài khoản
-    Route::get('user-management', function (){
-            return view('backend.user.user-management');
-    })->name('adminUserManagement')->middleware('adminLogin');
+    Route::group(['prefix' => 'account','middleware'=>'adminLogin'], function () {
+        Route::get('get', 'UserManagementController@getAccount')->name('adminUserManagement');
+    });
 
     // Thông tin cá nhân
     Route::group(['prefix' => 'profile','middleware'=>'adminLogin'], function () {

@@ -68,12 +68,11 @@ class UserController extends Controller implements BaseController
     {
 
         $rules = [
-        'email' => 'required|email',
+      'username' => 'required|username',
       'password' =>'required|min:6|max:32',
       ];
       $messages = [
-      'email.required' => 'Trường email là bắt buộc',
-      'email.email' => 'Bạn chưa nhập đúng định dạng email',
+      'username.required' => 'Trường username là bắt buộc',
       'password.required' => 'Mật khẩu là bắt buộc',
       'password.min' => 'Mật khẩu lớn hơn 6 kí tự',
       'password.max' => 'Mật khẩu nhỏ hơn 32 kí tự'
@@ -86,11 +85,11 @@ class UserController extends Controller implements BaseController
         return redirect()->back()->withErrors($validator)->withInput();
       }
       else {
-        $email = $request->input('email');
+        $username = $request->input('username');
         $password = $request->input('password');
         $remember = $request->input('remember');
 
-        if(Auth()->attempt(['email' =>$email, 'password' => $password],$remember)) {
+        if(Auth()->attempt(['username' =>$username, 'password' => $password],$remember)) {
             return redirect()->intended('/');
           }
         else {

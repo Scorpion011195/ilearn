@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\UserRole;
 
 class User extends Authenticatable
 {
@@ -28,4 +29,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    function userRole(){
+        return $this->belongsTo('App\Models\UserRole','id_role','id_role');
+    }
+
+    function status(){
+        return $this->belongsTo('App\Models\Status','id_status','id_status');
+    }
 }

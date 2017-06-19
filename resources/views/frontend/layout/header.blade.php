@@ -25,11 +25,11 @@
 
                     </div>
                     <div class="collapse navbar-collapse pull-right" id="main-menu">
-                        <ul class="nav">  
+                        <ul class="nav">
                             @if(Auth::guest())
                             {!! Form::open(array('route' => 'dangnhap', 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
                             <div class="form-inline row">
-                                {!! Form::text('email', Illuminate\Support\Facades\Input::old('email'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
+                                {!! Form::text('username','', ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
                                 {{ Form::password('password', array('class' => 'form-control nav-login collapse','placeholder' => 'Mật khẩu')) }}
                                 <input class= "nav-login" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>  <span class="nav-login">Remember</span>
 
@@ -56,7 +56,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
                         @endif
                         </ul>
                     </div>
