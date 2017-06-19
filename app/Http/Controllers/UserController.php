@@ -78,20 +78,20 @@ class UserController extends Controller implements BaseController
       'password.min' => 'Mật khẩu lớn hơn 6 kí tự',
       'password.max' => 'Mật khẩu nhỏ hơn 32 kí tự'
       ];
-      
+
       $validator = Validator::make($request->all(), $rules, $messages);
 
       if($validator->fails())
-      {      
+      {
         return redirect()->back()->withErrors($validator)->withInput();
       }
       else {
         $email = $request->input('email');
         $password = $request->input('password');
         $remember = $request->input('remember');
-        
+
         if(Auth()->attempt(['email' =>$email, 'password' => $password],$remember)) {
-            return redirect()->intended('/');  
+            return redirect()->intended('/');
           }
         else {
           $errors = new MessageBag(['errorLogin' => 'Email hoặc mật khẩu không đúng']);

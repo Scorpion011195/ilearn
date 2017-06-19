@@ -62,6 +62,9 @@
                         {!! Form::text('collect-phrase', '', ['class' => 'form-control']) !!}
                     </div>
                 </div>
+                <div class="col-sm-2">
+                        {!! Form::submit('Tìm', '', ['class' => 'form-control btn btn-primary']) !!}
+                </div>
 
             </div>
             <div class="row margin-top">
@@ -84,7 +87,7 @@
     </div>
     <div class="panel">
         <div class="panel-body">
-            @include('backend.layout.partial.dict-table')
+            @include('backend.layout.partial.account-table')
         </div>
     </div>
 @endsection
