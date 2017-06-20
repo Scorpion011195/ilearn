@@ -41,11 +41,13 @@ Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogi
 Route::get('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@getRegister']);
 Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister']);
 /*================/src_user_register====================  */
+// setting
+ Route::POST('/settings/create' ,['as'=> 'settingCreate', 'uses' => 'SettingController@create' ]);
 
 
-// Route::get('/settings', function () {
-//     return view('frontend.settings');
-// });
+Route::get('/settings', function () {
+  return view('frontend.settings');
+});
 
 // Route::get('/history', function () {
 //     return view('frontend.history');
@@ -61,6 +63,8 @@ Route::get('test', function(){
 });
 
 
+
+/*=================== Admin area ===============*/
 Route::group(['prefix' => 'admin'], function () {
     // Đăng nhập
     Route::get('login', function () {
@@ -104,6 +108,12 @@ Route::group(['prefix' => 'admin'], function () {
     // Quản lý tài khoản
     Route::group(['prefix' => 'account','middleware'=>'adminLogin'], function () {
         Route::get('get', 'UserManagementController@getAccount')->name('adminUserManagement');
+
+        Route::post('status', 'UserManagementController@changeStatus');
+
+        Route::post('role', 'UserManagementController@changeRole');
+
+        Route::post('delete', 'UserManagementController@deleteUser');
     });
 
     // Thông tin cá nhân
@@ -115,6 +125,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('changePassword','AdminController@changePassword')->name('adminChangePassword');
     });
 });
+/*=================== /.Admin area ===============*/
 
 
 

@@ -8,9 +8,9 @@
 namespace App\Repositories;
 
 interface UserRepository extends BaseRepository {
-    
+
     public function setStatus($id, $id_status);
-    
-    
-    
+
+
+
 }

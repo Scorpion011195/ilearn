@@ -1,5 +1,14 @@
 @extends('backend.ilearn')
 
+@section('css')
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"
+        rel="stylesheet"/>
+        <!-- X EDITABLE CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+        rel="stylesheet"/>
+@endsection
+
 @section('content-header')
 <h1>
     Quản lý tài khoản
@@ -11,75 +20,28 @@
         </ol> -->
 @endsection
 
-@section('css')
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"
-        rel="stylesheet"/>
-        <!-- X EDITABLE CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
-        rel="stylesheet"/>
-@endsection
-
-@section('script')
-        <!-- X-EDITABLE JS -->
-        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $.fn.editable.defaults.mode = 'inline';
-                $(document).ready(function() {
-                    $(' td ').editable();
-                });
-                $('#username').editable({
-                    type: 'text',
-                    pk: 1,
-                    url: '/post',
-                    title: 'Enter username'
-                });
-                var table = $('#example').DataTable();
-
-                $('#example tbody').on('click', 'tr', function () {
-                    var data = table.row( this ).data();
-                    alert( 'You clicked on '+data[0]+'\'s row' );
-                } );
-
-                $(function() {
-                    $( "#collect-date" ).datepicker();
-                });
-            } );
-        </script>
-@endsection
-
 @section('content')
         <div class="panel">
             <div class="panel-body">
                 {!! Form::open() !!}
                 <div class="row">
-                    <div class="col-sm-4">
-                        {!! Form::label('collect-phrase', 'Tài khoản', ['class' => ' control-label col-sm-4 text-center-vertical']) !!}
-                        <div class="col-sm-8">
+                    <div class="col-sm-6">
+                        {!! Form::label('collect-phrase', 'Tài khoản', ['class' => ' control-label col-sm-3 text-center-vertical']) !!}
+                        <div class="col-sm-6">
                             {!! Form::text('collect-phrase', '', ['class' => 'form-control']) !!}
                         </div>
-                    </div>
-                    <div class="col-sm-1">
-                        {{ Form::button('<span class="glyphicon glyphicon-search"></span>',array('class'=>'btn btn-info','type'=>'submit'))}}
-                    </div>
-
-                </div>
-                <div class="row margin-top">
-                    <div class="col-sm-4">
-                        {!! Form::label('collect-date', 'Thời gian', ['class' => ' control-label col-sm-4 text-center-vertical']) !!}
-                        <div class="col-sm-8">
-                            {!! Form::text('collect-date', '', ['class' => 'form-control', 'id' => 'collect-date']) !!}
+                        <div class="col-sm-1">
+                            {{ Form::button('<span class="glyphicon glyphicon-search"></span>',array('class'=>'btn btn-info','type'=>'submit'))}}
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
+                        {!! Form::label('collect-date', 'Thời gian', ['class' => ' control-label col-sm-3 text-center-vertical']) !!}
+                        <div class="col-sm-6">
+                        {!! Form::text('collect-date', '', ['class' => 'form-control', 'id' => 'collect-date']) !!}
+                        </div>
+                        <div class="col-sm-1">
                         {{ Form::button('<span class="glyphicon glyphicon-search"></span>',array('class'=>'btn btn-info','type'=>'submit'))}}
-                    </div>
-
-                    <div class="col-sm-4">
-                        {!! Form::submit('Tìm kiếm tất cả', ['class' => 'form-control btn btn-primary']) !!}
+                        </div>
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -90,4 +52,89 @@
                 @include('backend.layout.partial.account-table')
             </div>
         </div>
+@endsection
+
+@section('script')
+        <!-- Update status -->
+        <script>
+            $(document).ready(function(){
+                $(document).on('change', '.choose-status' , function(E){
+                    var idUser = $(this).closest('tr').find('._user-id').attr('data-id');
+                    var idStatus = $(this).val();
+
+                    var _token = $('input[name=_token]').val();
+                    //console.log(_token);
+                    $.ajax({
+                        url:'status',
+                        method: 'POST',
+                        data : {'idUser': idUser, 'idStatus' : idStatus, '_token' : _token},
+                        dataType:'json',
+                        success : function(data){
+                            // $("#_idStatus"+idStatus).html(data);
+                        },
+                    });
+                });
+            });
+        </script>
+        <!-- /.Update status -->
+
+        <!-- Update role -->
+        <script>
+            $(document).ready(function(){
+                $(document).on('change', '.choose-role' , function(E){
+                    var idUser = $(this).closest('tr').find('._user-id').attr('data-id');
+                    var idRole = $(this).val();
+                    var _token = $('input[name=_token]').val();
+                    //console.log(_token);
+                    $.ajax({
+                        url:'role',
+                        method: 'POST',
+                        data : {'idUser': idUser, 'idRole' : idRole, '_token' : _token},
+                        dataType:'json',
+                        success : function(data){
+                            // $("#_idRole"+idRole).html(data);
+                        },
+                    });
+                });
+            });
+        </script>
+        <!-- /.Update role -->
+
+        <!-- Confirm delete User -->
+        <script>
+            $(document).ready(function(){
+                $("a._delete-user").on('click', function(E){
+                    var idUser = $(this).closest('tr').find('._user-id').attr('data-id');
+                    var _token = $('input[name=_token]').val();
+
+                    if(!confirm('Bạn có muốn xóa tài khoản này?')){
+                        e.preventDefault();
+                        return false;
+                    }
+                    else{
+                        $.ajax({
+                            url:'delete',
+                            method: 'POST',
+                            data : {'idUser': idUser, '_token' : _token},
+                            dataType:'json',
+                            success : function(data){
+                                if(data=="OK"){
+                                    //$(this).closest('tr').remove();
+                                }
+                            },
+                        });
+                        $(this).closest('tr').remove();
+                    }
+                });
+            });
+        </script>
+        <!-- /.Confirm delete User -->
+
+        <!-- script toltip -->
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+        <!-- /.script tootip -->
 @endsection
