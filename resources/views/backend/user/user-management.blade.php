@@ -84,7 +84,6 @@
                 $(document).on('change', '.choose-role' , function(E){
                     var idUser = $(this).closest('tr').find('._user-id').attr('data-id');
                     var idRole = $(this).val();
-
                     var _token = $('input[name=_token]').val();
                     //console.log(_token);
                     $.ajax({
@@ -100,6 +99,36 @@
             });
         </script>
         <!-- /.Update role -->
+
+        <!-- Confirm delete User -->
+        <script>
+            $(document).ready(function(){
+                $("a._delete-user").on('click', function(E){
+                    var idUser = $(this).closest('tr').find('._user-id').attr('data-id');
+                    var _token = $('input[name=_token]').val();
+
+                    if(!confirm('Bạn có muốn xóa tài khoản này?')){
+                        e.preventDefault();
+                        return false;
+                    }
+                    else{
+                        $.ajax({
+                            url:'delete',
+                            method: 'POST',
+                            data : {'idUser': idUser, '_token' : _token},
+                            dataType:'json',
+                            success : function(data){
+                                if(data=="OK"){
+                                    //$(this).closest('tr').remove();
+                                }
+                            },
+                        });
+                        $(this).closest('tr').remove();
+                    }
+                });
+            });
+        </script>
+        <!-- /.Confirm delete User -->
 
         <!-- script toltip -->
         <script>
