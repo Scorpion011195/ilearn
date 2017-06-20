@@ -40,7 +40,6 @@
         <div class="result">
             @include('frontend.layout.ketqua')
         </div>
-
         <div class="create-dict">
             @include('frontend.layout.create-dict')
         </div>

@@ -10,17 +10,32 @@
             </div>
             {!! Form::submit('Tra từ', ['class' => 'btn btn-success ilearn-background-color col-sm-2 no-radius-left']) !!}
         </div>
-        <div class="col-sm-6 col-sm-offset-3 form-group row">
-            <div class="col-sm-3 col-sm-offset-3 no-padding form-inline ">
-                {!! Form::label('source', 'Nguồn') !!}
-                {!! Form::select('source', ['1' => 'Anh', '2' => 'Việt'], '', ['class' => 'form-control ilearn-margin-right']) !!}
-            </div>
-            <div class="col-sm-3 no-padding form-inline">
-                {!! Form::label('dest', 'Đích') !!}
-                {!! Form::select('dest', ['1' => 'Anh', '2' => 'Việt'], '', ['class' => 'form-control ilearn-margin-right']) !!}
-            </div>
-        </div>
+        <?php $data = DB::table('languages')->get(); ?>
+
+                <div class="col-sm-6 col-sm-offset-3 form-group row">
+                    <div class="col-sm-3 form-inline ">
+                        <label for="sel1">Nguồn:</label>
+                        <select name="cb1" class="form-control ilearn-margin-right" id="sel1">
+                               <?php foreach($data as $item){
+                                $language = $item->language;
+                                ?>
+                            <option value="{{$item->language}}">{{ $language }}</option>
+                            <?php }?>
+                        </select> 
+                    </div>
+                    <div class="col-sm-3 form-inline ">
+                        <label for="sel1"> Đích:</label>
+                        <select name="cb2" class="form-control ilearn-margin-right" id="sel1">
+                               <?php foreach($data as $item){
+                                $language = $item->language;
+                                ?>
+                                <option value="{{$item->language}}">{{ $language }}</option>
+                            <?php }?>
+                        </select> 
+                    </div>
+                </div>
         {!! Form::close() !!}
+
         <div class="result">
             @include('frontend.layout.result')
         </div>
@@ -28,6 +43,8 @@
         <div class="create-dict">
             @include('frontend.layout.create-dict')
         </div>
+
+        
     </div>
 
 </div>

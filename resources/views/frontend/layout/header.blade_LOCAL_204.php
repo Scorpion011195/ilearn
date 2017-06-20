@@ -20,27 +20,17 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="{{ url('/') }}"><img src="https://ilearn.co.za/wp-content/uploads/2015/11/ilearn_logo_300.png" alt="" height="50px" width=90px></a>
+                        <a id="closepage" menuid="0" class="brand" href="#" followlink="true">
+                            LOGO</a>
+
                     </div>
                     <div class="collapse navbar-collapse pull-right" id="main-menu">
                         <ul class="nav">
-
                             @if(Auth::guest())
-
                             {!! Form::open(array('route' => 'dangnhap', 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
-
-                                @if($errors->has('errorLogin'))
-                                    <div class="alert alert-danger">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        {{$errors->first('errorLogin')}}
-                                    </div>
-                                @endif
-
                             <div class="form-inline row">
-                                {!! Form::text('username', Illuminate\Support\Facades\Input::old('username'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
-
+                                {!! Form::text('username','', ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
                                 {{ Form::password('password', array('class' => 'form-control nav-login collapse','placeholder' => 'Mật khẩu')) }}
-                                
                                 <input class= "nav-login" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>  <span class="nav-login">Remember</span>
 
                                 {!! Form::button('Đăng nhập', ['class' => 'btn btn-default', 'id' => 'nav-login-btn', 'onclick' => 'doSubmit()']) !!}
@@ -48,18 +38,7 @@
                                 <a class="nav-login collapse" data-toggle="modal" href="#modal-register">Đăng ký</a>
                             </div>
                             {!! Form::close() !!}
-
                             @else
-
-                            <li class="dropdown">
-                                <a href="{{ url('/') }}">Trang chủ</a>
-                                </a>
-                            </li>
-                            <li class="dropdown">  <a href="{{ url('/historys') }}">Lịch sử</a>
-                                </a></li>
-                                 <li class="dropdown">  <a href="{{ url('/settings') }}">Cài đặt</a>
-                                </a></li>
-                                
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->username }} <span class="caret"></span>
@@ -84,8 +63,6 @@
                     </header>
 
                 </div><!--menu-->
-
-               
 
 
 

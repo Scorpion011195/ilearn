@@ -31,7 +31,7 @@ Route::get('/result', function () {
 /*===================Function Login===============*/
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@getLogin']);
 Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogin']);
@@ -63,6 +63,8 @@ Route::get('test', function(){
 });
 
 
+
+/*=================== Admin area ===============*/
 Route::group(['prefix' => 'admin'], function () {
     // Đăng nhập
     Route::get('login', function () {
@@ -110,6 +112,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('status', 'UserManagementController@changeStatus');
 
         Route::post('role', 'UserManagementController@changeRole');
+
+        Route::post('delete', 'UserManagementController@deleteUser');
     });
 
     // Thông tin cá nhân
@@ -121,6 +125,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('changePassword','AdminController@changePassword')->name('adminChangePassword');
     });
 });
+/*=================== /.Admin area ===============*/
 
 
 
