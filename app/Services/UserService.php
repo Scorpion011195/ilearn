@@ -32,4 +32,5 @@ class UserService extends BaseService implements UserRepository
                     ->where('created_at', '>=', $attributes['created_at'])
                     ->paginate($this->paginate);
     }
+
 }

@@ -41,6 +41,13 @@
             @include('frontend.layout.ketqua')
         </div>
 
+        @if(isset($flash))
+            <div class='col-md-3'></div>
+            <div class="col-md-6" id='idsuccess'>               
+                <h2>Chuc mung ban dang ki thanh cong</h2>
+            </div>
+        @endif
+
         <div class="create-dict">
             @include('frontend.layout.create-dict')
         </div>

@@ -13,9 +13,21 @@
         
         @if(isset($flash))
             <div class='col-md-3'></div>
-            <div class="col-md-6" id='idsuccess'>               
-                <h2>Chuc mung ban dang ki thanh cong</h2>
-            </div>
+                <div class="col-md-6">
+                    <div class="alert alert-warning" id='idsuccess'>               
+                    <h2 align="center"><strong>Well done!</strong> You register successfully.</h2>
+                    </div>
+                </div>
+        @endif
+
+        @if(isset($flag))
+            <div class='col-md-3'></div>
+                <div class="col-md-6">
+                    <div class="alert alert-warning" id='idsuccess'>               
+                    <h2 align="center">Dữ liệu đang được cập nhật</h2>
+                    </div>
+                </div>
+                
         @endif
 </body>
 </html>

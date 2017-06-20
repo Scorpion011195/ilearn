@@ -114,9 +114,21 @@ class UserController extends Controller implements BaseController
     $user->password = \Hash::make($request->password);
     $user->remember_token = '';
     $user->id_status = 1;
-    $user->id_role = 5;
-
+    $user->id_role = 5; 
     $user->save();
+
+    $userHis = new \App\Models\History();
+    $userHis->id_history = $user->id_user;
+    $userHis->content = 'Chuc ban may man';
+    $userHis->save();
+
+    $userSet = new \App\Models\Setting();
+    $userSet->id_user = $user->id_user;    
+    $userSet->save();
+
+    $userID = User::find($user->id_user);
+    $userID->id_history = $user->id_user;
+    $userID->save();
 
     $success['text'] = 'flash';
     return view("index", ["flash"=>$success]);
