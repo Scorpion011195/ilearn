@@ -49,14 +49,14 @@ Route::get('/settings', function () {
   return view('frontend.settings');
 });
 
-// Route::get('/history', function () {
-//     return view('frontend.history');
-// });
+Route::get('/historys', function () {
+     return view('frontend.history');
+ });
 
-// Route::get('getAddCreateDictMeaning/{index}', function ($index) {
-//    return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
-// });
-//
+ Route::get('getAddCreateDictMeaning/{index}', function ($index) {
+    return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
+ });
+
 Route::get('test', function(){
      $data = App\Models\User::where('id_user','3')->first()->status->toArray();
      var_dump($data);

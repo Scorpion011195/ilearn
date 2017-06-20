@@ -20,9 +20,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a id="closepage" menuid="0" class="brand" href="#" followlink="true">
-                            LOGO</a>
-
+                        <a href="{{ url('/') }}"><img src="https://ilearn.co.za/wp-content/uploads/2015/11/ilearn_logo_300.png" alt="" height="50px" width=90px></a>
                     </div>
                     <div class="collapse navbar-collapse pull-right" id="main-menu">
                         <ul class="nav">
@@ -40,6 +38,15 @@
                             </div>
                             {!! Form::close() !!}
                             @else
+                            <li class="dropdown">
+                                <a href="{{ url('/') }}">Trang chủ</a>
+                                </a>
+                            </li>
+                            <li class="dropdown">  <a href="{{ url('/historys') }}">Lịch sử</a>
+                                </a></li>
+                                 <li class="dropdown">  <a href="{{ url('/settings') }}">Cài đặt</a>
+                                </a></li>
+                                
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->username }} <span class="caret"></span>
