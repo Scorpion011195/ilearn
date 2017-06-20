@@ -96,19 +96,6 @@ class UserManagementController extends Controller
             $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>$keyNgayDk];
             return view('backend.user.user-management', $param);
         }
-
-        // $noOfAccounts = User::count();
-        // $noOfPages = 5;
-        // $account = User::paginate($noOfPages);
-
-        // $statusService = new StatusService(new Status);
-        // $listStatus = $statusService->getAll();
-
-        // $userRoleService = new UserRoleService(new UserRole);
-        // $listRoles = $userRoleService->getAll();
-
-        // $param = ['account'=>$account,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles];
-        // return view('backend.user.user-management', $param);
     }
 }
 ?>
