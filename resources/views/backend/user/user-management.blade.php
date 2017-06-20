@@ -12,7 +12,7 @@
 @section('content-header')
 <h1>
     Quản lý tài khoản
-    <small>{{ Session::get('user')->username }}</small>
+    <!-- <small>{{ Session::get('user')->username }}</small> -->
 </h1>
         <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -23,24 +23,27 @@
 @section('content')
         <div class="panel">
             <div class="panel-body">
-                {!! Form::open() !!}
+                {!! Form::open(['route' => 'adminSearchUser','method' => 'get']) !!}
                 <div class="row">
-                    <div class="col-sm-6">
-                        {!! Form::label('collect-phrase', 'Tài khoản', ['class' => ' control-label col-sm-3 text-center-vertical']) !!}
-                        <div class="col-sm-6">
-                            {!! Form::text('collect-phrase', '', ['class' => 'form-control']) !!}
+                    <div class="col-sm-5">
+                        {{ csrf_field() }}
+                        {!! Form::label('collect-phrase', 'Tài khoản', ['class' => ' control-label col-sm-4 text-center-vertical text-right']) !!}
+                        <div class="col-sm-8">
+                            {!! Form::text('_keytaikhoan', '', ['class' => 'form-control']) !!}
                         </div>
-                        <div class="col-sm-1">
+                        <!-- <div class="col-sm-1">
                             {{ Form::button('<span class="glyphicon glyphicon-search"></span>',array('class'=>'btn btn-info','type'=>'submit'))}}
+                        </div> -->
+                    </div>
+                    <div class="col-sm-5">
+                        {!! Form::label('collect-date', 'Ngày đăng ký', ['class' => ' control-label col-sm-4 text-center-vertical text-right']) !!}
+                        <div class="col-sm-8">
+                        {!! Form::date('_keyngaydk', '', ['class' => 'form-control', 'id' => 'collect-date']) !!}
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        {!! Form::label('collect-date', 'Thời gian', ['class' => ' control-label col-sm-3 text-center-vertical']) !!}
-                        <div class="col-sm-6">
-                        {!! Form::text('collect-date', '', ['class' => 'form-control', 'id' => 'collect-date']) !!}
-                        </div>
-                        <div class="col-sm-1">
-                        {{ Form::button('<span class="glyphicon glyphicon-search"></span>',array('class'=>'btn btn-info','type'=>'submit'))}}
+                    <div class="col-sm-2">
+                        <div class="col-sm-3">
+                            {{ Form::button('<span class="glyphicon glyphicon-search"></span>',array('class'=>'btn btn-info','type'=>'submit'))}}
                         </div>
                     </div>
                 </div>
@@ -137,4 +140,13 @@
             });
         </script>
         <!-- /.script tootip -->
+
+        <!-- Active left menu -->
+        <script>
+            $(document).ready(function(){
+                    $('#_menu-qltk').addClass("active");
+            });
+        </script>
+        <!-- /.Active left menu -->
+
 @endsection

@@ -3,7 +3,7 @@
 @section('content-header')
         <h1>
             Thông Tin Cá Nhân
-            <small>{{ Session::get('user')->username }}</small>
+            <!-- <small>{{ Session::get('user')->username }}</small> -->
         </h1>
         <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -117,5 +117,14 @@
                 </form>
             </div>
         </div>
+@endsection
 
+@section('script')
+        <!-- Active left menu -->
+        <script>
+            $(document).ready(function(){
+                    $('#_menu-ttcn').addClass("active");
+            });
+        </script>
+        <!-- /.Active left menu -->
 @endsection
