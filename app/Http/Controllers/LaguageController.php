@@ -19,7 +19,9 @@ class LaguageController extends Controller
         $workInfo = $this->lang->findWord($langueInput, $langueOutput, $inputText);
         
         if($workInfo == false) {
-            echo 'k co tu dung'; exit;
+            // echo 'k co tu dung'; exit;
+            $fail['text'] = 'flag';
+            return view('index')->with('flag', $fail);
         }
         else {
             $arraySaveView = array();

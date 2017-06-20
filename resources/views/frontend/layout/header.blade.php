@@ -26,12 +26,23 @@
                     </div>
                     <div class="collapse navbar-collapse pull-right" id="main-menu">
                         <ul class="nav">
+
                             @if(Auth::guest())
+
                             {!! Form::open(array('route' => 'dangnhap', 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
+
+                                @if($errors->has('errorLogin'))
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        {{$errors->first('errorLogin')}}
+                                    </div>
+                                @endif
+
                             <div class="form-inline row">
                                 {!! Form::text('username', Illuminate\Support\Facades\Input::old('username'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
 
                                 {{ Form::password('password', array('class' => 'form-control nav-login collapse','placeholder' => 'Mật khẩu')) }}
+                                
                                 <input class= "nav-login" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>  <span class="nav-login">Remember</span>
 
                                 {!! Form::button('Đăng nhập', ['class' => 'btn btn-default', 'id' => 'nav-login-btn', 'onclick' => 'doSubmit()']) !!}
@@ -39,7 +50,9 @@
                                 <a class="nav-login collapse" data-toggle="modal" href="#modal-register">Đăng ký</a>
                             </div>
                             {!! Form::close() !!}
+
                             @else
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->username }} <span class="caret"></span>
@@ -64,6 +77,8 @@
                     </header>
 
                 </div><!--menu-->
+
+               
 
 
 

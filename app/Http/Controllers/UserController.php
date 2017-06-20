@@ -96,7 +96,7 @@ class UserController extends Controller implements BaseController
       }
       else {
         $errors = new MessageBag(['errorLogin' => 'Email hoặc mật khẩu không đúng']);
-        return redirect()->back()->withErrors($errors);
+        return redirect()->back()->withInput()->withErrors($errors);
       }
     }
   }

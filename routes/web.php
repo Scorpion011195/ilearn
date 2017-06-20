@@ -31,7 +31,7 @@ Route::get('/result', function () {
 /*===================Function Login===============*/
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@getLogin']);
 Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogin']);
