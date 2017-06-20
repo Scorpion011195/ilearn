@@ -15,8 +15,8 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->integer('id_user');
-            $table->integer('time_to_remind');
-            $table->integer('id_reminder');
+            $table->integer('time_to_remind')->nullable()->default(null);
+            $table->integer('id_reminder')->nullable()->default(null);
         });
     }
     /**

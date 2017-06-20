@@ -3,7 +3,7 @@
 @section('content-header')
         <h1>
             Duyệt từ
-            <small>{{ Session::get('user')->username }}</small>
+            <!-- <small>{{ Session::get('user')->username }}</small> -->
         </h1>
         <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -47,4 +47,13 @@
             } );
         } );
     </script>
+
+    <!-- Active left menu -->
+    <script>
+        $(document).ready(function(){
+            $('#_menu-qltd').addClass("active");
+            $('#_menu-qltd-dt').addClass("active");
+        });
+    </script>
+    <!-- /.Active left menu -->
 @endsection

@@ -32,21 +32,21 @@ search form (Optional)
         <ul class="sidebar-menu">
             <li class="header text-center">{{ Session::get('user')->username }} </li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="treeview">
+            <li class="treeview" id="_menu-qltd">
                 <a href="{{ route('adminHome') }}"><i class="fa fa-book"></i> <span>Quản lý từ điển</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('adminDictCreate') }}">Thêm từ</a></li>
-                    <li><a href="{{ route('adminDictApprove') }}">Duyệt từ</a></li>
-                    <li><a href="{{ route('adminDictCollect') }}">Thống kê</a></li>
-                    <li><a href="{{ route('adminDictUpload') }}">Thêm file scv</a></li>
+                    <li id="_menu-qltd-tt"><a href="{{ route('adminDictCreate') }}">Thêm từ</a></li>
+                    <li id="_menu-qltd-dt"><a href="{{ route('adminDictApprove') }}">Duyệt từ</a></li>
+                    <li id="_menu-qltd-tk"><a href="{{ route('adminDictCollect') }}">Thống kê</a></li>
+                    <li id="_menu-qltd-tfscv"><a href="{{ route('adminDictUpload') }}">Thêm file scv</a></li>
                 </ul>
             </li>
-            <li><a href="{{ route('adminUserManagement') }}"><i class="fa fa-user-circle"></i> <span>Quản lý tài khoản</span></a></li>
-            <li><a href="{{ route('adminProfile') }}"><i class="fa fa-vcard"></i> <span>Thông tin cá nhân</span></a></li>
+            <li id="_menu-qltk"><a href="{{ route('adminUserManagement') }}"><i class="fa fa-user-circle"></i> <span>Quản lý tài khoản</span></a></li>
+            <li id="_menu-ttcn"><a href="{{ route('adminProfile') }}"><i class="fa fa-vcard"></i> <span>Thông tin cá nhân</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>

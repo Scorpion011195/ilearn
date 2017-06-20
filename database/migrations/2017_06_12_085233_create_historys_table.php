@@ -14,8 +14,8 @@ class CreateHistorysTable extends Migration
     public function up()
     {
         Schema::create('historys', function (Blueprint $table) {
-            $table->integer('id_history');
-            $table->longText('content');
+            $table->integer('id_history')->nullable()->default(null);
+            $table->longText('content')->nullable()->default(null);
         });        //
     }
     /**

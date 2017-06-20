@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Trang chủ
     Route::get('home', function () {
-        return view('backend.dict.approval');
+        return view('backend.dict.create');
     })->name('adminHome')->middleware('adminLogin');
 
     // Quản lý từ điển
@@ -114,6 +114,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('role', 'UserManagementController@changeRole');
 
         Route::post('delete', 'UserManagementController@deleteUser');
+
+        Route::get('search', 'UserManagementController@searchUser')->name('adminSearchUser');
     });
 
     // Thông tin cá nhân
