@@ -104,6 +104,10 @@ Route::group(['prefix' => 'admin'], function () {
     // Quản lý tài khoản
     Route::group(['prefix' => 'account','middleware'=>'adminLogin'], function () {
         Route::get('get', 'UserManagementController@getAccount')->name('adminUserManagement');
+
+        Route::post('status', 'UserManagementController@changeStatus');
+
+        Route::post('role', 'UserManagementController@changeRole');
     });
 
     // Thông tin cá nhân

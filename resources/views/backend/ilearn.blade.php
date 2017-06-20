@@ -13,6 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('backend.layout.content')
     @include('backend.layout.control-sidebar')
     @include('backend.layout.script ')
+    @yield('script')
 </div>
 </body>
 </html>
