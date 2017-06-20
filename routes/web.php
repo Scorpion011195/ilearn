@@ -45,9 +45,9 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
  Route::POST('/settings/create' ,['as'=> 'settingCreate', 'uses' => 'SettingController@create' ]);
 
 
-// Route::get('/settings', function () {
-//     return view('frontend.settings');
-// });
+Route::get('/settings', function () {
+  return view('frontend.settings');
+});
 
 // Route::get('/history', function () {
 //     return view('frontend.history');
@@ -106,6 +106,10 @@ Route::group(['prefix' => 'admin'], function () {
     // Quản lý tài khoản
     Route::group(['prefix' => 'account','middleware'=>'adminLogin'], function () {
         Route::get('get', 'UserManagementController@getAccount')->name('adminUserManagement');
+
+        Route::post('status', 'UserManagementController@changeStatus');
+
+        Route::post('role', 'UserManagementController@changeRole');
     });
 
     // Thông tin cá nhân
