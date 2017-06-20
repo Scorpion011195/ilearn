@@ -41,11 +41,13 @@ Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogi
 Route::get('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@getRegister']);
 Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister']);
 /*================/src_user_register====================  */
+// setting
+ Route::POST('/settings/create' ,['as'=> 'settingCreate', 'uses' => 'SettingController@create' ]);
 
 
-// Route::get('/settings', function () {
-//     return view('frontend.settings');
-// });
+Route::get('/settings', function () {
+  return view('frontend.settings');
+});
 
 // Route::get('/history', function () {
 //     return view('frontend.history');
