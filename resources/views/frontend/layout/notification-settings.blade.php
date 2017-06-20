@@ -17,7 +17,7 @@
 <div class="container panel text-center">
     <div class="panel-body">
     </div>
-    <form action="{{ route('settingCreate') }}" method="POST" role="form">
+    <form action="{{ route('settingUpdate') }}" method="POST" role="form">
         <div class="container col-sm-6 col-sm-offset-3">
             <div class="form-group">
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -38,7 +38,7 @@
                 <div class="row">
                     <label for="" class="control-label col-sm-4 text-center-vertical">Hiển thị</label>
                 <div class="col-sm-8">
-                        <select name="name" id="" class="form-control">
+                        <select name="des_infomation" id="" class="form-control">
                         <option value="1">Từ</option>
                         <option value="2">Nghĩa</option>
                         <option value="3">Giải thích</option>

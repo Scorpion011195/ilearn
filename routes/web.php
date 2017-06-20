@@ -42,7 +42,7 @@ Route::get('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@getRegister']
 Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister']);
 /*================/src_user_register====================  */
 // setting
- Route::POST('/settings/create' ,['as'=> 'settingCreate', 'uses' => 'SettingController@create' ]);
+ Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
 
 
 Route::get('/settings', function () {
