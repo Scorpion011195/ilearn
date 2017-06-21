@@ -1,85 +1,107 @@
+ <?php $data = DB::table('languages')->get(); ?>
+ <?php
+ if (Session::has('message')) {
+
+   ?>
+    <div class="alert alert-success">
+        <?php
+        $message = Session::get('message');
+        echo "<center>".$message."</center>";
+        ?>
+
+    </div>
+    <?php
+
+}
+?>
 <div id="create-dict"  class="container">
     <div class="col-sm-6 col-sm-offset-3 form-group row panel panel-default no-radius-left no-radius-right">
         <div class="panel-body">
-            {!! Form::open(['id' => 'create-dict-form']) !!}
-            <div class="create-dict-input">
+            <form action="{{ route('historyUpdate') }}" method="POST" role="form" id="create-dict-form">
+               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+               <div class="create-dict-input">
                 <div class="row panel">
                     <div class="row no-margin margin-top">
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    {!! Form::label('create-dict-phrase', 'Từ',['class' => 'form-label text-center-vertical']) !!}
+                                    <label  class="form-label text-center-vertical">Từ</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    {!! Form::text('create-dict-phrase', '', ['class' => 'form-control']) !!}
+                                    <input type="text" class="form-control" name="tu">
                                 </div>
                             </div>
                         </div>
+                        
 
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-5">
-                                    {!! Form::label('create-dict-phrase', 'Ngôn ngữ',['class' => 'form-label text-center-vertical']) !!}
+                                    <label  class="form-label text-center-vertical">Ngôn ngữ</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    {!! Form::select('create-dict-phrase', ['1' => 'Anh', '2' => 'Viet'], '',['class' => 'form-control']) !!}
+                                    <select name="lg1" id="" class="form-control">
+                                        <?php foreach($data as $item){
+                                            $language = $item->language;
+                                            ?>
+                                            <option>{{ $language }}</option>
+                                            <?php }?>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row no-margin margin-top">
-                        <div class="col-sm-5">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    {!! Form::label('create-dict-explain', 'Giải thích',['class' => 'form-label text-center-vertical']) !!}
-                                </div>
-                                <div class="col-sm-9">
-                                    {!! Form::text('create-dict-explain', '', ['class' => 'form-control']) !!}
+                        <div class="row no-margin margin-top">
+                            <div class="col-sm-5">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                       <label  class="form-label text-center-vertical">Giải thích</label>
+                                   </div>
+                                   <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="des1">
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
-
-                <div class="row margin-top panel">
-                    <div class="row no-margin">
-                        <div class="col-sm-5">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    {!! Form::label('create-dict-phrase', 'Nghĩa',['class' => 'form-label text-center-vertical']) !!}
-                                </div>
-                                <div class="col-sm-9">
-                                    {!! Form::text('create-dict-phrase', '', ['class' => 'form-control']) !!}
-                                </div>
+                <div class="row no-margin margin-top">
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label  class="form-label text-center-vertical">Nghĩa</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="nghia">
                             </div>
                         </div>
+                    </div>
 
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    {!! Form::label('create-dict-meaning', 'Ngôn ngữ',['class' => 'form-label text-center-vertical']) !!}
-                                </div>
-                                <div class="col-sm-7">
-                                    {!! Form::select('create-dict-meaning', ['1' => 'Anh', '2' => 'Viet'], '',['class' => 'form-control']) !!}
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <label  class="form-label text-center-vertical">Ngôn ngữ</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <select name="lg2" id="" class="form-control">
+                                    <?php foreach($data as $item){
+                                        $language = $item->language;
+                                        ?>
+                                        <option>{{ $language }}</option>
+                                        <?php }?>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-sm-1">
-                            <button class="btn btn-white create-dict-add"><i class="fa fa-plus-circle fa-lg " aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="row no-margin margin-top">
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    {!! Form::label('create-dict-explain', 'Giải thích',['class' => 'form-label text-center-vertical']) !!}
-                                </div>
-                                <div class="col-sm-9">
-                                    {!! Form::text('create-dict-explain', '', ['class' => 'form-control']) !!}
-                                </div>
+                                   <label  class="form-label text-center-vertical">Giải thích</label>
+                               </div>
+                               <div class="col-sm-9">
+                                <input type="text" class="form-control" name="des2">
                             </div>
                         </div>
                     </div>

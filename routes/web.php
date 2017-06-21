@@ -52,6 +52,8 @@ Route::get('/settings', function () {
 Route::get('/historys', function () {
      return view('frontend.history');
  });
+Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
+
 
  Route::get('getAddCreateDictMeaning/{index}', function ($index) {
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
