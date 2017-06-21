@@ -37,13 +37,14 @@
                     </thead>
                     <tbody>
 
+                    <!-- change key color -->
                     <?php
                     function changeColor($str, $key)
                     {
                         return str_replace($key, "<span style='color:red;'>$key</span>", $str);
                     }
-
                     ?>
+                    <!-- /.change key color -->
 
                         @foreach($accounts as $ac)
                         <?php $_idUser = $ac->id_user; ?>

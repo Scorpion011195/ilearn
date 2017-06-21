@@ -107,6 +107,7 @@
         <script>
             $(document).ready(function(){
                 $("a._delete-user").on('click', function(E){
+                    var _element = $(this);
                     var idUser = $(this).closest('tr').find('._user-id').attr('data-id');
                     var _token = $('input[name=_token]').val();
 
@@ -120,13 +121,14 @@
                             method: 'POST',
                             data : {'idUser': idUser, '_token' : _token},
                             dataType:'json',
-                            success : function(data){
-                                if(data=="OK"){
-                                    //$(this).closest('tr').remove();
-                                }
+                            success : function(response){
+                                    _element.closest('tr').remove();
                             },
+                            error: function(xhr, error) {
+                               console.log(error);
+                            }
                         });
-                        $(this).closest('tr').remove();
+                        //$(this).closest('tr').remove();
                     }
                 });
             });

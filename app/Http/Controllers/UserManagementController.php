@@ -54,7 +54,8 @@ class UserManagementController extends Controller
         $userService = new UserService(new User);
         $userService->deleteByColumn($column, $value);
 
-        return "OK";
+        $dataResponse = ["data"=>"OK"];
+        return json_encode($dataResponse);
     }
 
     function searchUser(Request $request){
