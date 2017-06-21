@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Repositories\HistoryRepository;
 use App\Repositories\NotificationRepository;
 use Illuminate\Http\Request;
-
+use App\Models\History;
+use auth;
 class HistoryController extends Controller implements  BaseController
 {
 
@@ -29,15 +30,44 @@ class HistoryController extends Controller implements  BaseController
     {
         // TODO: Implement find() method.
     }
-
     public function update(Request $request)
-    {
-        // TODO: Implement update() method.
-    }
+    {   
+        $data = array();
+        $history= new History;
 
+        $id=Auth::user()->id_user;
+        // Lấy ID user để update cho user
+
+        $historys = History::where('id_history', $id)->first();
+
+        $arr= json_decode($historys->content, true);
+        // chuyển dât trong db từ json sang array
+
+        $arr[]= array('from_text'=>$request->tu,'from_language'=>$request->lg1, 'from_description'=>$request->des1,' to_text'=> $request->nghia, 'to_language'=>$request->lg2, 'to_description' =>$request->des2, 'notification' => 'F');
+        if($request->tu  == null || $request->nghia == null ){
+            return "Lỗi";
+        }
+        // mảng mới dduocj update contnent
+        else{
+
+            $json = json_encode($arr,true);
+            //  chuyển qua json
+
+
+            $info = ['content' => $json];
+
+            History::where('id_history',$id)->update($info);
+        // update into DB
+
+             return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
+        //     // save data into databse from form in frontend 
+        // return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
+          }
+       }
     public function store(Request $request)
     {
-        // TODO: Implement store() method.
+        $data= DB::select('select * from historys');
+        return $data;
     }
 
     public function delete($id)

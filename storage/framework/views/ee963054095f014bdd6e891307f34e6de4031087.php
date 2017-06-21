@@ -13,7 +13,7 @@
                             <?php foreach($data as $item){
                                 $stt = $item->id_history;
                                 ?>
-                                <option>{{ $stt }}</option>
+                                <option><?php echo e($stt); ?></option>
                                 <?php }?>
                             </select>
                         </select> entries</label></div>
@@ -63,7 +63,7 @@
             <?php
             foreach ($tt as $value) {
                 ?>
-                <td> {{ $value}}</td>
+                <td> <?php echo e($value); ?></td>
                 <?php     
             }
             ?>

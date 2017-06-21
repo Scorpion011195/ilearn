@@ -25,7 +25,6 @@
 
             @if(!Auth::guest())
                 <div class="right-group">
-                    <button class="btn btn-success">Đẩy vào thông báo</button>
                     <button class="btn btn-primary" data-toggle="collapse" data-target="#create-dict">Thêm từ mới</button>
                </div>
             @endif

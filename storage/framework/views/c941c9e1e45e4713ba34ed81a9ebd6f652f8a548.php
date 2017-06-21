@@ -17,8 +17,8 @@
 <div id="create-dict"  class="container">
     <div class="col-sm-6 col-sm-offset-3 form-group row panel panel-default no-radius-left no-radius-right">
         <div class="panel-body">
-            <form action="{{ route('historyUpdate') }}" method="POST" role="form" id="create-dict-form">
-               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form action="<?php echo e(route('historyUpdate')); ?>" method="POST" role="form" id="create-dict-form">
+               <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                <div class="create-dict-input">
                 <div class="row panel">
                     <div class="row no-margin margin-top">
@@ -44,7 +44,7 @@
                                         <?php foreach($data as $item){
                                             $language = $item->language;
                                             ?>
-                                            <option>{{ $language }}</option>
+                                            <option><?php echo e($language); ?></option>
                                             <?php }?>
                                         </select>
                                     </div>
@@ -87,7 +87,7 @@
                                     <?php foreach($data as $item){
                                         $language = $item->language;
                                         ?>
-                                        <option>{{ $language }}</option>
+                                        <option><?php echo e($language); ?></option>
                                         <?php }?>
                                     </select>
                                 </div>
@@ -108,9 +108,11 @@
                 </div>
             </div>
             <div class="text-center row margin-top">
-                {!! Form::submit("Thêm từ", ['class' => 'btn btn-success']) !!}
+                <?php echo Form::submit("Thêm từ", ['class' => 'btn btn-success']); ?>
+
             </div>
-            {!! Form::close() !!}
+            <?php echo Form::close(); ?>
+
         </div>
     </div>
 </div>
