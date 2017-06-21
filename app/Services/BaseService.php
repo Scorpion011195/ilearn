@@ -63,4 +63,5 @@ abstract class BaseService implements BaseRepository
     {
         $this->model->where($column, $value)->update($attributes);
     }
+
 }

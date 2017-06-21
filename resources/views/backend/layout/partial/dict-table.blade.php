@@ -2,7 +2,6 @@
     <div class="panel-body">
         <form class="form-inline">
             <div class="row">
-                <div class="col-sm-10">
                     <div class="col-sm-6">
                         <div class="form-group">
                           <select class="form-control">
@@ -33,23 +32,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                </div>
+
+            <br>
+
+            <div class="row">
+                    <div class="col-sm-6">
+                          <input type="text" class="form-control" placeholder="Từ nguồn" aria-controls="example1" aria-controls="example1">
+                    </div>
+                    <div class="col-sm-6">
+                          <input type="text" class="form-control" placeholder="Từ đích" aria-controls="example1">
+                    </div>
             </div>
 
             <br>
 
             <div class="row">
-                <div class="col-sm-10">
                     <div class="col-sm-6">
-                          <input size="50" type="text" class="form-control" placeholder="Từ nguồn">
+                          <textarea class="form-control" rows="5" ></textarea>
                     </div>
                     <div class="col-sm-6">
-                          <input size="50" type="text" class="form-control" placeholder="Từ đích">
+                          <textarea class="form-control" rows="5" ></textarea>
                     </div>
-                </div>
-                <div class="col-sm-2">
-                </div>
             </div>
         </form>
     </div>

@@ -78,16 +78,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('checkLogin', 'AdminController@login')->name('adminCheckLogin');
 
     // Trang chủ
-    Route::get('home', function () {
-        return view('backend.dict.create');
-    })->name('adminHome')->middleware('adminLogin');
+    Route::get('home', 'DictionaryManagementController@home')->name('adminHome')->middleware('adminLogin');
 
     // Quản lý từ điển
     Route::group(['prefix' => 'dict','middleware'=>'adminLogin'], function () {
         // Thêm từ
-        Route::get('create', function(){
-            return view('backend.dict.create');
-        })->name('adminDictCreate');
+        Route::get('create', 'DictionaryManagementController@home')->name('adminDictCreate');
+        Route::post('create', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
 
         // Duyệt từ
         Route::get('approve', function () {
