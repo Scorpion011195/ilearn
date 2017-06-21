@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\VietnameseRepository;
 use App\Models\Vietnamese;
+use DB;
 
 class VietnameseService extends BaseService implements VietnameseRepository{
 
@@ -12,8 +13,7 @@ class VietnameseService extends BaseService implements VietnameseRepository{
         $this->model = $model;
     }
 
-    public function find(array $attributes) {
-
+    public function getMaxIdMapping(){
+        return DB::table('vietnamese')->max('id_mapping');
     }
-
 }

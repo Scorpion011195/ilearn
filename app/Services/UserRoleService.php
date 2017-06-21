@@ -13,11 +13,5 @@ class UserRoleService extends BaseService implements UserRoleRepository
     {
         $this->model = $model;
     }
-
-    public function find(array $attributes)
-    {
-        // TODO: Implement find() method.
-    }
-
 }
 

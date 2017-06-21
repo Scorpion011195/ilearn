@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\JapaneseRepository;
 use App\Models\Japanese;
+use DB;
 
 class JapaneseService extends BaseService implements JapaneseRepository{
 
@@ -12,8 +13,8 @@ class JapaneseService extends BaseService implements JapaneseRepository{
         $this->model = $model;
     }
 
-    public function find(array $attributes) {
-
+    public function getMaxIdMapping(){
+        return DB::table('japanese')->max('id_mapping');
     }
 
 }

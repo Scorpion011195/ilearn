@@ -10,7 +10,6 @@ require __DIR__.'/web_ilearn_partial.php';
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 /*===================Function Search===============*/
 
 /*================src_user_register====================  */
@@ -57,11 +56,13 @@ Route::get('/historys', function () {
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
  });
 
-Route::get('test', function(){
-     $data = App\Models\User::where('id_user','3')->first()->status->toArray();
-     var_dump($data);
-});
+/*=================== Test area ===============*/
+Route::get('test', 'DictionaryManagementController@getMaxIdMapping');
 
+Route::get('tests', function(){
+    echo DB::table('vietnamese')->max('id_mapping');
+});
+/*=================== /.Test area ===============*/
 
 
 /*=================== Admin area ===============*/

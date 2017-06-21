@@ -14,10 +14,6 @@ use App\Repositories\HistoryRepository;
 class HistoryService extends BaseService implements HistoryRepository
 {
 
-    public function find(array $attributes)
-    {
-        // TODO: Implement find() method.
-    }
 
     public function getSettings($id)
     {

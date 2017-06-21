@@ -14,10 +14,5 @@ class UserInformationService extends BaseService implements UserInformationRepos
     {
         $this->model = $model;
     }
-
-    public function find(array $attributes)
-    {
-
-    }
 }
 

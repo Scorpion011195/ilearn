@@ -32,9 +32,6 @@ abstract class BaseService implements BaseRepository
         return $this->model->find($id);
     }
 
-    abstract public function find(array $attributes);
-
-
     public function create(array $attributes)
     {
         return $this->model->create($attributes);

@@ -12,11 +12,6 @@ class LanguageService extends BaseService implements LanguageRepository{
         $this->model = $model;
     }
 
-    public function find(array $attributes)
-    {
-
-    }
-
     public function findWord($langueInput, $langueOutput, $inputText) {
         //get ID maping :
         $lagInfor = \DB::table($langueInput)->select('id_mapping')->where('word', 'like', '%word":"'.$inputText.'"}')->get();

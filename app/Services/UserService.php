@@ -19,10 +19,4 @@ class UserService extends BaseService implements UserRepository
     {
         $this->model = $model;
     }
-
-    public function find(array $attributes)
-    {
-
-    }
-
 }

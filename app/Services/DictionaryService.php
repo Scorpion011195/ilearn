@@ -24,8 +24,4 @@ class DictionaryService extends BaseService implements DictionaryRepository
 
     }
 
-    public function find(array $attributes)
-    {
-
-    }
 }
