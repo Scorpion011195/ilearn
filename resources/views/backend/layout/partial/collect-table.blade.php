@@ -12,99 +12,43 @@
                            aria-describedby="example1_info">
                         <thead>
                         <tr role="row">
-                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                                style="width: 168px;">Từ
+                                style="width: 50px;">STT
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                aria-label="Browser: activate to sort column ascending" style="width: 207px;">Nghĩa
+                            <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                                style="width: 250px;">Từ
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                aria-label="Browser: activate to sort column ascending" style="width: 250px;">Nghĩa
+                            </th>
+                            <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-label="Platform(s): activate to sort column ascending" style="width: 184px;">
                                 Từ điển
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                aria-label="Engine version: activate to sort column ascending" style="width: 143px;">
-                                Giải thích
+                            <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                aria-label="Engine version: activate to sort column ascending" style="width: 100px;">
+                                Lượt sử dụng
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-label="CSS grade: activate to sort column ascending" style="width: 103px;">Hành động
                             </th>
                         </tr>
                         </thead>
                         <tbody>
 
+                        @foreach($arrStatisticWord as $row)
+                        <tr role="row" class="odd">
+                            <td>{{ $row['STT'] }}</td>
+                            <td>{{ $row['from_text'] }}</td>
+                            <td>{{ $row['to_text'] }}</td>
+                            <td>{{ $row['from'] }}-{{ $row['to'] }}</td>
+                            <td>{{ $row['quanlity'] }}</td>
+                            <td>OK</td>
+                        </tr>
+                        @endforeach
 
-                        <tr role="row" class="odd">
-                            <td id="username" class="sorting_1">Gecko</td>
-                            <td>Firefox 1.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.7</td>
-                            <td>A</td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Firefox 1.5</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-                            <td>A</td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Firefox 2.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-                            <td>A</td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Firefox 3.0</td>
-                            <td>Win 2k+ / OSX.3+</td>
-                            <td>1.9</td>
-                            <td>A</td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Camino 1.0</td>
-                            <td>OSX.2+</td>
-                            <td>1.8</td>
-                            <td>A</td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Camino 1.5</td>
-                            <td>OSX.3+</td>
-                            <td>1.8</td>
-                            <td>A</td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Netscape 7.2</td>
-                            <td>Win 95+ / Mac OS 8.6-9.2</td>
-                            <td>1.7</td>
-                            <td>A</td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Netscape Browser 8</td>
-                            <td>Win 98SE+</td>
-                            <td>1.7</td>
-                            <td>A</td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Netscape Navigator 9</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td>1.8</td>
-                            <td>A</td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td class="sorting_1">Gecko</td>
-                            <td>Mozilla 1.0</td>
-                            <td>Win 95+ / OSX.1+</td>
-                            <td>1</td>
-                            <td>A</td>
-                        </tr>
                         </tbody>
                         <tfoot>
                         <tr>
