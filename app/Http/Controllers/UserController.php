@@ -80,7 +80,7 @@ class UserController extends Controller implements BaseController
     ];
 
     $validator = Validator::make($request->all(), $rules, $messages);
-    
+
     if($validator->fails())
     {
       return redirect()->back()->withErrors($validator)->withInput();
@@ -114,7 +114,7 @@ class UserController extends Controller implements BaseController
     $user->password = \Hash::make($request->password);
     $user->remember_token = '';
     $user->id_status = 1;
-    $user->id_role = 5; 
+    $user->id_role = 5;
     $user->save();
 
     $userHis = new \App\Models\History();
@@ -123,7 +123,7 @@ class UserController extends Controller implements BaseController
     $userHis->save();
 
     $userSet = new \App\Models\Setting();
-    $userSet->id_user = $user->id_user;    
+    $userSet->id_user = $user->id_user;
     $userSet->save();
 
     $userID = User::find($user->id_user);

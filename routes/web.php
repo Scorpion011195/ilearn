@@ -62,7 +62,7 @@ Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryContr
  });
 
 /*=================== Test area ===============*/
-Route::get('test', 'DictionaryManagementController@testcall');
+Route::get('test', 'StatisticManagementController@testInsertArrayToHistory');
 
 Route::get('tests', function(){
     echo DB::table('vietnamese')->max('id_mapping');
@@ -98,9 +98,7 @@ Route::group(['prefix' => 'admin'], function () {
         })->name('adminDictApprove');
 
         // Thống kê
-        Route::get('collect', function () {
-            return view('backend.dict.collect');
-        })->name('adminDictCollect');
+        Route::get('collect', 'StatisticManagementController@statisticAllUser')->name('adminDictCollect');
 
         // Thêm file scv
         Route::get('upload', function () {

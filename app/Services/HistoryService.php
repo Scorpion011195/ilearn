@@ -10,6 +10,7 @@ namespace App\Services;
 
 use App\Models\History;
 use App\Repositories\HistoryRepository;
+use DB;
 
 class HistoryService extends BaseService implements HistoryRepository
 {
@@ -19,33 +20,8 @@ class HistoryService extends BaseService implements HistoryRepository
         $this->model = $model;
     }
 
-    public function find(array $attributes)
-    {
-        // TODO: Implement find() method.
-    }
-
-    public function getSettings($id)
-    {
-        // TODO: Implement getSettings() method.
-    }
-
-    public function pushNotification($id)
-    {
-        // TODO: Implement pushNotification() method.
-    }
-
-    public function setNotification($id, $index, $flag)
-    {
-        // TODO: Implement setNotification() method.
-    }
-
-    public function deleteNotification($id, $index)
-    {
-        // TODO: Implement deleteNotification() method.
-    }
-
-    public function getAllNotification($id)
-    {
-        // TODO: Implement getAllNotification() method.
-    }
+    // function getHistory($idUser){
+    //     $column = 'id_history';
+    //     return DB::table('historys')->where($column, $idUser)->get();
+    // }
 }
