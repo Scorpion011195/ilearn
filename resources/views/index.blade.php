@@ -2,7 +2,7 @@
 <html lang="en">
 @include('frontend.layout.html_header')
 @include('frontend.layout.header')
-@include('frontend.layout.search')
+@include('frontend.layout.timkiem')
 @include('frontend.layout.footer')
 @include('frontend.layout.register')
         <script>
