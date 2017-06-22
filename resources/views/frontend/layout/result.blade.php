@@ -26,7 +26,7 @@
 
             @if(!Auth::guest())
                 <div class="right-group">
-                    <button class="btn btn-primary" data-toggle="collapse" data-target="#create-dict">Thêm từ mới</button>
+                    <a href="{{route('getData')}}"><button class="btn btn-primary">Thêm từ mới</button></a>
                </div>
             @endif
         </div>

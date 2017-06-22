@@ -17,7 +17,7 @@
             @include('frontend.layout.notification-settings')
         </div>
         <div class=" text-center">
-            @include('frontend.layout.partial.settings-table')
+         
         </div>
     </div>
 </section>

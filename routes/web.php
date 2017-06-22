@@ -47,19 +47,18 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
  Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
 
 
-Route::get('/settings', function () {
-  return view('frontend.settings');
-});
+ Route::get('/settings', function () {
+        return view('frontend.settings');
+    });
 
-Route::get('/historys', function () {
-     return view('frontend.history');
- });
+Route::get('/historys','HistoryController@store' );
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
 
  Route::get('getAddCreateDictMeaning/{index}', function ($index) {
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
  });
+
 
 /*=================== Test area ===============*/
 Route::get('test', 'DictionaryManagementController@testcall');
@@ -68,6 +67,11 @@ Route::get('tests', function(){
     echo DB::table('vietnamese')->max('id_mapping');
 });
 /*=================== /.Test area ===============*/
+
+ Route::get('/test', function () {
+        return view('frontend.layout.partial.settings-table');
+    });
+
 
 
 /*=================== Admin area ===============*/

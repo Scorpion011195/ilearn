@@ -42,52 +42,60 @@ class HistoryController extends Controller implements  BaseController
 
         $arr= json_decode($historys->content, true);
         // chuyển dât trong db từ json sang array
+        $a=count($arr);
+        $des= 'Descrition 1: '.$request->des1.'/ Descrition 2: '. $request->des2;
+        $dirtc= $request->lg1 .' To '. $request->lg2;
 
-        $arr[]= array('from_text'=>$request->tu,'from_language'=>$request->lg1, 'from_description'=>$request->des1,' to_text'=> $request->nghia, 'to_language'=>$request->lg2, 'to_description' =>$request->des2, 'notification' => 'F');
+        $arr[]= array('STT'=> $a,'from_text'=>$request->tu, ' to_text'=> $request->nghia, 'explan'=> $des, 'from_to'=> $dirtc,'notification' => 'F');
+
+        //var_dump($arr);
         if($request->tu  == null || $request->nghia == null ){
-            return "Lỗi";
+            return redirect('/historys')->with("message","<strong>Lỗi!</strong> Vui lòng nhập đầy đủ thông tin.");
         }
         // mảng mới dduocj update contnent
         else{
+           $json = json_encode($arr,true);
+           $info = ['content' => $json];
 
-            $json = json_encode($arr,true);
-            //  chuyển qua json
+           History::where('id_history',$id)->update($info);
 
-
-            $info = ['content' => $json];
-
-            History::where('id_history',$id)->update($info);
-        // update into DB
-
-             return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
-        //     // save data into databse from form in frontend 
-        // return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
-          }
+           return view('frontend.history',['data'=>$arr])->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");;
+        // //     // save data into databse from form in frontend 
+        // // return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
        }
-    public function store(Request $request)
-    {
-        $data= DB::select('select * from historys');
-        return $data;
-    }
+   }
+   public function store(Request $request)
+   {
+    $data = array();
+        $history= new History;
 
-    public function delete($id)
-    {
+        $id=Auth::user()->id_user;
+        // Lấy ID user để update cho user
+
+        $historys = History::where('id_history', $id)->first();
+
+        $arr= json_decode($historys->content, true);
+     return view('frontend.history',['data'=>$arr]);
+}
+
+public function delete($id)
+{
         // TODO: Implement delete() method.
-    }
+}
 
-    public function getNotifications($id) {
+public function getNotifications($id) {
 
-    }
+}
 
-    public function setNotifications($id, Request $request) {
+public function setNotifications($id, Request $request) {
 
-    }
+}
 
-    public function getSettings($id) {
+public function getSettings($id) {
 
-    }
+}
 
-    public function setSettings($id, Request $request) {
+public function setSettings($id, Request $request) {
 
-    }
+}
 }
