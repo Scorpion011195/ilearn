@@ -34,10 +34,47 @@
                         </select> 
                     </div>
                 </div>
-        {!! Form::close() !!}
+        
 
         <div class="result">
-            @include('frontend.layout.result')
+          @if(!isset($arraySaveView))
+    
+    <div class="container">
+    <div class="col-sm-6 col-sm-offset-3 form-group row panel panel-default no-radius-left no-radius-right">
+        <div class="panel-body">
+
+        </div>
+        <div class="panel-footer background-white">
+                
+                 
+                
+                <textarea class="form-control" rows="5" id="comment">
+                <?php    
+                foreach ($workInfo as $language){
+                {{$language->type}} : {{ $language ->word }} &nbsp;
+                Explain:{{ $language->explain}} 
+            }
+                </textarea>
+                 ?>
+                @if(Auth::guest()) 
+                <div class="panel-footer background-white">
+                    <div class="rigt-group">
+                        <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
+                    </div>
+                </div>
+                @endif
+
+            @if(!Auth::guest())
+                <div class="right-group">
+                    <a href="{{route('getData')}}"><button class="btn btn-primary">Thêm từ mới</button></a>
+               </div>
+            @endif
+        </div>
+    </div>
+</div> 
+
+@endif
+        {!! Form::close() !!}
         </div>
 
         <div class="create-dict">

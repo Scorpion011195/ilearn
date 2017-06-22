@@ -45,13 +45,11 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
  Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
 
 
-Route::get('/settings', function () {
-  return view('frontend.settings');
-});
+ Route::get('/settings', function () {
+        return view('frontend.settings');
+    });
 
-Route::get('/historys', function () {
-     return view('frontend.history');
- });
+Route::get('/historys','HistoryController@store' );
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
 
@@ -59,11 +57,9 @@ Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryContr
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
  });
 
-Route::get('test', function(){
-     $data = App\Models\User::where('id_user','3')->first()->status->toArray();
-     var_dump($data);
-});
-
+ Route::get('/test', function () {
+        return view('frontend.layout.partial.settings-table');
+    });
 
 
 /*=================== Admin area ===============*/
@@ -81,7 +77,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Trang chủ
     Route::get('home', function () {
-        return view('backend.dict.approval');
+        return view('backend.dict.create');
     })->name('adminHome')->middleware('adminLogin');
 
     // Quản lý từ điển
@@ -116,6 +112,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('role', 'UserManagementController@changeRole');
 
         Route::post('delete', 'UserManagementController@deleteUser');
+
+        Route::get('search', 'UserManagementController@searchUser')->name('adminSearchUser');
     });
 
     // Thông tin cá nhân

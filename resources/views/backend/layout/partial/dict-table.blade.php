@@ -1,3 +1,60 @@
+<div class="panel">
+    <div class="panel-body">
+        <form class="form-inline">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <select class="form-control">
+                              <option>english</option>
+                              <option>vietnamese</option>
+                              <option>japanese</option>
+                          </select>
+                          <select class="form-control">
+                              <option>Loại từ</option>
+                              <option>Danh từ</option>
+                              <option>Động từ</option>
+                              <option>Tính từ</option>
+                              <option>Trạng từ</option>
+                              <option>Giới từ</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <select class="form-control">
+                              <option>english</option>
+                              <option selected>vietnamese</option>
+                              <option>japanese</option>
+                          </select>
+                          <button type="button" class="btn btn-info">
+                              <span class="glyphicon glyphicon-upload"></span>  Thêm
+                          </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="col-sm-6">
+                          <input size="50" type="text" class="form-control" placeholder="Từ nguồn">
+                    </div>
+                    <div class="col-sm-6">
+                          <input size="50" type="text" class="form-control" placeholder="Từ đích">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Danh sách từ</h3>

@@ -12,10 +12,10 @@ use App\Models\UserRole;
 
 class UserManagementController extends Controller
 {
-    function getAccount(){
+    public function getAccount(){
         $noOfAccounts = User::count();
         $noOfPages = 5;
-        $account = User::paginate($noOfPages);
+        $accounts = User::paginate($noOfPages);
 
         $statusService = new StatusService(new Status);
         $listStatus = $statusService->getAll();
@@ -23,7 +23,7 @@ class UserManagementController extends Controller
         $userRoleService = new UserRoleService(new UserRole);
         $listRoles = $userRoleService->getAll();
 
-        $param = ['account'=>$account,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles];
+        $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>''];
         return view('backend.user.user-management', $param);
     }
 
@@ -54,7 +54,49 @@ class UserManagementController extends Controller
         $userService = new UserService(new User);
         $userService->deleteByColumn($column, $value);
 
-        return "OK";
+        $dataResponse = ["data"=>"OK"];
+        return json_encode($dataResponse);
+    }
+
+    function searchUser(Request $request){
+        $keyTaiKhoan = $request->_keytaikhoan;
+        $keyNgayDk = $request->_keyngaydk;
+
+        $noOfPages = 5;
+        $statusService = new StatusService(new Status);
+        $listStatus = $statusService->getAll();
+
+        $userRoleService = new UserRoleService(new UserRole);
+        $listRoles = $userRoleService->getAll();
+
+        if(empty($keyTaiKhoan)&&empty($keyNgayDk)){
+            $noOfAccounts = User::count();
+            $accounts = User::paginate($noOfPages);
+
+            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>''];
+            return view('backend.user.user-management', $param);
+        }
+        else if(empty($keyNgayDk)){
+            $accounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->paginate($noOfPages);
+            $noOfAccounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->count();
+
+            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>''];
+            return view('backend.user.user-management', $param);
+        }
+        else if(empty($keyTaiKhoan)){
+            $accounts = User::where('created_at', '>=', $keyNgayDk." 00:00:00")->paginate($noOfPages);
+            $noOfAccounts = User::where('created_at', '>=', $keyNgayDk." 00:00:00") ->count();
+
+            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>$keyNgayDk];
+            return view('backend.user.user-management', $param);
+        }
+        else{
+            $accounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->orWhere('created_at', '>=', $keyNgayDk." 00:00:00")->paginate($noOfPages);
+            $noOfAccounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->orWhere('created_at', '>=', $keyNgayDk." 00:00:00")->count();
+
+            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>$keyNgayDk];
+            return view('backend.user.user-management', $param);
+        }
     }
 }
 ?>

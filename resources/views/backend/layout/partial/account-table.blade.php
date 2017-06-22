@@ -37,11 +37,20 @@
                     </thead>
                     <tbody>
 
-                        @foreach($account as $ac)
+                    <!-- change key color -->
+                    <?php
+                    function changeColor($str, $key)
+                    {
+                        return str_replace($key, "<span style='color:red;'>$key</span>", $str);
+                    }
+                    ?>
+                    <!-- /.change key color -->
+
+                        @foreach($accounts as $ac)
                         <?php $_idUser = $ac->id_user; ?>
                         <tr role="row" class="odd">
                             <td class="_user-id sorting_1 text-center" data-id="{{ $_idUser }}">{{ $_idUser }}</td>
-                            <td class="sorting_1 text-center">{{ $ac->username }}</td>
+                            <td class="sorting_1 text-center">{!! changeColor($ac->username, $key_username) !!}</td>
                             <td class="sorting_1 text-center">
                             <!-- comboBox status -->
                                     <select class="selectpicker choose-status">
@@ -70,7 +79,7 @@
                                     </select>
                              <!-- /.comboBox role -->
                             </td>
-                            <td class="sorting_1 text-center">{{ date('F d, Y', strtotime($ac->created_at)) }}</td>
+                            <td class="sorting_1 text-center">{!! changeColor(date('Y-m-d', strtotime($ac->created_at)), $key_day) !!}</td>
                             <td class="sorting_1 text-center">
                                 <a class="_delete-user" data-toggle="tooltip" title="Xóa!">
                                   <span class="glyphicon glyphicon-remove"></span>
@@ -87,12 +96,13 @@
 
         <div class="row">
             <div class="col-sm-5">
-                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị {{ $noOfPages }} của {{ $noOfAccounts }} tài khoản
+                <!-- <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị {{ $noOfPages }} của {{ $noOfAccounts }} tài khoản -->
+                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Tổng cộng có {{ $noOfAccounts }} tài khoản
                 </div>
             </div>
             <div class="col-sm-7"></div>
         </div>
     </div>
 </div>
-                    {!! $account->links() !!}
+                    {!! $accounts->links() !!}
 
