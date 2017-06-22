@@ -1,13 +1,21 @@
 <div class="panel">
     <div class="panel-body">
-        @if($code=='failedInputEmpty')
-        <div class="alert alert-danger text-center">
-          Bạn chưa nhập từ!
-        </div>
+        @if($code=='failedInputEmptyFrom')
+            <div class="alert alert-danger text-center">
+              Bạn chưa nhập từ!
+            </div>
+        @elseif($code=='failedInputEmptyTo')
+            <div class="alert alert-danger text-center">
+              Bạn chưa nhập nghĩa!
+            </div>
         @elseif($code=='failedWord')
-        <div class="alert alert-danger text-center">
-          Từ đã có trong hệ thống!
-        </div>
+            <div class="alert alert-danger text-center">
+              Từ đã có trong hệ thống!
+            </div>
+        @elseif($code=='SuccessfulWord')
+            <div class="alert alert-success text-center">
+              Thêm từ thành công!
+            </div>
         @endif
 
         <form class="form-inline" action="{{ route('adminDictCreateWord') }}" method="post">

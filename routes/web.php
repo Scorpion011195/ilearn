@@ -62,7 +62,7 @@ Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryContr
  });
 
 /*=================== Test area ===============*/
-Route::get('test', 'DictionaryManagementController@getMaxIdMapping');
+Route::get('test', 'DictionaryManagementController@testcall');
 
 Route::get('tests', function(){
     echo DB::table('vietnamese')->max('id_mapping');

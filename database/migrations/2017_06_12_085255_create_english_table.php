@@ -16,8 +16,8 @@ class CreateEnglishTable extends Migration
         Schema::create('english', function (Blueprint $table) {
             $table->increments('id_english');
             $table->string('word',100);
-            $table->string('listen',100);
-            $table->string('explain',100);
+            $table->string('listen',100)->nullable()->default(null);;
+            $table->string('explain',100)->nullable()->default(null);;
             $table->integer('id_mapping');
             $table->timestamps();
         });

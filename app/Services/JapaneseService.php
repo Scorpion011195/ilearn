@@ -17,4 +17,9 @@ class JapaneseService extends BaseService implements JapaneseRepository{
         return DB::table('japanese')->max('id_mapping');
     }
 
+    public function findWord($column, $word)
+    {
+        return DB::table('japanese')->where($column, 'like', '%word":"'.$word.'"}')->get();
+    }
+
 }
