@@ -12,7 +12,7 @@ use App\Models\UserRole;
 
 class UserManagementController extends Controller
 {
-    public function getAccount(){
+    function getAccount(){
         $noOfAccounts = User::count();
         $noOfPages = 5;
         $accounts = User::paginate($noOfPages);
@@ -70,8 +70,8 @@ class UserManagementController extends Controller
         $listRoles = $userRoleService->getAll();
 
         if(empty($keyTaiKhoan)&&empty($keyNgayDk)){
-            $noOfAccounts = User::count();
             $accounts = User::paginate($noOfPages);
+            $noOfAccounts = User::count();
 
             $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>''];
             return view('backend.user.user-management', $param);

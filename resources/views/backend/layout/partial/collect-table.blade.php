@@ -39,7 +39,7 @@
                         <tbody>
 
                         @foreach($arrStatisticWord as $row)
-                        <tr role="row" class="odd">
+                        <tr role="row" class="odd text-center">
                             <td>{{ $row['STT'] }}</td>
                             <td>{{ $row['from_text'] }}</td>
                             <td>{{ $row['to_text'] }}</td>
@@ -50,15 +50,6 @@
                         @endforeach
 
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th rowspan="1" colspan="1">Rendering engine</th>
-                            <th rowspan="1" colspan="1">Browser</th>
-                            <th rowspan="1" colspan="1">Platform(s)</th>
-                            <th rowspan="1" colspan="1">Engine version</th>
-                            <th rowspan="1" colspan="1">CSS grade</th>
-                        </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -69,30 +60,6 @@
                     </div>
                 </div>
                 <div class="col-sm-7">
-                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                        <ul class="pagination">
-                            <li class="paginate_button previous disabled" id="example1_previous"><a href="#"
-                                                                                                    aria-controls="example1"
-                                                                                                    data-dt-idx="0"
-                                                                                                    tabindex="0">Previous</a>
-                            </li>
-                            <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1"
-                                                                  tabindex="0">1</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="2"
-                                                            tabindex="0">2</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3"
-                                                            tabindex="0">3</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4"
-                                                            tabindex="0">4</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5"
-                                                            tabindex="0">5</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6"
-                                                            tabindex="0">6</a></li>
-                            <li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1"
-                                                                                   data-dt-idx="7" tabindex="0">Next</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>

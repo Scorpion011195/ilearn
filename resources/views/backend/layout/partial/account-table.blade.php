@@ -48,10 +48,10 @@
 
                         @foreach($accounts as $ac)
                         <?php $_idUser = $ac->id_user; ?>
-                        <tr role="row" class="odd">
-                            <td class="_user-id sorting_1 text-center" data-id="{{ $_idUser }}">{{ $_idUser }}</td>
-                            <td class="sorting_1 text-center">{!! changeColor($ac->username, $key_username) !!}</td>
-                            <td class="sorting_1 text-center">
+                        <tr role="row" class="odd text-center">
+                            <td class="_user-id sorting_1" data-id="{{ $_idUser }}">{{ $_idUser }}</td>
+                            <td class="sorting_1">{!! changeColor($ac->username, $key_username) !!}</td>
+                            <td class="sorting_1">
                             <!-- comboBox status -->
                                     <select class="selectpicker choose-status">
                                         @foreach($listStatus as $ls)
@@ -65,7 +65,7 @@
                                     </select>
                              <!-- /.comboBox status -->
                             </td>
-                            <td class="sorting_1 text-center">
+                            <td class="sorting_1">
                             <!-- comboBox role -->
                                     <select class="selectpicker choose-role">
                                         @foreach($listRoles as $lr)
@@ -79,8 +79,8 @@
                                     </select>
                              <!-- /.comboBox role -->
                             </td>
-                            <td class="sorting_1 text-center">{!! changeColor(date('Y-m-d', strtotime($ac->created_at)), $key_day) !!}</td>
-                            <td class="sorting_1 text-center">
+                            <td class="sorting_1">{!! changeColor(date('Y-m-d', strtotime($ac->created_at)), $key_day) !!}</td>
+                            <td class="sorting_1">
                                 <a class="_delete-user" data-toggle="tooltip" title="Xóa!">
                                   <span class="glyphicon glyphicon-remove"></span>
                                 </a>

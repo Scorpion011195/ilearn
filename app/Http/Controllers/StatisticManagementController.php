@@ -94,7 +94,6 @@ class StatisticManagementController extends Controller
         // echo "<pre>";
         // var_dump(MyConstant::$arr_statistic_word);
         // echo "</pre>";
-
         //Lấy MyConstant::$arr_statistic_word hiển thị ra giao diện
         return view('backend.dict.collect', ['arrStatisticWord'=>MyConstant::$arr_statistic_word]);
     }

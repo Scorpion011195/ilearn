@@ -30,7 +30,7 @@ class MyConstant
                                   '5'=>'前置詞',
                                   '6'=>'間投詞'];
 
-    /*This is not constant
+    /*This is not a constant
     init array to statistic*/
     static $arr_statistic_word = array(['STT'=>1,'from'=>'english','to'=>'vietnamese','from_text'=>'Hello','to_text'=>'Xin chào','quanlity'=>0,'status'=>'added']);
 }
