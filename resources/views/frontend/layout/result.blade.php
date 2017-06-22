@@ -5,16 +5,17 @@
 
         </div>
         <div class="panel-footer background-white">
+                @if(isset($workInfo))
                 
-                 @foreach ($workInfo as $language)
+                     @foreach ($workInfo as $language)
 
-                     <b>{{$language->type}}</b>:{{ $language ->word }} &nbsp;                     
-                    <span class="glyphicon glyphicon-volume-up">{{$language->listen}}
-                    </span><br>
-                    Explain:{{ $language->explain}}
-                    <hr>
-                @endforeach
-
+                         <b>{{$language->type}}</b>:{{ $language ->word }} &nbsp;                     
+                        <span class="glyphicon glyphicon-volume-up">{{$language->listen}}
+                        </span><br>
+                        Explain:{{ $language->explain}}
+                        <hr>
+                    @endforeach
+                @endif
                 @if(Auth::guest()) 
                 <div class="panel-footer background-white">
                     <div class="rigt-group">

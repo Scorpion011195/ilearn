@@ -17,13 +17,16 @@ require __DIR__.'/web_ilearn_partial.php';
 Route::post('/search', array('as' => 'search',
     'uses' => 'LaguageController@search'));
 
-Route::get('/', function () {
-    return view('index');
-});
 Route::get('/result', function () {
     return view('result');
 
 });
+
+Route::get('/', array('as' => '',
+    'uses' => 'LaguageController@getAllLanguage'));
+
+Route::get('/search', array('as' => 'search',
+    'uses' => 'LaguageController@getAllLanguage'));
 
 
 /*=================/Function Search================*/
