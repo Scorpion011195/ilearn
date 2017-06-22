@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4  panel no-radius-right no-radius-left">
                 {!! Form::open(array('route' => 'dangki')) !!}
+                {{ csrf_field() }}
                 <div class="panel-heading text-center">
                     <h3>TẠO TÀI KHOẢN</h3>
                 </div>

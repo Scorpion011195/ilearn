@@ -80,7 +80,7 @@ class UserController extends Controller implements BaseController
     ];
 
     $validator = Validator::make($request->all(), $rules, $messages);
-
+    
     if($validator->fails())
     {
       return redirect()->back()->withErrors($validator)->withInput();
@@ -91,7 +91,7 @@ class UserController extends Controller implements BaseController
       $remember = $request->input('remember');
 
       if(Auth()->attempt(['username' =>$username, 'password' => $password],$remember)) {
-        return redirect()->intended('/');
+        return redirect()->action('LaguageController@getAllLanguage');
 
       }
       else {
@@ -130,7 +130,16 @@ class UserController extends Controller implements BaseController
     $userID->id_history = $user->id_user;
     $userID->save();
 
-    $success['text'] = 'flash';
-    return view("index", ["flash"=>$success]);
+    $language = \DB::table('languages')->get();
+
+    if(Auth()->attempt(['username' =>$user->username, 'password' =>$user->password])) {
+     return redirect()->intended('/');
+
   }
+    $success['text'] = 'flash';
+    return view("index")->with([
+                    'flash' => $success,
+                    'data' => $language ]);
+
+}
 }
