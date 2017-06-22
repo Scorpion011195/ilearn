@@ -1,62 +1,3 @@
-<div class="panel">
-    <div class="panel-body">
-        <form class="form-inline">
-            <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                          <select class="form-control">
-                              <option>english</option>
-                              <option>vietnamese</option>
-                              <option>japanese</option>
-                          </select>
-                          <select class="form-control">
-                              <option>Loại từ</option>
-                              <option>Danh từ</option>
-                              <option>Động từ</option>
-                              <option>Tính từ</option>
-                              <option>Trạng từ</option>
-                              <option>Giới từ</option>
-                          </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                          <select class="form-control">
-                              <option>english</option>
-                              <option selected>vietnamese</option>
-                              <option>japanese</option>
-                          </select>
-                          <button type="button" class="btn btn-info">
-                              <span class="glyphicon glyphicon-upload"></span>  Thêm
-                          </button>
-                        </div>
-                    </div>
-                </div>
-
-            <br>
-
-            <div class="row">
-                    <div class="col-sm-6">
-                          <input type="text" class="form-control" placeholder="Từ nguồn" aria-controls="example1" aria-controls="example1">
-                    </div>
-                    <div class="col-sm-6">
-                          <input type="text" class="form-control" placeholder="Từ đích" aria-controls="example1">
-                    </div>
-            </div>
-
-            <br>
-
-            <div class="row">
-                    <div class="col-sm-6">
-                          <textarea class="form-control" rows="5" ></textarea>
-                    </div>
-                    <div class="col-sm-6">
-                          <textarea class="form-control" rows="5" ></textarea>
-                    </div>
-            </div>
-        </form>
-    </div>
-</div>
 
 <div class="box">
     <div class="box-header">
@@ -65,25 +6,6 @@
     <!-- /.box-header -->
     <div class="box-body">
         <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="dataTables_length" id="example1_length"><label>Show <select name="example1_length"
-                                                                                            aria-controls="example1"
-                                                                                            class="form-control input-sm">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select> entries</label></div>
-                </div>
-                <div class="col-sm-6">
-                    <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                                                                             class="form-control input-sm"
-                                                                                             placeholder=""
-                                                                                             aria-controls="example1"></label>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-sm-12">
                     <table id="example1" class="table table-bordered table-striped dataTable" role="grid"

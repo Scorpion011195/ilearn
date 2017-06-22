@@ -66,7 +66,7 @@
     </div>
     <div class="panel">
         <div class="panel-body">
-            @include('backend.layout.partial.dict-table')
+            @include('backend.layout.partial.collect-table')
         </div>
     </div>
 @endsection

@@ -40,7 +40,7 @@ search form (Optional)
                 </a>
                 <ul class="treeview-menu">
                     <li id="_menu-qltd-tt"><a href="{{ route('adminDictCreate') }}">Thêm từ</a></li>
-                    <li id="_menu-qltd-dt"><a href="{{ route('adminDictApprove') }}">Duyệt từ</a></li>
+                    <!-- <li id="_menu-qltd-dt"><a href="{{ route('adminDictApprove') }}">Duyệt từ</a></li> -->
                     <li id="_menu-qltd-tk"><a href="{{ route('adminDictCollect') }}">Thống kê</a></li>
                     <li id="_menu-qltd-tfscv"><a href="{{ route('adminDictUpload') }}">Thêm file scv</a></li>
                 </ul>
