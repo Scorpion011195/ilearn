@@ -91,7 +91,7 @@ class UserController extends Controller implements BaseController
       $remember = $request->input('remember');
 
       if(Auth()->attempt(['username' =>$username, 'password' => $password],$remember)) {
-        return redirect()->intended('/');
+        return redirect()->action('LaguageController@getAllLanguage');
 
       }
       else {
@@ -114,7 +114,7 @@ class UserController extends Controller implements BaseController
     $user->password = \Hash::make($request->password);
     $user->remember_token = '';
     $user->id_status = 1;
-    $user->id_role = 5; 
+    $user->id_role = 5;
     $user->save();
 
     $userHis = new \App\Models\History();
@@ -123,14 +123,23 @@ class UserController extends Controller implements BaseController
     $userHis->save();
 
     $userSet = new \App\Models\Setting();
-    $userSet->id_user = $user->id_user;    
+    $userSet->id_user = $user->id_user;
     $userSet->save();
 
     $userID = User::find($user->id_user);
     $userID->id_history = $user->id_user;
     $userID->save();
 
-    $success['text'] = 'flash';
-    return view("index", ["flash"=>$success]);
+    $language = \DB::table('languages')->get();
+
+    if(Auth()->attempt(['username' =>$user->username, 'password' =>$user->password])) {
+     return redirect()->intended('/');
+
   }
+    $success['text'] = 'flash';
+    return view("index")->with([
+                    'flash' => $success,
+                    'data' => $language ]);
+
+}
 }

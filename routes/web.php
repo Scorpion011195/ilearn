@@ -10,20 +10,22 @@ require __DIR__.'/web_ilearn_partial.php';
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 /*===================Function Search===============*/
 
 /*================src_user_register====================  */
 Route::post('/search', array('as' => 'search',
     'uses' => 'LaguageController@search'));
 
-Route::get('/', function () {
-    return view('index');
-});
 Route::get('/result', function () {
     return view('result');
 
 });
+
+Route::get('/', array('as' => '',
+    'uses' => 'LaguageController@getAllLanguage'));
+
+Route::get('/search', array('as' => 'search',
+    'uses' => 'LaguageController@getAllLanguage'));
 
 
 /*=================/Function Search================*/
@@ -60,9 +62,14 @@ Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryContr
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
  });
 
- Route::get('/test', function () {
-        return view('frontend.layout.partial.settings-table');
-    });
+
+/*=================== Test area ===============*/
+Route::get('test', 'StatisticManagementController@test');
+
+Route::get('tests', function(){
+    echo DB::table('vietnamese')->max('id_mapping');
+});
+/*=================== /.Test area ===============*/
 
 
 /*=================== Admin area ===============*/
@@ -79,9 +86,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('checkLogin', 'AdminController@login')->name('adminCheckLogin');
 
     // Trang chủ
-    Route::get('home', function () {
-        return view('backend.dict.create');
-    })->name('adminHome')->middleware('adminLogin');
+    Route::get('home', 'DictionaryManagementController@home')->name('adminHome')->middleware('adminLogin');
 
  Route::get('/getData', 'LaguageController@getData')->name('getData');
 
@@ -90,9 +95,8 @@ Route::group(['prefix' => 'admin'], function () {
     // Quản lý từ điển
     Route::group(['prefix' => 'dict','middleware'=>'adminLogin'], function () {
         // Thêm từ
-        Route::get('create', function(){
-            return view('backend.dict.create');
-        })->name('adminDictCreate');
+        Route::get('create', 'DictionaryManagementController@home')->name('adminDictCreate');
+        Route::post('create', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
 
         // Duyệt từ
         Route::get('approve', function () {
@@ -100,9 +104,7 @@ Route::group(['prefix' => 'admin'], function () {
         })->name('adminDictApprove');
 
         // Thống kê
-        Route::get('collect', function () {
-            return view('backend.dict.collect');
-        })->name('adminDictCollect');
+        Route::get('collect', 'StatisticManagementController@statisticAllUser')->name('adminDictCollect');
 
         // Thêm file scv
         Route::get('upload', function () {
@@ -119,6 +121,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('role', 'UserManagementController@changeRole');
 
         Route::post('delete', 'UserManagementController@deleteUser');
+
+        Route::get('detail/{id}', 'UserManagementController@getDetailUser')->name('adminGetDetailUser');
+        Route::post('updateDetail', 'UserManagementController@postDetailUser')->name('adminPostDetailUser');
 
         Route::get('search', 'UserManagementController@searchUser')->name('adminSearchUser');
     });

@@ -1,9 +1,16 @@
-<?php 
+<?php
 
 namespace App\Services;
-use App\Repositories\LanguageRepository;
 
-class LanguageService implements LanguageRepository{
+use App\Repositories\LanguageRepository;
+use App\Models\Language;
+
+class LanguageService extends BaseService implements LanguageRepository{
+
+    public function __construct(Language $model)
+    {
+        $this->model = $model;
+    }
 
     public function findWord($langueInput, $langueOutput, $inputText) {
         //get ID maping :
@@ -12,7 +19,7 @@ class LanguageService implements LanguageRepository{
             return false;
         }
         else {
-            
+
             //get Word :
             return \DB::table($langueOutput)->select('word', 'listen', 'explain')->where('id_mapping', '=', $lagInfor[0]->id_mapping)->get();
         }

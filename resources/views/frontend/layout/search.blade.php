@@ -19,7 +19,7 @@
                                <?php foreach($data as $item =>$value){
                                 $language = $value->language;
                                 ?>               
-                            @if (Session::get('flagLanguage1') == $language)
+                            @if (\Session::get('flagLanguage1') == $language)
                                 <option value="{{ $language }}" selected>{{ $language }}</option>
                                     @else
                                           <option value="{{ $language }}">{{ $language }}</option>
@@ -42,8 +42,10 @@
                          </select>
                     </div>
                 </div>
-        {!! Form::close() !!}
 
+        {!! Form::close() !!}
+        </div>
+        </div>
         <div class="result">
             @include('frontend.layout.result')
         </div>

@@ -14,16 +14,9 @@ use App\Models\User;
 
 class UserService extends BaseService implements UserRepository
 {
-    //public $paginate = 20;
 
     public function __construct(User $model)
     {
         $this->model = $model;
     }
-
-    public function find(array $attributes)
-    {
-
-    }
-
 }

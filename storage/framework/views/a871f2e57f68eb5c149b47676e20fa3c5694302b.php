@@ -5,6 +5,8 @@
             <div class="col-sm-4 col-sm-offset-4  panel no-radius-right no-radius-left">
                 <?php echo Form::open(array('route' => 'dangki')); ?>
 
+                <?php echo e(csrf_field()); ?>
+
                 <div class="panel-heading text-center">
                     <h3>TẠO TÀI KHOẢN</h3>
                 </div>

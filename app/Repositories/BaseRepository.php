@@ -12,8 +12,6 @@ interface BaseRepository {
 
     public function getById($id);
 
-    public function find(array $attributes);
-
     public function create(array $attributes);
 
     public function update($id, array $attributes);

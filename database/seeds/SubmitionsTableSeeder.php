@@ -12,8 +12,7 @@ class SubmitionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('submitions')->insert([
-            ['id_submition'=>1,'from_text'=>'hello','to_text'=>'xin chào','from_id_language'=>1,'to_id_language'=>2,'explain_from_text'=>'','no_of_visits'=>200],
-            ['id_submition'=>2,'from_text'=>'xin chào','to_text'=>'hello','from_id_language'=>2,'to_id_language'=>1,'explain_from_text'=>'','no_of_visits'=>300]
+            ['STT'=>1,'from'=>'english','to'=>'vietnamese','from_text'=>'hello','to_text'=>'hin chào','quanlity'=>0,'status'=>'added']
             ]);
     }
 }

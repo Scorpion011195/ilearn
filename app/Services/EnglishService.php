@@ -1,15 +1,25 @@
-<?php 
+<?php
 
 namespace App\Services;
 
 use App\Repositories\EnglishRepository;
+use App\Models\English;
+use DB;
 
 class EnglishService extends BaseService implements EnglishRepository{
 
+    public function __construct(English $model)
+    {
+        $this->model = $model;
+    }
 
+    public function findWord($column, $word)
+    {
+        return DB::table('english')->where($column, 'like', '%word":"'.$word.'"}')->get();
+    }
 
-    public function find(array $attributes) {
-        
+    public function getMaxIdMapping(){
+        return DB::table('english')->max('id_mapping');
     }
 
 }

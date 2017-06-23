@@ -1,5 +1,13 @@
 @extends('backend.ilearn')
 
+@section('css')
+    <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"
+          rel="stylesheet"/>
+    <!-- X EDITABLE CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+          rel="stylesheet"/>
+@endsection
+
 @section('content-header')
         <h1>
             Duyệt từ
@@ -13,14 +21,6 @@
 
 @section('content')
     @include('backend.layout.partial.dict-table')
-@endsection
-
-@section('css')
-    <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"
-          rel="stylesheet"/>
-    <!-- X EDITABLE CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
-          rel="stylesheet"/>
 @endsection
 
 @section('script')

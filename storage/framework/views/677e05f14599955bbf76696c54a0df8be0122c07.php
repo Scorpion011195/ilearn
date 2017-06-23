@@ -42,15 +42,14 @@
                                 <?php echo Form::text('username', Illuminate\Support\Facades\Input::old('username'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']); ?>
 
 
-                                <?php echo e(Form::password('password', array('class' => 'form-control nav-login collapse','placeholder' => 'Mật khẩu'))); ?>
-
+                                <input class="form-control nav-login collapse" placeholder="Mật khẩu của bạn" name="password" type="password" value="<?php echo e(old('password')); ?>"/>
                                 
                                 <input class= "nav-login" type="checkbox" name="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>  <span class="nav-login">Remember</span>
 
                                 <?php echo Form::button('Đăng nhập', ['class' => 'btn btn-default', 'id' => 'nav-login-btn', 'onclick' => 'doSubmit()']); ?>
 
 
-                                <a class="nav-login collapse" data-toggle="modal" href="#modal-register">Đăng ký</a>
+                                <a class="nav-login collapse" id="idXXX" data-toggle="modal" href="#modal-register">Đăng ký</a>
                             </div>
                             <?php echo Form::close(); ?>
 

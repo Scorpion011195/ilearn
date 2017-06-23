@@ -1,15 +1,25 @@
-<?php 
+<?php
 
 namespace App\Services;
 
 use App\Repositories\JapaneseRepository;
+use App\Models\Japanese;
+use DB;
 
 class JapaneseService extends BaseService implements JapaneseRepository{
 
+    public function __construct(Japanese $model)
+    {
+        $this->model = $model;
+    }
 
+    public function getMaxIdMapping(){
+        return DB::table('japanese')->max('id_mapping');
+    }
 
-    public function find(array $attributes) {
-        
+    public function findWord($column, $word)
+    {
+        return DB::table('japanese')->where($column, 'like', '%word":"'.$word.'"}')->get();
     }
 
 }

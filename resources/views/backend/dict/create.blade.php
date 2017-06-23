@@ -21,39 +21,10 @@
 @endsection
 
 @section('content')
-    @include('backend.layout.partial.dict-table')
+    @include('backend.layout.partial.create-table')
 @endsection
 
 @section('script')
-    <!-- X-EDITABLE JS -->
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $.fn.editable.defaults.mode = 'inline';
-            $(document).ready(function() {
-                $(' td ').editable();
-            });
-            $('#username').editable({
-                type: 'text',
-                pk: 1,
-                url: '/post',
-                title: 'Enter username'
-            });
-            var table = $('#example').DataTable();
-
-            $('#example tbody').on('click', 'tr', function () {
-                var data = table.row( this ).data();
-                alert( 'You clicked on '+data[0]+'\'s row' );
-            } );
-
-            $(function() {
-                $( "#collect-date" ).datepicker();
-            });
-        } );
-    </script>
-
     <!-- Active left menu -->
     <script>
         $(document).ready(function(){

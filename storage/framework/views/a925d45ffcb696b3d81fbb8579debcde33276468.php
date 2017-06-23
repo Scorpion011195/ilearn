@@ -22,7 +22,7 @@
                                <?php foreach($data as $item =>$value){
                                 $language = $value->language;
                                 ?>               
-                            <?php if(Session::get('flagLanguage1') == $language): ?>
+                            <?php if(\Session::get('flagLanguage1') == $language): ?>
                                 <option value="<?php echo e($language); ?>" selected><?php echo e($language); ?></option>
                                     <?php else: ?>
                                           <option value="<?php echo e($language); ?>"><?php echo e($language); ?></option>
@@ -45,9 +45,11 @@
                          </select>
                     </div>
                 </div>
+
         <?php echo Form::close(); ?>
 
-
+        </div>
+        </div>
         <div class="result">
             <?php echo $__env->make('frontend.layout.result', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         </div>

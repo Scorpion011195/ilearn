@@ -14,14 +14,14 @@ class CreateSubmitionsTable extends Migration
     public function up()
     {
         Schema::create('submitions', function (Blueprint $table) {
-            $table->increments('id_submition');
+            $table->integer('STT');
+            $table->string('from',100);
+            $table->string('to',100);
             $table->string('from_text',100);
             $table->string('to_text',100);
-            $table->integer('from_id_language');
-            $table->integer('to_id_language');
-            $table->longText('explain_from_text');
-            $table->integer('no_of_visits');
-        });        //
+            $table->integer('quanlity');
+            $table->string('status',100);
+        });
     }
     /**
      * Reverse the migrations.
