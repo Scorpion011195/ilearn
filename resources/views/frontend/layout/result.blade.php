@@ -5,16 +5,17 @@
 
         </div>
         <div class="panel-footer background-white">
+                @if(isset($workInfo))
                 
-                 @foreach ($workInfo as $language)
+                     @foreach ($workInfo as $language)
 
-                     <b>{{$language->type}}</b>:{{ $language ->word }} &nbsp;                     
-                    <span class="glyphicon glyphicon-volume-up">{{$language->listen}}
-                    </span><br>
-                    Explain:{{ $language->explain}}
-                    <hr>
-                @endforeach
-
+                         <b>{{$language->type}}</b>:{{ $language ->word }} &nbsp;                     
+                        <span class="glyphicon glyphicon-volume-up">{{$language->listen}}
+                        </span><br>
+                        Explain:{{ $language->explain}}
+                        <hr>
+                    @endforeach
+                @endif
                 @if(Auth::guest()) 
                 <div class="panel-footer background-white">
                     <div class="rigt-group">
@@ -25,7 +26,7 @@
 
             @if(!Auth::guest())
                 <div class="right-group">
-                    <a href="{{route('getData')}}"><button class="btn btn-primary">Thêm từ mới</button></a>
+                    <button class="btn btn-primary" data-toggle="collapse" data-target="#create-dict">Thêm từ mới</button>
                </div>
             @endif
         </div>

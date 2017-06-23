@@ -5,18 +5,19 @@
 
         </div>
         <div class="panel-footer background-white">
+                <?php if(isset($workInfo)): ?>
                 
-                 <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                     <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                     <b><?php echo e($language->type); ?></b>:<?php echo e($language ->word); ?> &nbsp;                     
-                    <span class="glyphicon glyphicon-volume-up"><?php echo e($language->listen); ?>
+                         <b><?php echo e($language->type); ?></b>:<?php echo e($language ->word); ?> &nbsp;                     
+                        <span class="glyphicon glyphicon-volume-up"><?php echo e($language->listen); ?>
 
-                    </span><br>
-                    Explain:<?php echo e($language->explain); ?>
+                        </span><br>
+                        Explain:<?php echo e($language->explain); ?>
 
-                    <hr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
+                        <hr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php endif; ?>
                 <?php if(Auth::guest()): ?> 
                 <div class="panel-footer background-white">
                     <div class="rigt-group">
@@ -27,7 +28,7 @@
 
             <?php if(!Auth::guest()): ?>
                 <div class="right-group">
-                    <a href="<?php echo e(route('getData')); ?>"><button class="btn btn-primary">Thêm từ mới</button></a>
+                    <button class="btn btn-primary" data-toggle="" data-target="">Thêm từ mới</button>
                </div>
             <?php endif; ?>
         </div>

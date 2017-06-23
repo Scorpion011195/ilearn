@@ -48,6 +48,9 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
  Route::get('/settings', function () {
         return view('frontend.settings');
     });
+ Route::get('/historys', function () {
+        return view('frontend.historys');
+    });
 
 Route::get('/historys','HistoryController@store' );
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
@@ -79,6 +82,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('home', function () {
         return view('backend.dict.create');
     })->name('adminHome')->middleware('adminLogin');
+
+ Route::get('/getData', 'LaguageController@getData')->name('getData');
+
+
 
     // Quản lý từ điển
     Route::group(['prefix' => 'dict','middleware'=>'adminLogin'], function () {
