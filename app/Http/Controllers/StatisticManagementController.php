@@ -7,6 +7,8 @@ use App\Services\HistoryService;
 use App\Models\History;
 use App\Services\UserService;
 use App\Models\User;
+use App\Services\SubmitionService;
+use App\Models\Submition;
 use App\Http\Controllers\MyConstant;
 
 class StatisticManagementController extends Controller
@@ -85,17 +87,28 @@ class StatisticManagementController extends Controller
 
         $countUsers = $users->count();
 
+        // Reset submitions table
+        $submitionService = new SubmitionService(new Submition);
+        $submitionService->reset();
+
+        // Thống kê -> kết quả lưu vào array MyConstant::$arr_statistic_word
         for($i=0; $i<$countUsers; $i++){
             $idUser = $users[$i]->id_user;
 
             $this->statisticOneUser($idUser);
         }
 
-        // echo "<pre>";
-        // var_dump(MyConstant::$arr_statistic_word);
-        // echo "</pre>";
-        //Lấy MyConstant::$arr_statistic_word hiển thị ra giao diện
-        return view('backend.dict.collect', ['arrStatisticWord'=>MyConstant::$arr_statistic_word]);
-    }
+        // Đưa mảng đã thống kê vào submitions table
+        foreach (MyConstant::$arr_statistic_word as $row) {
+            $submitionService->create($row);
+        }
 
+        // Hiển thị kết quả thống kê
+        $noOfSubmitions = Submition::count();
+        $noOfPages = 5;
+        $submitions = Submition::paginate($noOfPages);
+
+        $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions];
+        return view('backend.dict.collect', $param);
+    }
 }

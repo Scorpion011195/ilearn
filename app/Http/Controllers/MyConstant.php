@@ -31,6 +31,7 @@ class MyConstant
                                   '6'=>'間投詞'];
 
     /*This is not a constant
+    Instance of submitions table
     init array to statistic*/
-    static $arr_statistic_word = array(['STT'=>1,'from'=>'english','to'=>'vietnamese','from_text'=>'Hello','to_text'=>'Xin chào','quanlity'=>0,'status'=>'added']);
+    static $arr_statistic_word = array(['STT'=>1,'from'=>'english','to'=>'vietnamese','from_text'=>'hello','to_text'=>'xin chào','quanlity'=>0,'status'=>'added']);
 }

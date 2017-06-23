@@ -61,7 +61,7 @@ Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryContr
 
 
 /*=================== Test area ===============*/
-Route::get('test', 'StatisticManagementController@testInsertArrayToHistory');
+Route::get('test', 'StatisticManagementController@test');
 
 Route::get('tests', function(){
     echo DB::table('vietnamese')->max('id_mapping');
