@@ -81,8 +81,11 @@
                             </td>
                             <td class="sorting_1">{!! changeColor(date('Y-m-d', strtotime($ac->created_at)), $key_day) !!}</td>
                             <td class="sorting_1">
+                                <a href="{{ route('adminGetDetailUser',$_idUser) }}" class="_detail-user" data-toggle="tooltip" title="Xem thông tin!">
+                                  <span class="glyphicon glyphicon-edit"></span>
+                                </a>
                                 <a class="_delete-user" data-toggle="tooltip" title="Xóa!">
-                                  <span class="glyphicon glyphicon-remove"></span>
+                                  <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
                         </tr>

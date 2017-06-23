@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Models\User;
+use App\Services\UserInformationService;
+use App\Models\UserInformation;
 use App\Services\StatusService;
 use App\Models\Status;
 use App\Services\UserRoleService;
@@ -56,6 +58,23 @@ class UserManagementController extends Controller
 
         $dataResponse = ["data"=>"OK"];
         return json_encode($dataResponse);
+    }
+
+    function getDetailUser($id){
+        $column = 'id_user';
+        $userService = new UserService(new User);
+        $user = $userService->getByColumn($column, $id);
+
+        $userInformationService = new UserInformationService(new UserInformation);
+        $userInformation = $userInformationService->getByColumn($column, $id);
+
+        echo $userInformation->name;
+
+        // $userInformation = User::where('id_user',$id);
+
+        // echo $userInformation->username;
+
+        //return view('backend.user.detail-user',['user'=>$user]);
     }
 
     function searchUser(Request $request){

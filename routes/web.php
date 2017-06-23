@@ -120,6 +120,8 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::post('delete', 'UserManagementController@deleteUser');
 
+        Route::get('detail/{id}', 'UserManagementController@getDetailUser')->name('adminGetDetailUser');
+
         Route::get('search', 'UserManagementController@searchUser')->name('adminSearchUser');
     });
 
