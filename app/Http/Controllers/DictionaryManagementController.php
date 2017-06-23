@@ -187,7 +187,7 @@ class DictionaryManagementController extends Controller
 
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>'', 'lastTxtNghia'=>'', 'code'=>'none'];
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>'', 'idCbTypeWord'=>6, 'idCbTableFrom'=>1,'idCbTableTo'=>2, 'code'=>'none'];
         return view('backend.dict.search', $param);
     }
 
@@ -205,7 +205,7 @@ class DictionaryManagementController extends Controller
 
        // Nếu chưa nhập từ
        if(empty($keyTraTu)){
-           return redirect()->route('adminDictSearch');
+           return redirect()->route('adminDictSearch')->with('alertSearchWordFailed','Bạn chưa nhập từ!');
        }
 
        // Tìm từ trong bảng nguồn
@@ -215,19 +215,26 @@ class DictionaryManagementController extends Controller
                 $typeWordFrom = MyConstant::TYPE_OF_WORD_ENGLISH[$typeWord];
                 echo "Loai tu".$typeWordFrom."<br>";
                 $resultFrom = $englishService->findWordWithType('word', $keyTraTu, $typeWordFrom);
+                $countFrom = sizeof($resultFrom);
                 break;
             case 'vietnamese':
                 $typeWordFrom = MyConstant::TYPE_OF_WORD_VIETNAMESE[$typeWord];
                 $resultFrom = $vietnameseService->findWordWithType('word', $keyTraTu, $typeWordFrom);
+                $countFrom = sizeof($resultFrom);
                 break;
             case 'japanese':
                 $typeWordFrom = MyConstant::TYPE_OF_WORD_JAPANESE[$typeWord];
                 $resultFrom = $japaneseService->findWordWithType('word', $keyTraTu, $typeWordFrom);
+                $countFrom = sizeof($resultFrom);
         }
 
-       echo "id_mapping from:".$resultFrom->id_mapping."<br>";
+        // Nếu từ chưa có trong từ điển
+        if($countFrom<=0){
+            return redirect()->route('adminDictSearch')->with('alertSearchWordFailed','Từ chưa có trong từ điển');
+        }
 
-       // Tìm từ tương ứng ở bảng đích
+       /*Nếu từ có trong từ điển
+       Tìm từ tương ứng ở bảng đích*/
        $nameTableTo = MyConstant::LANGUAGES_TABLE[$tableTo];
        switch ($nameTableTo) {
             case 'english':
@@ -243,13 +250,16 @@ class DictionaryManagementController extends Controller
                 $countTo = $resultTo->count();
         }
 
-        // Nếu từ chưa có trong từ điển
-        if($countTo<=0){
-            return redirect()->route('adminDictCreate');
-        }
-        else{
-            echo 'Hien thi ket qua';
-        }
+        // Hiển thị
+        $languageService = new LanguageService(new Language);
+        $listLanguage = $languageService->getAll();
+
+        $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
+
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'success', 'result'=>$resultTo];
+        return view('backend.dict.search', $param);
+
+
     }
     /*=================== /.Tra từ area ===============*/
 }

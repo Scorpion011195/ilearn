@@ -2,16 +2,21 @@
 <!-- Search -->
 <div class="panel">
     <div class="panel-body">
+      @if(session('alertSearchWordFailed'))
+        <div class="alert alert-success text-center">
+            {{ session('alertSearchWordFailed') }}
+        </div>
+      @endif
         <div class="row">
           <div class="col-sm-12">
             <form action="{{ route('adminDictSearchWord') }}" class="form-inline" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                  <input class="form-control" type="text" placeholder="Tra từ" name="_keytratu">
+                  <input class="form-control" type="text" placeholder="Tra từ" name="_keytratu" value="{{ $lastKey }}">
                   <select class="form-control" name="_cbloaitutratu">
                       @foreach($listTypeOfWord as $key=>$value)
                           <option
-                              @if($key == 1)
+                              @if($key == $idCbTypeWord)
                                   {{ "selected" }}
                               @endif
                               value="{{ $key }}">{{ $value }}</option>
@@ -20,7 +25,7 @@
                   <select class="form-control" name="_cbnguontratu">
                       @foreach($listLanguage as $language)
                           <option
-                              @if($language->id_language == 1)
+                              @if($language->id_language == $idCbTableFrom)
                                   {{ "selected" }}
                               @endif
                               value="{{ $language->id_language }}">{{ $language->language }}</option>
@@ -29,7 +34,7 @@
                   <select class="form-control" name="_cbdichtratu">
                       @foreach($listLanguage as $language)
                           <option
-                              @if($language->id_language == 2)
+                              @if($language->id_language == $idCbTableTo)
                                   {{ "selected" }}
                               @endif
                               value="{{ $language->id_language }}">{{ $language->language }}</option>
@@ -56,9 +61,9 @@
                                  aria-describedby="example1_info">
                               <thead>
                               <tr role="row">
-                                  <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                  <!-- <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                       aria-label="Browser: activate to sort column ascending" style="width: 50px;">STT
-                                  </th>
+                                  </th> -->
                                   <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                       aria-label="Browser: activate to sort column ascending" style="width: 300px;">Nghĩa
                                   </th>
@@ -73,14 +78,16 @@
                               </tr>
                               </thead>
                               <tbody>
-
-                              <tr role="row" class="odd text-center">
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                              </tr>
-
+                              @if(isset($result))
+                               @foreach($result as $row)
+                                 <?php $word = json_decode($row->word); ?>
+                                 <tr role="row" class="odd text-center">
+                                    <td>{{ $word->word }}</td>
+                                    <td>{{ $row->explain }}</td>
+                                    <td>{{ $word->type }}</td>
+                                 </tr>
+                               @endforeach
+                              @endif
                               </tbody>
                           </table>
                       </div>
