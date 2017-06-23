@@ -27,6 +27,7 @@ class DictionaryManagementController extends Controller
         return view('backend.dict.create', $param);
     }
 
+    /*=================== Thêm từ area ===============*/
     // Check word existed? Ex: ('english', 'word', 'hello', 'noun')
     function checkWordExist($tableFrom, $column, $wordFrom, $typeWord)
     {
@@ -84,13 +85,14 @@ class DictionaryManagementController extends Controller
         return max($arrIpMapping);
     }
 
+    // Thêm từ
     function createWord(Request $request)
     {
         $languageService = new LanguageService(new Language);
         $listLanguage = $languageService->getAll();
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-        // Param submit
+        // Input submit
         $idTableNguon = $request->_cbnguon;
         $idLoaiTu = $request->_cbloaitu;
         $idTableDich = $request->_cbdich;
@@ -175,5 +177,80 @@ class DictionaryManagementController extends Controller
     function insertTable($tableService, $attributes){
         $tableService->create($attributes);
     }
+    /*=================== /.Thêm từ area ===============*/
+
+
+    /*=================== Tra từ area ===============*/
+    function getSearch(){
+        $languageService = new LanguageService(new Language);
+        $listLanguage = $languageService->getAll();
+
+        $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
+
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>'', 'lastTxtNghia'=>'', 'code'=>'none'];
+        return view('backend.dict.search', $param);
+    }
+
+    function searchWord(Request $request){
+       // Input submit
+       $keyTraTu = $request->_keytratu;
+       $tableFrom = $request->_cbnguontratu;
+       $tableTo = $request->_cbdichtratu;
+       $typeWord = $request->_cbloaitutratu;
+
+       // Init
+       $englishService = new EnglishService(new English);
+       $vietnameseService = new VietnameseService(new Vietnamese);
+       $japaneseService = new JapaneseService(new Japanese);
+
+       // Nếu chưa nhập từ
+       if(empty($keyTraTu)){
+           return redirect()->route('adminDictSearch');
+       }
+
+       // Tìm từ trong bảng nguồn
+       $nameTableFrom = MyConstant::LANGUAGES_TABLE[$tableFrom];
+       switch ($nameTableFrom) {
+            case 'english':
+                $typeWordFrom = MyConstant::TYPE_OF_WORD_ENGLISH[$typeWord];
+                echo "Loai tu".$typeWordFrom."<br>";
+                $resultFrom = $englishService->findWordWithType('word', $keyTraTu, $typeWordFrom);
+                break;
+            case 'vietnamese':
+                $typeWordFrom = MyConstant::TYPE_OF_WORD_VIETNAMESE[$typeWord];
+                $resultFrom = $vietnameseService->findWordWithType('word', $keyTraTu, $typeWordFrom);
+                break;
+            case 'japanese':
+                $typeWordFrom = MyConstant::TYPE_OF_WORD_JAPANESE[$typeWord];
+                $resultFrom = $japaneseService->findWordWithType('word', $keyTraTu, $typeWordFrom);
+        }
+
+       echo "id_mapping from:".$resultFrom->id_mapping."<br>";
+
+       // Tìm từ tương ứng ở bảng đích
+       $nameTableTo = MyConstant::LANGUAGES_TABLE[$tableTo];
+       switch ($nameTableTo) {
+            case 'english':
+                $resultTo = $englishService->getAllByColumn('id_mapping',$resultFrom->id_mapping);
+                $countTo = $resultTo->count();
+                break;
+            case 'vietnamese':
+                $resultTo = $vietnameseService->getAllByColumn('id_mapping',$resultFrom->id_mapping);
+                $countTo = $resultTo->count();
+                break;
+            case 'japanese':
+                $resultTo = $japaneseService->getAllByColumn('id_mapping',$resultFrom->id_mapping);
+                $countTo = $resultTo->count();
+        }
+
+        // Nếu từ chưa có trong từ điển
+        if($countTo<=0){
+            return redirect()->route('adminDictCreate');
+        }
+        else{
+            echo 'Hien thi ket qua';
+        }
+    }
+    /*=================== /.Tra từ area ===============*/
 }
 

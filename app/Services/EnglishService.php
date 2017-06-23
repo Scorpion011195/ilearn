@@ -18,6 +18,11 @@ class EnglishService extends BaseService implements EnglishRepository{
         return DB::table('english')->where($column, 'like', '%word":"'.$word.'"}')->get();
     }
 
+    public function findWordWithType($column, $word, $type)
+    {
+        return DB::table('english')->where($column, 'like', '%'.$type.'%'.$word.'"}')->first();
+    }
+
     public function getMaxIdMapping(){
         return DB::table('english')->max('id_mapping');
     }

@@ -13,13 +13,18 @@ class JapaneseService extends BaseService implements JapaneseRepository{
         $this->model = $model;
     }
 
-    public function getMaxIdMapping(){
-        return DB::table('japanese')->max('id_mapping');
-    }
-
     public function findWord($column, $word)
     {
         return DB::table('japanese')->where($column, 'like', '%word":"'.$word.'"}')->get();
+    }
+
+    public function findWordWithType($column, $word, $type)
+    {
+        return DB::table('japanese')->where($column, 'like', '%'.$type.'%'.$word.'"}')->first();
+    }
+
+    public function getMaxIdMapping(){
+        return DB::table('japanese')->max('id_mapping');
     }
 
 }

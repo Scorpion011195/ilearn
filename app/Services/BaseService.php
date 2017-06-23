@@ -56,6 +56,10 @@ abstract class BaseService implements BaseRepository
         return $this->model->where($column, $value)->first();
     }
 
+    public function getAllByColumn($column, $value){
+        return $this->model->where($column, $value)->get();
+    }
+
     public function updateByColumn($column, $value, array $attributes)
     {
         $this->model->where($column, $value)->update($attributes);

@@ -89,12 +89,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'dict','middleware'=>'adminLogin'], function () {
         // Thêm từ
         Route::get('create', 'DictionaryManagementController@home')->name('adminDictCreate');
-        Route::post('create', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
+        Route::post('create-word', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
 
-        // Duyệt từ
-        Route::get('approve', function () {
-            return view('backend.dict.approval');
-        })->name('adminDictApprove');
+        //Tra từ adminDictSearch
+        Route::get('search', 'DictionaryManagementController@getSearch')->name('adminDictSearch');
+        Route::post('search-word', 'DictionaryManagementController@searchWord')->name('adminDictSearchWord');
 
         // Thống kê
         Route::get('collect', 'StatisticManagementController@statisticAllUser')->name('adminDictCollect');

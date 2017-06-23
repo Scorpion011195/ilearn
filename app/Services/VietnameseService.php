@@ -21,4 +21,9 @@ class VietnameseService extends BaseService implements VietnameseRepository{
     {
         return DB::table('vietnamese')->where($column, 'like', '%word":"'.$word.'"}')->get();
     }
+
+    public function findWordWithType($column, $word, $type)
+    {
+        return DB::table('vietnamese')->where($column, 'like', '%'.$type.'%'.$word.'"}')->first();
+    }
 }
