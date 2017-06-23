@@ -23,18 +23,19 @@
 @section('content')
         <div class="panel">
             <div class="panel-body">
-                <!-- @if(session('alertUpdateProfile'))
+                @if(session('alertUpdateDetailUser'))
                     <div class="alert alert-success text-center">
-                        {{ session('alertUpdateProfile') }}
+                        {{ session('alertUpdateDetailUser') }}
                     </div>
-                @endif -->
+                @endif
 
-                <form action=""  method="post">
+                <form action="{{ route('adminPostDetailUser') }}"  method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="_idUser" value="{{ $user->id_user }}">
                     <div class="row">
                         <lable class="control-label col-sm-4 text-center-vertical">Email</lable>
                         <div class="col-sm-8">
-                            <input type="text" name="profile-email" class="form-control" value="{{
+                            <input type="text" name="profile-email" class="form-control" readonly value="{{
                              $user->email
                             }}">
                         </div>
@@ -43,28 +44,28 @@
                     <div class="row margin-top">
                         <lable class="control-label col-sm-4 text-center-vertical">Tên</lable>
                         <div class="col-sm-8">
-                            <input type="text" name="profile-name" class="form-control" value="{{ $user->name }}">
+                            <input type="text" name="profile-name" class="form-control" value="{{ $userInformation->name }}">
                         </div>
                     </div>
 
                     <div class="row margin-top">
                         <lable class="control-label col-sm-4 text-center-vertical">Địa chỉ</lable>
                         <div class="col-sm-8">
-                            <input type="text" name="profile-address" class="form-control" value="{{ $user->address }}">
+                            <input type="text" name="profile-address" class="form-control" value="{{ $userInformation->address }}">
                         </div>
                     </div>
 
                     <div class="row margin-top">
                         <lable class="control-label col-sm-4 text-center-vertical">Số điện thoại</lable>
                         <div class="col-sm-8">
-                            <input type="text" name="profile-phone" class="form-control" value="{{ $user->phone }}">
+                            <input type="text" name="profile-phone" class="form-control" value="{{ $userInformation->phone }}">
                         </div>
                     </div>
 
                     <div class="row margin-top">
                         <lable class="control-label col-sm-4 text-center-vertical">Ngày sinh</lable>
                         <div class="col-sm-8">
-                            <input type="date" name="profile-dob" class="form-control" id="profile-dob" value="{{ $user->date_of_birth }}">
+                            <input type="date" name="profile-dob" class="form-control" id="profile-dob" value="{{ $userInformation->date_of_birth }}">
                         </div>
                     </div>
 

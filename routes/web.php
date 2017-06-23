@@ -68,11 +68,6 @@ Route::get('tests', function(){
 });
 /*=================== /.Test area ===============*/
 
- Route::get('/test', function () {
-        return view('frontend.layout.partial.settings-table');
-    });
-
-
 
 /*=================== Admin area ===============*/
 Route::group(['prefix' => 'admin'], function () {
@@ -121,6 +116,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('delete', 'UserManagementController@deleteUser');
 
         Route::get('detail/{id}', 'UserManagementController@getDetailUser')->name('adminGetDetailUser');
+        Route::post('updateDetail', 'UserManagementController@postDetailUser')->name('adminPostDetailUser');
 
         Route::get('search', 'UserManagementController@searchUser')->name('adminSearchUser');
     });

@@ -68,13 +68,29 @@ class UserManagementController extends Controller
         $userInformationService = new UserInformationService(new UserInformation);
         $userInformation = $userInformationService->getByColumn($column, $id);
 
-        echo $userInformation->name;
+        $param = ['user'=>$user,'userInformation'=>$userInformation];
 
-        // $userInformation = User::where('id_user',$id);
+        return view('backend.user.detail-user',$param);
+    }
 
-        // echo $userInformation->username;
+    function postDetailUser(Request $request)
+    {
+        $column = 'id_user';
+        $idUser = $request['_idUser'];
 
-        //return view('backend.user.detail-user',['user'=>$user]);
+        $name = $request['profile-name'];
+        $address = $request['profile-address'];
+        $phone = $request['profile-phone'];
+        $dateOfBirth = $request['profile-dob'];
+
+        $attributes = ['name'=>$name, 'address'=>$address, 'phone'=>$phone, 'date_of_birth'=>$dateOfBirth];
+
+        $userInformationService = new UserInformationService(new UserInformation);
+        $userInformationService->updateByColumn($column, $idUser, $attributes);
+
+        echo "Da update thong tin";
+
+        return redirect()->route('adminGetDetailUser',$idUser)->with('alertUpdateDetailUser','Cập nhật thành công!');
     }
 
     function searchUser(Request $request){
