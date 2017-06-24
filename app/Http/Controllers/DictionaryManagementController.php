@@ -38,17 +38,15 @@ class DictionaryManagementController extends Controller
         switch($tableFrom){
             case 'english':
                 $result = $englishService->findWord($column, $wordFrom);
-                $count = $result->count();
                 break;
             case 'vietnamese':
                 $result = $vietnameseService->findWord($column, $wordFrom);
-                $count = $result->count();
                 break;
             case 'japanese':
                 $result = $japaneseService->findWord($column, $wordFrom);
-                $count = $result->count();
         }
 
+        $count = $result->count();
         //echo "Ket qua: ".$count."<br>";
         if($count>0){
             foreach ($result as $row){
@@ -187,7 +185,7 @@ class DictionaryManagementController extends Controller
 
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>'', 'idCbTypeWord'=>6, 'idCbTableFrom'=>1,'idCbTableTo'=>2, 'code'=>'none'];
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>'', 'idCbTypeWord'=>6, 'idCbTableFrom'=>1,'idCbTableTo'=>2, 'code'=>'none', 'countTo'=>0];
         return view('backend.dict.search', $param);
     }
 
@@ -256,7 +254,7 @@ class DictionaryManagementController extends Controller
 
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'success', 'result'=>$resultTo];
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'success', 'result'=>$resultTo, 'countTo'=>$countTo];
         return view('backend.dict.search', $param);
 
 

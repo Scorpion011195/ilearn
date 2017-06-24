@@ -1,7 +1,7 @@
 <?php
 
-	namespace App\Repositories;
+namespace App\Repositories;
 
-	interface EnglishRepository extends BaseRepository{
+interface EnglishRepository extends BaseRepository{
 
 }

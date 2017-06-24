@@ -1,10 +1,8 @@
 <?php
 
-	namespace App\Repositories;
+namespace App\Repositories;
 
-	interface LanguageRepository{
-            
+interface LanguageRepository{
+
         function findWord($langueInput, $langueOutput, $inputText);
-        
-        
 }

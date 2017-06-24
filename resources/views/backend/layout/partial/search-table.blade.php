@@ -3,7 +3,7 @@
 <div class="panel">
     <div class="panel-body">
       @if(session('alertSearchWordFailed'))
-        <div class="alert alert-success text-center">
+        <div class="alert alert-danger text-center">
             {{ session('alertSearchWordFailed') }}
         </div>
       @endif
@@ -94,7 +94,7 @@
                   </div>
                   <div class="row">
                       <div class="col-sm-5">
-                          <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Tổng cộng có 0 kết quả
+                          <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Tổng cộng có {{ $countTo }} kết quả
                           </div>
                       </div>
                       <div class="col-sm-7">

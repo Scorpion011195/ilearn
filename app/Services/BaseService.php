@@ -1,20 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: silverhawk
- * Date: 08/06/2017
- * Time: 09:00
- */
 
 namespace App\Services;
-
 
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseService implements BaseRepository
 {
-
     protected $model;
 
     public function __construct(Model $model)
@@ -48,8 +40,7 @@ abstract class BaseService implements BaseRepository
     }
 
     public function deleteByColumn($column, $value){
-        $record = $this->model->where($column, $value)->first();
-        $record->delete();
+        $record = $this->model->where($column, $value)->delete();
     }
 
     public function getByColumn($column, $value){

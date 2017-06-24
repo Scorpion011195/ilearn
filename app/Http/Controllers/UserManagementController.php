@@ -7,6 +7,10 @@ use App\Services\UserService;
 use App\Models\User;
 use App\Services\UserInformationService;
 use App\Models\UserInformation;
+use App\Services\HistoryService;
+use App\Models\History;
+use App\Services\SettingService;
+use App\Models\Setting;
 use App\Services\StatusService;
 use App\Models\Status;
 use App\Services\UserRoleService;
@@ -55,6 +59,15 @@ class UserManagementController extends Controller
 
         $userService = new UserService(new User);
         $userService->deleteByColumn($column, $value);
+
+        $userInformationService = new UserInformationService(new UserInformation);
+        $userInformationService->deleteByColumn($column, $value);
+
+        $settingService = new SettingService(new Setting);
+        $settingService->deleteByColumn($column, $value);
+
+        $historyService = new HistoryService(new History);
+        $historyService->deleteByColumn('id_history', $value);
 
         $dataResponse = ["data"=>"OK"];
         return json_encode($dataResponse);

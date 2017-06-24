@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: silverhawk
- * Date: 08/06/2017
- * Time: 09:28
- */
 
 namespace App\Services;
-
 
 use App\Model\Dictionary;
 use App\Repositories\DictionaryRepository;

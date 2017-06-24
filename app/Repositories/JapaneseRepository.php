@@ -2,6 +2,6 @@
 
 namespace App\Repositories;
 
-	interface JapaneseRepository extends BaseRepository{
+interface JapaneseRepository extends BaseRepository{
 
 }

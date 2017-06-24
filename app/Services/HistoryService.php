@@ -7,7 +7,6 @@ use App\Repositories\HistoryRepository;
 
 class HistoryService extends BaseService implements HistoryRepository
 {
-
     public function __construct(History $model)
     {
         $this->model = $model;

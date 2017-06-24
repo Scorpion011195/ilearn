@@ -48,7 +48,6 @@ class AdminController extends Controller
             $profile = $userInformationService->getByColumn($column, $value);
         }
 
-
         return view('backend.user.profile',['profile'=>$profile]);
     }
 

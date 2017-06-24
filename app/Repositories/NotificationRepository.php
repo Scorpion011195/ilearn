@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: silverhawk
- * Date: 08/06/2017
- * Time: 08:53
- */
 
 namespace App\Repositories;
-
 
 interface NotificationRepository
 {
