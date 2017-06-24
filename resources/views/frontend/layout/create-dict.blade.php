@@ -40,7 +40,7 @@
                                     <label  class="form-label text-center-vertical">Ngôn ngữ</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <select name="lg1" id="" class="form-control">
+                                    <select name="cb1" id="" class="form-control">
                                         <?php foreach($data as $item){
                                             $language = $item->language;
                                             ?>
@@ -83,7 +83,7 @@
                                 <label  class="form-label text-center-vertical">Ngôn ngữ</label>
                             </div>
                             <div class="col-sm-7">
-                                <select name="lg2" id="" class="form-control">
+                                <select name="cb2" id="" class="form-control">
                                     <?php foreach($data as $item){
                                         $language = $item->language;
                                         ?>

@@ -1,3 +1,3 @@
-<footer>
-    <p>© 2017<a style="color:#0a93a6; text-decoration:none;" href="#"> BootSnipp And TomGeek76</a>, All rights reserved 2016-2017.</p>
+<footer style="height: 50px">
+    <p>© 2017 Coppy and design by RikkeiSoft Company</a></p>
 </footer>

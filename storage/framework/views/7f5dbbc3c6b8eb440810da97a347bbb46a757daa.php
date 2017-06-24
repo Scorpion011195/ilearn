@@ -5,30 +5,32 @@
 
         </div>
         <div class="panel-footer background-white">
-                
-                 <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if(isset($workInfo)): ?>
 
-                     <b><?php echo e($language->type); ?></b>:<?php echo e($language ->word); ?> &nbsp;                     
-                    <span class="glyphicon glyphicon-volume-up"><?php echo e($language->listen); ?>
+            <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                    </span><br>
-                    Explain:<?php echo e($language->explain); ?>
+            <b><?php echo e($language->type); ?></b>:<?php echo e($language ->word); ?> &nbsp;                     
+            <span class="glyphicon glyphicon-volume-up"><?php echo e($language->listen); ?>
 
-                    <hr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </span><br>
+            Explain:<?php echo e($language->explain); ?>
 
-                <?php if(Auth::guest()): ?> 
-                <div class="panel-footer background-white">
-                    <div class="rigt-group">
-                        <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
-                    </div>
+            <hr>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
+            <?php if(Auth::guest()): ?> 
+            <div class="panel-footer background-white">
+                <div class="rigt-group">
+                    <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
                 </div>
-                <?php endif; ?>
+            </div>
+            <?php endif; ?>
 
             <?php if(!Auth::guest()): ?>
-                <div class="right-group">
-                    <a href="<?php echo e(route('getData')); ?>"><button class="btn btn-primary">Thêm từ mới</button></a>
-               </div>
+            <div class="right-group">
+                <button class="btn btn-primary" data-toggle="" data-target="">Thêm từ mới</button>
+
+            </div>
             <?php endif; ?>
         </div>
     </div>
