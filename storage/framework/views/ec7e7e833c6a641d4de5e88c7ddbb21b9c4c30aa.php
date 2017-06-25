@@ -17,7 +17,7 @@
             <?php echo $__env->make('frontend.layout.notification-settings', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         </div>
         <div class=" text-center">
-            <?php echo $__env->make('frontend.layout.partial.settings-table', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+         
         </div>
     </div>
 </section>

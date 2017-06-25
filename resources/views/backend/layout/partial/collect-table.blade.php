@@ -10,7 +10,7 @@
                         <tr role="row">
                             <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                                style="width: 50px;">STT
+                                style="width: 50px;">ID
                             </th>
                             <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
@@ -23,17 +23,21 @@
                                 aria-label="Platform(s): activate to sort column ascending" style="width: 184px;">
                                 Từ điển
                             </th>
-                            <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                            <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-label="Engine version: activate to sort column ascending" style="width: 100px;">
                                 Lượt sử dụng
                             </th>
                             <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-label="Engine version: activate to sort column ascending" style="width: 100px;">
-                                Tình trạng
+                                Từ loại
                             </th>
                             <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                aria-label="CSS grade: activate to sort column ascending" style="width: 103px;">Hành động
+                                aria-label="Engine version: activate to sort column ascending" style="width: 100px;">
+                                Tình trạng
                             </th>
+                            <!-- <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                aria-label="CSS grade: activate to sort column ascending" style="width: 103px;">Hành động
+                            </th> -->
                         </tr>
                         </thead>
                         <tbody>
@@ -45,8 +49,9 @@
                             <td class='_edit-me'>{{ $row->to_text }}</td>
                             <td>{{ $row->from }}-{{ $row->to }}</td>
                             <td>{{ $row->quanlity }}</td>
+                            <td>{{ $row->type_from }}</td>
                             <td>{{ $row->status }}</td>
-                            <td>
+                            <!-- <td>
                                 @if($row->status=='added')
                                     <a class="" data-toggle="tooltip" title="Đã có!">
                                       <span class="glyphicon glyphicon-ok"></span>
@@ -57,7 +62,7 @@
                                     </a>
                                 @endif
 
-                            </td>
+                            </td> -->
                         </tr>
                         @endforeach
 

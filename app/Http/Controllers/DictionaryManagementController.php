@@ -29,7 +29,7 @@ class DictionaryManagementController extends Controller
 
     /*=================== Thêm từ area ===============*/
     // Check word existed? Ex: ('english', 'word', 'hello', 'noun')
-    function checkWordExist($tableFrom, $column, $wordFrom, $typeWord)
+    static function checkWordExist($tableFrom, $column, $wordFrom, $typeWord)
     {
         $englishService = new EnglishService(new English);
         $vietnameseService = new VietnameseService(new Vietnamese);

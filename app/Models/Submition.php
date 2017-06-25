@@ -8,5 +8,5 @@ class Submition extends Model
 {
     protected $table='submitions';
     public $timestamps = false;
-    protected $fillable = ['STT','from','to','from_text','to_text','quanlity','status'];
+    protected $fillable = ['STT','from','to','from_text','to_text','quanlity','type_from','status'];
 }

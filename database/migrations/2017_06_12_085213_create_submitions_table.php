@@ -20,6 +20,7 @@ class CreateSubmitionsTable extends Migration
             $table->string('from_text',100);
             $table->string('to_text',100);
             $table->integer('quanlity');
+            $table->string('type_from',100);
             $table->string('status',100);
         });
     }

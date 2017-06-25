@@ -64,7 +64,7 @@ Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryContr
 
 
 /*=================== Test area ===============*/
-Route::get('test', 'UserManagementController@test');
+Route::get('test', 'StatisticManagementController@statisticAllUser');
 
 Route::get('tests', function(){
     echo DB::table('vietnamese')->max('id_mapping');
@@ -88,9 +88,7 @@ Route::group(['prefix' => 'admin'], function () {
     // Trang chủ
     Route::get('home', 'DictionaryManagementController@home')->name('adminHome')->middleware('adminLogin');
 
- Route::get('/getData', 'LaguageController@getData')->name('getData');
-
-
+    Route::get('/getData', 'LaguageController@getData')->name('getData');
 
     // Quản lý từ điển
     Route::group(['prefix' => 'dict','middleware'=>'adminLogin'], function () {
@@ -103,7 +101,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('search-word', 'DictionaryManagementController@searchWord')->name('adminDictSearchWord');
 
         // Thống kê
-        Route::get('collect', 'StatisticManagementController@statisticAllUser')->name('adminDictCollect');
+        Route::get('collect', 'StatisticManagementController@displayStatisticalResult')->name('adminDictCollect');
+        Route::post('collect-added', 'StatisticManagementController@displayStatisticalResultByCondition')->name('adminDictCollectByCondition');
 
         // Thêm file scv
         Route::get('upload', function () {

@@ -1,50 +1,57 @@
+<?php $data = DB::table('settings')->get();
+ if (Session::has('message')) {
+
+   ?>
+    <div class="alert alert-success">
+        <?php
+        $message = Session::get('message');
+        echo "<center>".$message."</center>";
+        ?>
+
+    </div>
+    <?php
+
+}
+?> 
+
 <div class="container panel text-center">
     <div class="panel-body">
-        <?php echo Form::open(['id' => 'notification-settings-form']); ?>
-
+    </div>
+    <form action="<?php echo e(route('settingUpdate')); ?>" method="POST" role="form">
         <div class="container col-sm-6 col-sm-offset-3">
-            <div class="row">
-                <?php echo Form::label('notification-settings-time', 'Thời gian nhắc từ', ['class' => 'control-label col-sm-4 text-center-vertical']); ?>
-
+            <div class="form-group">
+            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <div class="row">
+                    <label for="" class="control-label col-sm-4 text-center-vertical">Thời gian nhắc</label>
+                    <div class="col-sm-8">
+                        <select name="time" id="" class="form-control">
+                            <option value="5">5 phút</option>
+                            <option value="10">10 phút</option>
+                            <option value="15">15 phút</option>
+                            <option value="20">20 phút</option>
+                            <option value="25">25 phút</option>
+                            <option value="60">1 tiếng</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label for="" class="control-label col-sm-4 text-center-vertical">Hiển thị</label>
                 <div class="col-sm-8">
-                    <?php echo Form::select('notification-settings-time', ['1' => '14 phút', '2' => '1 giờ'], '',['class' => 'form-control']); ?>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <?php echo Form::label('notification-settings-display', 'Hiển thị', ['class' => 'control-label col-sm-4 text-center-vertical']); ?>
-
-                <div class="col-sm-8 form-check margin-top">
-                    <div class="form-group has-success text-left">
-                        <label class="custom-control custom-checkbox text-left">
-                            <?php echo Form::checkbox('1', 'Từ', '',['class' => 'custom-control-input']); ?>
-
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Từ</span>
-                        </label>
+                        <select name="des_infomation" id="" class="form-control">
+                        <option value="1">Từ</option>
+                        <option value="2">Nghĩa</option>
+                        <option value="3">Giải thích</option>
+                          <option value="4"> Từ với nghĩa</option>
+                          <option value="5"> Từ với giải thích</option>
+                          <option value="6"> Ngĩa với giải thích</option> 
+                          <option value="7">  Tất cả</option>    
+                        </select>
                     </div>
-                    <div class="form-group has-success text-left">
-                        <label class="custom-control custom-checkbox text-left">
-                            <?php echo Form::checkbox('1', 'Từ', '',['class' => 'custom-control-input']); ?>
-
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Nghĩa</span>
-                        </label>
-                    </div>
-                    <div class="form-group has-success text-left">
-                        <label class="custom-control custom-checkbox text-left">
-                            <?php echo Form::checkbox('1', 'Từ', '',['class' => 'custom-control-input']); ?>
-
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Giải thích</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <?php echo Form::submit('Cài đặt', ['class' => 'btn btn-success']); ?>
-
+                    <br>
+                    <br>
+                <center><?php echo Form::submit('Cài đặt', ['class' => 'btn btn-success']); ?></center>
+            </form>
             </div>
         </div>
         <?php echo Form::close(); ?>

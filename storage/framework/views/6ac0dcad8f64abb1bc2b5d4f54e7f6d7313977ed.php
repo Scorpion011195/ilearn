@@ -1,7 +1,7 @@
 <?php $__env->startSection('content-header'); ?>
         <h1>
             Thông Tin Cá Nhân
-            <small><?php echo e(Session::get('user')->username); ?></small>
+            <!-- <small><?php echo e(Session::get('user')->username); ?></small> -->
         </h1>
         <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -115,7 +115,16 @@
                 </form>
             </div>
         </div>
+<?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('script'); ?>
+        <!-- Active left menu -->
+        <script>
+            $(document).ready(function(){
+                    $('#_menu-ttcn').addClass("active");
+            });
+        </script>
+        <!-- /.Active left menu -->
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('backend.ilearn', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

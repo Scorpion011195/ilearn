@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="<?php echo e(route('adminHome')); ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>I</b>LE</span>
         <!-- logo for regular state and mobile devices -->
@@ -116,7 +116,7 @@ Tasks Menu
                 <!-- User Account Menu -->
                 <li class="dropdown user user-menu">
                     <!-- Menu Toggle Button -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
                         <!-- <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->

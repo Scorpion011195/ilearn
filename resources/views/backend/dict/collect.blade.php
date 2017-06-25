@@ -25,10 +25,11 @@
         <div class="panel-body">
             <div class="row">
               <div class="col-sm-12">
-                <form class="form-inline">
+                <form class="form-inline" action="{{ route('adminDictCollectByCondition') }}" method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                       <label>Tình trạng</label>
-                      <select class="form-control">
+                      <select class="form-control" name="_condition">
                           <option selected >Tất cả</option>
                           <option >added</option>
                           <option >waiting</option>
