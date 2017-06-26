@@ -53,10 +53,16 @@ class LaguageController extends Controller
                 $languageView->explain = $explain;
                 
                 array_push($arraySaveView, $languageView);
-            }             
+            }
+            // $GetData= array('from' => $inputText, 'from_language' => $langueInput , 'To_language' => $langueOutput, 'to' => $word, 'explain'=>$explain,'notification' => 'T'); 
+
             return view('result')->with([
                     'workInfo' => $arraySaveView,
-                    'data' => $language ]);
+                    'data' => $language ,
+                    'inputText' => $inputText,
+                    'langueInput' => $langueInput,
+                    'langueOutput' => $langueOutput,
+                    'explain'=>$explain]);
         }
 //        return 'ok';
 //        return view('home');

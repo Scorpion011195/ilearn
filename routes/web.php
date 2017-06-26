@@ -57,6 +57,8 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
 Route::get('/historys','HistoryController@store' );
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
+Route::POST('/historys/add' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@' ]);
+
 
  Route::get('getAddCreateDictMeaning/{index}', function ($index) {
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();

@@ -62,6 +62,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <label  class="form-label text-center-vertical">Loại từ</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <select name="TypeOfWord" id="" class="form-control">
+                                        <option value="Trạng từ">Trạng từ</option>
+                                        <option value="Tính từ">Tính từ</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -110,7 +123,7 @@
             <div class="text-center row margin-top">
                 {!! Form::submit("Thêm từ", ['class' => 'btn btn-success']) !!}
             </div>
-            {!! Form::close() !!}
+            </form>
         </div>
     </div>
 </div>
