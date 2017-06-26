@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\History;
 use auth;
 use DB;
+use App\Http\Controllers\LaguageController;
 class HistoryController extends Controller implements  BaseController
 {
 
@@ -32,8 +33,7 @@ class HistoryController extends Controller implements  BaseController
         // TODO: Implement find() method.
     }
     public function update(Request $request)
-    {
-        $data = array();
+
         $history= new History;
 
         $id=Auth::user()->id_user;
@@ -55,7 +55,7 @@ class HistoryController extends Controller implements  BaseController
            $info = ['content' => $json];
 
            History::where('id_history',$id)->update($info);
-            return view('frontend.history',['data'=>$data]);
+            return view('frontend.history',['data' => $arr]);
        }
             History::where('id_history',$id)->update($info);
         // update into DB
@@ -67,17 +67,14 @@ class HistoryController extends Controller implements  BaseController
 
    public function store(Request $request)
    {
-    $data = array();
     $history= new History;
 
     $id=Auth::user()->id_user;
             // Lấy ID user để update cho user
-    $historys = DB::table('historys')->paginate(10);
-
     $historys = History::where('id_history', $id)->first();
-    $data =json_decode($historys->content);
+    // $data =json_decode($historys->content);
     $arr= json_decode($historys->content, true);
-    return view('frontend.history',['data'=>$data]);
+    return view('frontend.history',['data'=>$arr]);
 }
 
 public function delete($id)
@@ -98,6 +95,18 @@ public function getSettings($id) {
 }
 
 public function setSettings($id, Request $request) {
+
+}
+
+public function AddNew(Request $request) {
+
+    $NewWord= $request->getData1;
+    $NewWord1= $request->getData2;
+    $NewWord2=$request->getData3;
+    $NewWord3= $request->SelectData;
+
+var_dump($NewWord, $NewWord1, $NewWord2, $NewWord3);
+
 
 }
 }
