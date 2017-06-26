@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\StatisticWord'
+        'App\Console\Commands\StatisticManagement'
     ];
 
     /**
@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('command:statistic-word')->everyMinute();
+        $schedule->command('command:statistic')->everyMinute();
     }
 
     /**

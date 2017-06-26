@@ -13,7 +13,6 @@ use App\Http\Controllers\MyConstant;
 
 class StatisticManagementController extends Controller
 {
-
     // Lấy key loại từ của một bảng để chuyển đổi sang loại từ của bảng ngôn ngữ khác
     function getKeyFromValue($tableFrom, $value){
         switch($tableFrom){
@@ -90,8 +89,7 @@ class StatisticManagementController extends Controller
                     $tableTo = $rowOfContentUser->to;
                     $column = 'word';
                     $wordFrom = $rowOfContentUser->from_text;
-                    $keyType = $this->getKeyFromValue($tableTo, $rowOfContentUser->type_to);
-                    $typeFrom = $this->getValueFromKey($tableFrom, $keyType);
+                    $typeFrom = $rowOfContentUser->type_from;
                     $isAdded = DictionaryManagementController::checkWordExist($tableFrom, $column, $wordFrom, $typeFrom);
                     if($isAdded){
                         $status = 'added';
@@ -100,7 +98,7 @@ class StatisticManagementController extends Controller
                         $status = 'waiting';
                     }
 
-                    // Thêm từ mới vào mảng
+                    // Thêm từ mới vào mảng thống kê
                     $pushMe = ['STT'=>$stt,'from'=>$rowOfContentUser->from,'to'=>$rowOfContentUser->to,'from_text'=>$rowOfContentUser->from_text,'to_text'=>$rowOfContentUser->to_text,'quanlity'=>1,'type_from'=>$typeFrom,'status'=> $status];
 
                     array_push(MyConstant::$arr_statistic_word, $pushMe);
@@ -141,8 +139,10 @@ class StatisticManagementController extends Controller
         $noOfSubmitions = Submition::count();
         $noOfPages = 5;
         $submitions = Submition::orderBy('quanlity', 'DESC')->paginate($noOfPages);
+        $listSearch = ['Tất cả','added','waiting'];
+        $cbTypeWord = "Tất cả";
 
-        $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions];
+        $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions, 'listSearch'=>$listSearch,'cbTypeWord'=>$cbTypeWord];
         return view('backend.dict.collect', $param);
     }
 
@@ -151,20 +151,26 @@ class StatisticManagementController extends Controller
         // Input
         $condition = $request->_condition;
 
-        $noOfSubmitions = Submition::count();
         $noOfPages = 5;
+        $listSearch = ['Tất cả','added','waiting'];
 
         switch ($condition) {
             case 'Tất cả':
                 $submitions = Submition::orderBy('quanlity', 'DESC')->paginate($noOfPages);
+                $noOfSubmitions = Submition::count();
+                $cbTypeWord = "Tất cả";
                 break;
             case 'added':
                 $submitions = Submition::where('status','added')->orderBy('quanlity', 'DESC')->paginate($noOfPages);
+                $noOfSubmitions = Submition::where('status','added')->count();
+                $cbTypeWord = "added";
                 break;
             case 'waiting':
                 $submitions = Submition::where('status','waiting')->orderBy('quanlity', 'DESC')->paginate($noOfPages);
+                $noOfSubmitions = Submition::where('status','waiting')->count();
+                $cbTypeWord = "waiting";
         }
-        $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions];
+        $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions, 'listSearch'=>$listSearch, 'cbTypeWord'=>$cbTypeWord];
         return view('backend.dict.collect', $param);
     }
 }

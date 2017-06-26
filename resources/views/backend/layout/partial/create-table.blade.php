@@ -26,7 +26,7 @@
                           <select class="form-control" name="_cbnguon">
                               @foreach($listLanguage as $language)
                                   <option
-                                      @if($language->id_language == 1)
+                                      @if($language->id_language == $idTableNguon)
                                           {{ "selected" }}
                                       @endif
                                       value="{{ $language->id_language }}">{{ $language->language }}</option>
@@ -35,7 +35,7 @@
                           <select class="form-control" name="_cbloaitu">
                               @foreach($listTypeOfWord as $key=>$value)
                                   <option
-                                      @if($key == 6)
+                                      @if($key == $idLoaiTu)
                                           {{ "selected" }}
                                       @endif
                                       value="{{ $key }}">{{ $value }}</option>
@@ -48,7 +48,7 @@
                           <select class="form-control" name="_cbdich">
                               @foreach($listLanguage as $language)
                                   <option
-                                      @if($language->id_language == 2)
+                                      @if($language->id_language == $idTableDich)
                                           {{ "selected" }}
                                       @endif
                                       value="{{ $language->id_language }}">{{ $language->language }}</option>

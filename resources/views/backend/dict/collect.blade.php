@@ -30,9 +30,13 @@
                     <div class="form-group">
                       <label>Tình trạng</label>
                       <select class="form-control" name="_condition">
-                          <option selected >Tất cả</option>
-                          <option >added</option>
-                          <option >waiting</option>
+                          @foreach($listSearch as $value)
+                          <option
+                              @if($value == $cbTypeWord)
+                                  {{ "selected" }}
+                              @endif
+                          >{{ $value }}</option>
+                          @endforeach
                       </select>
                       <button type="submit" class="btn btn-info">
                           <span class="glyphicon glyphicon-search"></span>
@@ -41,10 +45,7 @@
                 </form>
               </div>
             </div>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-body">
+            <br>
             @include('backend.layout.partial.collect-table')
         </div>
     </div>

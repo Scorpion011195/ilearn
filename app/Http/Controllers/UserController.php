@@ -130,6 +130,11 @@ class UserController extends Controller implements BaseController
     $userID->id_history = $user->id_user;
     $userID->save();
 
+    $userInfo = new \App\Models\UserInformation();
+    $userInfo->id_user = $user->id_user;
+    $userInfo->name = $user->username;
+    $userInfo->save();
+
     $language = \DB::table('languages')->get();
 
     if(Auth()->attempt(['username' =>$user->username, 'password' =>$user->password])) {

@@ -23,7 +23,7 @@ class DictionaryManagementController extends Controller
 
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>'', 'lastTxtNghia'=>'', 'code'=>'none'];
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> 1,'idTableDich'=>2,'idLoaiTu'=>6, 'lastTxtTu'=>'', 'lastTxtNghia'=>'', 'code'=>'none'];
         return view('backend.dict.create', $param);
     }
 
@@ -101,11 +101,11 @@ class DictionaryManagementController extends Controller
 
         // Check input?
         if(empty($txtTu)){
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyFrom'];
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyFrom'];
             return view('backend.dict.create', $param);
         }
         else if(empty($txtNghia)){
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyTo'];
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu,'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyTo'];
             return view('backend.dict.create', $param);
         }
 
@@ -144,10 +144,32 @@ class DictionaryManagementController extends Controller
         }
 
         $columnWord = 'word';
-        //Nếu từ này đã tồn tại trong hệ thống
-        if($this->checkWordExist($tableFrom, $columnWord, $txtTu, $typeWordFrom )){
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedWord'];
-            return view('backend.dict.create', $param);
+
+        $isExitsFrom = $this->checkWordExist($tableFrom, $columnWord, $txtTu, $typeWordFrom);
+        $isExitsTo = $this->checkWordExist($tableTo, $columnWord, $txtNghia, $typeWordTo);
+        // Nếu từ này đã tồn tại trong hệ thống
+        if($isExitsFrom){
+            // Nếu nghĩa này cũng tồn tại trong hệ thống
+            if($isExitsTo){
+                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedWord'];
+                return view('backend.dict.create', $param);
+            }
+            else{
+                // Lấy id_mapping của từ này
+                $resultFrom = $tableServiceFrom->findWordWithType($columnWord, $txtTu, $typeWordFrom);
+                $idMapping = $resultFrom->id_mapping;
+
+                // Thêm vào bảng đích
+                $addContentTo = ['word'=>'{"type":"'.$typeWordTo.'","word":"'.$txtNghia.'"}',
+                                   'listen'=>'',
+                                   'explain'=>$taNghia,
+                                   'id_mapping'=>$idMapping];
+                $this->insertTable($tableServiceTo, $addContentTo);
+
+                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
+                return view('backend.dict.create', $param);
+            }
+
         }
         else{
             $idMapping = $this->getMaxIdMapping()+1;
@@ -166,7 +188,7 @@ class DictionaryManagementController extends Controller
                                'id_mapping'=>$idMapping];
             $this->insertTable($tableServiceTo, $addContentTo);
 
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
             return view('backend.dict.create', $param);
 
         }
@@ -200,6 +222,10 @@ class DictionaryManagementController extends Controller
        $englishService = new EnglishService(new English);
        $vietnameseService = new VietnameseService(new Vietnamese);
        $japaneseService = new JapaneseService(new Japanese);
+       $languageService = new LanguageService(new Language);
+
+       $listLanguage = $languageService->getAll();
+       $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
        // Nếu chưa nhập từ
        if(empty($keyTraTu)){
@@ -228,7 +254,8 @@ class DictionaryManagementController extends Controller
 
         // Nếu từ chưa có trong từ điển
         if($countFrom<=0){
-            return redirect()->route('adminDictSearch')->with('alertSearchWordFailed','Từ chưa có trong từ điển');
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'successNone', 'countTo'=>0];
+            return view('backend.dict.search', $param);
         }
 
        /*Nếu từ có trong từ điển
@@ -249,11 +276,6 @@ class DictionaryManagementController extends Controller
         }
 
         // Hiển thị
-        $languageService = new LanguageService(new Language);
-        $listLanguage = $languageService->getAll();
-
-        $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
-
         $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'success', 'result'=>$resultTo, 'countTo'=>$countTo];
         return view('backend.dict.search', $param);
 

@@ -66,7 +66,7 @@ Route::POST('/historys/add' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryControll
 
 
 /*=================== Test area ===============*/
-Route::get('test', 'StatisticManagementController@statisticAllUser');
+Route::get('test', 'StatisticManagementController@testInsertArrayToHistory');
 
 Route::get('tests', function(){
     echo DB::table('vietnamese')->max('id_mapping');
@@ -110,6 +110,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('upload', function () {
             return view('backend.dict.upload');
         })->name('adminDictUpload');
+        Route::post('upload', 'UploadExcelController@importExcel')->name('adminDictUpload');
     });
 
     // Quản lý tài khoản
