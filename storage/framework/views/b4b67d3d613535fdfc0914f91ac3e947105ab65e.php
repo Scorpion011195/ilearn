@@ -28,9 +28,14 @@
                     <div class="form-group">
                       <label>Tình trạng</label>
                       <select class="form-control" name="_condition">
-                          <option selected >Tất cả</option>
-                          <option >added</option>
-                          <option >waiting</option>
+                          <?php $__currentLoopData = $listSearch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                          <option
+                              <?php if($value == $cbTypeWord): ?>
+                                  <?php echo e("selected"); ?>
+
+                              <?php endif; ?>
+                          ><?php echo e($value); ?></option>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       </select>
                       <button type="submit" class="btn btn-info">
                           <span class="glyphicon glyphicon-search"></span>

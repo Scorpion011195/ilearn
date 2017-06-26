@@ -141,8 +141,10 @@ class StatisticManagementController extends Controller
         $noOfSubmitions = Submition::count();
         $noOfPages = 5;
         $submitions = Submition::orderBy('quanlity', 'DESC')->paginate($noOfPages);
+        $listSearch = ['Tất cả','added','waiting'];
+        $cbTypeWord = "Tất cả";
 
-        $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions];
+        $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions, 'listSearch'=>$listSearch,'cbTypeWord'=>$cbTypeWord];
         return view('backend.dict.collect', $param);
     }
 
@@ -151,20 +153,26 @@ class StatisticManagementController extends Controller
         // Input
         $condition = $request->_condition;
 
-        $noOfSubmitions = Submition::count();
         $noOfPages = 5;
+        $listSearch = ['Tất cả','added','waiting'];
 
         switch ($condition) {
             case 'Tất cả':
                 $submitions = Submition::orderBy('quanlity', 'DESC')->paginate($noOfPages);
+                $noOfSubmitions = Submition::count();
+                $cbTypeWord = "Tất cả";
                 break;
             case 'added':
                 $submitions = Submition::where('status','added')->orderBy('quanlity', 'DESC')->paginate($noOfPages);
+                $noOfSubmitions = Submition::where('status','added')->count();
+                $cbTypeWord = "added";
                 break;
             case 'waiting':
                 $submitions = Submition::where('status','waiting')->orderBy('quanlity', 'DESC')->paginate($noOfPages);
+                $noOfSubmitions = Submition::where('status','waiting')->count();
+                $cbTypeWord = "waiting";
         }
-        $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions];
+        $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions, 'listSearch'=>$listSearch, 'cbTypeWord'=>$cbTypeWord];
         return view('backend.dict.collect', $param);
     }
 }
