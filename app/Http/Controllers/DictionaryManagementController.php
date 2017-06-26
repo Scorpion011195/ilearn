@@ -23,7 +23,7 @@ class DictionaryManagementController extends Controller
 
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>'', 'lastTxtNghia'=>'', 'code'=>'none'];
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> 1,'idTableDich'=>2,'idLoaiTu'=>6, 'lastTxtTu'=>'', 'lastTxtNghia'=>'', 'code'=>'none'];
         return view('backend.dict.create', $param);
     }
 
@@ -101,11 +101,11 @@ class DictionaryManagementController extends Controller
 
         // Check input?
         if(empty($txtTu)){
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyFrom'];
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyFrom'];
             return view('backend.dict.create', $param);
         }
         else if(empty($txtNghia)){
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyTo'];
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu,'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyTo'];
             return view('backend.dict.create', $param);
         }
 
@@ -151,7 +151,7 @@ class DictionaryManagementController extends Controller
         if($isExitsFrom){
             // Nếu nghĩa này cũng tồn tại trong hệ thống
             if($isExitsTo){
-                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedWord'];
+                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedWord'];
                 return view('backend.dict.create', $param);
             }
             else{
@@ -166,7 +166,7 @@ class DictionaryManagementController extends Controller
                                    'id_mapping'=>$idMapping];
                 $this->insertTable($tableServiceTo, $addContentTo);
 
-                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
+                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
                 return view('backend.dict.create', $param);
             }
 
@@ -188,7 +188,7 @@ class DictionaryManagementController extends Controller
                                'id_mapping'=>$idMapping];
             $this->insertTable($tableServiceTo, $addContentTo);
 
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
             return view('backend.dict.create', $param);
 
         }
