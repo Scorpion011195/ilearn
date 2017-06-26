@@ -58,8 +58,7 @@ class HistoryController extends Controller implements  BaseController
 
             History::where('id_history',$id)->update($info);
         // update into DB
-
-             return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
+             // return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
         //     // save data into databse from form in frontend 
         // return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
           }

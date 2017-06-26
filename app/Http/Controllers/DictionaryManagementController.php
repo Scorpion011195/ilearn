@@ -69,7 +69,7 @@ class DictionaryManagementController extends Controller
     }
 
     // Get max id_mapping of all language tables
-    function getMaxIdMapping(){
+    static function getMaxIdMapping(){
         $englishService = new EnglishService(new English);
         $vietnameseService = new VietnameseService(new Vietnamese);
         $japaneseService = new JapaneseService(new Japanese);
