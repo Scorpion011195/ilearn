@@ -7,6 +7,11 @@
             {{ session('alertSearchWordFailed') }}
         </div>
       @endif
+      @if( $code=="successNone" )
+        <div class="alert alert-danger text-center">
+            Từ chưa có trong từ điển
+        </div>
+      @endif
         <div class="row">
           <div class="col-sm-12">
             <form action="{{ route('adminDictSearchWord') }}" class="form-inline" method="post">

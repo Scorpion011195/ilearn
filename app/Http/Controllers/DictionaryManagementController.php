@@ -222,6 +222,10 @@ class DictionaryManagementController extends Controller
        $englishService = new EnglishService(new English);
        $vietnameseService = new VietnameseService(new Vietnamese);
        $japaneseService = new JapaneseService(new Japanese);
+       $languageService = new LanguageService(new Language);
+
+       $listLanguage = $languageService->getAll();
+       $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
        // Nếu chưa nhập từ
        if(empty($keyTraTu)){
@@ -250,7 +254,8 @@ class DictionaryManagementController extends Controller
 
         // Nếu từ chưa có trong từ điển
         if($countFrom<=0){
-            return redirect()->route('adminDictSearch')->with('alertSearchWordFailed','Từ chưa có trong từ điển');
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'successNone', 'countTo'=>0];
+            return view('backend.dict.search', $param);
         }
 
        /*Nếu từ có trong từ điển
@@ -271,11 +276,6 @@ class DictionaryManagementController extends Controller
         }
 
         // Hiển thị
-        $languageService = new LanguageService(new Language);
-        $listLanguage = $languageService->getAll();
-
-        $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
-
         $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'success', 'result'=>$resultTo, 'countTo'=>$countTo];
         return view('backend.dict.search', $param);
 
