@@ -108,6 +108,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('upload', function () {
             return view('backend.dict.upload');
         })->name('adminDictUpload');
+        Route::post('upload', 'UploadExcelController@importExcel')->name('adminDictUpload');
     });
 
     // Quản lý tài khoản

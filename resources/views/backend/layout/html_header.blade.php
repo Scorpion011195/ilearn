@@ -1,6 +1,6 @@
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ILEARN | Admin</title>
     <!-- Tell the browser to be responsive to screen width -->

@@ -32,7 +32,7 @@ class HistoryController extends Controller implements  BaseController
         // TODO: Implement find() method.
     }
     public function update(Request $request)
-    {   
+    {
         $data = array();
         $history= new History;
 
@@ -57,10 +57,13 @@ class HistoryController extends Controller implements  BaseController
            History::where('id_history',$id)->update($info);
             return view('frontend.history',['data'=>$data]);
        }
-
-
-
-   }
+            History::where('id_history',$id)->update($info);
+        // update into DB
+             // return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
+        //     // save data into databse from form in frontend
+        // return redirect('/historys')->with("message","<strong>Chúc mừng!</strong> Bạn vừa thêm từ <b><i>{$request->tu}</i></b> vào lịch sử.");
+          }
+       }
 
    public function store(Request $request)
    {
