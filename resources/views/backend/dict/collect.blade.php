@@ -41,10 +41,7 @@
                 </form>
               </div>
             </div>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-body">
+            <br>
             @include('backend.layout.partial.collect-table')
         </div>
     </div>

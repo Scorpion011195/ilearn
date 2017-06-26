@@ -39,10 +39,7 @@
                 </form>
               </div>
             </div>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-body">
+            <br>
             <?php echo $__env->make('backend.layout.partial.collect-table', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         </div>
     </div>
