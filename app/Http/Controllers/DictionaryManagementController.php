@@ -144,10 +144,32 @@ class DictionaryManagementController extends Controller
         }
 
         $columnWord = 'word';
-        //Nếu từ này đã tồn tại trong hệ thống
-        if($this->checkWordExist($tableFrom, $columnWord, $txtTu, $typeWordFrom )){
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedWord'];
-            return view('backend.dict.create', $param);
+
+        $isExitsFrom = $this->checkWordExist($tableFrom, $columnWord, $txtTu, $typeWordFrom);
+        $isExitsTo = $this->checkWordExist($tableTo, $columnWord, $txtNghia, $typeWordTo);
+        // Nếu từ này đã tồn tại trong hệ thống
+        if($isExitsFrom){
+            // Nếu nghĩa này cũng tồn tại trong hệ thống
+            if($isExitsTo){
+                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedWord'];
+                return view('backend.dict.create', $param);
+            }
+            else{
+                // Lấy id_mapping của từ này
+                $resultFrom = $tableServiceFrom->findWordWithType($columnWord, $txtTu, $typeWordFrom);
+                $idMapping = $resultFrom->id_mapping;
+
+                // Thêm vào bảng đích
+                $addContentTo = ['word'=>'{"type":"'.$typeWordTo.'","word":"'.$txtNghia.'"}',
+                                   'listen'=>'',
+                                   'explain'=>$taNghia,
+                                   'id_mapping'=>$idMapping];
+                $this->insertTable($tableServiceTo, $addContentTo);
+
+                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
+                return view('backend.dict.create', $param);
+            }
+
         }
         else{
             $idMapping = $this->getMaxIdMapping()+1;
