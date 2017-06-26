@@ -17,8 +17,8 @@
 <div id="create-dict"  class="container">
     <div class="col-sm-6 col-sm-offset-3 form-group row panel panel-default no-radius-left no-radius-right">
         <div class="panel-body">
-            <form action="<?php echo e(route('historyUpdate')); ?>" method="POST" role="form" id="create-dict-form">
-               <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+            <form action="<?php echo e(utf8_encode(route('historyUpdate'))); ?>" method="POST" role="form" id="create-dict-form">
+               <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
                <div class="create-dict-input">
                 <div class="row panel">
                     <div class="row no-margin margin-top">
@@ -44,7 +44,7 @@
                                         <?php foreach($data as $item){
                                             $language = $item->language;
                                             ?>
-                                            <option><?php echo e($language); ?></option>
+                                            <option><?php echo e(utf8_encode($language)); ?></option>
                                             <?php }?>
                                         </select>
                                     </div>
@@ -59,6 +59,19 @@
                                    </div>
                                    <div class="col-sm-9">
                                     <input type="text" class="form-control" name="des1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <label  class="form-label text-center-vertical">Loại từ</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <select name="TypeOfWord" id="" class="form-control">
+                                        <option value="Trạng từ">Trạng từ</option>
+                                        <option value="Tính từ">Tính từ</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +100,7 @@
                                     <?php foreach($data as $item){
                                         $language = $item->language;
                                         ?>
-                                        <option><?php echo e($language); ?></option>
+                                        <option><?php echo e(utf8_encode($language)); ?></option>
                                         <?php }?>
                                     </select>
                                 </div>
@@ -111,8 +124,7 @@
                 <?php echo Form::submit("Thêm từ", ['class' => 'btn btn-success']); ?>
 
             </div>
-            <?php echo Form::close(); ?>
-
+            </form>
         </div>
     </div>
 </div>
