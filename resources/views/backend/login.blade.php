@@ -32,31 +32,31 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
-        <!-- @if($errors->any())
-            <div class="alert alert-warning">
-                <ul>
-                    <strong>Warning!</strong>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif -->
+        <p class="login-box-msg">Đăng nhập</p>
+        @if ($errors->has('errorLogin'))
+        <div class="container">
+                <p style="color:red"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('errorLogin') !!}</p>
+        </div>
+        @endif
 
         <form action="{{ route('adminPostLogin') }}" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Username" name="username">
+            <div class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" placeholder="Username" name="username" value="{!! old('username') !!}">
                 @if ($errors->has('username'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('username') }}</strong>
+                        <strong>{!! $errors->first('username') !!}</strong>
                     </span>
                 @endif
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
-            <div class="form-group has-feedback">
+            <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                 <input type="password" class="form-control" placeholder="Password" name="password">
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{!! $errors->first('password') !!}</strong>
+                    </span>
+                @endif
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -67,7 +67,7 @@
                 <!-- remember me -->
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
                 </div>
                 <!-- /.col -->
             </div>

@@ -11,6 +11,7 @@ use App\Models\UserInformation;
 use App\Services\UserService;
 use App\Models\User;
 use App\Http\Requests\AdminLoginRequest;
+use Illuminate\Support\MessageBag;
 
 class AdminController extends Controller
 {
@@ -21,23 +22,24 @@ class AdminController extends Controller
 
     function postLogin(AdminLoginRequest $request)
     {
-        // $username = $request['username'];
-        // $password = $request['password'];
+        $username = $request['username'];
+        $password = $request['password'];
 
-        // $check = ['username'=>$username,'password'=>$password,'id_role'=>1,'id_status'=>1];
-        // if(Auth::attempt($check)){
-        //     Session::put('user', Auth::user());
-        //     return redirect()->route('adminHome');
-        // }
-        // else
-        //     return redirect()->route('adminLogin');
-         echo "Login thanh cong!";
+        $check = ['username'=>$username,'password'=>$password,'id_role'=>1,'id_status'=>1];
+        if(Auth::attempt($check)){
+            Session::put('user', Auth::user());
+            return redirect()->route('adminHome');
+        }
+        else{
+            $errors = new MessageBag(['errorLogin' => 'Username hoặc Password không đúng']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
     }
 
     function logout(){
         Auth::logout();
         Session::forget('user');
-        return redirect()->route('adminLogin');
+        return redirect()->route('adminGetLogin');
     }
 
     function getProfile()
