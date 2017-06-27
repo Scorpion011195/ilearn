@@ -33,11 +33,26 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
+        <!-- @if($errors->any())
+            <div class="alert alert-warning">
+                <ul>
+                    <strong>Warning!</strong>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif -->
 
-        <form action="{{ route('adminCheckLogin') }}" method="post">
+        <form action="{{ route('adminPostLogin') }}" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Username" name="username">
+                @if ($errors->has('username'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('username') }}</strong>
+                    </span>
+                @endif
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -47,7 +62,7 @@
             <div class="row">
                 <!-- remember me -->
                 <div class="col-xs-8">
-                    <!-- <input type="checkbox" name="ckb_remember_me"> Remember Me -->
+                    <!-- <input type="checkbox" name="remember_me"> Remember Me -->
                 </div>
                 <!-- remember me -->
                 <!-- /.col -->

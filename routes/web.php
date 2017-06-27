@@ -77,15 +77,11 @@ Route::get('tests', function(){
 /*=================== Admin area ===============*/
 Route::group(['prefix' => 'admin'], function () {
     // Đăng nhập
-    Route::get('login', function () {
-        return view('backend.login');
-    })->name('adminLogin');
+    Route::get('login', 'AdminController@getLogin')->name('adminGetLogin');
+    Route::post('login', 'AdminController@postLogin')->name('adminPostLogin');
 
     // Đăng xuất
     Route::get('logout', 'AdminController@logout')->name('adminLogout');
-
-    // Kiểm tra đăng nhập
-    Route::post('checkLogin', 'AdminController@login')->name('adminCheckLogin');
 
     // Trang chủ
     Route::get('home', 'DictionaryManagementController@home')->name('adminHome')->middleware('adminLogin');

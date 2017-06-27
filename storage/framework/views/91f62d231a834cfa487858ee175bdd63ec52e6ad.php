@@ -33,11 +33,26 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
+        <!-- <?php if($errors->any()): ?>
+            <div class="alert alert-warning">
+                <ul>
+                    <strong>Warning!</strong>
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li><?php echo e(utf8_encode($error)); ?></li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </ul>
+            </div>
+        <?php endif; ?> -->
 
-        <form action="<?php echo e(route('adminCheckLogin')); ?>" method="post">
-            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+        <form action="<?php echo e(utf8_encode(route('adminPostLogin'))); ?>" method="post">
+            <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Username" name="username">
+                <?php if($errors->has('username')): ?>
+                    <span class="alert alert-warning">
+                        <strong><?php echo e(utf8_encode($errors->first('username'))); ?></strong>
+                    </span>
+                <?php endif; ?>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -47,7 +62,7 @@
             <div class="row">
                 <!-- remember me -->
                 <div class="col-xs-8">
-                    <!-- <input type="checkbox" name="ckb_remember_me"> Remember Me -->
+                    <!-- <input type="checkbox" name="remember_me"> Remember Me -->
                 </div>
                 <!-- remember me -->
                 <!-- /.col -->

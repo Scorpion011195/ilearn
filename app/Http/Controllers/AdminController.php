@@ -10,21 +10,28 @@ use App\Services\UserInformationService;
 use App\Models\UserInformation;
 use App\Services\UserService;
 use App\Models\User;
+use App\Http\Requests\AdminLoginRequest;
 
 class AdminController extends Controller
 {
-    function login(Request $request)
+    function getLogin()
     {
-        $username = $request['username'];
-        $password = $request['password'];
+        return view('backend.login');
+    }
 
-        $check = ['username'=>$username,'password'=>$password,'id_role'=>1,'id_status'=>1];
-        if(Auth::attempt($check)){
-            Session::put('user', Auth::user());
-            return redirect()->route('adminHome');
-        }
-        else
-            return redirect()->route('adminLogin');
+    function postLogin(AdminLoginRequest $request)
+    {
+        // $username = $request['username'];
+        // $password = $request['password'];
+
+        // $check = ['username'=>$username,'password'=>$password,'id_role'=>1,'id_status'=>1];
+        // if(Auth::attempt($check)){
+        //     Session::put('user', Auth::user());
+        //     return redirect()->route('adminHome');
+        // }
+        // else
+        //     return redirect()->route('adminLogin');
+         echo "Login thanh cong!";
     }
 
     function logout(){
