@@ -22,27 +22,27 @@
                       @foreach($listTypeOfWord as $key=>$value)
                           <option
                               @if($key == $idCbTypeWord)
-                                  {{ "selected" }}
+                                  {!! "selected" !!}
                               @endif
-                              value="{{ $key }}">{{ $value }}</option>
+                              value="{{ $key }}">{!! $value !!}</option>
                       @endforeach
                   </select>
                   <select class="form-control" name="_cbnguontratu">
                       @foreach($listLanguage as $language)
                           <option
                               @if($language->id_language == $idCbTableFrom)
-                                  {{ "selected" }}
+                                  {!! "selected" !!}
                               @endif
-                              value="{{ $language->id_language }}">{{ $language->language }}</option>
+                              value="{!! $language->id_language !!}">{!! $language->language !!}</option>
                       @endforeach
                   </select>
                   <select class="form-control" name="_cbdichtratu">
                       @foreach($listLanguage as $language)
                           <option
                               @if($language->id_language == $idCbTableTo)
-                                  {{ "selected" }}
+                                  {!! "selected" !!}
                               @endif
-                              value="{{ $language->id_language }}">{{ $language->language }}</option>
+                              value="{!! $language->id_language !!}">{!! $language->language !!}</option>
                       @endforeach
                   </select>
                   <button type="submit" class="btn btn-info">

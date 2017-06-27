@@ -27,18 +27,18 @@
                               @foreach($listLanguage as $language)
                                   <option
                                       @if($language->id_language == $idTableNguon)
-                                          {{ "selected" }}
+                                          {!! "selected" !!}
                                       @endif
-                                      value="{{ $language->id_language }}">{{ $language->language }}</option>
+                                      value="{!! $language->id_language !!}">{!! $language->language !!}</option>
                               @endforeach
                           </select>
                           <select class="form-control" name="_cbloaitu">
                               @foreach($listTypeOfWord as $key=>$value)
                                   <option
                                       @if($key == $idLoaiTu)
-                                          {{ "selected" }}
+                                          {!! "selected" !!}
                                       @endif
-                                      value="{{ $key }}">{{ $value }}</option>
+                                      value="{{ $key }}">{!! $value !!}</option>
                               @endforeach
                           </select>
                         </div>
@@ -49,9 +49,9 @@
                               @foreach($listLanguage as $language)
                                   <option
                                       @if($language->id_language == $idTableDich)
-                                          {{ "selected" }}
+                                          {!! "selected" !!}
                                       @endif
-                                      value="{{ $language->id_language }}">{{ $language->language }}</option>
+                                      value="{!! $language->id_language !!}">{!! $language->language !!}</option>
                               @endforeach
                           </select>
                           <button type="submit" class="btn btn-info">
@@ -67,13 +67,13 @@
                     <div class="col-sm-6">
                           <div class="input-group">
                               <span class="input-group-addon">Từ</span>
-                              <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="Hello" value="{{ $lastTxtTu }}">
+                              <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="Hello" value="{!! $lastTxtTu !!}">
                           </div>
                     </div>
                     <div class="col-sm-6">
                           <div class="input-group">
                               <span class="input-group-addon">Nghĩa</span>
-                              <input size="30" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="Xin chào" value="{{ $lastTxtNghia }}">
+                              <input size="30" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="Xin chào" value="{!! $lastTxtNghia !!}">
                           </div>
                     </div>
             </div>

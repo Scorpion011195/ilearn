@@ -4,29 +4,22 @@
         <div class="panel-footer background-white">
             <form action="{{route('HistoryAddNew')}}" method="POST" role="form">
                 @if(isset($workInfo))
-                @foreach ($workInfo as $language)
-                <?php
-                $getData='';
-                ?>
-                <b>{{$language->type}}</b>: {{ $language ->word }} &nbsp;                      
-                <span class="glyphicon glyphicon-volume-up">{{$language->listen}}
-                </span><br>
-            </br>
-            Explain:{{ $language->explain}}
-            <hr>
-            @endforeach
+                    @foreach ($workInfo as $language)
+                    <?php
+                    $getData='';
+                    ?>
+                    <b>{!! $language->type !!}</b>: {!! $language ->word !!} &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
+                    <span>Explain:</span>{!! $language->explain !!}
+                    <hr>
+                @endforeach
             @if(!Auth::guest())
-            <div class="right-group">
-            Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>
-                
-                
-            </div>
+                <div class="right-group">
+                Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>                             
+                </div>
             @endif
-
-
-            <input type="hidden" name="getData1" value="{{ $language->type}}">
-            <input type="hidden" name="getData2" value="{{ $language->word}}">
-            <input type="hidden" name="getData3" value="{{ $language->explain}}">
+            <input type="hidden" name="getData1" value="{!! $language->type !!}">
+            <input type="hidden" name="getData2" value="{!! $language->word !!}">
+            <input type="hidden" name="getData3" value="{!! $language->explain !!}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </form>
         @endif
