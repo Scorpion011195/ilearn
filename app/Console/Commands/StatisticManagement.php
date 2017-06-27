@@ -38,7 +38,10 @@ class StatisticManagement extends Command
      */
     public function handle()
     {
-        $statistic = new StatisticManagementController;
-        $statistic->statisticAllUser();
+        // Thống kê
+        // $statistic = new StatisticManagementController;
+        // $statistic->statisticAllUser();
+
+        \Log::info('Tick');
     }
 }
