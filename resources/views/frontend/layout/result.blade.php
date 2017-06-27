@@ -12,7 +12,7 @@
                     @if(!($type == $language->type))
                         <?php  $type = $language->type ?>
                         <b>{!! $language->type !!}</b>:<br>
-                        <span> {!! $language ->word !!} </span> &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span><br>
+                        <span id="_id{!!  !!}"> {!! $language ->word !!} </span> &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span><br>
                     @else
                      <span> {!! $language ->word !!} </span> &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span><br>
                     @endif
