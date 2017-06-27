@@ -49,7 +49,7 @@
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Username" name="username">
                 <?php if($errors->has('username')): ?>
-                    <span class="alert alert-warning">
+                    <span class="help-block">
                         <strong><?php echo e(utf8_encode($errors->first('username'))); ?></strong>
                     </span>
                 <?php endif; ?>
