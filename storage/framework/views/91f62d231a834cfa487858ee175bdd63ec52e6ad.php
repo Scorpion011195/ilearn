@@ -34,8 +34,8 @@
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form action="<?php echo e(route('adminCheckLogin')); ?>" method="post">
-            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+        <form action="<?php echo e(utf8_encode(route('adminCheckLogin'))); ?>" method="post">
+            <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Username" name="username">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
