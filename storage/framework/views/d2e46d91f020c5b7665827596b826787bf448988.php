@@ -4,31 +4,29 @@
         <div class="panel-footer background-white">
             <form action="<?php echo e(utf8_encode(route('HistoryAddNew'))); ?>" method="POST" role="form">
                 <?php if(isset($workInfo)): ?>
-                <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php
-                $getData='';
-                ?>
-                <b><?php echo e(utf8_encode($language->type)); ?></b>: <?php echo e(utf8_encode($language ->word)); ?> &nbsp;                      
-                <span class="glyphicon glyphicon-volume-up"><?php echo e(utf8_encode($language->listen)); ?>
-
-                </span><br>
-            </br>
-            Explain:<?php echo e(utf8_encode($language->explain)); ?>
-
-            <hr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php $type = '' ?>
+                    <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
+                    $getData='';
+                    ?>
+                    <?php if(!($type == $language->type)): ?>
+                        <?php  $type = $language->type ?>
+                        <b><?php echo $language->type; ?></b>:<br>
+                        <?php echo $language ->word; ?> &nbsp;  <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span><br>
+                    <?php else: ?>                       
+                     <?php echo $language ->word; ?> &nbsp;  <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span>                 
+                    <hr>
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+                                
             <?php if(!Auth::guest()): ?>
-            <div class="right-group">
-            Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>
-                
-                
-            </div>
+                <div class="right-group">
+                Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>                             
+                </div>
             <?php endif; ?>
-
-
-            <input type="hidden" name="getData1" value="<?php echo e(utf8_encode($language->type)); ?>">
-            <input type="hidden" name="getData2" value="<?php echo e(utf8_encode($language->word)); ?>">
-            <input type="hidden" name="getData3" value="<?php echo e(utf8_encode($language->explain)); ?>">
+            <input type="hidden" name="getData1" value="<?php echo $language->type; ?>">
+            <input type="hidden" name="getData2" value="<?php echo $language->word; ?>">
+            <input type="hidden" name="getData3" value="<?php echo $language->explain; ?>">
             <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
         </form>
         <?php endif; ?>
