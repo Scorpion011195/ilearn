@@ -44,7 +44,7 @@ class LaguageController extends Controller
         }
         else {
             $arraySaveView = array();
-            
+
             for($i=0; $i < count($workInfo); $i++){
                 $languageView = new LanguageViewmodel;
                 $array = explode (",",$workInfo[$i]-> word);
@@ -58,10 +58,10 @@ class LaguageController extends Controller
                 $languageView->word = $word;
                 $languageView->listen = $listen;
                 $languageView->explain = $explain;
-                
+
                 array_push($arraySaveView, $languageView);
             }
-            // $GetData= array('from' => $inputText, 'from_language' => $langueInput , 'To_language' => $langueOutput, 'to' => $word, 'explain'=>$explain,'notification' => 'T'); 
+            // $GetData= array('from' => $inputText, 'from_language' => $langueInput , 'To_language' => $langueOutput, 'to' => $word, 'explain'=>$explain,'notification' => 'T');
 
             return view('result')->with([
                     'workInfo' => $arraySaveView,

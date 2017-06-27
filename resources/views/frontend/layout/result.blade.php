@@ -12,16 +12,15 @@
                     @if(!($type == $language->type))
                         <?php  $type = $language->type ?>
                         <b>{!! $language->type !!}</b>:<br>
-                        {!! $language ->word !!} &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span><br>
-                    @else                       
-                     {!! $language ->word !!} &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>                 
-                    <hr>
+                        <span> {!! $language ->word !!} </span> &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span><br>
+                    @else
+                     <span> {!! $language ->word !!} </span> &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span><br>
                     @endif
-                    @endforeach 
-                                
+                    @endforeach
+
             @if(!Auth::guest())
                 <div class="right-group">
-                Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>                             
+                Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>
                 </div>
             @endif
             <input type="hidden" name="getData1" value="{!! $language->type !!}">
@@ -32,7 +31,7 @@
         @endif
 
 
-        @if(Auth::guest()) 
+        @if(Auth::guest())
         <div class="panel-footer background-white">
             <div class="rigt-group">
                 <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
@@ -44,8 +43,8 @@
     </div>
 
 </div>
-</div> 
-<!-- Modal for edit word : Editer: Trong 10/40/AM/2017/26/06--> 
+</div>
+<!-- Modal for edit word : Editer: Trong 10/40/AM/2017/26/06-->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -71,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <div class="col-sm-6">
                             <div class="row">

@@ -12,16 +12,15 @@
                     <?php if(!($type == $language->type)): ?>
                         <?php  $type = $language->type ?>
                         <b><?php echo $language->type; ?></b>:<br>
-                        <?php echo $language ->word; ?> &nbsp;  <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span><br>
-                    <?php else: ?>                       
-                     <?php echo $language ->word; ?> &nbsp;  <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span>                 
-                    <hr>
+                        <span> <?php echo $language ->word; ?> </span> &nbsp;  <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span><br>
+                    <?php else: ?>
+                     <span> <?php echo $language ->word; ?> </span> &nbsp;  <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span><br>
                     <?php endif; ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
-                                
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
             <?php if(!Auth::guest()): ?>
                 <div class="right-group">
-                Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>                             
+                Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>
                 </div>
             <?php endif; ?>
             <input type="hidden" name="getData1" value="<?php echo $language->type; ?>">
@@ -32,7 +31,7 @@
         <?php endif; ?>
 
 
-        <?php if(Auth::guest()): ?> 
+        <?php if(Auth::guest()): ?>
         <div class="panel-footer background-white">
             <div class="rigt-group">
                 <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
@@ -44,8 +43,8 @@
     </div>
 
 </div>
-</div> 
-<!-- Modal for edit word : Editer: Trong 10/40/AM/2017/26/06--> 
+</div>
+<!-- Modal for edit word : Editer: Trong 10/40/AM/2017/26/06-->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -71,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <div class="col-sm-6">
                             <div class="row">
