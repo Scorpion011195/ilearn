@@ -1,6 +1,6 @@
 
 <body onload="loadFn()">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{!! csrf_token() !!}">
     <div class="header_top"></div>
     <script>
         function loadFn() {
@@ -32,7 +32,7 @@
                                 @if($errors->has('errorLogin'))
                                     <div class="alert alert-danger">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        {{$errors->first('errorLogin')}}
+                                        {!! $errors->first('errorLogin') !!}
                                     </div>
                                 @endif
 
@@ -41,7 +41,7 @@
 
                                 <input class="form-control nav-login collapse" placeholder="Mật khẩu của bạn" name="password" type="password" value="{{ old('password') }}"/>
                                 
-                                <input class= "nav-login" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>  <span class="nav-login">Remember</span>
+                                <input class= "nav-login" type="checkbox" name="remember" {!! old('remember') ? 'checked' : '' !!}>  <span class="nav-login">Remember</span>
 
                                 {!! Form::button('Đăng nhập', ['class' => 'btn btn-default', 'id' => 'nav-login-btn', 'onclick' => 'doSubmit()']) !!}
 
@@ -66,13 +66,13 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="{!! route('logout') !!}"
                                            onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                        <form id="logout-form" action="{!! route('logout') !!}" method="POST" style="display: none;">
+                                            {!! csrf_field() !!}
                                         </form>
                                     </li>
                                 </ul>
