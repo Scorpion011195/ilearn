@@ -1,4 +1,3 @@
-
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3 form-group row">
             <h1 class="text-center">ILEARN</h1>
@@ -40,7 +39,6 @@
                 </select>
             </div>
         </div>
-
         {!! Form::close() !!}
     </div>
     <br>

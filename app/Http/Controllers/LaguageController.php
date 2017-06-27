@@ -29,8 +29,13 @@ class LaguageController extends Controller
             \Session::put('flagLanguage1', $request->input('cb1'));
             \Session::put('flagLanguage2', $request->input('cb2'));
 
-
-        if($workInfo == false) {
+        if(empty($inputText)){
+            $emData['text'] = 'emData';
+            return view('index')->with([
+                    'emData' => $emData,
+                    'data' => $language ]);
+        }
+        elseif($workInfo == false) {
             // echo 'k co tu dung'; exit;
             $fail['text'] = 'flag';
             return view('index')->with([

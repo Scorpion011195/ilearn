@@ -4,14 +4,21 @@
         <div class="panel-footer background-white">
             <form action="{{route('HistoryAddNew')}}" method="POST" role="form">
                 @if(isset($workInfo))
+                <?php $type = '' ?>
                     @foreach ($workInfo as $language)
                     <?php
                     $getData='';
                     ?>
-                    <b>{!! $language->type !!}</b>: {!! $language ->word !!} &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
-                    <span>Explain:</span>{!! $language->explain !!}
+                    @if(!($type == $language->type))
+                        <?php  $type = $language->type ?>
+                        <b>{!! $language->type !!}</b>:<br>
+                        {!! $language ->word !!} &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span><br>
+                    @else                       
+                     {!! $language ->word !!} &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>                 
                     <hr>
-                @endforeach
+                    @endif
+                    @endforeach 
+                                
             @if(!Auth::guest())
                 <div class="right-group">
                 Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>                             
