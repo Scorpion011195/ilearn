@@ -10,10 +10,17 @@ use App\Services\UserInformationService;
 use App\Models\UserInformation;
 use App\Services\UserService;
 use App\Models\User;
+use App\Http\Requests\AdminLoginRequest;
+use Illuminate\Support\MessageBag;
 
 class AdminController extends Controller
 {
-    function login(Request $request)
+    function getLogin()
+    {
+        return view('backend.login');
+    }
+
+    function postLogin(AdminLoginRequest $request)
     {
         $username = $request['username'];
         $password = $request['password'];
@@ -23,14 +30,16 @@ class AdminController extends Controller
             Session::put('user', Auth::user());
             return redirect()->route('adminHome');
         }
-        else
-            return redirect()->route('adminLogin');
+        else{
+            $errors = new MessageBag(['errorLogin' => 'Username hoặc Password không đúng']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
     }
 
     function logout(){
         Auth::logout();
         Session::forget('user');
-        return redirect()->route('adminLogin');
+        return redirect()->route('adminGetLogin');
     }
 
     function getProfile()

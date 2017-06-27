@@ -12,6 +12,8 @@ use App\Models\Vietnamese;
 use App\Services\VietnameseService;
 use App\Models\Japanese;
 use App\Services\JapaneseService;
+use App\Http\Requests\AdminAddWordRequest;
+use Illuminate\Support\MessageBag;
 
 
 class DictionaryManagementController extends Controller
@@ -84,7 +86,7 @@ class DictionaryManagementController extends Controller
     }
 
     // Thêm từ
-    function createWord(Request $request)
+    function createWord(AdminAddWordRequest $request)
     {
         $languageService = new LanguageService(new Language);
         $listLanguage = $languageService->getAll();
@@ -99,13 +101,14 @@ class DictionaryManagementController extends Controller
         $taTu = $request->_tatu;
         $taNghia = $request->_tanghia;
 
+        // Params
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu];
+
         // Check input?
         if(empty($txtTu)){
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyFrom'];
             return view('backend.dict.create', $param);
         }
         else if(empty($txtNghia)){
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu,'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedInputEmptyTo'];
             return view('backend.dict.create', $param);
         }
 
@@ -147,12 +150,13 @@ class DictionaryManagementController extends Controller
 
         $isExitsFrom = $this->checkWordExist($tableFrom, $columnWord, $txtTu, $typeWordFrom);
         $isExitsTo = $this->checkWordExist($tableTo, $columnWord, $txtNghia, $typeWordTo);
+
         // Nếu từ này đã tồn tại trong hệ thống
         if($isExitsFrom){
             // Nếu nghĩa này cũng tồn tại trong hệ thống
             if($isExitsTo){
-                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'failedWord'];
-                return view('backend.dict.create', $param);
+                $errors = new MessageBag(['FailedCannotFind' => 'Từ đã có trong hệ thống']);
+                return redirect()->back()->withInput()->withErrors($errors);
             }
             else{
                 // Lấy id_mapping của từ này
@@ -166,8 +170,8 @@ class DictionaryManagementController extends Controller
                                    'id_mapping'=>$idMapping];
                 $this->insertTable($tableServiceTo, $addContentTo);
 
-                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
-                return view('backend.dict.create', $param);
+                $errors = new MessageBag(['Success' => 'Đã thêm từ vào hệ thống']);
+                return redirect()->back()->withInput()->withErrors($errors);
             }
 
         }
@@ -188,8 +192,8 @@ class DictionaryManagementController extends Controller
                                'id_mapping'=>$idMapping];
             $this->insertTable($tableServiceTo, $addContentTo);
 
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu, 'lastTxtTu'=>$txtTu, 'lastTxtNghia'=>$txtNghia, 'code'=>'SuccessfulWord'];
-            return view('backend.dict.create', $param);
+            $errors = new MessageBag(['Success' => 'Đã thêm từ vào hệ thống']);
+            return redirect()->back()->withInput()->withErrors($errors);
 
         }
     }
