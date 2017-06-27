@@ -10,6 +10,8 @@ namespace App\ModelViews;
 
 class LanguageViewModel
 {
+    public $id;
+
     public $type;
 
     public $word;
@@ -17,7 +19,7 @@ class LanguageViewModel
     public $explain;
 
     public $listen;
-    
+
     public $id_mapping;
-    
+
 }

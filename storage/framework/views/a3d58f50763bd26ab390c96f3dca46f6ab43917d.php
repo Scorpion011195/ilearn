@@ -6,7 +6,7 @@
 
         <div class="col-sm-6 col-sm-offset-3 form-group row">
             <div class="col-sm-10 no-padding">
-                <?php echo Form::text('search', '', ['class' => 'form-control no-radius-right', 'autofocus']); ?>
+                <?php echo Form::text('search', '', ['class' => 'form-control no-radius-right _text-search', 'autofocus']); ?>
 
             </div>
             <?php echo Form::submit('Tra từ', ['class' => 'btn btn-success ilearn-background-color col-sm-2 no-radius-left']); ?>
@@ -15,7 +15,7 @@
         <div class="col-sm-6 col-sm-offset-3 form-group row">
             <div class="col-sm-3 form-inline ">
                 <label for="sel1">Nguồn:</label>
-                <select name="cb1" class="form-control ilearn-margin-right" id="sel1">
+                <select name="cb1" class="form-control ilearn-margin-right" id="_langFrom">
                  <?php foreach($data as $item =>$value){
                     $language = $value->language;
                     ?>
@@ -29,7 +29,7 @@
             </div>
             <div class="col-sm-3 form-inline ">
                 <label for="sel1"> Đích:</label>
-                <select name="cb2" class="form-control ilearn-margin-right" id="sel1">
+                <select name="cb2" class="form-control ilearn-margin-right" id="_langTo">
                  <?php foreach($data as $item =>$value){
                     $language = $value->language;
                     ?>

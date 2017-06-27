@@ -6,16 +6,20 @@
                 @if(isset($workInfo))
                 <?php $type = '' ?>
                     @foreach ($workInfo as $language)
-                    <?php
-                    $getData='';
-                    ?>
-                    @if(!($type == $language->type))
-                        <?php  $type = $language->type ?>
-                        <b>{!! $language->type !!}</b>:<br>
-                        <span id="_id{!!  !!}"> {!! $language ->word !!} </span> &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span><br>
-                    @else
-                     <span> {!! $language ->word !!} </span> &nbsp;  <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span><br>
-                    @endif
+                        <?php
+                        $getData='';
+                        ?>
+                        @if(!($type == $language->type))
+                            <?php  $type = $language->type ?>
+                             <b class="_type" >{!! $language->type !!}</b>:<br>
+                             <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
+                             <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
+                             <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
+                        @else
+                             <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
+                             <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
+                             <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
+                        @endif
                     @endforeach
 
             @if(!Auth::guest())
@@ -30,6 +34,20 @@
         </form>
         @endif
 
+<!-- test script -->
+<script>
+        $(document).ready(function() {
+            $('._push-his').on('click', function(E){
+                var from = $("#_langFrom :selected").text();
+                var to = $("#_langTo :selected").text();
+                var id = $(this).attr('data-id');
+                var from_text = $('._text-search').val();
+                var to_text = $(this).next().next().text();
+                alert(from+"-"+to+"-"+from_text+"-"+to_text+"-"+id);
+
+            });
+        } );
+</script>
 
         @if(Auth::guest())
         <div class="panel-footer background-white">
@@ -145,3 +163,5 @@
 
   </div>
 </div>
+
+

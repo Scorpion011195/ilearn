@@ -6,16 +6,20 @@
                 <?php if(isset($workInfo)): ?>
                 <?php $type = '' ?>
                     <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php
-                    $getData='';
-                    ?>
-                    <?php if(!($type == $language->type)): ?>
-                        <?php  $type = $language->type ?>
-                        <b><?php echo $language->type; ?></b>:<br>
-                        <span> <?php echo $language ->word; ?> </span> &nbsp;  <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span><br>
-                    <?php else: ?>
-                     <span> <?php echo $language ->word; ?> </span> &nbsp;  <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span><br>
-                    <?php endif; ?>
+                        <?php
+                        $getData='';
+                        ?>
+                        <?php if(!($type == $language->type)): ?>
+                            <?php  $type = $language->type ?>
+                             <b class="_type" ><?php echo $language->type; ?></b>:<br>
+                             <span class="glyphicon glyphicon-plus _push-his" id="_id<?php echo $language->id; ?>" data-id="<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
+                             <span class="glyphicon glyphicon-volume-up" id="_id<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
+                             <span contenteditable> <?php echo $language ->word; ?> </span> &nbsp;<br>
+                        <?php else: ?>
+                             <span class="glyphicon glyphicon-plus _push-his" id="_id<?php echo $language->id; ?>" data-id="<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
+                             <span class="glyphicon glyphicon-volume-up" id="_id<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
+                             <span contenteditable> <?php echo $language ->word; ?> </span> &nbsp;<br>
+                        <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             <?php if(!Auth::guest()): ?>
@@ -30,6 +34,20 @@
         </form>
         <?php endif; ?>
 
+<!-- test script -->
+<script>
+        $(document).ready(function() {
+            $('._push-his').on('click', function(E){
+                var from = $("#_langFrom :selected").text();
+                var to = $("#_langTo :selected").text();
+                var id = $(this).attr('data-id');
+                var from_text = $('._text-search').val();
+                var to_text = $(this).next().next().text();
+                alert(from+"-"+to+"-"+from_text+"-"+to_text+"-"+id);
+
+            });
+        } );
+</script>
 
         <?php if(Auth::guest()): ?>
         <div class="panel-footer background-white">
@@ -147,3 +165,5 @@
 
   </div>
 </div>
+
+

@@ -52,8 +52,10 @@ class LaguageController extends Controller
                 $type = substr($type, 9, -1);
                 $word = $array[1];
                 $word = substr($word, 8, -2);
+                $id = $workInfo[$i]->id;
                 $listen = $workInfo[$i]->listen;
                 $explain = $workInfo[$i]->explain;
+                $languageView->id = $id;
                 $languageView->type = $type;
                 $languageView->word = $word;
                 $languageView->listen = $listen;
