@@ -28,6 +28,8 @@ class LaguageController extends Controller
         $workInfo = $this->lang->findWord($langueInput, $langueOutput, $inputText);
             \Session::put('flagLanguage1', $request->input('cb1'));
             \Session::put('flagLanguage2', $request->input('cb2'));
+
+
         if($workInfo == false) {
             // echo 'k co tu dung'; exit;
             $fail['text'] = 'flag';

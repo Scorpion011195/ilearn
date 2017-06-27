@@ -33,9 +33,9 @@
                           @foreach($listSearch as $value)
                           <option
                               @if($value == $cbTypeWord)
-                                  {{ "selected" }}
+                                  {!! "selected" !!}
                               @endif
-                          >{{ $value }}</option>
+                          >{!! $value !!}</option>
                           @endforeach
                       </select>
                       <button type="submit" class="btn btn-info">

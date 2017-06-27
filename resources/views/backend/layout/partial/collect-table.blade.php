@@ -45,12 +45,12 @@
                         @foreach($submitions as $row)
                         <tr role="row" class="odd text-center">
                             <td>{{ $row->STT }}</td>
-                            <td class='_edit-me'>{{ $row->from_text }}</td>
-                            <td class='_edit-me'>{{ $row->to_text }}</td>
-                            <td>{{ $row->from }}-{{ $row->to }}</td>
-                            <td>{{ $row->quanlity }}</td>
-                            <td>{{ $row->type_from }}</td>
-                            <td>{{ $row->status }}</td>
+                            <td class='_edit-me'>{!! $row->from_text !!}</td>
+                            <td class='_edit-me'>{!! $row->to_text !!}</td>
+                            <td>{!! $row->from !!}-{!! $row->to !!}</td>
+                            <td>{!! $row->quanlity !!}</td>
+                            <td>{!! $row->type_from !!}</td>
+                            <td>{!! $row->status !!}</td>
                             <!-- <td>
                                 @if($row->status=='added')
                                     <a class="" data-toggle="tooltip" title="Đã có!">
@@ -72,7 +72,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-5">
-                    <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Tổng cộng có {{ $noOfSubmitions }} kết quả
+                    <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Tổng cộng có {!! $noOfSubmitions !!} kết quả
                     </div>
                 </div>
                 <div class="col-sm-7">
