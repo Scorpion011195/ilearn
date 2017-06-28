@@ -28,6 +28,8 @@
     <link href="{!! asset('css/style.css') !!}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- CK_EDITOR -->
+    <script language="javascript" src="{!! asset('ckeditor/ckeditor.js') !!}" type="text/javascript"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
