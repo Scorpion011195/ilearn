@@ -13,8 +13,6 @@ require __DIR__.'/web_ilearn_partial.php';
 /*===================Function Search===============*/
 
 /*================src_user_register====================  */
-Route::post('/search', array('as' => 'search',
-    'uses' => 'LaguageController@search'));
 
 Route::get('/result', function () {
     return view('result');
@@ -26,6 +24,9 @@ Route::get('/', array('as' => '',
 
 Route::get('/search', array('as' => 'search',
     'uses' => 'LaguageController@getAllLanguage'));
+
+Route::post('/search', array('as' => 'search',
+    'uses' => 'LaguageController@search'));
 
 
 /*=================/Function Search================*/
@@ -57,6 +58,8 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
 Route::get('/historys','HistoryController@store' );
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
+Route::POST('/historys/add' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@' ]);
+
 
  Route::get('getAddCreateDictMeaning/{index}', function ($index) {
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
@@ -75,15 +78,11 @@ Route::get('tests', function(){
 /*=================== Admin area ===============*/
 Route::group(['prefix' => 'admin'], function () {
     // Đăng nhập
-    Route::get('login', function () {
-        return view('backend.login');
-    })->name('adminLogin');
+    Route::get('login', 'AdminController@getLogin')->name('adminGetLogin');
+    Route::post('login', 'AdminController@postLogin')->name('adminPostLogin');
 
     // Đăng xuất
     Route::get('logout', 'AdminController@logout')->name('adminLogout');
-
-    // Kiểm tra đăng nhập
-    Route::post('checkLogin', 'AdminController@login')->name('adminCheckLogin');
 
     // Trang chủ
     Route::get('home', 'DictionaryManagementController@home')->name('adminHome')->middleware('adminLogin');

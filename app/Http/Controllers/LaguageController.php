@@ -28,7 +28,14 @@ class LaguageController extends Controller
         $workInfo = $this->lang->findWord($langueInput, $langueOutput, $inputText);
             \Session::put('flagLanguage1', $request->input('cb1'));
             \Session::put('flagLanguage2', $request->input('cb2'));
-        if($workInfo == false) {
+
+        if(empty($inputText)){
+            $emData['text'] = 'emData';
+            return view('index')->with([
+                    'emData' => $emData,
+                    'data' => $language ]);
+        }
+        elseif($workInfo == false) {
             // echo 'k co tu dung'; exit;
             $fail['text'] = 'flag';
             return view('index')->with([
@@ -37,7 +44,7 @@ class LaguageController extends Controller
         }
         else {
             $arraySaveView = array();
-            
+
             for($i=0; $i < count($workInfo); $i++){
                 $languageView = new LanguageViewmodel;
                 $array = explode (",",$workInfo[$i]-> word);
@@ -45,18 +52,26 @@ class LaguageController extends Controller
                 $type = substr($type, 9, -1);
                 $word = $array[1];
                 $word = substr($word, 8, -2);
+                $id = $workInfo[$i]->id;
                 $listen = $workInfo[$i]->listen;
                 $explain = $workInfo[$i]->explain;
+                $languageView->id = $id;
                 $languageView->type = $type;
                 $languageView->word = $word;
                 $languageView->listen = $listen;
                 $languageView->explain = $explain;
-                
+
                 array_push($arraySaveView, $languageView);
-            }             
+            }
+            // $GetData= array('from' => $inputText, 'from_language' => $langueInput , 'To_language' => $langueOutput, 'to' => $word, 'explain'=>$explain,'notification' => 'T');
+
             return view('result')->with([
                     'workInfo' => $arraySaveView,
-                    'data' => $language ]);
+                    'data' => $language ,
+                    'inputText' => $inputText,
+                    'langueInput' => $langueInput,
+                    'langueOutput' => $langueOutput,
+                    'explain'=>$explain]);
         }
 //        return 'ok';
 //        return view('home');

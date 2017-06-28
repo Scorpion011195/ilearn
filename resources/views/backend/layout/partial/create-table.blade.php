@@ -1,21 +1,15 @@
 <div class="panel">
     <div class="panel-body">
-        @if($code=='failedInputEmptyFrom')
-            <div class="alert alert-danger text-center">
-              Bạn chưa nhập từ!
-            </div>
-        @elseif($code=='failedInputEmptyTo')
-            <div class="alert alert-danger text-center">
-              Bạn chưa nhập nghĩa!
-            </div>
-        @elseif($code=='failedWord')
-            <div class="alert alert-danger text-center">
-              Từ đã có trong hệ thống!
-            </div>
-        @elseif($code=='SuccessfulWord')
-            <div class="alert alert-success text-center">
-              Thêm từ thành công!
-            </div>
+        @if ($errors->has('Success'))
+        <div class="container">
+                <p style="color:blue"><span class="glyphicon glyphicon-ok"></span>   {!! $errors->first('Success') !!}</p>
+        </div>
+        @endif
+
+        @if ($errors->has('FailedCannotFind'))
+        <div class="container">
+                <p style="color:red"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('FailedCannotFind') !!}</p>
+        </div>
         @endif
 
         <form class="form-inline" action="{{ route('adminDictCreateWord') }}" method="post">
@@ -27,18 +21,18 @@
                               @foreach($listLanguage as $language)
                                   <option
                                       @if($language->id_language == $idTableNguon)
-                                          {{ "selected" }}
+                                          {!! "selected" !!}
                                       @endif
-                                      value="{{ $language->id_language }}">{{ $language->language }}</option>
+                                      value="{!! $language->id_language !!}">{!! $language->language !!}</option>
                               @endforeach
                           </select>
                           <select class="form-control" name="_cbloaitu">
                               @foreach($listTypeOfWord as $key=>$value)
                                   <option
                                       @if($key == $idLoaiTu)
-                                          {{ "selected" }}
+                                          {!! "selected" !!}
                                       @endif
-                                      value="{{ $key }}">{{ $value }}</option>
+                                      value="{{ $key }}">{!! $value !!}</option>
                               @endforeach
                           </select>
                         </div>
@@ -49,9 +43,9 @@
                               @foreach($listLanguage as $language)
                                   <option
                                       @if($language->id_language == $idTableDich)
-                                          {{ "selected" }}
+                                          {!! "selected" !!}
                                       @endif
-                                      value="{{ $language->id_language }}">{{ $language->language }}</option>
+                                      value="{!! $language->id_language !!}">{!! $language->language !!}</option>
                               @endforeach
                           </select>
                           <button type="submit" class="btn btn-info">
@@ -64,28 +58,48 @@
             <br>
 
             <div class="row">
-                    <div class="col-sm-6">
-                          <div class="input-group">
+                    <div class="col-sm-6 {{ $errors->has('_txttu') ? ' has-error' : '' }}">
+                          <div class="input-group ">
                               <span class="input-group-addon">Từ</span>
-                              <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="Hello" value="{{ $lastTxtTu }}">
+                              <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="Hello" value="{!! old('_txttu') !!}">
                           </div>
+                          @if ($errors->has('_txttu'))
+                              <span class="help-block">
+                                  <strong>{!! $errors->first('_txttu') !!}</strong>
+                              </span>
+                          @endif
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 {{ $errors->has('_txtnghia') ? ' has-error' : '' }}">
                           <div class="input-group">
                               <span class="input-group-addon">Nghĩa</span>
-                              <input size="30" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="Xin chào" value="{{ $lastTxtNghia }}">
+                              <input size="30" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="Xin chào" value="{!! old('_txtnghia') !!}">
                           </div>
+                          @if ($errors->has('_txtnghia'))
+                              <span class="help-block">
+                                  <strong>{!! $errors->first('_txtnghia') !!}</strong>
+                              </span>
+                          @endif
                     </div>
             </div>
 
             <br>
 
             <div class="row">
-                    <div class="col-sm-6">
-                          <textarea class="form-control" rows="5" cols="36" placeholder="Giải thích" name="_tatu"></textarea>
+                    <div class="col-sm-6 {{ $errors->has('_tatu') ? ' has-error' : '' }}">
+                          <textarea class="form-control" rows="5" cols="36" placeholder="Giải thích" name="_tatu">{!! old('_tatu') !!}</textarea>
+                          @if ($errors->has('_tatu'))
+                              <span class="help-block">
+                                  <strong>{!! $errors->first('_tatu') !!}</strong>
+                              </span>
+                          @endif
                     </div>
-                    <div class="col-sm-6">
-                          <textarea class="form-control" rows="5" cols="39" placeholder="Giải thích" name="_tanghia"></textarea>
+                    <div class="col-sm-6 {{ $errors->has('_tanghia') ? ' has-error' : '' }}">
+                          <textarea class="form-control" rows="5" cols="39" placeholder="Giải thích" name="_tanghia">{!! old('_tanghia') !!}</textarea>
+                          @if ($errors->has('_tanghia'))
+                              <span class="help-block">
+                                  <strong>{!! $errors->first('_tanghia') !!}</strong>
+                              </span>
+                          @endif
                     </div>
             </div>
         </form>

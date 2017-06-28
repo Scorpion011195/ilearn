@@ -1,6 +1,6 @@
 
 <body onload="loadFn()">
-    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+    <meta name="csrf-token" content="<?php echo csrf_token(); ?>">
     <div class="header_top"></div>
     <script>
         function loadFn() {
@@ -20,7 +20,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="<?php echo e(url('/')); ?>"><img src="https://ilearn.co.za/wp-content/uploads/2015/11/ilearn_logo_300.png" alt="" height="50px" width=90px></a>
+                        <a href="<?php echo e(utf8_encode(url('/'))); ?>"><img src="https://ilearn.co.za/wp-content/uploads/2015/11/ilearn_logo_300.png" alt="" height="50px" width=90px></a>
                     </div>
                     <div class="collapse navbar-collapse pull-right" id="main-menu">
                         <ul class="nav">
@@ -33,7 +33,7 @@
                                 <?php if($errors->has('errorLogin')): ?>
                                     <div class="alert alert-danger">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <?php echo e($errors->first('errorLogin')); ?>
+                                        <?php echo $errors->first('errorLogin'); ?>
 
                                     </div>
                                 <?php endif; ?>
@@ -42,9 +42,9 @@
                                 <?php echo Form::text('username', Illuminate\Support\Facades\Input::old('username'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']); ?>
 
 
-                                <input class="form-control nav-login collapse" placeholder="Mật khẩu của bạn" name="password" type="password" value="<?php echo e(old('password')); ?>"/>
+                                <input class="form-control nav-login collapse" placeholder="Mật khẩu của bạn" name="password" type="password" value="<?php echo e(utf8_encode(old('password'))); ?>"/>
                                 
-                                <input class= "nav-login" type="checkbox" name="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>  <span class="nav-login">Remember</span>
+                                <input class= "nav-login" type="checkbox" name="remember" <?php echo old('remember') ? 'checked' : ''; ?>>  <span class="nav-login">Remember</span>
 
                                 <?php echo Form::button('Đăng nhập', ['class' => 'btn btn-default', 'id' => 'nav-login-btn', 'onclick' => 'doSubmit()']); ?>
 
@@ -57,27 +57,27 @@
                             <?php else: ?>
 
                             <li class="dropdown">
-                                <a href="<?php echo e(url('/')); ?>">Trang chủ</a>
+                                <a href="<?php echo e(utf8_encode(url('/'))); ?>">Trang chủ</a>
                                 </a>
                             </li>
-                            <li class="dropdown">  <a href="<?php echo e(url('/historys')); ?>">Lịch sử</a>
+                            <li class="dropdown">  <a href="<?php echo e(utf8_encode(url('/historys'))); ?>">Lịch sử</a>
                                 </a></li>
-                                 <li class="dropdown">  <a href="<?php echo e(url('/settings')); ?>">Cài đặt</a>
+                                 <li class="dropdown">  <a href="<?php echo e(utf8_encode(url('/settings'))); ?>">Cài đặt</a>
                                 </a></li>
                                 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <?php echo e(Auth::user()->username); ?> <span class="caret"></span>
+                                    <?php echo e(utf8_encode(Auth::user()->username)); ?> <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="<?php echo e(route('logout')); ?>"
+                                        <a href="<?php echo route('logout'); ?>"
                                            onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-                                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
-                                            <?php echo e(csrf_field()); ?>
+                                        <form id="logout-form" action="<?php echo route('logout'); ?>" method="POST" style="display: none;">
+                                            <?php echo csrf_field(); ?>
 
                                         </form>
                                     </li>

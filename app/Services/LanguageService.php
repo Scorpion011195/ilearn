@@ -21,7 +21,7 @@ class LanguageService extends BaseService implements LanguageRepository{
         else {
 
             //get Word :
-            return \DB::table($langueOutput)->select('word', 'listen', 'explain')->where('id_mapping', '=', $lagInfor[0]->id_mapping)->get();
+            return \DB::table($langueOutput)->select('id','word', 'listen', 'explain')->where('id_mapping', '=', $lagInfor[0]->id_mapping)->orderBy('word','asc')->get();
         }
     }
 

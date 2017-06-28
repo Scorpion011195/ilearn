@@ -1,4 +1,6 @@
+<?php 
 
+ ?>
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Danh sách từ</h3>
@@ -47,12 +49,12 @@
         <tbody>
             @foreach($data as $row)
             <tr>
-                <td>{{ $row->STT }}</td>
-                <td>{{ $row->from_text }}</td>
-                <td>{{ $row->to_text}} </td>
-                <td>{{ $row->from_explain }}-{{ $row->to_explain}}</td>
-                <td>{{ $row->from }}-{{ $row->to }}</td>
-                <td>{{ $row->notification }}</td>
+                <td>{{ $row['STT'] }}</td>
+                <td>{{ $row['from_text'] }}</td>
+                <td>{{ $row['to_text'] }} </td>
+                <td>{{ $row['from_explain'] }}-{{ $row['to_explain'] }}</td>
+                <td>{{ $row['from'] }}-{{ $row['to'] }}</td>
+                <td>{{ $row['notification'] }}</td>
                 
             
             </tr>

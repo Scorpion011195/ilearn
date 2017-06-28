@@ -32,27 +32,42 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Đăng nhập</p>
+        <?php if($errors->has('errorLogin')): ?>
+        <div class="container">
+                <p style="color:red"><span class="glyphicon glyphicon-warning-sign"></span>   <?php echo $errors->first('errorLogin'); ?></p>
+        </div>
+        <?php endif; ?>
 
-        <form action="<?php echo e(route('adminCheckLogin')); ?>" method="post">
-            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Username" name="username">
+        <form action="<?php echo e(utf8_encode(route('adminPostLogin'))); ?>" method="post">
+            <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
+            <div class="form-group <?php echo e(utf8_encode($errors->has('username') ? ' has-error' : '')); ?>">
+                <input type="text" class="form-control" placeholder="Username" name="username" value="<?php echo old('username'); ?>">
+                <?php if($errors->has('username')): ?>
+                    <span class="help-block">
+                        <strong><?php echo $errors->first('username'); ?></strong>
+                    </span>
+                <?php endif; ?>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
-            <div class="form-group has-feedback">
+            <div class="form-group <?php echo e(utf8_encode($errors->has('password') ? ' has-error' : '')); ?>">
                 <input type="password" class="form-control" placeholder="Password" name="password">
+                <?php if($errors->has('password')): ?>
+                    <span class="help-block">
+                        <strong><?php echo $errors->first('password'); ?></strong>
+                    </span>
+                <?php endif; ?>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <!-- remember me -->
                 <div class="col-xs-8">
-                    <!-- <input type="checkbox" name="ckb_remember_me"> Remember Me -->
+                    <!-- <input type="checkbox" name="remember_me"> Remember Me -->
                 </div>
                 <!-- remember me -->
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
                 </div>
                 <!-- /.col -->
             </div>

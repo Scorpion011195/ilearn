@@ -32,5 +32,15 @@
                 </div>
                 
         @endif
+         @if(isset($emData))
+            <div class='col-md-3'></div>
+                <div class="col-md-6">
+                    <div class="alert alert-danger" id='idsuccess'>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>               
+                    <h2 align="center">Bạn chưa nhập từ</h2>
+                    </div>
+                </div>
+                
+        @endif
 </body>
 </html>
