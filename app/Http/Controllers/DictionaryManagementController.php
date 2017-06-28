@@ -152,17 +152,64 @@ class DictionaryManagementController extends Controller
         $isExitsFrom = $this->checkWordExist($tableFrom, $columnWord, $txtTu, $typeWordFrom);
         $isExitsTo = $this->checkWordExist($tableTo, $columnWord, $txtNghia, $typeWordTo);
 
+        $typeWordInVietnamese = MyConstant::TYPE_OF_WORD_VIETNAMESE[$idLoaiTu];
+
         // Nếu từ này đã tồn tại trong hệ thống
         if($isExitsFrom){
             // Nếu nghĩa này cũng tồn tại trong hệ thống
             if($isExitsTo){
-                $errors = new MessageBag(['FailedCannotFind' => 'Từ đã có trong hệ thống']);
+                // Từ đã có trong hệ thống
+                $errors = new MessageBag(['FailedCannotFind' => 'Từ "'.$txtTu.'" ('.$typeWordInVietnamese.') đã có trong hệ thống']);
                 return redirect()->back()->withInput()->withErrors($errors);
             }
+            // Nếu nghĩa chưa tồn tại trong hệ thống
             else{
-                // Lấy id_mapping của từ này
+                // Lấy id_mapping của từ nguồn
                 $resultFrom = $tableServiceFrom->findWordWithType($columnWord, $txtTu, $typeWordFrom);
                 $idMapping = $resultFrom->id_mapping;
+
+                // Thêm từ vào bảng đích
+                $addContentTo = ['word'=>'{"type":"'.$typeWordTo.'","word":"'.$txtNghia.'"}',
+                                   'listen'=>'',
+                                   'explain'=>$taNghia,
+                                   'id_mapping'=>$idMapping];
+                $this->insertTable($tableServiceTo, $addContentTo);
+
+                // Hiển thị kết quả
+                $errors = new MessageBag(['Success' => 'Đã thêm từ "'.$txtNghia.'" ('.$typeWordInVietnamese.') vào hệ thống']);
+                return redirect()->back()->withInput()->withErrors($errors);
+            }
+
+        }
+        // Nếu từ này chưa có trong hệ thống
+        else{
+            // Nếu nghĩa đã có trong hệ thống
+            if($isExitsTo){
+                // Lấy id_mapping của nghĩa
+                $resultTo = $tableServiceTo->findWordWithType($columnWord, $txtNghia, $typeWordTo);
+                $idMapping = $resultTo->id_mapping;
+
+                // Thêm vào bảng nguồn
+                $addContentFrom = ['word'=>'{"type":"'.$typeWordFrom.'","word":"'.$txtTu.'"}',
+                                   'listen'=>'',
+                                   'explain'=>$taTu,
+                                   'id_mapping'=>$idMapping];
+                $this->insertTable($tableServiceFrom, $addContentFrom);
+
+                // Trả về kết quả
+                $errors = new MessageBag(['Success' => 'Đã thêm từ "'.$txtTu.'" ('.$typeWordInVietnamese.') vào hệ thống']);
+            }
+            // Nếu nghĩa cũng chưa có trong hệ thống
+            else{
+                // Lấy max id_mapping của tất cả các bảng ngôn ngữ
+                $idMapping = $this->getMaxIdMapping()+1;
+
+                // Thêm vào bảng nguồn
+                $addContentFrom = ['word'=>'{"type":"'.$typeWordFrom.'","word":"'.$txtTu.'"}',
+                                   'listen'=>'',
+                                   'explain'=>$taTu,
+                                   'id_mapping'=>$idMapping];
+                $this->insertTable($tableServiceFrom, $addContentFrom);
 
                 // Thêm vào bảng đích
                 $addContentTo = ['word'=>'{"type":"'.$typeWordTo.'","word":"'.$txtNghia.'"}',
@@ -171,29 +218,11 @@ class DictionaryManagementController extends Controller
                                    'id_mapping'=>$idMapping];
                 $this->insertTable($tableServiceTo, $addContentTo);
 
-                $errors = new MessageBag(['Success' => 'Đã thêm từ "'.$txtNghia.'" vào hệ thống']);
-                return redirect()->back()->withInput()->withErrors($errors);
+                // Trả về kết quả
+                $errors = new MessageBag(['Success' => 'Đã thêm từ "'.$txtTu.'" ('.$typeWordInVietnamese.') và nghĩa "'.$txtNghia.'" vào hệ thống']);
             }
 
-        }
-        else{
-            $idMapping = $this->getMaxIdMapping()+1;
-
-            // Thêm vào bảng nguồn
-            $addContentFrom = ['word'=>'{"type":"'.$typeWordFrom.'","word":"'.$txtTu.'"}',
-                               'listen'=>'',
-                               'explain'=>$taTu,
-                               'id_mapping'=>$idMapping];
-            $this->insertTable($tableServiceFrom, $addContentFrom);
-
-            // Thêm vào bảng đích
-            $addContentTo = ['word'=>'{"type":"'.$typeWordTo.'","word":"'.$txtNghia.'"}',
-                               'listen'=>'',
-                               'explain'=>$taNghia,
-                               'id_mapping'=>$idMapping];
-            $this->insertTable($tableServiceTo, $addContentTo);
-
-            $errors = new MessageBag(['Success' => 'Đã thêm từ "'.$txtTu.'" và nghĩa "'.$txtNghia.'" vào hệ thống']);
+            // Hiển thị kết quả
             return redirect()->back()->withInput()->withErrors($errors);
 
         }
