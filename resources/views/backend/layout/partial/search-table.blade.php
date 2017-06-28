@@ -2,15 +2,16 @@
 <!-- Search -->
 <div class="panel">
     <div class="panel-body">
-      @if ($errors->has('FailedCannotFind'))
-        <div>
-          <p style="color:red" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('FailedCannotFind') !!}</p>
-        </div>
-      @endif
       @if (isset($code))
-        <div>
-          <p style="color:blue" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $countTo !!} kết quả được tìm thấy</p>
-        </div>
+        @if($code == "FailedCannotFind")
+          <div>
+            <p style="color:red" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Không tìm thấy kết quả</p>
+          </div>
+        @elseif($code == "Success")
+          <div>
+            <p style="color:blue" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $countTo !!} kết quả được tìm thấy</p>
+          </div>
+        @endif
       @endif
         <div class="row">
           <div class="col-sm-12" >
@@ -34,6 +35,8 @@
                               value="{{ $key }}">{!! $value !!}</option>
                       @endforeach
                   </select>
+                  <div class="input-group ">
+                  <span class="input-group-addon">From</span>
                   <select class="form-control" name="_cbnguontratu">
                       @foreach($listLanguage as $language)
                           <option
@@ -43,6 +46,9 @@
                               value="{!! $language->id_language !!}">{!! $language->language !!}</option>
                       @endforeach
                   </select>
+                  </div>
+                  <div class="input-group ">
+                  <span class="input-group-addon">To</span>
                   <select class="form-control" name="_cbdichtratu" id="_table-dich">
                       @foreach($listLanguage as $language)
                           <option
@@ -52,6 +58,7 @@
                               value="{!! $language->id_language !!}">{!! $language->language !!}</option>
                       @endforeach
                   </select>
+                  </div>
                   <button type="submit" class="btn btn-info">
                       <span class="glyphicon glyphicon-search"></span>
                   </button>
@@ -98,15 +105,15 @@
                               @if(isset($result))
                                @foreach($result as $row)
                                  <?php $word = json_decode($row->word); ?>
-                                 <tr role="row" class="odd">
+                                 <tr role="row" class="odd" id="_tr{!! $row->id !!}">
                                     <td class="_word-id text-center" data-id="{!! $row->id !!}">{!! $row->id !!}</td>
-                                    <td class="_word" contenteditable>{!! $word->word !!}</td>
-                                    <td class="_explain" contenteditable>{!! $row->explain !!}</td>
-                                    <td class="text-center">
-                                      <a class="_update-word" data-toggle="tooltip" title="Cập nhật!">
+                                    <td class="_word" id="_td-word{!! $row->id !!}">{!! $word->word !!}</td>
+                                    <td class="_explain" id="_td-explain{!! $row->id !!}">{!! $row->explain !!}</td>
+                                    <td class="text-center" style="vertical-align:middle">
+                                      <a class="_update-word" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
                                         <span class="glyphicon glyphicon-edit"></span>
                                       </a>
-                                      <a class="_delete-word-to" data-toggle="tooltip" title="Xóa!">
+                                      <a class="_delete-word-to" title="Xóa!">
                                         <span class="glyphicon glyphicon-trash"></span>
                                       </a>
                                     </td>
@@ -133,8 +140,6 @@
 </div>
 <!-- /.Table -->
 
-<!-- Table them tu -->
-     <!-- file create-table.txt -->
-<!-- /.Table them tu -->
+@include('backend.layout.partial.modal-search')
 
 
