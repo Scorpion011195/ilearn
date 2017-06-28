@@ -6,6 +6,7 @@
                 <?php if(isset($workInfo)): ?>
                 <?php $type = '' ?>
                     <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div>
                         <?php
                         $getData='';
                         ?>
@@ -20,6 +21,7 @@
                              <span class="glyphicon glyphicon-volume-up" id="_id<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
                              <span contenteditable> <?php echo $language ->word; ?> </span> &nbsp;<br>
                         <?php endif; ?>
+                    </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             <?php if(!Auth::guest()): ?>
@@ -40,10 +42,11 @@
             $('._push-his').on('click', function(E){
                 var from = $("#_langFrom :selected").text();
                 var to = $("#_langTo :selected").text();
-                var id = $(this).attr('data-id');
+                //var id = $(this).attr('data-id');
+                var type = $(this).closest('div').find('._type').text();
                 var from_text = $('._text-search').val();
                 var to_text = $(this).next().next().text();
-                alert(from+"-"+to+"-"+from_text+"-"+to_text+"-"+id);
+                alert(from+"-"+to+"-"+from_text+"-"+to_text+"-"+type);
 
             });
         } );
