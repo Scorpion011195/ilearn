@@ -85,6 +85,7 @@
             <br>
             <div class="row">
                     <div class="col-sm-6 {{ $errors->has('_tatu') ? ' has-error' : '' }}">
+                          <lable ><span class="glyphicon glyphicon-info-sign"></span>  Giải thích</lable>
                           <textarea class="form-control" placeholder="Giải thích" name="_tatu" id="_gtFrom">{!! old('_tatu') !!}</textarea>
                           <script type="text/javascript">CKEDITOR.replace( '_gtFrom',{
                             enterMode: Number(2),
@@ -96,6 +97,7 @@
                           @endif
                     </div>
                     <div class="col-sm-6 {{ $errors->has('_tanghia') ? ' has-error' : '' }}">
+                          <lable ><span class="glyphicon glyphicon-info-sign"></span>  Giải thích</lable>
                           <textarea class="form-control" placeholder="Giải thích" name="_tanghia" id="_gtTo">{!! old('_tanghia') !!}</textarea>
                           <script type="text/javascript">CKEDITOR.replace( '_gtTo',{
                             enterMode: Number(2),
