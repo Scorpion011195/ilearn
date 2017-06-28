@@ -26,8 +26,8 @@ class AdminAddWordRequest extends FormRequest
         return [
             '_txttu' => 'required|max:100',
             '_txtnghia' => 'required|max:100',
-            '_tatu' => 'max:5',
-            '_tanghia' => 'max:5'
+            '_tatu' => 'max:500',
+            '_tanghia' => 'max:500'
         ];
     }
 
