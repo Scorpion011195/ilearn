@@ -34,7 +34,7 @@
         </form>
         <?php endif; ?>
 
-<!-- test script -->
+<!-- test push history script -->
 <script>
         $(document).ready(function() {
             $('._push-his').on('click', function(E){
