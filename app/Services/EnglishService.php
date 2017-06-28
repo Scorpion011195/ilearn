@@ -27,4 +27,8 @@ class EnglishService extends BaseService implements EnglishRepository{
         return DB::table('english')->max('id_mapping');
     }
 
+    public function getAllByIdMappingOrderById($column, $value){
+        return $this->model->where($column, $value)->orderBy('id','asc')->get();
+    }
+
 }

@@ -1,13 +1,13 @@
 <div class="panel">
     <div class="panel-body">
         @if ($errors->has('Success'))
-        <div class="container">
+        <div>
                 <p style="color:blue"><span class="glyphicon glyphicon-ok"></span>   {!! $errors->first('Success') !!}</p>
         </div>
         @endif
 
         @if ($errors->has('FailedCannotFind'))
-        <div class="container">
+        <div>
                 <p style="color:red"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('FailedCannotFind') !!}</p>
         </div>
         @endif
@@ -64,9 +64,9 @@
                               <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="Hello" value="{!! old('_txttu') !!}">
                           </div>
                           @if ($errors->has('_txttu'))
-                              <span class="help-block">
-                                  <strong>{!! $errors->first('_txttu') !!}</strong>
-                              </span>
+                              <div>
+                                  <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_txttu') !!}</strong></p>
+                              </div>
                           @endif
                     </div>
                     <div class="col-sm-6 {{ $errors->has('_txtnghia') ? ' has-error' : '' }}">
@@ -75,9 +75,9 @@
                               <input size="30" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="Xin chào" value="{!! old('_txtnghia') !!}">
                           </div>
                           @if ($errors->has('_txtnghia'))
-                              <span class="help-block">
-                                  <strong>{!! $errors->first('_txtnghia') !!}</strong>
-                              </span>
+                              <div>
+                                  <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_txtnghia') !!}</strong></p>
+                              </div>
                           @endif
                     </div>
             </div>
@@ -91,9 +91,9 @@
                             enterMode: Number(2),
                           }); </script>
                           @if ($errors->has('_tatu'))
-                              <span class="help-block">
-                                  <strong>{!! $errors->first('_tatu') !!}</strong>
-                              </span>
+                              <div>
+                                  <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_tatu') !!}</strong></p>
+                              </div>
                           @endif
                     </div>
                     <div class="col-sm-6 {{ $errors->has('_tanghia') ? ' has-error' : '' }}">
@@ -103,9 +103,9 @@
                             enterMode: Number(2),
                           }); </script>
                           @if ($errors->has('_tanghia'))
-                              <span class="help-block">
-                                  <strong>{!! $errors->first('_tanghia') !!}</strong>
-                              </span>
+                              <div>
+                                  <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_tanghia') !!}</strong></p>
+                              </div>
                           @endif
                     </div>
             </div>

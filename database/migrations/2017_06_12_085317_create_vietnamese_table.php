@@ -17,7 +17,7 @@ class CreateVietnameseTable extends Migration
             $table->increments('id');
             $table->string('word',100);
             $table->string('listen',100)->nullable()->default(null);;
-            $table->string('explain',100)->nullable()->default(null);;
+            $table->longtext('explain')->nullable()->default(null);;
             $table->integer('id_mapping');
             $table->timestamps();
         });

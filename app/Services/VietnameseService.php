@@ -26,4 +26,8 @@ class VietnameseService extends BaseService implements VietnameseRepository{
     {
         return DB::table('vietnamese')->where($column, 'like', '%'.$type.'%'.$word.'"}')->first();
     }
+
+    public function getAllByIdMappingOrderById($column, $value){
+        return $this->model->where($column, $value)->orderBy('id','asc')->get();
+    }
 }
