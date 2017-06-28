@@ -34,35 +34,78 @@
 </script>
 <!-- /.Active left menu -->
 
-    <!-- Confirm delete word to -->
-    <script>
-        $(document).ready(function(){
-            $("a._delete-word-to").on('click', function(E){
-                var _element = $(this);
-                var idWord = $(this).closest('tr').find('._word-id').attr('data-id');
-                var _token = $('input[name=_token]').val();
-                var table = $("#_table-dich :selected").text();
+<!--  Confirm delete word to -->
+<script>
+$(document).ready(function(){
+    $("a._delete-word-to").on('click', function(E){
+        var _element = $(this);
+        var idWord = $(this).closest('tr').find('._word-id').attr('data-id');
+        var word = $(this).closest('tr').find('._word').text();
+        var _token = $('input[name=_token]').val();
+        var table = $("#_table-dich :selected").text();
 
-                if(!confirm('Bạn có muốn xóa từ này?')){
-                    e.preventDefault();
-                    return false;
-                }
-                else{
-                    $.ajax({
-                        url:'delete',
-                        method: 'POST',
-                        data : {'idWord': idWord,'table': table, '_token' : _token},
-                        dataType:'json',
-                        success : function(response){
-                                _element.closest('tr').remove();
-                        },
-                        error: function(xhr, error) {
-                           console.log(error);
-                        }
-                    });
+        if(!confirm('Bạn có muốn xóa từ này?')){
+            e.preventDefault();
+            return false;
+        }
+        else{
+            $.ajax({
+                url:'delete',
+                method: 'POST',
+                data : {'idWord': idWord,'table': table, '_token' : _token},
+                dataType:'json',
+                success : function(response){
+                    if(response['data'] == "OK"){
+                        _element.closest('tr').remove();
+                        document.getElementById("_notify").innerHTML = 'Đã xóa từ "'+ word +'"';
+                    }
+                },
+                error: function(xhr, error) {
+                   console.log(error);
                 }
             });
-        });
-    </script>
-    <!-- /.Confirm delete word to -->
+        }
+    });
+});
+</script>
+<!--  /.Confirm delete word to -->
+
+<!--  Update explain -->
+<script>
+$(document).ready(function(){
+    $("._update-word").on('click', function(E){
+        var _element = $(this);
+        var idWord = $(this).closest('tr').find('._word-id').attr('data-id');
+        var word = $(this).closest('tr').find('._word').text();
+        var explain = $(this).closest('tr').find('._explain').html();
+        var _token = $('input[name=_token]').val();
+        var table = $("#_table-dich :selected").text();
+
+        alert(explain);
+
+        // if(!confirm('Bạn có muốn xóa từ này?')){
+        //     e.preventDefault();
+        //     return false;
+        // }
+        // else{
+        //     $.ajax({
+        //         url:'delete',
+        //         method: 'POST',
+        //         data : {'idWord': idWord,'table': table, '_token' : _token},
+        //         dataType:'json',
+        //         success : function(response){
+        //             if(response['data'] == "OK"){
+        //                 _element.closest('tr').remove();
+        //                 document.getElementById("_notify").innerHTML = 'Đã xóa từ "'+ word +'"';
+        //             }
+        //         },
+        //         error: function(xhr, error) {
+        //            console.log(error);
+        //         }
+        //     });
+        // }
+    });
+});
+</script>
+<!--  /.Update explain -->
 @endsection

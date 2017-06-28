@@ -237,7 +237,6 @@ class DictionaryManagementController extends Controller
        switch ($nameTableFrom) {
             case 'english':
                 $typeWordFrom = MyConstant::TYPE_OF_WORD_ENGLISH[$typeWord];
-                echo "Loai tu".$typeWordFrom."<br>";
                 $resultFrom = $englishService->findWordWithType('word', $keyTraTu, $typeWordFrom);
                 $countFrom = sizeof($resultFrom);
                 break;
