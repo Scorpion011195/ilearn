@@ -20,7 +20,6 @@ interface BaseController
 
     public function find(Request $request);
 
-    public function update(HistoryUpdateRequest $request);
 
     public function store(Request $request);
 

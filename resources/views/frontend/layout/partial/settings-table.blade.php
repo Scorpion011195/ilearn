@@ -47,27 +47,27 @@
             aria-label="CSS grade: activate to sort column ascending" style="width: 103px;">Notification</th>
         </thead>
         <tbody>
+        @if(isset($data))
             @foreach($data as $row)
             <tr>
                 <td>{{ $row['STT'] }}</td>
-                <td>{{ $row['from_text'] }}</td>
-                <td>{{ $row['to_text'] }} </td>
-                <td>{{ $row['type'] }} </td>
+                <td>{!! $row['from_text'] !!}</td>
+                <td>{!! $row['to_text'] !!} </td>
+                <td>{{ $row['type_to'] }} </td>
                 <td>{{ $row['from'] }}-{{ $row['to'] }}</td>
                 <td>{{ $row['tb1'] }} </td>
-
-                
-            
             </tr>
 
             @endforeach
-
+        @endif
+        
 
 
 
         </tbody>
 
     </table>
+
 </div>
 </div>
 <div class="row">
