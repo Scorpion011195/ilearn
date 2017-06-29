@@ -38,7 +38,7 @@
                     </th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                     aria-label="Engine version: activate to sort column ascending" style="width: 143px;">
-                    Giải thích
+                    Loại từ
                 </th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                 aria-label="CSS grade: activate to sort column ascending" style="width: 103px;">Từ điển
@@ -52,9 +52,10 @@
                 <td>{{ $row['STT'] }}</td>
                 <td>{{ $row['from_text'] }}</td>
                 <td>{{ $row['to_text'] }} </td>
-                <td>{{ $row['from_explain'] }}-{{ $row['to_explain'] }}</td>
+                <td>{{ $row['type'] }} </td>
                 <td>{{ $row['from'] }}-{{ $row['to'] }}</td>
-                <td>{{ $row['notification'] }}</td>
+                <td>{{ $row['tb1'] }} </td>
+
                 
             
             </tr>

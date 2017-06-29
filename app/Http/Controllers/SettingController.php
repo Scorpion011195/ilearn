@@ -79,7 +79,7 @@ class SettingController extends Controller
     // $setting->id_reminder= $time;
     // $setting->time_to_remind= $name;
     // $setting->save();
-        $attributes = ['id_reminder'=>$time,'time_to_remind'=>$des_info];
+        $attributes = ['id_reminder'=>$des_info,'time_to_remind'=>$time];
         Setting::where('id_user',$id)->update($attributes);
 
         return redirect('/settings')->with("message","<strong>Cài đặt thành công!</strong>");

@@ -36,6 +36,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\AdminAddWordRequest' => $baseDir . '/app/Http/Requests/AdminAddWordRequest.php',
     'App\\Http\\Requests\\AdminLoginRequest' => $baseDir . '/app/Http/Requests/AdminLoginRequest.php',
+    'App\\Http\\Requests\\AdminSearchWordRequest' => $baseDir . '/app/Http/Requests/AdminSearchWordRequest.php',
     'App\\Http\\Requests\\RegisterRequest' => $baseDir . '/app/Http/Requests/RegisterRequest.php',
     'App\\ModelViews\\ApprovalDictionaryViewModel' => $baseDir . '/app/ModelViews/ApprovalDictionaryViewModel.php',
     'App\\ModelViews\\BaseReponseViewModel' => $baseDir . '/app/ModelViews/BaseReponseViewModel.php',
