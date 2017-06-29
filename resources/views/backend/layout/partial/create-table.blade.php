@@ -83,10 +83,12 @@
             </div>
 
             <br>
-
             <div class="row">
                     <div class="col-sm-6 {{ $errors->has('_tatu') ? ' has-error' : '' }}">
-                          <textarea class="form-control" rows="5" cols="36" placeholder="Giải thích" name="_tatu">{!! old('_tatu') !!}</textarea>
+                          <textarea class="form-control" placeholder="Giải thích" name="_tatu" id="_gtFrom">{!! old('_tatu') !!}</textarea>
+                          <script type="text/javascript">CKEDITOR.replace( '_gtFrom',{
+                            enterMode: Number(2),
+                          }); </script>
                           @if ($errors->has('_tatu'))
                               <span class="help-block">
                                   <strong>{!! $errors->first('_tatu') !!}</strong>
@@ -94,7 +96,10 @@
                           @endif
                     </div>
                     <div class="col-sm-6 {{ $errors->has('_tanghia') ? ' has-error' : '' }}">
-                          <textarea class="form-control" rows="5" cols="39" placeholder="Giải thích" name="_tanghia">{!! old('_tanghia') !!}</textarea>
+                          <textarea class="form-control" placeholder="Giải thích" name="_tanghia" id="_gtTo">{!! old('_tanghia') !!}</textarea>
+                          <script type="text/javascript">CKEDITOR.replace( '_gtTo',{
+                            enterMode: Number(2),
+                          }); </script>
                           @if ($errors->has('_tanghia'))
                               <span class="help-block">
                                   <strong>{!! $errors->first('_tanghia') !!}</strong>
