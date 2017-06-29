@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="<?php echo e(route('adminHome')); ?>" class="logo">
+    <a href="<?php echo e(utf8_encode(route('adminHome'))); ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>I</b>LE</span>
         <!-- logo for regular state and mobile devices -->
@@ -120,7 +120,7 @@ Tasks Menu
                         <!-- The user image in the navbar-->
                         <!-- <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs"><?php echo e(Session::get('user')->username); ?></span>
+                        <span class="hidden-xs"><?php echo e(utf8_encode(Session::get('user')->username)); ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
@@ -128,9 +128,9 @@ Tasks Menu
                             <!-- <img src="#" class="img-circle" alt="User Image"> -->
 
                             <p>
-                                <?php echo e(Session::get('user')->username); ?>
+                                <?php echo e(utf8_encode(Session::get('user')->username)); ?>
 
-                                <small>Member since <?php echo e(date('F d, Y', strtotime(Session::get('user')->created_at))); ?></small>
+                                <small>Thành viên từ <?php echo e(utf8_encode(date('d-m-Y', strtotime(Session::get('user')->created_at)))); ?></small>
                             </p>
                         </li>
 <!--                         Menu Body
@@ -151,10 +151,10 @@ Tasks Menu
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="<?php echo e(route('adminProfile')); ?>" class="btn btn-default btn-flat">Profile</a>
+                                <a href="<?php echo e(utf8_encode(route('adminGetChangePassword'))); ?>" class="btn btn-default btn-flat">Đổi mật khẩu</a>
                             </div>
                             <div class="pull-right">
-                                <a href="<?php echo e(route('adminLogout')); ?>" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="<?php echo e(utf8_encode(route('adminLogout'))); ?>" class="btn btn-default btn-flat">Thoát</a>
                             </div>
                         </li>
                     </ul>

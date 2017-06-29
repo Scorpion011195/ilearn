@@ -26,26 +26,49 @@
                 {!! Form::open(['route' => 'adminSearchUser','method' => 'get']) !!}
                 <div class="row">
                     <div class="col-sm-5">
-                        {{ csrf_field() }}
+                        {!! csrf_field() !!}
                         {!! Form::label('collect-phrase', 'Tài khoản', ['class' => ' control-label col-sm-4 text-center-vertical text-right']) !!}
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 {!! $errors->has('_keytaikhoan') ? ' has-error' : '' !!}">
                             {!! Form::text('_keytaikhoan', '', ['class' => 'form-control']) !!}
                         </div>
-                        <!-- <div class="col-sm-1">
-                            {{ Form::button('<span class="glyphicon glyphicon-search"></span>',array('class'=>'btn btn-info','type'=>'submit'))}}
-                        </div> -->
                     </div>
                     <div class="col-sm-5">
                         {!! Form::label('collect-date', 'Ngày đăng ký', ['class' => ' control-label col-sm-4 text-center-vertical text-right']) !!}
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 {!! $errors->has('_keyngaydk') ? ' has-error' : '' !!}" id="datetimepicker">
                         {!! Form::date('_keyngaydk', '', ['class' => 'form-control', 'id' => 'collect-date']) !!}
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="col-sm-3">
-                            {{ Form::button('<span class="glyphicon glyphicon-search"></span>',array('class'=>'btn btn-info','type'=>'submit'))}}
+                            {!! Form::button('<span class="glyphicon glyphicon-search"></span>',array('class'=>'btn btn-info','type'=>'submit')) !!}
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-5">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-8">
+                      @if ($errors->has('_keytaikhoan'))
+                        <div class="{{ $errors->has('_keytaikhoan') ? ' has-error' : '' }}">
+                            <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_keytaikhoan') !!}</strong></p>
+                        </div>
+                      @endif
+                    </div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-8">
+                      @if ($errors->has('_keyngaydk'))
+                        <div class="{{ $errors->has('_keyngaydk') ? ' has-error' : '' }}">
+                            <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_keyngaydk') !!}</strong></p>
+                        </div>
+                      @endif
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                  </div>
                 </div>
                 {!! Form::close() !!}
             </div>
@@ -64,16 +87,18 @@
                 $(document).on('change', '.choose-status' , function(E){
                     var idUser = $(this).closest('tr').find('._user-id').attr('data-id');
                     var idStatus = $(this).val();
-
+                    var userName = $(this).closest('tr').find('._user-name').text();
                     var _token = $('input[name=_token]').val();
-                    //console.log(_token);
+
                     $.ajax({
                         url:'status',
                         method: 'POST',
                         data : {'idUser': idUser, 'idStatus' : idStatus, '_token' : _token},
                         dataType:'json',
-                        success : function(data){
-                            // $("#_idStatus"+idStatus).html(data);
+                        success : function(response){
+                            if(response['data'] == "OK"){
+                              alert('Bạn đã cập nhật "Tình trạng" của tài khoản "'+userName+'"');
+                            }
                         },
                     });
                 });
@@ -87,15 +112,18 @@
                 $(document).on('change', '.choose-role' , function(E){
                     var idUser = $(this).closest('tr').find('._user-id').attr('data-id');
                     var idRole = $(this).val();
+                    var userName = $(this).closest('tr').find('._user-name').text();
                     var _token = $('input[name=_token]').val();
-                    //console.log(_token);
+
                     $.ajax({
                         url:'role',
                         method: 'POST',
                         data : {'idUser': idUser, 'idRole' : idRole, '_token' : _token},
                         dataType:'json',
-                        success : function(data){
-                            // $("#_idRole"+idRole).html(data);
+                        success : function(response){
+                            if(response['data'] == "OK"){
+                              alert('Bạn đã cập nhật "Quyền" của tài khoản "'+userName+'"');
+                            }
                         },
                     });
                 });
@@ -109,9 +137,10 @@
                 $("a._delete-user").on('click', function(E){
                     var _element = $(this);
                     var idUser = $(this).closest('tr').find('._user-id').attr('data-id');
+                    var userName = $(this).closest('tr').find('._user-name').text();
                     var _token = $('input[name=_token]').val();
 
-                    if(!confirm('Bạn có muốn xóa tài khoản này?')){
+                    if(!confirm('Bạn có muốn xóa tài khoản "'+userName+'"?')){
                         e.preventDefault();
                         return false;
                     }
@@ -122,13 +151,15 @@
                             data : {'idUser': idUser, '_token' : _token},
                             dataType:'json',
                             success : function(response){
-                                    _element.closest('tr').remove();
+                                if(response['data'] == "OK"){
+                                  _element.closest('tr').remove();
+                                  alert('Bạn đã xóa tài khoản "'+userName+'"');
+                                }
                             },
                             error: function(xhr, error) {
                                console.log(error);
                             }
                         });
-                        //$(this).closest('tr').remove();
                     }
                 });
             });
@@ -150,5 +181,4 @@
             });
         </script>
         <!-- /.Active left menu -->
-
 @endsection

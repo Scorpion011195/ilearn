@@ -33,5 +33,5 @@ class MyConstant
     /*This is not a constant
     Instance of submitions table
     init array to statistic*/
-    static $arr_statistic_word = array(['STT'=>1,'from'=>'english','to'=>'vietnamese','from_text'=>'hello','to_text'=>'xin chào','quanlity'=>0,'type_from'=>'Interjection','status'=>'added']);
+    static $arr_statistic_word = array(['STT'=>1,'from'=>'english','to'=>'vietnamese','from_text'=>'hello','to_text'=>'xin chào','quanlity'=>0,'type_from'=>'Interjection','status'=>'Added']);
 }
