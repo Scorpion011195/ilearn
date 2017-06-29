@@ -138,7 +138,8 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::post('update', 'AdminController@updateProfile')->name('adminUpdateProfile');
 
-        Route::post('changePassword','AdminController@changePassword')->name('adminChangePassword');
+        Route::get('changePassword','AdminController@getChangePassword')->name('adminGetChangePassword');
+        Route::post('changePassword','AdminController@postChangePassword')->name('adminPostChangePassword');
     });
 });
 /*=================== /.Admin area ===============*/

@@ -81,7 +81,11 @@ class AdminController extends Controller
         return redirect()->route('adminProfile')->with('alertUpdateProfile','Cập nhật thành công!');
     }
 
-    function changePassword(AdminResetPasswordRequest $request)
+    function getChangePassword(){
+        return view('backend.user.change-password');
+    }
+
+    function postChangePassword(AdminResetPasswordRequest $request)
     {
         $password = Session::get('user')->password;
 
@@ -101,13 +105,13 @@ class AdminController extends Controller
                 $userService = new UserService(new User);
                 $userService->updateByColumn($column, $value, $attributes);
 
-                return redirect()->route('adminProfile')->with('alertUpdatePassword','success');
+                return redirect()->route('adminGetChangePassword')->with('alertUpdatePassword','success');
             }
             else
-                return redirect()->route('adminProfile')->with('alertUpdatePassword','failPassConfirm');
+                return redirect()->route('adminGetChangePassword')->with('alertUpdatePassword','failPassConfirm');
         }
         else
-            return redirect()->route('adminProfile')->with('alertUpdatePassword','failPass');
+            return redirect()->route('adminGetChangePassword')->with('alertUpdatePassword','failPass');
 
     }
 }
