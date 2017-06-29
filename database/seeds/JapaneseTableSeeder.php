@@ -12,7 +12,7 @@ class JapaneseTableSeeder extends Seeder
     public function run()
     {
         DB::table('japanese')->insert([
-            ['id'=>1,'word'=>'{"type":"間投詞","word":"こんにちは"}','listen'=>'','explain'=>'','id_mapping'=>1]
+            ['id'=>1,'word'=>'{"type":"名詞","word":"こんにちは"}','listen'=>'','explain'=>'','id_mapping'=>1]
             ]);
     }
 }

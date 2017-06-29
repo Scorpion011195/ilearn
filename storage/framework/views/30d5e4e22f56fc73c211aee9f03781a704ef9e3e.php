@@ -37,8 +37,8 @@
                     <div class="col-sm-5">
                         <?php echo Form::label('collect-date', 'Ngày đăng ký', ['class' => ' control-label col-sm-4 text-center-vertical text-right']); ?>
 
-                        <div class="col-sm-8 <?php echo $errors->has('_keyngaydk') ? ' has-error' : ''; ?>">
-                        <?php echo Form::date('_keyngaydk', '', ['class' => 'form-control', 'id' => 'collect-date']); ?>
+                        <div class="col-sm-8 <?php echo $errors->has('_keyngaydk') ? ' has-error' : ''; ?>" id="datetimepicker">
+                        <?php echo Form::date('_keyngaydk', '', ['class' => 'form-control', 'id' => 'collect-date','min'=>'1900-01-01']); ?>
 
                         </div>
                     </div>
