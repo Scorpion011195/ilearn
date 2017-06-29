@@ -26,17 +26,19 @@
                 <form class="form-inline" action="<?php echo e(utf8_encode(route('adminDictCollectByCondition'))); ?>" method="post">
                     <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
                     <div class="form-group">
-                      <label>Tình trạng</label>
-                      <select class="form-control" name="_condition">
-                          <?php $__currentLoopData = $listSearch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <option
-                              <?php if($value == $cbTypeWord): ?>
-                                  <?php echo "selected"; ?>
+                      <div class="input-group ">
+                        <span class="input-group-addon">Tình trạng</span>
+                        <select class="form-control" name="_condition">
+                            <?php $__currentLoopData = $listSearch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option
+                                <?php if($value == $cbTypeWord): ?>
+                                    <?php echo "selected"; ?>
 
-                              <?php endif; ?>
-                          ><?php echo $value; ?></option>
-                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      </select>
+                                <?php endif; ?>
+                            ><?php echo $value; ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                      </div>
                       <button type="submit" class="btn btn-info">
                           <span class="glyphicon glyphicon-search"></span>
                       </button>
