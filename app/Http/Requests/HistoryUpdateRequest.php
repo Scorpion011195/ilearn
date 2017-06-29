@@ -34,7 +34,7 @@ class HistoryUpdateRequest extends FormRequest
             'tu.required' => 'Bạn chưa nhập Từ',
             'tu.max' => 'Từ phải nhỏ hơn 100 kí tự',
             'nghia.required'  => 'Bạn chưa nhập nghĩa',
-            'nghia.max' => 'Từ phải nhỏ hơn 100 kí tự',
+            'nghia.max' => 'Nghĩa phải nhỏ hơn 100 kí tự',
         ];
     }
 }
