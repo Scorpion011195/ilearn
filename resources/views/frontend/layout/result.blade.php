@@ -10,54 +10,52 @@
                     @if(isset($workInfo))
                         <?php $type = '' ?>
                         @foreach ($workInfo as $language)
-                            <?php
-                            $getData ='';
-                            ?>
-                    @if(!($type == $language->type))
-                        <?php  $type = $language->type ?>
-                            <b class="_type" >{!! $language->type !!}</b>:<br>
-                        @if(!Auth::guest())
-                            <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
-                            <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
-                            <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
-                        @endif
-                        @if(Auth::guest())
-                            <span class="glyphicon glyphicon-plus">{!! $language->listen !!}</span>
-                            <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
-                            <span> {!! $language ->word !!} </span> &nbsp;<br>
-                        @endif
-                    @else
+                            <?php $getData ='';?>
+                            @if(!($type == $language->type))
+                                <?php  $type = $language->type ?>
+                                <b class="_type" >{!! $language->type !!}</b>:<br>
+                                    @if(!Auth::guest())
+                                        <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
+                                        <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
+                                        <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
+                                    @endif
+                                    @if(Auth::guest())
+                                        <span class="glyphicon glyphicon-plus">{!! $language->listen !!}</span>
+                                        <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
+                                        <span> {!! $language ->word !!} </span> &nbsp;<br>
+                                    @endif
+                            @else
 
-                        @if(!Auth::guest())
-                            <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
-                            <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
-                            <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
-                        @endif
-                        @if(Auth::guest())
-                            <span class="glyphicon glyphicon-plus">{!! $language->listen !!}</span>
-                            <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
-                            <span> {!! $language ->word !!} </span> &nbsp;<br>
-                        @endif
+                                @if(!Auth::guest())
+                                    <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
+                                    <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
+                                    <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
+                                @endif
+                                @if(Auth::guest())
+                                    <span class="glyphicon glyphicon-plus">{!! $language->listen !!}</span>
+                                    <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
+                                    <span> {!! $language ->word !!} </span> &nbsp;<br>
+                                @endif
+                                @if(Auth::guest())
+                                    <div class="right-group">
+                                        <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
+                                    </div>
+                                @endif
 
+                                @if(!Auth::guest())
+                                <div class="right-group">
+                                    Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>
+                                </div>
+                                @endif
 
-                    @if(Auth::guest())
-                        <div class="right-group">
-                            <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
-                        </div>
+                                <input type="hidden" name="getData1" value="{!! $language->type !!}">
+                                <input type="hidden" name="getData2" value="{!! $language->word !!}">
+                                <input type="hidden" name="getData3" value="{!! $language->explain !!}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </form>
+                            @endif
+                        @endforeach
                     @endif
-
-                    @if(!Auth::guest())
-                    <div class="right-group">
-                        Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>
-                    </div>
-                    @endif
-
-                    <input type="hidden" name="getData1" value="{!! $language->type !!}">
-                    <input type="hidden" name="getData2" value="{!! $language->word !!}">
-                    <input type="hidden" name="getData3" value="{!! $language->explain !!}">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                </form>
-                @endif
                 <!-- test script -->
                 <script>
                     $(document).ready(function() {
@@ -75,7 +73,7 @@
             </div>
             <div class="col-xs-4 col-sm-6">
                 <span class="title">Giải thích từ:{!! ucfirst($inputText) !!}</span>
-                   @if(isset($workInfo))
+                    @if(isset($workInfo))
                         <?php $type = '' ?>
                         @foreach ($workInfo as $language)
                             <?php
