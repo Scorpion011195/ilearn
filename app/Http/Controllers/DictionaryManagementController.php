@@ -13,6 +13,7 @@ use App\Services\VietnameseService;
 use App\Models\Japanese;
 use App\Services\JapaneseService;
 use App\Http\Requests\AdminAddWordRequest;
+use App\Http\Requests\AdminSearchWordRequest;
 use Illuminate\Support\MessageBag;
 
 
@@ -151,17 +152,64 @@ class DictionaryManagementController extends Controller
         $isExitsFrom = $this->checkWordExist($tableFrom, $columnWord, $txtTu, $typeWordFrom);
         $isExitsTo = $this->checkWordExist($tableTo, $columnWord, $txtNghia, $typeWordTo);
 
+        $typeWordInVietnamese = MyConstant::TYPE_OF_WORD_VIETNAMESE[$idLoaiTu];
+
         // Nếu từ này đã tồn tại trong hệ thống
         if($isExitsFrom){
             // Nếu nghĩa này cũng tồn tại trong hệ thống
             if($isExitsTo){
-                $errors = new MessageBag(['FailedCannotFind' => 'Từ đã có trong hệ thống']);
+                // Từ đã có trong hệ thống
+                $errors = new MessageBag(['FailedCannotFind' => 'Từ "'.$txtTu.'" ('.$typeWordInVietnamese.') đã có trong hệ thống']);
                 return redirect()->back()->withInput()->withErrors($errors);
             }
+            // Nếu nghĩa chưa tồn tại trong hệ thống
             else{
-                // Lấy id_mapping của từ này
+                // Lấy id_mapping của từ nguồn
                 $resultFrom = $tableServiceFrom->findWordWithType($columnWord, $txtTu, $typeWordFrom);
                 $idMapping = $resultFrom->id_mapping;
+
+                // Thêm từ vào bảng đích
+                $addContentTo = ['word'=>'{"type":"'.$typeWordTo.'","word":"'.$txtNghia.'"}',
+                                   'listen'=>'',
+                                   'explain'=>$taNghia,
+                                   'id_mapping'=>$idMapping];
+                $this->insertTable($tableServiceTo, $addContentTo);
+
+                // Hiển thị kết quả
+                $errors = new MessageBag(['Success' => 'Đã thêm từ "'.$txtNghia.'" ('.$typeWordInVietnamese.') vào hệ thống']);
+                return redirect()->back()->withInput()->withErrors($errors);
+            }
+
+        }
+        // Nếu từ này chưa có trong hệ thống
+        else{
+            // Nếu nghĩa đã có trong hệ thống
+            if($isExitsTo){
+                // Lấy id_mapping của nghĩa
+                $resultTo = $tableServiceTo->findWordWithType($columnWord, $txtNghia, $typeWordTo);
+                $idMapping = $resultTo->id_mapping;
+
+                // Thêm vào bảng nguồn
+                $addContentFrom = ['word'=>'{"type":"'.$typeWordFrom.'","word":"'.$txtTu.'"}',
+                                   'listen'=>'',
+                                   'explain'=>$taTu,
+                                   'id_mapping'=>$idMapping];
+                $this->insertTable($tableServiceFrom, $addContentFrom);
+
+                // Trả về kết quả
+                $errors = new MessageBag(['Success' => 'Đã thêm từ "'.$txtTu.'" ('.$typeWordInVietnamese.') vào hệ thống']);
+            }
+            // Nếu nghĩa cũng chưa có trong hệ thống
+            else{
+                // Lấy max id_mapping của tất cả các bảng ngôn ngữ
+                $idMapping = $this->getMaxIdMapping()+1;
+
+                // Thêm vào bảng nguồn
+                $addContentFrom = ['word'=>'{"type":"'.$typeWordFrom.'","word":"'.$txtTu.'"}',
+                                   'listen'=>'',
+                                   'explain'=>$taTu,
+                                   'id_mapping'=>$idMapping];
+                $this->insertTable($tableServiceFrom, $addContentFrom);
 
                 // Thêm vào bảng đích
                 $addContentTo = ['word'=>'{"type":"'.$typeWordTo.'","word":"'.$txtNghia.'"}',
@@ -170,29 +218,11 @@ class DictionaryManagementController extends Controller
                                    'id_mapping'=>$idMapping];
                 $this->insertTable($tableServiceTo, $addContentTo);
 
-                $errors = new MessageBag(['Success' => 'Đã thêm từ vào hệ thống']);
-                return redirect()->back()->withInput()->withErrors($errors);
+                // Trả về kết quả
+                $errors = new MessageBag(['Success' => 'Đã thêm từ "'.$txtTu.'" ('.$typeWordInVietnamese.') và nghĩa "'.$txtNghia.'" vào hệ thống']);
             }
 
-        }
-        else{
-            $idMapping = $this->getMaxIdMapping()+1;
-
-            // Thêm vào bảng nguồn
-            $addContentFrom = ['word'=>'{"type":"'.$typeWordFrom.'","word":"'.$txtTu.'"}',
-                               'listen'=>'',
-                               'explain'=>$taTu,
-                               'id_mapping'=>$idMapping];
-            $this->insertTable($tableServiceFrom, $addContentFrom);
-
-            // Thêm vào bảng đích
-            $addContentTo = ['word'=>'{"type":"'.$typeWordTo.'","word":"'.$txtNghia.'"}',
-                               'listen'=>'',
-                               'explain'=>$taNghia,
-                               'id_mapping'=>$idMapping];
-            $this->insertTable($tableServiceTo, $addContentTo);
-
-            $errors = new MessageBag(['Success' => 'Đã thêm từ vào hệ thống']);
+            // Hiển thị kết quả
             return redirect()->back()->withInput()->withErrors($errors);
 
         }
@@ -211,11 +241,11 @@ class DictionaryManagementController extends Controller
 
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>'', 'idCbTypeWord'=>6, 'idCbTableFrom'=>1,'idCbTableTo'=>2, 'code'=>'none', 'countTo'=>0];
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'idCbTypeWord'=>6, 'idCbTableFrom'=>1,'idCbTableTo'=>2, 'countTo'=>0];
         return view('backend.dict.search', $param);
     }
 
-    function searchWord(Request $request){
+    function postSearch(AdminSearchWordRequest $request){
        // Input submit
        $keyTraTu = $request->_keytratu;
        $tableFrom = $request->_cbnguontratu;
@@ -231,17 +261,11 @@ class DictionaryManagementController extends Controller
        $listLanguage = $languageService->getAll();
        $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-       // Nếu chưa nhập từ
-       if(empty($keyTraTu)){
-           return redirect()->route('adminDictSearch')->with('alertSearchWordFailed','Bạn chưa nhập từ!');
-       }
-
        // Tìm từ trong bảng nguồn
        $nameTableFrom = MyConstant::LANGUAGES_TABLE[$tableFrom];
        switch ($nameTableFrom) {
             case 'english':
                 $typeWordFrom = MyConstant::TYPE_OF_WORD_ENGLISH[$typeWord];
-                echo "Loai tu".$typeWordFrom."<br>";
                 $resultFrom = $englishService->findWordWithType('word', $keyTraTu, $typeWordFrom);
                 $countFrom = sizeof($resultFrom);
                 break;
@@ -258,33 +282,68 @@ class DictionaryManagementController extends Controller
 
         // Nếu từ chưa có trong từ điển
         if($countFrom<=0){
-            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'successNone', 'countTo'=>0];
-            return view('backend.dict.search', $param);
+            $errors = new MessageBag(['FailedCannotFind' => 'Không tìm thấy kết quả']);
+            return redirect()->back()->withInput()->withErrors($errors);
         }
+        else{
+            /*Nếu từ có trong từ điển
+           Tìm từ tương ứng ở bảng đích*/
+           $nameTableTo = MyConstant::LANGUAGES_TABLE[$tableTo];
+           switch ($nameTableTo) {
+                case 'english':
+                    $resultTo = $englishService->getAllByIdMappingOrderById('id_mapping',$resultFrom->id_mapping);
+                    $countTo = $resultTo->count();
+                    break;
+                case 'vietnamese':
+                    $resultTo = $vietnameseService->getAllByIdMappingOrderById('id_mapping',$resultFrom->id_mapping);
+                    $countTo = $resultTo->count();
+                    break;
+                case 'japanese':
+                    $resultTo = $japaneseService->getAllByIdMappingOrderById('id_mapping',$resultFrom->id_mapping);
+                    $countTo = $resultTo->count();
+            }
 
-       /*Nếu từ có trong từ điển
-       Tìm từ tương ứng ở bảng đích*/
-       $nameTableTo = MyConstant::LANGUAGES_TABLE[$tableTo];
-       switch ($nameTableTo) {
-            case 'english':
-                $resultTo = $englishService->getAllByColumn('id_mapping',$resultFrom->id_mapping);
-                $countTo = $resultTo->count();
-                break;
-            case 'vietnamese':
-                $resultTo = $vietnameseService->getAllByColumn('id_mapping',$resultFrom->id_mapping);
-                $countTo = $resultTo->count();
-                break;
-            case 'japanese':
-                $resultTo = $japaneseService->getAllByColumn('id_mapping',$resultFrom->id_mapping);
-                $countTo = $resultTo->count();
+            // Nếu không tìm thấy từ tương ứng
+            if($countTo<=0){
+                $errors = new MessageBag(['FailedCannotFind' => 'Không tìm thấy kết quả']);
+                return redirect()->back()->withInput()->withErrors($errors);
+            }
+            else{
+                // Hiển thị kết quả
+                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'success', 'result'=>$resultTo, 'countTo'=>$countTo];
+                return view('backend.dict.search', $param);
+            }
         }
-
-        // Hiển thị
-        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'success', 'result'=>$resultTo, 'countTo'=>$countTo];
-        return view('backend.dict.search', $param);
-
-
     }
     /*=================== /.Tra từ area ===============*/
+
+
+    /*=================== Xóa từ area ===============*/
+    function deleteWord(Request $request){
+        // Input
+        $idWord = $request->idWord;
+        $table = $request->table;
+
+        // Init
+        $englishService = new EnglishService(new English);
+        $vietnameseService = new VietnameseService(new Vietnamese);
+        $japaneseService = new JapaneseService(new Japanese);
+        $column = 'id';
+
+        switch ($table) {
+            case 'english':
+                $englishService->deleteByColumn($column, $idWord);
+                break;
+            case 'vietnamese':
+                $vietnameseService->deleteByColumn($column, $idWord);
+                break;
+            case 'japanese':
+                $$japaneseService->deleteByColumn($column, $idWord);
+        }
+
+        $dataResponse = ["data"=>"OK"];
+        return json_encode($dataResponse);
+    }
+    /*=================== /.Xóa từ area ===============*/
 }
 

@@ -93,11 +93,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'dict','middleware'=>'adminLogin'], function () {
         // Thêm từ
         Route::get('create', 'DictionaryManagementController@home')->name('adminDictCreate');
-        Route::post('create-word', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
+        Route::post('create', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
 
-        //Tra từ adminDictSearch
+        // Tra từ adminDictSearch
         Route::get('search', 'DictionaryManagementController@getSearch')->name('adminDictSearch');
-        Route::post('search-word', 'DictionaryManagementController@searchWord')->name('adminDictSearchWord');
+        Route::post('search', 'DictionaryManagementController@postSearch')->name('adminDictSearchWord');
+
+        // Xóa từ
+        Route::post('delete', 'DictionaryManagementController@deleteWord');
 
         // Thống kê
         Route::get('collect', 'StatisticManagementController@displayStatisticalResult')->name('adminDictCollect');
