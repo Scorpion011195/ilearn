@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Repositories\LanguageRepository;
 use Illuminate\Http\Request;
+use App\Http\Requests\SearchWordRequest;
 use App\ModelViews\LanguageViewModel;
 class LaguageController extends Controller
 {
@@ -17,7 +18,7 @@ class LaguageController extends Controller
         return view('index')->with('data', $language);
     }
 
-    public function search(Request $request)
+    public function search(SearchWordRequest $request)
     {
         //get all infor from screen
         $langueInput = $request->input('cb1');
@@ -28,14 +29,8 @@ class LaguageController extends Controller
         $workInfo = $this->lang->findWord($langueInput, $langueOutput, $inputText);
             \Session::put('flagLanguage1', $request->input('cb1'));
             \Session::put('flagLanguage2', $request->input('cb2'));
-
-        if(empty($inputText)){
-            $emData['text'] = 'emData';
-            return view('index')->with([
-                    'emData' => $emData,
-                    'data' => $language ]);
-        }
-        elseif($workInfo == false) {
+            
+        if($workInfo == false) {
             // echo 'k co tu dung'; exit;
             $fail['text'] = 'flag';
             return view('index')->with([
