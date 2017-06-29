@@ -33,10 +33,10 @@ class AdminResetPasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'profile-password-old.required' => 'Bạn chưa nhập Mật kkhẩu cũ',
+            'profile-password-old.required' => 'Bạn chưa nhập Mật khẩu cũ',
             'profile-password-old.min' => 'Mật khẩu phải lớn hơn 6 kí tự',
             'profile-password-old.max' => 'Mật khẩu phải nhỏ hơn 32 kí tự',
-            'profile-password-new.required' => 'Bạn chưa nhập Mật kkhẩu mới',
+            'profile-password-new.required' => 'Bạn chưa nhập Mật khẩu mới',
             'profile-password-new.min' => 'Mật khẩu phải lớn hơn 6 kí tự',
             'profile-password-new.max' => 'Mật khẩu phải nhỏ hơn 32 kí tự',
             'profile-password-new-confirm.required' => 'Bạn chưa Xác nhận mật khẩu mới',
