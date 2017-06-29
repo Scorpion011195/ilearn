@@ -22,7 +22,7 @@ class HistoryUpdateRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {   
         return [
             'tu'=>'required|min : 1|max:100',
             'nghia'=>'required|min : 1|max:100'
