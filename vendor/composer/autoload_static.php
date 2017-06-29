@@ -337,6 +337,7 @@ class ComposerStaticInit4db02cf81d706537a5eb0db31828c563
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\AdminAddWordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AdminAddWordRequest.php',
         'App\\Http\\Requests\\AdminLoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AdminLoginRequest.php',
+        'App\\Http\\Requests\\AdminSearchWordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AdminSearchWordRequest.php',
         'App\\Http\\Requests\\RegisterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RegisterRequest.php',
         'App\\ModelViews\\ApprovalDictionaryViewModel' => __DIR__ . '/../..' . '/app/ModelViews/ApprovalDictionaryViewModel.php',
         'App\\ModelViews\\BaseReponseViewModel' => __DIR__ . '/../..' . '/app/ModelViews/BaseReponseViewModel.php',
