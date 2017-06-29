@@ -39,13 +39,11 @@
                             <span> {!! $language ->word !!} </span> &nbsp;<br>
                         @endif
 
-                    @endif
-                    @endforeach
 
                     @if(Auth::guest())
                         <div class="right-group">
                             <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
-                        </div>      
+                        </div>
                     @endif
 
                     @if(!Auth::guest())
@@ -74,7 +72,7 @@
                         });
                     } );
                 </script>
-            </div>            
+            </div>
             <div class="col-xs-4 col-sm-6">
                 <span class="title">Giải thích từ:{!! ucfirst($inputText) !!}</span>
                    @if(isset($workInfo))

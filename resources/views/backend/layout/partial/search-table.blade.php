@@ -2,22 +2,29 @@
 <!-- Search -->
 <div class="panel">
     <div class="panel-body">
-      @if(session('alertSearchWordFailed'))
-        <div class="alert alert-danger text-center">
-            {{ session('alertSearchWordFailed') }}
+      @if ($errors->has('FailedCannotFind'))
+        <div>
+          <p style="color:red" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('FailedCannotFind') !!}</p>
         </div>
       @endif
-      @if( $code=="successNone" )
-        <div class="alert alert-danger text-center">
-            Từ chưa có trong từ điển
+      @if (isset($code))
+        <div>
+          <p style="color:blue" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $countTo !!} kết quả được tìm thấy</p>
         </div>
       @endif
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-12" >
             <form action="{{ route('adminDictSearchWord') }}" class="form-inline" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                  <input class="form-control" type="text" placeholder="Tra từ" name="_keytratu" value="{{ $lastKey }}">
+                  <span class="{{ $errors->has('_keytratu') ? ' has-error' : '' }}">
+                  <input class="form-control" type="text" placeholder="Tra từ" name="_keytratu"
+                  @if(isset($code))
+                    value="{!! $lastKey !!}"
+                  @else
+                    value="{!! old('_keytratu') !!}"
+                  @endif
+                  ></span>
                   <select class="form-control" name="_cbloaitutratu">
                       @foreach($listTypeOfWord as $key=>$value)
                           <option
@@ -36,7 +43,7 @@
                               value="{!! $language->id_language !!}">{!! $language->language !!}</option>
                       @endforeach
                   </select>
-                  <select class="form-control" name="_cbdichtratu">
+                  <select class="form-control" name="_cbdichtratu" id="_table-dich">
                       @foreach($listLanguage as $language)
                           <option
                               @if($language->id_language == $idCbTableTo)
@@ -49,6 +56,11 @@
                       <span class="glyphicon glyphicon-search"></span>
                   </button>
                 </div>
+                @if ($errors->has('_keytratu'))
+                    <div class="{{ $errors->has('_keytratu') ? ' has-error' : '' }}">
+                        <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_keytratu') !!}</strong></p>
+                    </div>
+                @endif
             </form>
           </div>
         </div>
@@ -66,19 +78,19 @@
                                  aria-describedby="example1_info">
                               <thead>
                               <tr role="row">
-                                  <!-- <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                                      aria-label="Browser: activate to sort column ascending" style="width: 50px;">STT
-                                  </th> -->
-                                  <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                  <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
+                                      aria-label="Browser: activate to sort column ascending" style="width: 50px;">ID
+                                  </th>
+                                  <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
                                       aria-label="Browser: activate to sort column ascending" style="width: 300px;">Nghĩa
                                   </th>
-                                  <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                  <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
                                       aria-label="Platform(s): activate to sort column ascending" style="width: 400px;">
                                       Giải thích
                                   </th>
-                                  <th class="text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                                  <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
                                       aria-label="Engine version: activate to sort column ascending" style="width: 200px;">
-                                      Từ loại
+                                      Hành động
                                   </th>
                               </tr>
                               </thead>
@@ -86,10 +98,18 @@
                               @if(isset($result))
                                @foreach($result as $row)
                                  <?php $word = json_decode($row->word); ?>
-                                 <tr role="row" class="odd text-center">
-                                    <td>{{ $word->word }}</td>
-                                    <td>{{ $row->explain }}</td>
-                                    <td>{{ $word->type }}</td>
+                                 <tr role="row" class="odd">
+                                    <td class="_word-id text-center" data-id="{!! $row->id !!}">{!! $row->id !!}</td>
+                                    <td class="_word" contenteditable>{!! $word->word !!}</td>
+                                    <td class="_explain" contenteditable>{!! $row->explain !!}</td>
+                                    <td class="text-center">
+                                      <a class="_update-word" data-toggle="tooltip" title="Cập nhật!">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                      </a>
+                                      <a class="_delete-word-to" data-toggle="tooltip" title="Xóa!">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                      </a>
+                                    </td>
                                  </tr>
                                @endforeach
                               @endif
