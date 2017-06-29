@@ -2,13 +2,13 @@
     <div class="panel-body">
         @if ($errors->has('Success'))
         <div>
-                <p style="color:blue"><span class="glyphicon glyphicon-ok"></span>   {!! $errors->first('Success') !!}</p>
+          <p style="color:blue"><span class="glyphicon glyphicon-ok"></span>   {!! $errors->first('Success') !!}</p>
         </div>
         @endif
 
         @if ($errors->has('FailedCannotFind'))
         <div>
-                <p style="color:red"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('FailedCannotFind') !!}</p>
+          <p style="color:red"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('FailedCannotFind') !!}</p>
         </div>
         @endif
 
@@ -17,15 +17,18 @@
             <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                          <select class="form-control" name="_cbnguon">
-                              @foreach($listLanguage as $language)
-                                  <option
-                                      @if($language->id_language == $idTableNguon)
-                                          {!! "selected" !!}
-                                      @endif
-                                      value="{!! $language->id_language !!}">{!! $language->language !!}</option>
-                              @endforeach
-                          </select>
+                          <div class="input-group ">
+                          <span class="input-group-addon">From</span>
+                            <select class="form-control" name="_cbnguon">
+                                @foreach($listLanguage as $language)
+                                    <option
+                                        @if($language->id_language == $idTableNguon)
+                                            {!! "selected" !!}
+                                        @endif
+                                        value="{!! $language->id_language !!}">{!! $language->language !!}</option>
+                                @endforeach
+                            </select>
+                          </div>
                           <select class="form-control" name="_cbloaitu">
                               @foreach($listTypeOfWord as $key=>$value)
                                   <option
@@ -39,15 +42,18 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                          <select class="form-control" name="_cbdich">
-                              @foreach($listLanguage as $language)
-                                  <option
-                                      @if($language->id_language == $idTableDich)
-                                          {!! "selected" !!}
-                                      @endif
-                                      value="{!! $language->id_language !!}">{!! $language->language !!}</option>
-                              @endforeach
-                          </select>
+                          <div class="input-group ">
+                            <span class="input-group-addon">To</span>
+                            <select class="form-control" name="_cbdich">
+                                @foreach($listLanguage as $language)
+                                    <option
+                                        @if($language->id_language == $idTableDich)
+                                            {!! "selected" !!}
+                                        @endif
+                                        value="{!! $language->id_language !!}">{!! $language->language !!}</option>
+                                @endforeach
+                            </select>
+                          </div>
                           <button type="submit" class="btn btn-info">
                               <span class="glyphicon glyphicon-upload"></span>  Thêm
                           </button>

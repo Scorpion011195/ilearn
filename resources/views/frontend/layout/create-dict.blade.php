@@ -1,13 +1,13 @@
 
-
 <?php $data = DB::table('languages')->get(); ?>
 @if(isset($SSMessageDuration))
          <div class="alert alert-success">
              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
              <center>{{ $SSMessageDuration }}</center>
          </div>
-  @endif
+@endif
 <br>
+
 <div id="create-dict"  class="container">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <center><h1><b>THÊM LỊCH SỬ</b></h1></center>
@@ -81,7 +81,7 @@
                     </span>
                 @endif
                   </div>
-                  
+
               </div>
           </form>
       </div>

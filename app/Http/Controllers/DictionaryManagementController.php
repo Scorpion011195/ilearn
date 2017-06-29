@@ -14,6 +14,7 @@ use App\Models\Japanese;
 use App\Services\JapaneseService;
 use App\Http\Requests\AdminAddWordRequest;
 use App\Http\Requests\AdminSearchWordRequest;
+use App\Http\Requests\AdminUpdateWordRequest;
 use Illuminate\Support\MessageBag;
 
 
@@ -280,13 +281,13 @@ class DictionaryManagementController extends Controller
                 $countFrom = sizeof($resultFrom);
         }
 
-        // Nếu từ chưa có trong từ điển
+        // Nếu từ nguồn chưa có trong từ điển
         if($countFrom<=0){
-            $errors = new MessageBag(['FailedCannotFind' => 'Không tìm thấy kết quả']);
-            return redirect()->back()->withInput()->withErrors($errors);
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'FailedCannotFind', 'countTo'=>0];
+                return view('backend.dict.search', $param);
         }
         else{
-            /*Nếu từ có trong từ điển
+            /*Nếu từ nguồn có trong từ điển
            Tìm từ tương ứng ở bảng đích*/
            $nameTableTo = MyConstant::LANGUAGES_TABLE[$tableTo];
            switch ($nameTableTo) {
@@ -305,12 +306,12 @@ class DictionaryManagementController extends Controller
 
             // Nếu không tìm thấy từ tương ứng
             if($countTo<=0){
-                $errors = new MessageBag(['FailedCannotFind' => 'Không tìm thấy kết quả']);
-                return redirect()->back()->withInput()->withErrors($errors);
+                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'FailedCannotFind', 'countTo'=>0];
+                return view('backend.dict.search', $param);
             }
             else{
                 // Hiển thị kết quả
-                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'success', 'result'=>$resultTo, 'countTo'=>$countTo];
+                $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'Success', 'result'=>$resultTo, 'countTo'=>$countTo];
                 return view('backend.dict.search', $param);
             }
         }
@@ -345,5 +346,39 @@ class DictionaryManagementController extends Controller
         return json_encode($dataResponse);
     }
     /*=================== /.Xóa từ area ===============*/
+
+
+    /*=================== Cập nhật từ area ===============*/
+    function updateWord(Request $request){
+        // Input
+        $idWord = $request->idWord;
+        $table = $request->table;
+        $updateWord = $request->updateWord;
+        $updateExplain = $request->updateExplain;
+
+        $column = 'id';
+
+        switch ($table) {
+            case 'english':
+                $service = new EnglishService(new English);
+                break;
+            case 'vietnamese':
+                $service = new VietnameseService(new Vietnamese);
+                break;
+            case 'japanese':
+                $service = new JapaneseService(new Japanese);
+        }
+
+        $beforeResult = $service->getByColumn($column, $idWord);
+        $arrBeforeWord = json_decode($beforeResult->word);
+        $arrBeforeWord->word = $updateWord;
+        $jsonAfterWord = json_encode($arrBeforeWord);
+        $attributes = ['word'=>$jsonAfterWord, 'explain'=>$updateExplain];
+        $service->updateByColumn($column, $idWord, $attributes);
+
+        $dataResponse = ["word"=>$updateWord,"explain"=>$updateExplain];
+        return json_encode($dataResponse);
+    }
+    /*=================== /.Cập nhật từ area ===============*/
 }
 
