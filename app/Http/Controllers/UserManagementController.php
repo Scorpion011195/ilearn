@@ -15,6 +15,7 @@ use App\Services\StatusService;
 use App\Models\Status;
 use App\Services\UserRoleService;
 use App\Models\UserRole;
+use App\Http\Requests\AdminAccountManagementRequest;
 
 class UserManagementController extends Controller
 {
@@ -41,6 +42,9 @@ class UserManagementController extends Controller
 
         $userService = new UserService(new User);
         $userService->updateByColumn($column, $value, $attributes);
+
+        $dataResponse = ["data"=>"OK"];
+        return json_encode($dataResponse);
     }
 
     function changeRole(Request $request){
@@ -51,6 +55,9 @@ class UserManagementController extends Controller
 
         $userService = new UserService(new User);
         $userService->updateByColumn($column, $value, $attributes);
+
+        $dataResponse = ["data"=>"OK"];
+        return json_encode($dataResponse);
     }
 
     function deleteUser(Request $request){
@@ -106,7 +113,8 @@ class UserManagementController extends Controller
         return redirect()->route('adminGetDetailUser',$idUser)->with('alertUpdateDetailUser','Cập nhật thành công!');
     }
 
-    function searchUser(Request $request){
+    // Tìm kiếm tài khoản
+    function searchUser(AdminAccountManagementRequest $request){
         $keyTaiKhoan = $request->_keytaikhoan;
         $keyNgayDk = $request->_keyngaydk;
 
@@ -117,32 +125,36 @@ class UserManagementController extends Controller
         $userRoleService = new UserRoleService(new UserRole);
         $listRoles = $userRoleService->getAll();
 
+        // Chưa nhập key Tài khoản và chưa chọn Ngày đăng ký
         if(empty($keyTaiKhoan)&&empty($keyNgayDk)){
             $accounts = User::paginate($noOfPages);
             $noOfAccounts = User::count();
 
-            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>''];
+            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>'','code'=>'RequestInput'];
             return view('backend.user.user-management', $param);
         }
+        // Chỉ nhập Tài khoản
         else if(empty($keyNgayDk)){
             $accounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->paginate($noOfPages);
             $noOfAccounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->count();
 
-            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>''];
+            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>'','code'=>'Success'];
             return view('backend.user.user-management', $param);
         }
+        // Chỉ chọn Ngày đăng ký
         else if(empty($keyTaiKhoan)){
             $accounts = User::where('created_at', '>=', $keyNgayDk." 00:00:00")->paginate($noOfPages);
             $noOfAccounts = User::where('created_at', '>=', $keyNgayDk." 00:00:00") ->count();
 
-            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>$keyNgayDk];
+            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>$keyNgayDk,'code'=>'Success'];
             return view('backend.user.user-management', $param);
         }
+        // Cả hai được nhập và chọn
         else{
             $accounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->orWhere('created_at', '>=', $keyNgayDk." 00:00:00")->paginate($noOfPages);
             $noOfAccounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->orWhere('created_at', '>=', $keyNgayDk." 00:00:00")->count();
 
-            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>$keyNgayDk];
+            $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>$keyNgayDk,'code'=>'Success'];
             return view('backend.user.user-management', $param);
         }
     }

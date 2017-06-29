@@ -124,5 +124,13 @@ $(document).ready(function(){
 });
 </script>
 
+<!-- script toltip -->
+<script>
+    $(document).ready(function(){
+        $('._tooltip-me').tooltip();
+    });
+</script>
+<!-- /.script tootip -->
+
 <!--  /.Update explain -->
 @endsection

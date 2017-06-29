@@ -2,24 +2,13 @@
 <!-- Search -->
 <div class="panel">
     <div class="panel-body">
-      @if (isset($code))
-        @if($code == "FailedCannotFind")
-          <div>
-            <p style="color:red" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Không tìm thấy kết quả</p>
-          </div>
-        @elseif($code == "Success")
-          <div>
-            <p style="color:blue" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $countTo !!} kết quả được tìm thấy</p>
-          </div>
-        @endif
-      @endif
         <div class="row">
           <div class="col-sm-12" >
             <form action="{{ route('adminDictSearchWord') }}" class="form-inline" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                   <span class="{{ $errors->has('_keytratu') ? ' has-error' : '' }}">
-                  <input class="form-control" type="text" placeholder="Tra từ" name="_keytratu"
+                  <input class="form-control" type="text" placeholder="Nhập từ" name="_keytratu"
                   @if(isset($code))
                     value="{!! $lastKey !!}"
                   @else
@@ -73,7 +62,17 @@
         </div>
         <br>
 <!-- /.Search -->
-
+    @if (isset($code))
+        @if($code == "FailedCannotFind")
+          <div>
+            <p style="color:red" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Không tìm thấy kết quả</p>
+          </div>
+        @elseif($code == "Success")
+          <div>
+            <p style="color:blue" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $countTo !!} kết quả được tìm thấy</p>
+          </div>
+        @endif
+   @endif
 <!-- Table -->
 
         <div class="box">
@@ -110,10 +109,10 @@
                                     <td class="_word" id="_td-word{!! $row->id !!}">{!! $word->word !!}</td>
                                     <td class="_explain" id="_td-explain{!! $row->id !!}">{!! $row->explain !!}</td>
                                     <td class="text-center" style="vertical-align:middle">
-                                      <a class="_update-word" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
+                                      <a class="_update-word _tooltip-me" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
                                         <span class="glyphicon glyphicon-edit"></span>
                                       </a>
-                                      <a class="_delete-word-to" title="Xóa!">
+                                      <a class="_delete-word-to _tooltip-me" title="Xóa!">
                                         <span class="glyphicon glyphicon-trash"></span>
                                       </a>
                                     </td>
