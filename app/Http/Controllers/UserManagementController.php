@@ -16,6 +16,7 @@ use App\Models\Status;
 use App\Services\UserRoleService;
 use App\Models\UserRole;
 use App\Http\Requests\AdminAccountManagementRequest;
+use App\Http\Requests\AdminDetailUserRequest;
 
 class UserManagementController extends Controller
 {
@@ -93,7 +94,7 @@ class UserManagementController extends Controller
         return view('backend.user.detail-user',$param);
     }
 
-    function postDetailUser(Request $request)
+    function postDetailUser(AdminDetailUserRequest $request)
     {
         $column = 'id_user';
         $idUser = $request['_idUser'];
@@ -107,8 +108,6 @@ class UserManagementController extends Controller
 
         $userInformationService = new UserInformationService(new UserInformation);
         $userInformationService->updateByColumn($column, $idUser, $attributes);
-
-        //echo "Da update thong tin";
 
         return redirect()->route('adminGetDetailUser',$idUser)->with('alertUpdateDetailUser','Cập nhật thành công!');
     }

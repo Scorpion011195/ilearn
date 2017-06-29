@@ -37,7 +37,7 @@
                     <div class="col-sm-5">
                         <?php echo Form::label('collect-date', 'Ngày đăng ký', ['class' => ' control-label col-sm-4 text-center-vertical text-right']); ?>
 
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 <?php echo $errors->has('_keyngaydk') ? ' has-error' : ''; ?>">
                         <?php echo Form::date('_keyngaydk', '', ['class' => 'form-control', 'id' => 'collect-date']); ?>
 
                         </div>
@@ -62,6 +62,15 @@
                     </div>
                   </div>
                   <div class="col-sm-5">
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-8">
+                      <?php if($errors->has('_keyngaydk')): ?>
+                        <div class="<?php echo e(utf8_encode($errors->has('_keyngaydk') ? ' has-error' : '')); ?>">
+                            <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong><?php echo $errors->first('_keyngaydk'); ?></strong></p>
+                        </div>
+                      <?php endif; ?>
+                    </div>
                   </div>
                   <div class="col-sm-2">
                   </div>
@@ -178,7 +187,6 @@
             });
         </script>
         <!-- /.Active left menu -->
-
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('backend.ilearn', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

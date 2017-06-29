@@ -23,15 +23,18 @@ class AdminAccountManagementRequest extends FormRequest
      */
     public function rules()
     {
+        $currentDay = date('Y-m-d',strtotime("+1 day"));
         return [
-            '_keytaikhoan' => 'max:32'
+            '_keytaikhoan' => 'max:32',
+            //'_keyngaydk' => 'before:'.$currentDay,
         ];
     }
 
     public function messages()
     {
         return [
-            '_keytaikhoan.max' => 'Từ phải ít hơn 32 kí tự'
+            '_keytaikhoan.max' => 'Từ phải ít hơn 32 kí tự',
+            //'_keyngaydk.before' => 'Ngày đăng ký phải trước ngày hiện tại'
         ];
     }
 }
