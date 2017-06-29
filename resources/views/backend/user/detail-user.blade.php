@@ -52,16 +52,16 @@
                             @endif >
                         </div>
                     </div>
-                    <div>
-                      <div class="control-label col-sm-4 text-center-vertical"></div>
-                      <div class="col-sm-8 {!! $errors->has('profile-name') ? ' has-error' : '' !!}">
-                          @if ($errors->has('profile-name'))
-                              <div>
-                                  <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('profile-name') !!}</strong></p>
-                              </div>
-                          @endif
+                    @if ($errors->has('profile-name'))
+                      <div>
+                        <div class="control-label col-sm-4 text-center-vertical"></div>
+                        <div class="col-sm-8 {!! $errors->has('profile-name') ? ' has-error' : '' !!}">
+                          <div>
+                              <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('profile-name') !!}</strong></p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    @endif
 
                     <div class="row margin-top">
                         <lable class="control-label col-sm-4 text-center-vertical">Địa chỉ</lable>
@@ -74,16 +74,16 @@
                             @endif >
                         </div>
                     </div>
-                    <div>
-                      <div class="control-label col-sm-4 text-center-vertical"></div>
-                      <div class="col-sm-8 {{ $errors->has('profile-address') ? ' has-error' : '' }}">
-                          @if ($errors->has('profile-address'))
-                              <div>
-                                  <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('profile-address') !!}</strong></p>
-                              </div>
-                          @endif
+                    @if ($errors->has('profile-address'))
+                      <div>
+                        <div class="control-label col-sm-4 text-center-vertical"></div>
+                        <div class="col-sm-8 {{ $errors->has('profile-address') ? ' has-error' : '' }}">
+                          <div>
+                              <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('profile-address') !!}</strong></p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    @endif
 
                     <div class="row margin-top">
                         <lable class="control-label col-sm-4 text-center-vertical">Số điện thoại</lable>
