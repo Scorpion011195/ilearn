@@ -1,12 +1,11 @@
-
 <body onload="loadFn()">
     <meta name="csrf-token" content="{!! csrf_token() !!}">
     <div class="header_top"></div>
     <script>
         function loadFn() {
-        @if ($errors -> has('username') || $errors -> has('email') || $errors -> has('password') || $errors -> has('confirm_password'))
-                document.getElementById('idXXX').click();
-        @endif
+            @if ($errors -> has('username') || $errors -> has('email') || $errors -> has('password') || $errors -> has('confirm_password'))
+            document.getElementById('idXXX').click();
+            @endif
         }
     </script>
     <div class="menu">
@@ -29,12 +28,12 @@
 
                             {!! Form::open(array('route' => 'dangnhap', 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
 
-                                @if($errors->has('errorLogin'))
-                                    <div class="alert alert-danger">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        {!! $errors->first('errorLogin') !!}
-                                    </div>
-                                @endif
+                            @if($errors->has('errorLogin'))
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {!! $errors->first('errorLogin') !!}
+                            </div>
+                            @endif
 
                             <div class="form-inline row">
                                 {!! Form::text('username', Illuminate\Support\Facades\Input::old('username'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
@@ -53,39 +52,36 @@
 
                             <li class="dropdown">
                                 <a href="{{ url('/') }}">Trang chủ</a>
-                                </a>
-                            </li>
-                            <li class="dropdown">  <a href="{{ url('/historys') }}">Lịch sử</a>
-                                </a></li>
-                                 <li class="dropdown">  <a href="{{ url('/settings') }}">Cài đặt</a>
-                                </a></li>
-                                
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->username }} <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{!! route('logout') !!}"
-                                           onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-                                        <form id="logout-form" action="{!! route('logout') !!}" method="POST" style="display: none;">
-                                            {!! csrf_field() !!}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
+                            </a>
+                        </li>
+                        <li class="dropdown">  <a href="{{ url('/historys') }}">Lịch sử</a>
+                        </a></li>
+                        <li class="dropdown">  <a href="{{ url('/settings') }}">Cài đặt</a>
+                        </a></li>
 
-                        @endif
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->username }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{!! route('logout') !!}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{!! route('logout') !!}" method="POST" style="display: none;">
+                                    {!! csrf_field() !!}
+                                </form>
+                            </li>
                         </ul>
-                    </div>
-                    </header>
+                    </li>
 
-                </div><!--menu-->
-
-               
+                    @endif
+            </ul>
+        </div>
+    </header>
+</div><!--menu-->
 
 
 

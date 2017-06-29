@@ -11,7 +11,6 @@
 
     </div>
     <?php
-
 }
 ?>
 <div id="create-dict"  class="container">

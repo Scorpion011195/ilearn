@@ -45,13 +45,6 @@
 <div class="result">
     @include('frontend.layout.result')
 </div>
-
-
 <div class="create-dict">
     @include('frontend.layout.create-dict')
-</div>
-
-
-</div>
-
 </div>

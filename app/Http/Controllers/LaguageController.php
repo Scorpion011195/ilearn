@@ -47,8 +47,10 @@ class LaguageController extends Controller
 
             for($i=0; $i < count($workInfo); $i++){
                 $languageView = new LanguageViewmodel;
-                $array = explode (",",$workInfo[$i]-> word);
-                $type = $array[0];
+               $array = explode (",",$workInfo[$i]-> word);
+                // $array = json_encode($workInfo[$i]);
+                // dd($a)
+               $type = $array[0];
                 $type = substr($type, 9, -1);
                 $word = $array[1];
                 $word = substr($word, 8, -2);
