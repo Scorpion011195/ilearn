@@ -46,25 +46,25 @@ class LaguageController extends Controller
             $arraySaveView = array();
 
             for($i=0; $i < count($workInfo); $i++){
-                $languageView = new LanguageViewmodel;
-               $array = explode (",",$workInfo[$i]-> word);
-                // $array = json_encode($workInfo[$i]);
-                // dd($a)
-               $type = $array[0];
-                $type = substr($type, 9, -1);
-                $word = $array[1];
-                $word = substr($word, 8, -2);
-                $id = $workInfo[$i]->id;
-                $listen = $workInfo[$i]->listen;
-                $explain = $workInfo[$i]->explain;
-                $languageView->id = $id;
-                $languageView->type = $type;
-                $languageView->word = $word;
-                $languageView->listen = $listen;
-                $languageView->explain = $explain;
+                for($j = 0; $j < count($workInfo[$i]); $j++){
+                    $languageView = new LanguageViewmodel;
+                    $array = explode (",",$workInfo[$i][$j]->word);
+                    $type = $array[0];
+                    $type = substr($type, 9, -1);
+                    $word = $array[1];
+                    $word = substr($word, 8, -2);
+                    $id = $workInfo[$i][$j]->id;
+                    $listen = $workInfo[$i][$j]->listen;
+                    $explain = $workInfo[$i][$j]->explain;
+                    $languageView->id = $id;
+                    $languageView->type = $type;
+                    $languageView->word = $word;
+                    $languageView->listen = $listen;
+                    $languageView->explain = $explain;
 
-                array_push($arraySaveView, $languageView);
+                    array_push($arraySaveView, $languageView);
             }
+        } 
             // $GetData= array('from' => $inputText, 'from_language' => $langueInput , 'To_language' => $langueOutput, 'to' => $word, 'explain'=>$explain,'notification' => 'T');
 
             return view('result')->with([
@@ -73,7 +73,7 @@ class LaguageController extends Controller
                     'inputText' => $inputText,
                     'langueInput' => $langueInput,
                     'langueOutput' => $langueOutput,
-                    'explain'=>$explain]);
+                    'explain'=> $explain]);
         }
 //        return 'ok';
 //        return view('home');

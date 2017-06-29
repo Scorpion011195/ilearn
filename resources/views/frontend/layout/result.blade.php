@@ -83,14 +83,17 @@
                             <?php
                             $getData='';
                             ?>
-                    @if(!($type == $language->type))
-                        <?php  $type = $language->type ?><br>
-                            <b class="_type" >{!! $language->type !!}</b>:<br>
-                            <span> {!! $language ->explain !!} </span> &nbsp;<br>
-                    @else
-                        <span> {!! $language ->explain !!} </span> &nbsp;<br>
-                    @endif
-                    @endforeach
+                            @if(is_null($language->explain))                               
+                            @else
+                            @if(!($type == $language->type))
+                                <?php  $type = $language->type ?><br>
+                                    <b class="_type" >{!! $language->type !!}</b>:<br>
+                                    <span> {!! $language ->explain !!} </span> &nbsp;<br>
+                            @else
+                                <span> {!! $language ->explain !!} </span> &nbsp;<br>
+                            @endif
+                            @endif
+                        @endforeach
                     @endif
             </div>
         </div>

@@ -13,3 +13,4 @@ class English extends Model
         return $this->hasMany('App\Models\Vietnamese','id_mapping','id_mapping');
     }
 }
+
