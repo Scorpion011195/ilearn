@@ -10,7 +10,7 @@
 <?php $__env->startSection('content-header'); ?>
         <h1>
             Thêm từ
-            <!-- <small><?php echo e(Session::get('user')->username); ?></small> -->
+            <!-- <small><?php echo e(utf8_encode(Session::get('user')->username)); ?></small> -->
         </h1>
         <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>

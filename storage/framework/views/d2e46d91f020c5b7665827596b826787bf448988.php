@@ -4,37 +4,52 @@
         <div class="panel-footer background-white">
             <form action="<?php echo e(utf8_encode(route('HistoryAddNew'))); ?>" method="POST" role="form">
                 <?php if(isset($workInfo)): ?>
-                <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php
-                $getData='';
-                ?>
-                <b><?php echo e(utf8_encode($language->type)); ?></b>: <?php echo e(utf8_encode($language ->word)); ?> &nbsp;                      
-                <span class="glyphicon glyphicon-volume-up"><?php echo e(utf8_encode($language->listen)); ?>
+                <?php $type = '' ?>
+                    <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php
+                        $getData='';
+                        ?>
+                        <?php if(!($type == $language->type)): ?>
+                            <?php  $type = $language->type ?>
+                             <b class="_type" ><?php echo $language->type; ?></b>:<br>
+                             <span class="glyphicon glyphicon-plus _push-his" id="_id<?php echo $language->id; ?>" data-id="<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
+                             <span class="glyphicon glyphicon-volume-up" id="_id<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
+                             <span contenteditable> <?php echo $language ->word; ?> </span> &nbsp;<br>
+                        <?php else: ?>
+                             <span class="glyphicon glyphicon-plus _push-his" id="_id<?php echo $language->id; ?>" data-id="<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
+                             <span class="glyphicon glyphicon-volume-up" id="_id<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
+                             <span contenteditable> <?php echo $language ->word; ?> </span> &nbsp;<br>
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                </span><br>
-            </br>
-            Explain:<?php echo e(utf8_encode($language->explain)); ?>
-
-            <hr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php if(!Auth::guest()): ?>
-            <div class="right-group">
-            Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>
-                
-                
-            </div>
+                <div class="right-group">
+                Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>
+                </div>
             <?php endif; ?>
-
-
-            <input type="hidden" name="getData1" value="<?php echo e(utf8_encode($language->type)); ?>">
-            <input type="hidden" name="getData2" value="<?php echo e(utf8_encode($language->word)); ?>">
-            <input type="hidden" name="getData3" value="<?php echo e(utf8_encode($language->explain)); ?>">
+            <input type="hidden" name="getData1" value="<?php echo $language->type; ?>">
+            <input type="hidden" name="getData2" value="<?php echo $language->word; ?>">
+            <input type="hidden" name="getData3" value="<?php echo $language->explain; ?>">
             <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
         </form>
         <?php endif; ?>
 
+<!-- test push history script -->
+<script>
+        $(document).ready(function() {
+            $('._push-his').on('click', function(E){
+                var from = $("#_langFrom :selected").text();
+                var to = $("#_langTo :selected").text();
+                var id = $(this).attr('data-id');
+                var from_text = $('._text-search').val();
+                var to_text = $(this).next().next().text();
+                alert(from+"-"+to+"-"+from_text+"-"+to_text+"-"+id);
 
-        <?php if(Auth::guest()): ?> 
+            });
+        } );
+</script>
+
+        <?php if(Auth::guest()): ?>
         <div class="panel-footer background-white">
             <div class="rigt-group">
                 <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
@@ -46,8 +61,8 @@
     </div>
 
 </div>
-</div> 
-<!-- Modal for edit word : Editer: Trong 10/40/AM/2017/26/06--> 
+</div>
+<!-- Modal for edit word : Editer: Trong 10/40/AM/2017/26/06-->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -73,7 +88,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <div class="col-sm-6">
                             <div class="row">
@@ -150,3 +165,5 @@
 
   </div>
 </div>
+
+

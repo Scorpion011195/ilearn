@@ -10,7 +10,7 @@
 <?php $__env->startSection('content-header'); ?>
         <h1>
             Thống kê
-            <!-- <small><?php echo e(Session::get('user')->username); ?></small> -->
+            <!-- <small><?php echo e(utf8_encode(Session::get('user')->username)); ?></small> -->
         </h1>
         <!-- <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -23,20 +23,22 @@
         <div class="panel-body">
             <div class="row">
               <div class="col-sm-12">
-                <form class="form-inline" action="<?php echo e(route('adminDictCollectByCondition')); ?>" method="post">
-                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                <form class="form-inline" action="<?php echo e(utf8_encode(route('adminDictCollectByCondition'))); ?>" method="post">
+                    <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
                     <div class="form-group">
-                      <label>Tình trạng</label>
-                      <select class="form-control" name="_condition">
-                          <?php $__currentLoopData = $listSearch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <option
-                              <?php if($value == $cbTypeWord): ?>
-                                  <?php echo e("selected"); ?>
+                      <div class="input-group ">
+                        <span class="input-group-addon">Tình trạng</span>
+                        <select class="form-control" name="_condition">
+                            <?php $__currentLoopData = $listSearch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option
+                                <?php if($value == $cbTypeWord): ?>
+                                    <?php echo "selected"; ?>
 
-                              <?php endif; ?>
-                          ><?php echo e($value); ?></option>
-                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      </select>
+                                <?php endif; ?>
+                            ><?php echo $value; ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                      </div>
                       <button type="submit" class="btn btn-info">
                           <span class="glyphicon glyphicon-search"></span>
                       </button>

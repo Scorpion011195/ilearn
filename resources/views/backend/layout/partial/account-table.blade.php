@@ -1,3 +1,14 @@
+@if (isset($code) && count($errors)<=0)
+    @if($code == "RequestInput")
+      <div>
+        <p style="color:red" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Xin hãy nhập Tài khoản hoặc chọn Ngày đăng ký!</p>
+      </div>
+    @elseif($code == "Success")
+      <div>
+        <p style="color:blue" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $noOfAccounts !!} kết quả được tìm thấy</p>
+      </div>
+    @endif
+@endif
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Danh sách tài khoản</h3>
@@ -50,7 +61,7 @@
                         <?php $_idUser = $ac->id_user; ?>
                         <tr role="row" class="odd text-center">
                             <td class="_user-id sorting_1" data-id="{{ $_idUser }}">{{ $_idUser }}</td>
-                            <td class="sorting_1">{!! changeColor($ac->username, $key_username) !!}</td>
+                            <td class="_user-name sorting_1">{!! changeColor($ac->username, $key_username) !!}</td>
                             <td class="sorting_1">
                             <!-- comboBox status -->
                                     <select class="selectpicker choose-status">

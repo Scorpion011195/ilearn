@@ -10,10 +10,20 @@ use App\Services\UserInformationService;
 use App\Models\UserInformation;
 use App\Services\UserService;
 use App\Models\User;
+use App\Http\Requests\AdminLoginRequest;
+use Illuminate\Support\MessageBag;
+use App\Http\Requests\AdminPersonalInformationRequest;
+use App\Http\Requests\AdminResetPasswordRequest;
+
 
 class AdminController extends Controller
 {
-    function login(Request $request)
+    function getLogin()
+    {
+        return view('backend.login');
+    }
+
+    function postLogin(AdminLoginRequest $request)
     {
         $username = $request['username'];
         $password = $request['password'];
@@ -23,14 +33,16 @@ class AdminController extends Controller
             Session::put('user', Auth::user());
             return redirect()->route('adminHome');
         }
-        else
-            return redirect()->route('adminLogin');
+        else{
+            $errors = new MessageBag(['errorLogin' => 'Username hoặc Password không đúng']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
     }
 
     function logout(){
         Auth::logout();
         Session::forget('user');
-        return redirect()->route('adminLogin');
+        return redirect()->route('adminGetLogin');
     }
 
     function getProfile()
@@ -51,7 +63,7 @@ class AdminController extends Controller
         return view('backend.user.profile',['profile'=>$profile]);
     }
 
-    function updateProfile(Request $request)
+    function updateProfile(AdminPersonalInformationRequest $request)
     {
         $column = 'id_user';
         $value = Session::get('user')->id_user;
@@ -69,7 +81,11 @@ class AdminController extends Controller
         return redirect()->route('adminProfile')->with('alertUpdateProfile','Cập nhật thành công!');
     }
 
-    function changePassword(Request $request)
+    function getChangePassword(){
+        return view('backend.user.change-password');
+    }
+
+    function postChangePassword(AdminResetPasswordRequest $request)
     {
         $password = Session::get('user')->password;
 
@@ -77,32 +93,25 @@ class AdminController extends Controller
         $passwordNew = $request['profile-password-new'];
         $passwordNewConfirm = $request['profile-password-new-confirm'];
 
-        if(empty($passwordOld)||empty($passwordNew)||empty($passwordNewConfirm))
+        if (Hash::check($passwordOld, $password))
         {
-            return redirect()->route('adminProfile')->with('alertUpdatePassword','failNull');
-        }
-        else
-        {
-            if (Hash::check($passwordOld, $password))
+            if($passwordNew==$passwordNewConfirm)
             {
-                if($passwordNew==$passwordNewConfirm)
-                {
-                    $column = 'id_user';
-                    $value = Session::get('user')->id_user;
+                $column = 'id_user';
+                $value = Session::get('user')->id_user;
 
-                    $attributes = ['password'=>bcrypt($passwordNewConfirm)];
+                $attributes = ['password'=>bcrypt($passwordNewConfirm)];
 
-                    $userService = new UserService(new User);
-                    $userService->updateByColumn($column, $value, $attributes);
+                $userService = new UserService(new User);
+                $userService->updateByColumn($column, $value, $attributes);
 
-                    return redirect()->route('adminProfile')->with('alertUpdatePassword','Thay đổi mật khẩu thành công!');
-                }
-                else
-                    return redirect()->route('adminProfile')->with('alertUpdatePassword','failPassConfirm');
+                return redirect()->route('adminGetChangePassword')->with('alertUpdatePassword','success');
             }
             else
-                return redirect()->route('adminProfile')->with('alertUpdatePassword','failPass');
+                return redirect()->route('adminGetChangePassword')->with('alertUpdatePassword','failPassConfirm');
         }
+        else
+            return redirect()->route('adminGetChangePassword')->with('alertUpdatePassword','failPass');
 
     }
 }

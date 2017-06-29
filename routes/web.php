@@ -13,8 +13,6 @@ require __DIR__.'/web_ilearn_partial.php';
 /*===================Function Search===============*/
 
 /*================src_user_register====================  */
-Route::post('/search', array('as' => 'search',
-    'uses' => 'LaguageController@search'));
 
 Route::get('/result', function () {
     return view('result');
@@ -26,6 +24,9 @@ Route::get('/', array('as' => '',
 
 Route::get('/search', array('as' => 'search',
     'uses' => 'LaguageController@getAllLanguage'));
+
+Route::post('/search', array('as' => 'search',
+    'uses' => 'LaguageController@search'));
 
 
 /*=================/Function Search================*/
@@ -77,15 +78,11 @@ Route::get('tests', function(){
 /*=================== Admin area ===============*/
 Route::group(['prefix' => 'admin'], function () {
     // Đăng nhập
-    Route::get('login', function () {
-        return view('backend.login');
-    })->name('adminLogin');
+    Route::get('login', 'AdminController@getLogin')->name('adminGetLogin');
+    Route::post('login', 'AdminController@postLogin')->name('adminPostLogin');
 
     // Đăng xuất
     Route::get('logout', 'AdminController@logout')->name('adminLogout');
-
-    // Kiểm tra đăng nhập
-    Route::post('checkLogin', 'AdminController@login')->name('adminCheckLogin');
 
     // Trang chủ
     Route::get('home', 'DictionaryManagementController@home')->name('adminHome')->middleware('adminLogin');
@@ -96,11 +93,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'dict','middleware'=>'adminLogin'], function () {
         // Thêm từ
         Route::get('create', 'DictionaryManagementController@home')->name('adminDictCreate');
-        Route::post('create-word', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
+        Route::post('create', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
 
-        //Tra từ adminDictSearch
+        // Tra từ adminDictSearch
         Route::get('search', 'DictionaryManagementController@getSearch')->name('adminDictSearch');
-        Route::post('search-word', 'DictionaryManagementController@searchWord')->name('adminDictSearchWord');
+        Route::post('search', 'DictionaryManagementController@postSearch')->name('adminDictSearchWord');
+
+        // Xóa từ
+        Route::post('delete', 'DictionaryManagementController@deleteWord');
+
+        // Cập nhật từ
+        Route::post('update', 'DictionaryManagementController@updateWord')->name('adminDictUpdateWord');
 
         // Thống kê
         Route::get('collect', 'StatisticManagementController@displayStatisticalResult')->name('adminDictCollect');
@@ -135,7 +138,8 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::post('update', 'AdminController@updateProfile')->name('adminUpdateProfile');
 
-        Route::post('changePassword','AdminController@changePassword')->name('adminChangePassword');
+        Route::get('changePassword','AdminController@getChangePassword')->name('adminGetChangePassword');
+        Route::post('changePassword','AdminController@postChangePassword')->name('adminPostChangePassword');
     });
 });
 /*=================== /.Admin area ===============*/
