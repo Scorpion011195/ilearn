@@ -10,6 +10,7 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- ILEARN STYLE-->
     <link href="{!! asset('css/style.css') !!}" rel="stylesheet">
+     <link href="{!! asset('css/btn.css') !!}" rel="stylesheet">
 
     @yield('css')
 

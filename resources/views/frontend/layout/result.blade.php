@@ -66,7 +66,6 @@
                             var from_text = $('._text-search').val();
                             var to_text = $(this).next().next().text();
                             alert(from+"-"+to+"-"+from_text+"-"+to_text+"-"+id);
-
                         });
                     } );
                 </script>
@@ -79,7 +78,7 @@
                             <?php
                             $getData='';
                             ?>
-                            @if(is_null($language->explain))                               
+                            @if(is_null($language->explain))
                             @else
                             @if(!($type == $language->type))
                                 <?php  $type = $language->type ?><br>
