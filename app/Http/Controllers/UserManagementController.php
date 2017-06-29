@@ -101,7 +101,7 @@ class UserManagementController extends Controller
         $userInformationService = new UserInformationService(new UserInformation);
         $userInformationService->updateByColumn($column, $idUser, $attributes);
 
-        echo "Da update thong tin";
+        //echo "Da update thong tin";
 
         return redirect()->route('adminGetDetailUser',$idUser)->with('alertUpdateDetailUser','Cập nhật thành công!');
     }

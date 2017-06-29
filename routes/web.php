@@ -103,7 +103,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('delete', 'DictionaryManagementController@deleteWord');
 
         // Cập nhật từ
-        Route::post('update', 'DictionaryManagementController@updateWord');
+        Route::post('update', 'DictionaryManagementController@updateWord')->name('adminDictUpdateWord');
 
         // Thống kê
         Route::get('collect', 'StatisticManagementController@displayStatisticalResult')->name('adminDictCollect');

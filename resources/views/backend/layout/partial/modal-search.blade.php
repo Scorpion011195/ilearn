@@ -16,13 +16,27 @@
           <form method="post" id="_form-update-word">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <label>Nghĩa</label>
-            <input type="text" class="form-control" id="_nghia" name="_nghia">
+            <span class="{{ $errors->has('_nghia') ? ' has-error' : '' }}">
+              <input type="text" class="form-control" id="_nghia" name="_nghia">
+              @if($errors->has('_nghia'))
+                  <div>
+                      <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_nghia') !!}</strong></p>
+                  </div>
+              @endif
+            </span>
             <br>
             <label>Giải thích</label>
-            <textarea class="form-control" id="_gtTo" name="_gtTo"></textarea>
-            <script type="text/javascript">CKEDITOR.replace( '_gtTo',{
-              enterMode: Number(2),
-            }); </script>
+            <span class="{{ $errors->has('_nghia') ? ' has-error' : '' }}">
+              <textarea class="form-control" id="_gtTo" name="_gtTo"></textarea>
+              <script type="text/javascript">CKEDITOR.replace( '_gtTo',{
+                enterMode: Number(2),
+              }); </script>
+              @if($errors->has('_gtTo'))
+                  <div>
+                      <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_gtTo') !!}</strong></p>
+                  </div>
+              @endif
+            </span>
             <br>
             <input type="hidden" class="form-control" id="_table-modal" name="_table_modal">
             <input type="hidden" class="form-control" id="_id-word-modal" name="_id_word_modal">

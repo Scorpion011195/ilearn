@@ -100,16 +100,20 @@ $(document).ready(function(){
         }
         else{
           var idWord = $('#_id-word-modal').val();
+          var table = $('#_table-modal').val();
+          var updateWord = $('#_nghia').val();
+          var updateExplain = CKEDITOR.instances['_gtTo'].getData();
+          var _token = $('input[name=_token]').val();
 
           $.ajax({
             url:'update',
             method: 'POST',
-            data : $("#_form-update-word").serialize(),
+            data : {'idWord': idWord,'table': table, 'updateWord': updateWord, 'updateExplain': updateExplain,'_token' : _token},
             dataType:'json',
             success : function(response){
               //$("#_td-word37").val(response['word']);
-              //$("#_td-explain"+idWord).val(response['explain']);
-              alert("Cap nhat thanh cong");
+              //$("#_td-explain"+idWord).innerHTML('dsad');
+              alert("Cập nhật thành công");
             },
             error: function(xhr, error) {
                console.log(error);

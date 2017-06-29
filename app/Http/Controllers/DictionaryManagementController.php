@@ -14,6 +14,7 @@ use App\Models\Japanese;
 use App\Services\JapaneseService;
 use App\Http\Requests\AdminAddWordRequest;
 use App\Http\Requests\AdminSearchWordRequest;
+use App\Http\Requests\AdminUpdateWordRequest;
 use Illuminate\Support\MessageBag;
 
 
@@ -350,10 +351,10 @@ class DictionaryManagementController extends Controller
     /*=================== Cập nhật từ area ===============*/
     function updateWord(Request $request){
         // Input
-        $idWord = $request->_id_word_modal;
-        $table = $request->_table_modal;
-        $updateWord = $request->_nghia;
-        $updateExplain = $request->_gtTo;
+        $idWord = $request->idWord;
+        $table = $request->table;
+        $updateWord = $request->updateWord;
+        $updateExplain = $request->updateExplain;
 
         $column = 'id';
 
