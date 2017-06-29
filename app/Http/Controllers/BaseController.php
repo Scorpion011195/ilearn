@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Http\Requests\HistoryUpdateRequest;
 
 interface BaseController
 {
@@ -19,7 +20,7 @@ interface BaseController
 
     public function find(Request $request);
 
-    public function update(Request $request);
+    public function update(HistoryUpdateRequest $request);
 
     public function store(Request $request);
 
