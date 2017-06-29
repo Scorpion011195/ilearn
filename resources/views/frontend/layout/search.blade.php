@@ -41,17 +41,19 @@
         </div>
         {!! Form::close() !!}
     </div>
+     @if (count($errors) > 0)
+         <div class = "alert alert-danger">
+            <ul>
+               @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+               @endforeach
+            </ul>
+         </div>
+    @endif
     <br>
 <div class="result">
     @include('frontend.layout.result')
 </div>
-
-
 <div class="create-dict">
     @include('frontend.layout.create-dict')
-</div>
-
-
-</div>
-
 </div>
