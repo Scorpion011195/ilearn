@@ -40,10 +40,11 @@
             $('._push-his').on('click', function(E){
                 var from = $("#_langFrom :selected").text();
                 var to = $("#_langTo :selected").text();
-                var id = $(this).attr('data-id');
+                //var id = $(this).attr('data-id');
+                var type = $(this)
                 var from_text = $('._text-search').val();
                 var to_text = $(this).next().next().text();
-                alert(from+"-"+to+"-"+from_text+"-"+to_text+"-"+id);
+                alert(from+"-"+to+"-"+from_text+"-"+to_text+"-"+type);
 
             });
         } );
