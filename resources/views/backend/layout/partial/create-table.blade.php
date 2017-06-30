@@ -70,9 +70,7 @@
                               <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="Hello" value="{!! old('_txttu') !!}">
                           </div>
                           @if ($errors->has('_txttu'))
-                              <div>
-                                  <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_txttu') !!}</strong></p>
-                              </div>
+                              <span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_txttu') !!}</strong>
                           @endif
                     </div>
                     <div class="col-sm-6 {{ $errors->has('_txtnghia') ? ' has-error' : '' }}">
