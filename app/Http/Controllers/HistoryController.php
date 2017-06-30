@@ -45,7 +45,7 @@ class HistoryController extends Controller implements  BaseController
         $historys = History::where('id_history', $id)->first();
         $arr= json_decode($historys->content, true);
         $a=count($arr);
-        $arr[]= array('type_to'=>$request->typeword,'STT'=> $a,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'tb1'=> 'F');
+        $arr[]= array('type_to'=>$request->typeword,'STT'=> $a,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'notification'=> 'F');
 
         if($request->tu  == null && $request->nghia !== null ){
             return redirect('/historys')->with("message","<strong>Lỗi!</strong> Vui lòng nhập đầy đủ thông tin.");
