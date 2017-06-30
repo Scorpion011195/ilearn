@@ -16,7 +16,7 @@ class CreateUserInformationsTable extends Migration
         Schema::create('user_informations', function (Blueprint $table) {
             $table->increments('id_user');
             $table->string('name',100)->nullable()->default(null);
-            $table->string('address',100)->nullable()->default(null);
+            $table->string('address',200)->nullable()->default(null);
             $table->string('phone',100)->nullable()->default(null);
             $table->date('date_of_birth')->nullable()->default(null);
         });

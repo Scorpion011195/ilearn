@@ -1,6 +1,9 @@
 html, body {
     height: 100%;
 }
+.container .result{
+    padding-bottom: 100px;
+}
 
 .center {
     display: flex;
@@ -268,11 +271,11 @@ html, body {
     margin-bottom: 100px;
 }
 
-footer{
+footer {
     background-color: #00e3ff;
-    position: fixed;
-    bottom: 0;
+    position: fixed ;
     left: 0;
+    bottom: 0;
     right: 0;
     height: 35px;
     text-align: center;

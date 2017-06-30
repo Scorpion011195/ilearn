@@ -1,0 +1,12 @@
+span.title {
+	border-bottom-style: double;
+    line-height: 50px;
+    font-size: initial;
+    font-style: italic;
+}
+span.title strong {
+	
+}
+b._type {
+	line-height: 30px;
+}

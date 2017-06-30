@@ -1,4 +1,6 @@
+<?php 
 
+ ?>
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Danh sách từ</h3>
@@ -36,7 +38,7 @@
                     </th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                     aria-label="Engine version: activate to sort column ascending" style="width: 143px;">
-                    Giải thích
+                    Loại từ
                 </th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                 aria-label="CSS grade: activate to sort column ascending" style="width: 103px;">Từ điển
@@ -47,12 +49,13 @@
         <tbody>
             <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
-                <td><?php echo e($row->STT); ?></td>
-                <td><?php echo e($row->from_text); ?></td>
-                <td><?php echo e($row->to_text); ?> </td>
-                <td><?php echo e($row->from_explain); ?>-<?php echo e($row->to_explain); ?></td>
-                <td><?php echo e($row->from); ?>-<?php echo e($row->to); ?></td>
-                <td><?php echo e($row->notification); ?></td>
+                <td><?php echo e(utf8_encode($row['STT'])); ?></td>
+                <td><?php echo e(utf8_encode($row['from_text'])); ?></td>
+                <td><?php echo e(utf8_encode($row['to_text'])); ?> </td>
+                <td><?php echo e(utf8_encode($row['type'])); ?> </td>
+                <td><?php echo e(utf8_encode($row['from'])); ?>-<?php echo e(utf8_encode($row['to'])); ?></td>
+                <td><?php echo e(utf8_encode($row['tb1'])); ?> </td>
+
                 
             
             </tr>

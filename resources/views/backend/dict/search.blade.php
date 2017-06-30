@@ -71,6 +71,7 @@ $(document).ready(function(){
 <!--  /.Confirm delete word to -->
 
 <!--  Update explain -->
+<!-- SET MODAL -->
 <script>
 $(document).ready(function(){
     $("._update-word").on('click', function(E){
@@ -81,31 +82,55 @@ $(document).ready(function(){
         var _token = $('input[name=_token]').val();
         var table = $("#_table-dich :selected").text();
 
-        alert(explain);
-
-        // if(!confirm('Bạn có muốn xóa từ này?')){
-        //     e.preventDefault();
-        //     return false;
-        // }
-        // else{
-        //     $.ajax({
-        //         url:'delete',
-        //         method: 'POST',
-        //         data : {'idWord': idWord,'table': table, '_token' : _token},
-        //         dataType:'json',
-        //         success : function(response){
-        //             if(response['data'] == "OK"){
-        //                 _element.closest('tr').remove();
-        //                 document.getElementById("_notify").innerHTML = 'Đã xóa từ "'+ word +'"';
-        //             }
-        //         },
-        //         error: function(xhr, error) {
-        //            console.log(error);
-        //         }
-        //     });
-        // }
+        $('#_nghia').val(word);
+        $('#_table-modal').val(table);
+        $('#_id-word-modal').val(idWord);
+        CKEDITOR.instances['_gtTo'].setData(explain);
     });
 });
 </script>
+
+<!-- UPDATE -->
+<script>
+$(document).ready(function(){
+    $("#_form-update-word").on('submit', function(E){
+        event.preventDefault();
+        if($('#_nghia').val() == ''){
+            alert('Bạn chưa nhập nghĩa!');
+        }
+        else{
+          var idWord = $('#_id-word-modal').val();
+          var table = $('#_table-modal').val();
+          var updateWord = $('#_nghia').val();
+          var updateExplain = CKEDITOR.instances['_gtTo'].getData();
+          var _token = $('input[name=_token]').val();
+
+          $.ajax({
+            url:'update',
+            method: 'POST',
+            data : {'idWord': idWord,'table': table, 'updateWord': updateWord, 'updateExplain': updateExplain,'_token' : _token},
+            dataType:'json',
+            success : function(response){
+              //$("#_td-word37").val(response['word']);
+              //$("#_td-explain"+idWord).innerHTML('dsad');
+              alert("Cập nhật thành công"+response['word']+response['explain']);
+            },
+            error: function(xhr, error) {
+               console.log(error);
+            }
+          });
+        }
+    });
+});
+</script>
+
+<!-- script toltip -->
+<script>
+    $(document).ready(function(){
+        $('._tooltip-me').tooltip();
+    });
+</script>
+<!-- /.script tootip -->
+
 <!--  /.Update explain -->
 @endsection
