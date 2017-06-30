@@ -113,7 +113,7 @@ $(document).ready(function(){
             success : function(response){
               //$("#_td-word37").val(response['word']);
               //$("#_td-explain"+idWord).innerHTML('dsad');
-              alert("Cập nhật thành công");
+              alert("Cập nhật thành công"+response['word']+response['explain']);
             },
             error: function(xhr, error) {
                console.log(error);
