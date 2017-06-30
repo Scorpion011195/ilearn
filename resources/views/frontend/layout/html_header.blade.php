@@ -1,5 +1,6 @@
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
     <!-- FONT -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -9,6 +10,7 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- ILEARN STYLE-->
     <link href="{!! asset('css/style.css') !!}" rel="stylesheet">
+     <link href="{!! asset('css/btn.css') !!}" rel="stylesheet">
 
     @yield('css')
 
@@ -24,6 +26,4 @@
     @yield('js')
     <!-- ILEARN JS -->
     <script src="{!! asset('js/ilearn.js') !!}"></script>
-
-
 </head>

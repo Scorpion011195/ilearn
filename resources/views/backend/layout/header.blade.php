@@ -129,7 +129,7 @@ Tasks Menu
 
                             <p>
                                 {{ Session::get('user')->username }}
-                                <small>Member since {{ date('F d, Y', strtotime(Session::get('user')->created_at)) }}</small>
+                                <small>Thành viên từ {{ date('d-m-Y', strtotime(Session::get('user')->created_at)) }}</small>
                             </p>
                         </li>
 <!--                         Menu Body
@@ -150,10 +150,10 @@ Tasks Menu
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="{{ route('adminProfile') }}" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('adminGetChangePassword') }}" class="btn btn-default btn-flat">Đổi mật khẩu</a>
                             </div>
                             <div class="pull-right">
-                                <a href="{{ route('adminLogout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="{{ route('adminLogout') }}" class="btn btn-default btn-flat">Thoát</a>
                             </div>
                         </li>
                     </ul>

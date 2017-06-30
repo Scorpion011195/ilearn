@@ -27,4 +27,7 @@ class JapaneseService extends BaseService implements JapaneseRepository{
         return DB::table('japanese')->max('id_mapping');
     }
 
+    public function getAllByIdMappingOrderById($column, $value){
+        return $this->model->where($column, $value)->orderBy('id','asc')->get();
+    }
 }

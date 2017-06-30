@@ -22,7 +22,7 @@
 @section('content')
     <div class="panel">
         <div class="panel-body">
-            {!! Form::open() !!}
+            {!! Form::open(array('enctype' => 'multipart/form-data', 'files' =>true, 'accept-charset' => 'utf-8')) !!}
             <div class="panel-content">
                 {!! Form::label('csv-file', 'Tải lên file csv') !!}
                 {!! Form::file('csv-file', ['class' => 'btn btn-default']) !!}
@@ -34,45 +34,14 @@
         {!! Form::close() !!}
     </div>
 
-    <div class="panel">
-        <div class="panel-body">
-            @include('backend.layout.partial.dict-table')
-        </div>
-    </div>
-@endsection
-
-@section('script')
-    <!-- X-EDITABLE JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $.fn.editable.defaults.mode = 'inline';
-            $(document).ready(function() {
-                $(' td ').editable();
-            });
-            $('#username').editable({
-                type: 'text',
-                pk: 1,
-                url: '/post',
-                title: 'Enter username'
-            });
-            var table = $('#example').DataTable();
-
-            $('#example tbody').on('click', 'tr', function () {
-                var data = table.row( this ).data();
-                alert( 'You clicked on '+data[0]+'\'s row' );
-            } );
-
-        } );
-    </script>
-
-    <!-- Active left menu -->
-    <script>
-        $(document).ready(function(){
-            $('#_menu-qltd').addClass("active");
-            $('#_menu-qltd-tfscv').addClass("active");
-        });
-    </script>
-    <!-- /.Active left menu -->
+    @if(isset($info))
+        <div class='col-md-3'></div>
+            <div class="col-md-6">
+                <div class="alert alert-info" id='idsuccess'>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>               
+                <h2 align="center">Upload file successfully</h2>
+                </div>
+            </div>
+    @endif
+    
 @endsection

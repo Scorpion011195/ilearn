@@ -14,10 +14,10 @@ class CreateEnglishTable extends Migration
     public function up()
     {
         Schema::create('english', function (Blueprint $table) {
-            $table->increments('id_english');
+            $table->increments('id');
             $table->string('word',100);
             $table->string('listen',100)->nullable()->default(null);;
-            $table->string('explain',100)->nullable()->default(null);;
+            $table->longtext('explain')->nullable()->default(null);;
             $table->integer('id_mapping');
             $table->timestamps();
         });

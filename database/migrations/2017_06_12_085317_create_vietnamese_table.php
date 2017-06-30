@@ -14,10 +14,10 @@ class CreateVietnameseTable extends Migration
     public function up()
     {
         Schema::create('vietnamese', function (Blueprint $table) {
-            $table->increments('id_vietnamese');
+            $table->increments('id');
             $table->string('word',100);
             $table->string('listen',100)->nullable()->default(null);;
-            $table->string('explain',100)->nullable()->default(null);;
+            $table->longtext('explain')->nullable()->default(null);;
             $table->integer('id_mapping');
             $table->timestamps();
         });
