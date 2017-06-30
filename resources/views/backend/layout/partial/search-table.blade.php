@@ -1,4 +1,3 @@
-
 <!-- Search -->
 <div class="panel">
     <div class="panel-body">
@@ -14,7 +13,7 @@
                   @else
                     value="{!! old('_keytratu') !!}"
                   @endif
-                  ></span>
+                  required maxlength="50"></span>
                   <select class="form-control" name="_cbloaitutratu">
                       @foreach($listTypeOfWord as $key=>$value)
                           <option
@@ -74,7 +73,6 @@
         @endif
    @endif
 <!-- Table -->
-
         <div class="box">
           <div class="box-body">
               <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -109,12 +107,12 @@
                                     <td class="_word" id="_td-word{!! $row->id !!}" style="vertical-align:middle">{!! $word->word !!}</td>
                                     <td class="_explain" id="_td-explain{!! $row->id !!}">{!! $row->explain !!}</td>
                                     <td class="text-center" style="vertical-align:middle">
-                                      <a class="_update-word _tooltip-me" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
+                                      <button class="_update-word _tooltip-me button-icon" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
                                         <span class="glyphicon glyphicon-edit"></span>
-                                      </a>
-                                      <a class="_delete-word-to _tooltip-me" title="Xóa!">
+                                      </button>
+                                      <button class="_delete-word-to _tooltip-me button-icon" title="Xóa!">
                                         <span class="glyphicon glyphicon-trash"></span>
-                                      </a>
+                                      </button>
                                     </td>
                                  </tr>
                                @endforeach
@@ -138,7 +136,6 @@
     </div>
 </div>
 <!-- /.Table -->
-
 @include('backend.layout.partial.modal-search')
 
 

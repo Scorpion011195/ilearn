@@ -15,7 +15,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-5">
@@ -27,7 +26,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row no-margin margin-top">
                         <div class="col-sm-5">
                             <div class="row">
@@ -40,9 +38,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="row margin-top panel">
                     <div class="row no-margin">
                         <div class="col-sm-5">
@@ -55,7 +51,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-5">
@@ -66,7 +61,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-sm-1">
                             <button class="btn btn-white create-dict-add"><i class="fa fa-plus-circle fa-lg " aria-hidden="true"></i></button>
                         </div>

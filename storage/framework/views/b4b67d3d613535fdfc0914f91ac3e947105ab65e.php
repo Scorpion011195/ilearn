@@ -8,14 +8,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content-header'); ?>
-        <h1>
-            Thống kê
-            <!-- <small><?php echo e(utf8_encode(Session::get('user')->username)); ?></small> -->
-        </h1>
-        <!-- <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-        </ol> -->
+    <h1>Thống kê</h1>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -53,22 +46,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>
-    <!-- Active left menu -->
-    <script>
-        $(document).ready(function(){
-            $('#_menu-qltd').addClass("active");
-            $('#_menu-qltd-tk').addClass("active");
-        });
-    </script>
-    <!-- /.Active left menu -->
-
-    <!-- script toltip -->
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-    <!-- /.script tootip -->
+    <script src="<?php echo asset('js/admin/admin.js'); ?>"></script>
+    <script src="<?php echo asset('js/admin/admin-statistic.js'); ?>"></script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('backend.ilearn', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -95,9 +95,9 @@
                                 <a href="{{ route('adminGetDetailUser',$_idUser) }}" class="_detail-user" data-toggle="tooltip" title="Xem thông tin!">
                                   <span class="glyphicon glyphicon-edit"></span>
                                 </a>
-                                <a class="_delete-user" data-toggle="tooltip" title="Xóa!">
+                                <button class="_delete-user button-icon" data-toggle="tooltip" title="Xóa!">
                                   <span class="glyphicon glyphicon-trash"></span>
-                                </a>
+                                </button>
                             </td>
                         </tr>
                         @endforeach
@@ -118,5 +118,5 @@
         </div>
     </div>
 </div>
-                    {!! $accounts->links() !!}
+{!! $accounts->links() !!}
 

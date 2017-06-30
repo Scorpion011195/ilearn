@@ -7,14 +7,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content-header'); ?>
-        <h1>
-            Thêm file scv
-            <!-- <small><?php echo e(utf8_encode(Session::get('user')->username)); ?></small> -->
-        </h1>
-        <!-- <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-        </ol> -->
+    <h1>Thêm file scv</h1>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -41,12 +34,15 @@
         <div class='col-md-3'></div>
             <div class="col-md-6">
                 <div class="alert alert-info" id='idsuccess'>
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>               
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h2 align="center">Upload file successfully</h2>
                 </div>
             </div>
     <?php endif; ?>
-    
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo asset('js/admin/admin-upload.js'); ?>"></script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('backend.ilearn', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

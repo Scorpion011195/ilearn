@@ -4,12 +4,9 @@
     <section class="content-header">
         @yield('content-header')
     </section>
-
     <!-- Main content -->
     <section class="content">
-
         @yield('content')
-
     </section>
     <!-- /.content -->
 </div>

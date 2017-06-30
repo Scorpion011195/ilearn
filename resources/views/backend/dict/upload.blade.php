@@ -9,14 +9,7 @@
 @endsection
 
 @section('content-header')
-        <h1>
-            Thêm file scv
-            <!-- <small>{{ Session::get('user')->username }}</small> -->
-        </h1>
-        <!-- <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-        </ol> -->
+    <h1>Thêm file scv</h1>
 @endsection
 
 @section('content')
@@ -38,10 +31,13 @@
         <div class='col-md-3'></div>
             <div class="col-md-6">
                 <div class="alert alert-info" id='idsuccess'>
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>               
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h2 align="center">Upload file successfully</h2>
                 </div>
             </div>
     @endif
-    
+@endsection
+
+@section('script')
+    <script src="{!! asset('js/admin/admin-upload.js') !!}"></script>
 @endsection

@@ -51,18 +51,6 @@
                             <td>{!! $row->quanlity !!}</td>
                             <td>{!! $row->type_from !!}</td>
                             <td>{!! $row->status !!}</td>
-                            <!-- <td>
-                                @if($row->status=='added')
-                                    <a class="" data-toggle="tooltip" title="Đã có!">
-                                      <span class="glyphicon glyphicon-ok"></span>
-                                    </a>
-                                @else
-                                    <a href="" class="" data-toggle="tooltip" title="Thêm vào từ điển">
-                                      <span class="glyphicon glyphicon-upload"></span>
-                                    </a>
-                                @endif
-
-                            </td> -->
                         </tr>
                         @endforeach
 

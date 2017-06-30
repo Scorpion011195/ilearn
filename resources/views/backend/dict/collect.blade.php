@@ -10,14 +10,7 @@
 @endsection
 
 @section('content-header')
-        <h1>
-            Thống kê
-            <!-- <small>{{ Session::get('user')->username }}</small> -->
-        </h1>
-        <!-- <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-        </ol> -->
+    <h1>Thống kê</h1>
 @endsection
 
 @section('content')
@@ -54,20 +47,6 @@
 @endsection
 
 @section('script')
-    <!-- Active left menu -->
-    <script>
-        $(document).ready(function(){
-            $('#_menu-qltd').addClass("active");
-            $('#_menu-qltd-tk').addClass("active");
-        });
-    </script>
-    <!-- /.Active left menu -->
-
-    <!-- script toltip -->
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-    <!-- /.script tootip -->
+    <script src="{!! asset('js/admin/admin.js') !!}"></script>
+    <script src="{!! asset('js/admin/admin-statistic.js') !!}"></script>
 @endsection

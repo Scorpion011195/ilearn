@@ -12,17 +12,6 @@ html, body {
     margin-bottom: 100px;
 }
 
-@media screen and (max-width: 699px) and (min-width: 520px), (min-width: 1261px) {
-    .center {
-
-    }
-}
-
-@media screen and (min-width: 1261px) and (max-width: 1270px){
-    .center {
-
-    }
-}
 
 .ilearn-background-color {
     background-color: #00e3ff;
@@ -302,12 +291,37 @@ footer p {
     margin-bottom: 11px;
 }
 
-/* /REGISTER MODAL */
-
 /* SETTINGS NOTIFICATION */
 .checkbox-left {
     left: 0;
 
 }
 
-/* /SETTINGS NOTIFICATION */
+/* FONT */
+._help-block{
+    color: #a94442;
+}
+._success{
+    color: blue;
+}
+._fail{
+    color: red;
+}
+
+/* BUTTON */
+.button-icon{
+border: none;
+background: none;
+color: #3097D1;
+}
+@media screen and (max-width: 699px) and (min-width: 520px), (min-width: 1261px) {
+    .center {
+
+    }
+}
+
+@media screen and (min-width: 1261px) and (max-width: 1270px){
+    .center {
+
+    }
+}
