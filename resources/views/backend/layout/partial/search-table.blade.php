@@ -4,7 +4,7 @@
     <div class="panel-body">
         <div class="row">
           <div class="col-sm-12" >
-            <form action="{{ route('adminDictSearchWord') }}" class="form-inline" method="post">
+            <form action="{{ route('adminDictSearchWord') }}" class="form-inline" method="get">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                   <span class="{{ $errors->has('_keytratu') ? ' has-error' : '' }}">
@@ -105,8 +105,8 @@
                                @foreach($result as $row)
                                  <?php $word = json_decode($row->word); ?>
                                  <tr role="row" class="odd" id="_tr{!! $row->id !!}">
-                                    <td class="_word-id text-center" data-id="{!! $row->id !!}">{!! $row->id !!}</td>
-                                    <td class="_word" id="_td-word{!! $row->id !!}">{!! $word->word !!}</td>
+                                    <td class="_word-id text-center" data-id="{!! $row->id !!}" style="vertical-align:middle">{!! $row->id !!}</td>
+                                    <td class="_word" id="_td-word{!! $row->id !!}" style="vertical-align:middle">{!! $word->word !!}</td>
                                     <td class="_explain" id="_td-explain{!! $row->id !!}">{!! $row->explain !!}</td>
                                     <td class="text-center" style="vertical-align:middle">
                                       <a class="_update-word _tooltip-me" data-toggle="modal" title="Cập nhật!" data-target="#myModal">

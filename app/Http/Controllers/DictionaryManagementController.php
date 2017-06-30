@@ -236,17 +236,17 @@ class DictionaryManagementController extends Controller
 
 
     /*=================== Tra từ area ===============*/
-    function getSearch(){
+    function displaySearch(){
         $languageService = new LanguageService(new Language);
         $listLanguage = $languageService->getAll();
 
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'idCbTypeWord'=>6, 'idCbTableFrom'=>1,'idCbTableTo'=>2, 'countTo'=>0];
+        $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'idCbTypeWord'=>1, 'idCbTableFrom'=>1,'idCbTableTo'=>2, 'countTo'=>0];
         return view('backend.dict.search', $param);
     }
 
-    function postSearch(AdminSearchWordRequest $request){
+    function getSearch(AdminSearchWordRequest $request){
        // Input submit
        $keyTraTu = $request->_keytratu;
        $tableFrom = $request->_cbnguontratu;
@@ -372,11 +372,11 @@ class DictionaryManagementController extends Controller
         $beforeResult = $service->getByColumn($column, $idWord);
         $arrBeforeWord = json_decode($beforeResult->word);
         $arrBeforeWord->word = $updateWord;
-        $jsonAfterWord = json_encode($arrBeforeWord);
+        $jsonAfterWord = json_encode($arrBeforeWord, JSON_UNESCAPED_UNICODE);
         $attributes = ['word'=>$jsonAfterWord, 'explain'=>$updateExplain];
         $service->updateByColumn($column, $idWord, $attributes);
 
-        $dataResponse = ["word"=>$updateWord,"explain"=>$updateExplain];
+        $dataResponse = ['idWord'=>$idWord,"word"=>$updateWord,"explain"=>$updateExplain];
         return json_encode($dataResponse);
     }
     /*=================== /.Cập nhật từ area ===============*/

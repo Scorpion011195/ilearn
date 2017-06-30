@@ -96,8 +96,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('create', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
 
         // Tra từ adminDictSearch
-        Route::get('search', 'DictionaryManagementController@getSearch')->name('adminDictSearch');
-        Route::post('search', 'DictionaryManagementController@postSearch')->name('adminDictSearchWord');
+        Route::get('search', 'DictionaryManagementController@displaySearch')->name('adminDictSearch');
+        Route::get('search-word', 'DictionaryManagementController@getSearch')->name('adminDictSearchWord');
 
         // Xóa từ
         Route::post('delete', 'DictionaryManagementController@deleteWord');

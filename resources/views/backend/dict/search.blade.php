@@ -10,14 +10,9 @@
 @endsection
 
 @section('content-header')
-        <h1>
-            Tra từ
-            <!-- <small>{{ Session::get('user')->username }}</small> -->
-        </h1>
-        <!-- <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-            <li class="active">Here</li>
-        </ol> -->
+    <h1>
+        Tra từ
+    </h1>
 @endsection
 
 @section('content')
@@ -25,112 +20,109 @@
 @endsection
 
 @section('script')
-<!-- Active left menu -->
-<script>
+    <!-- Active left menu -->
+    <script>
+        $(document).ready(function(){
+            $('#_menu-qltd').addClass("active");
+            $('#_menu-qltd-trt').addClass("active");
+        });
+    </script>
+    <!-- /.Active left menu -->
+
+    <!--  Confirm delete word to -->
+    <script>
     $(document).ready(function(){
-        $('#_menu-qltd').addClass("active");
-        $('#_menu-qltd-trt').addClass("active");
+        $("a._delete-word-to").on('click', function(E){
+            var _element = $(this);
+            var idWord = $(this).closest('tr').find('._word-id').attr('data-id');
+            var word = $(this).closest('tr').find('._word').text();
+            var _token = $('input[name=_token]').val();
+            var table = $("#_table-dich :selected").text();
+
+            if(!confirm('Bạn có muốn xóa từ này?')){
+                e.preventDefault();
+                return false;
+            }
+            else{
+                $.ajax({
+                    url:'delete',
+                    method: 'POST',
+                    data : {'idWord': idWord,'table': table, '_token' : _token},
+                    dataType:'json',
+                    success : function(response){
+                        if(response['data'] == "OK"){
+                            _element.closest('tr').remove();
+                            document.getElementById("_notify").innerHTML = 'Đã xóa từ "'+ word +'"';
+                        }
+                    },
+                    error: function(xhr, error) {
+                       console.log(error);
+                    }
+                });
+            }
+        });
     });
-</script>
-<!-- /.Active left menu -->
+    </script>
+    <!--  /.Confirm delete word to -->
 
-<!--  Confirm delete word to -->
-<script>
-$(document).ready(function(){
-    $("a._delete-word-to").on('click', function(E){
-        var _element = $(this);
-        var idWord = $(this).closest('tr').find('._word-id').attr('data-id');
-        var word = $(this).closest('tr').find('._word').text();
-        var _token = $('input[name=_token]').val();
-        var table = $("#_table-dich :selected").text();
+    <!--  Update explain -->
+    <script>
+    $(document).ready(function(){
+        // OPEN MODAL
+        $("._update-word").on('click', function(E){
+            var _element = $(this);
+            var idWord = $(this).closest('tr').find('._word-id').attr('data-id');
+            var word = $(this).closest('tr').find('._word').text();
+            var explain = $(this).closest('tr').find('._explain').html();
+            var _token = $('input[name=_token]').val();
+            var table = $("#_table-dich :selected").text();
 
-        if(!confirm('Bạn có muốn xóa từ này?')){
-            e.preventDefault();
-            return false;
-        }
-        else{
-            $.ajax({
-                url:'delete',
+            $('#_nghia').val(word);
+            $('#_table-modal').val(table);
+            $('#_id-word-modal').val(idWord);
+            CKEDITOR.instances['_gtTo'].setData(explain);
+        });
+
+        // UPDATE
+        $("#_form-update-word").on('submit', function(E){
+            event.preventDefault();
+            if($('#_nghia').val() == ''){
+                alert('Bạn chưa nhập nghĩa!');
+            }
+            else{
+              var idWord = $('#_id-word-modal').val();
+              var table = $('#_table-modal').val();
+              var updateWord = $('#_nghia').val();
+              var updateExplain = CKEDITOR.instances['_gtTo'].getData();
+              var _token = $('input[name=_token]').val();
+
+              $.ajax({
+                url:'update',
                 method: 'POST',
-                data : {'idWord': idWord,'table': table, '_token' : _token},
+                data : {'idWord': idWord,'table': table, 'updateWord': updateWord, 'updateExplain': updateExplain,'_token' : _token},
                 dataType:'json',
                 success : function(response){
-                    if(response['data'] == "OK"){
-                        _element.closest('tr').remove();
-                        document.getElementById("_notify").innerHTML = 'Đã xóa từ "'+ word +'"';
-                    }
+                  var task = '<tr style="color:blue" role="row" class="odd" id="_tr'+response['idWord']+'"><td class="_word-id text-center" data-id="'+response['idWord']+'" style="vertical-align:middle">'+response['idWord']+'</td><td class="_word" id="_td-word'+response['idWord']+'" style="vertical-align:middle">'+response['word']+'</td><td class="_explain" id="_td-explain'+response['idWord']+'">'+response['explain']+'</td><td class="text-center" style="vertical-align:middle"><a class="_update-word _tooltip-me" data-toggle="modal" title="Cập nhật!" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span></a><a class="_delete-word-to _tooltip-me" title="Xóa!"><span class="glyphicon glyphicon-trash"></span></a></td></tr>';
+                  $("#_tr" + idWord).replaceWith( task );
+
+                  $('#myModal').modal('hide');
+                  alert("Cập nhật thành công");
                 },
                 error: function(xhr, error) {
                    console.log(error);
                 }
-            });
-        }
-    });
-});
-</script>
-<!--  /.Confirm delete word to -->
-
-<!--  Update explain -->
-<!-- SET MODAL -->
-<script>
-$(document).ready(function(){
-    $("._update-word").on('click', function(E){
-        var _element = $(this);
-        var idWord = $(this).closest('tr').find('._word-id').attr('data-id');
-        var word = $(this).closest('tr').find('._word').text();
-        var explain = $(this).closest('tr').find('._explain').html();
-        var _token = $('input[name=_token]').val();
-        var table = $("#_table-dich :selected").text();
-
-        $('#_nghia').val(word);
-        $('#_table-modal').val(table);
-        $('#_id-word-modal').val(idWord);
-        CKEDITOR.instances['_gtTo'].setData(explain);
-    });
-});
-</script>
-
-<!-- UPDATE -->
-<script>
-$(document).ready(function(){
-    $("#_form-update-word").on('submit', function(E){
-        event.preventDefault();
-        if($('#_nghia').val() == ''){
-            alert('Bạn chưa nhập nghĩa!');
-        }
-        else{
-          var idWord = $('#_id-word-modal').val();
-          var table = $('#_table-modal').val();
-          var updateWord = $('#_nghia').val();
-          var updateExplain = CKEDITOR.instances['_gtTo'].getData();
-          var _token = $('input[name=_token]').val();
-
-          $.ajax({
-            url:'update',
-            method: 'POST',
-            data : {'idWord': idWord,'table': table, 'updateWord': updateWord, 'updateExplain': updateExplain,'_token' : _token},
-            dataType:'json',
-            success : function(response){
-              //$("#_td-word37").val(response['word']);
-              //$("#_td-explain"+idWord).innerHTML('dsad');
-              alert("Cập nhật thành công");
-            },
-            error: function(xhr, error) {
-               console.log(error);
+              });
             }
-          });
-        }
+        });
     });
-});
-</script>
+    </script>
+    <!--  /.Update explain -->
 
-<!-- script toltip -->
-<script>
-    $(document).ready(function(){
-        $('._tooltip-me').tooltip();
-    });
-</script>
-<!-- /.script tootip -->
-
-<!--  /.Update explain -->
+    <!-- script toltip -->
+    <script>
+        $(document).ready(function(){
+            $('._tooltip-me').tooltip();
+        });
+    </script>
+    <!-- /.script tootip -->
 @endsection

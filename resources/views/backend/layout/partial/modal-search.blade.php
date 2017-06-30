@@ -40,7 +40,7 @@
             <br>
             <input type="hidden" class="form-control" id="_table-modal" name="_table_modal">
             <input type="hidden" class="form-control" id="_id-word-modal" name="_id_word_modal">
-            <input class="btn btn-info" type="submit" value="Cập nhật">
+            <input class="btn btn-info" type="submit" value="Cập nhật" id="_btn-update">
           </form>
         </div>
         <div class="modal-footer">
