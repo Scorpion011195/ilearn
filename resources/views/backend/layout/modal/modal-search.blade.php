@@ -16,7 +16,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <label>Nghĩa</label>
             <span class="{{ $errors->has('_nghia') ? ' has-error' : '' }}">
-              <input type="text" class="form-control" id="_nghia" name="_nghia">
+              <input type="text" class="form-control" id="_mean" name="_nghia">
               @if($errors->has('_nghia'))
                   <div>
                       <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_nghia') !!}</strong></p>

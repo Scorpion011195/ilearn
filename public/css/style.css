@@ -12,7 +12,6 @@ html, body {
     margin-bottom: 100px;
 }
 
-
 .ilearn-background-color {
     background-color: #00e3ff;
     border-color: #00e3ff;
@@ -307,6 +306,7 @@ footer p {
 ._fail{
     color: red;
 }
+/* /.FONT */
 
 /* BUTTON */
 .button-icon{
@@ -314,14 +314,16 @@ border: none;
 background: none;
 color: #3097D1;
 }
+/* /.BUTTON */
+
+/* RESPONSIVE */
 @media screen and (max-width: 699px) and (min-width: 520px), (min-width: 1261px) {
     .center {
-
     }
 }
 
 @media screen and (min-width: 1261px) and (max-width: 1270px){
     .center {
-
     }
 }
+/* /.RESPONSIVE */
