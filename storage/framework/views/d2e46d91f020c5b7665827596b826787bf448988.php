@@ -5,15 +5,14 @@
         <div class = "col-sm-6 col-sm-offset-3 form-group row">
             <div class ="row panel panel-default no-radius-left no-radius-right">
                 <div class="col-xs-8 col-sm-6">
-                    <span class="title">Bản dịch từ:&nbsp;<?php echo ($inputText); ?></span>
-                    <form action="<?php echo e(utf8_encode(route('HistoryAddNew'))); ?>" method="POST" role="form">
+                    <span class="title">Bản dịch từ:<?php echo ($inputText); ?></span>
                         <?php if(isset($workInfo)): ?>
                             <?php $type = '' ?>
                             <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php $getData ='';?>
                                 <?php if(!($type == $language->type)): ?>
-                                    <?php  $type = $language->type ?>
-                                    <b class="_type" ><?php echo $language->type; ?></b>:<br>
+                                    <?php  $type = $language->type ?> <br>
+                                    <b class="type" ><?php echo $language->type; ?></b>:<br> 
                                         <?php if(!Auth::guest()): ?>
                                             <span class="glyphicon glyphicon-plus _push-his" id="_id<?php echo $language->id; ?>" data-id="<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
                                             <span class="glyphicon glyphicon-volume-up" id="_id<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>

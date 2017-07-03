@@ -9,6 +9,7 @@
     <div class="col-sm-6 col-sm-offset-3 form-group row">
         <div class="col-sm-10 no-padding">
             <?php echo Form::text('search', '', ['id' => 'from','class' => 'form-control no-radius-right', 'autofocus']); ?>
+
         </div>
         <?php echo Form::submit('Tra từ', ['class' => 'btn btn-success ilearn-background-color col-sm-2 no-radius-left']); ?>
 

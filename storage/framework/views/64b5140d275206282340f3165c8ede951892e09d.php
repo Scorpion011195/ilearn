@@ -1,4 +1,13 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
 <?php $data = DB::table('languages')->get(); ?>
 <?php if(isset($SSMessageDuration)): ?>
          <div class="alert alert-success">
@@ -28,7 +37,7 @@
                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                               </select>
                               <?php if(isset($getTypeEnglish)): ?>
-                              <select class="form-control" name="typeword">
+                              <select class="type form-control" name="typeword">
                                   <?php $__currentLoopData = $getTypeEnglish; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                   <option
                                   value="<?php echo e(utf8_encode($value)); ?>"><?php echo $value; ?></option>
@@ -58,8 +67,8 @@
                   <div class="input-group <?php echo e(utf8_encode($errors->has('tu') ? ' has-error' : '')); ?>" >
                       <span class="input-group-addon">Từ</span>
                       <input size="30" id="msg" type="text" class="form-control" name="tu" placeholder="Hello" value="">
-
                   </div>
+                  <br>
                    <?php if($errors->has('tu')): ?>
                     <span class="help-block">
                         <strong><?php echo $errors->first('tu'); ?></strong>
