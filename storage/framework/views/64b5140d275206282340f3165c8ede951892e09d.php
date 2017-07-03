@@ -1,130 +1,90 @@
- <?php $data = DB::table('languages')->get(); ?>
- <?php
- if (Session::has('message')) {
 
-   ?>
-    <div class="alert alert-success">
-        <?php
-        $message = Session::get('message');
-        echo "<center>".$message."</center>";
-        ?>
+<?php $data = DB::table('languages')->get(); ?>
+<?php if(isset($SSMessageDuration)): ?>
+         <div class="alert alert-success">
+             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+             <center><?php echo e(utf8_encode($SSMessageDuration)); ?></center>
+         </div>
+<?php endif; ?>
+<br>
 
-    </div>
-    <?php
-
-}
-?>
 <div id="create-dict"  class="container">
-    <div class="col-sm-6 col-sm-offset-3 form-group row panel panel-default no-radius-left no-radius-right">
-        <div class="panel-body">
-            <form action="<?php echo e(utf8_encode(route('historyUpdate'))); ?>" method="POST" role="form" id="create-dict-form">
-               <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
-               <div class="create-dict-input">
-                <div class="row panel">
-                    <div class="row no-margin margin-top">
-                        <div class="col-sm-5">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <label  class="form-label text-center-vertical">Từ</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="tu">
-                                </div>
-                            </div>
-                        </div>
-                        
-
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <center><h1><b>THÊM LỊCH SỬ</b></h1></center>
+    <br>
+</div>
+<div class="col-sm-8 col-sm-offset-2 form-group row panel panel-default no-radius-left no-radius-right ">
+    <div class="panel-body">
+        <div class="panel">
+            <div class="panel-body">
+                <form class="form-inline" action="<?php echo e(utf8_encode(route('historyUpdate'))); ?>" method="post">
+                    <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
+                    <div class="row">
                         <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <label  class="form-label text-center-vertical">Ngôn ngữ</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <select name="cb1" id="" class="form-control">
-                                        <?php foreach($data as $item){
-                                            $language = $item->language;
-                                            ?>
-                                            <option><?php echo e(utf8_encode($language)); ?></option>
-                                            <?php }?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row no-margin margin-top">
-                            <div class="col-sm-5">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                       <label  class="form-label text-center-vertical">Giải thích</label>
-                                   </div>
-                                   <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="des1">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <label  class="form-label text-center-vertical">Loại từ</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <select name="TypeOfWord" id="" class="form-control">
-                                        <option value="Trạng từ">Trạng từ</option>
-                                        <option value="Tính từ">Tính từ</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                              <select class="form-control" name="cb1">
+                                  <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                  <option value="<?php echo $language->language; ?>"><?php echo $language->language; ?></option>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              </select>
+                              <?php if(isset($getTypeEnglish)): ?>
+                              <select class="form-control" name="typeword">
+                                  <?php $__currentLoopData = $getTypeEnglish; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                  <option
+                                  value="<?php echo e(utf8_encode($value)); ?>"><?php echo $value; ?></option>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              </select>
+                              <?php endif; ?>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <select class="form-control" name="cb2">
+                              <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option value="<?php echo $language->language; ?>"><?php echo $language->language; ?></option>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          </select>
+                          <button type="submit" class="btn btn-success ilearn-background-color">
+                              <span class="glyphicon glyphicon-upload"></span>Thêm
+                          </button>
+                      </div>
+                  </div>
+              </div>
 
-                </div>
-                <div class="row no-margin margin-top">
-                    <div class="col-sm-5">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label  class="form-label text-center-vertical">Nghĩa</label>
-                            </div>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="nghia">
-                            </div>
-                        </div>
-                    </div>
+              <br>
 
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <label  class="form-label text-center-vertical">Ngôn ngữ</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <select name="cb2" id="" class="form-control">
-                                    <?php foreach($data as $item){
-                                        $language = $item->language;
-                                        ?>
-                                        <option><?php echo e(utf8_encode($language)); ?></option>
-                                        <?php }?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-margin margin-top">
-                        <div class="col-sm-5">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                   <label  class="form-label text-center-vertical">Giải thích</label>
-                               </div>
-                               <div class="col-sm-9">
-                                <input type="text" class="form-control" name="des2">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center row margin-top">
-                <?php echo Form::submit("Thêm từ", ['class' => 'btn btn-success']); ?>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="input-group <?php echo e(utf8_encode($errors->has('tu') ? ' has-error' : '')); ?>" >
+                      <span class="input-group-addon">Từ</span>
+                      <input size="30" id="msg" type="text" class="form-control" name="tu" placeholder="Hello" value="">
 
-            </div>
-            </form>
-        </div>
-    </div>
+                  </div>
+                   <?php if($errors->has('tu')): ?>
+                    <span class="help-block">
+                        <strong><?php echo $errors->first('tu'); ?></strong>
+                    </span>
+                <?php endif; ?>
+
+                  <div>
+                      </div>
+
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="input-group <?php echo e(utf8_encode($errors->has('tu') ? ' has-error' : '')); ?>">
+                          <span class="input-group-addon">Nghĩa</span>
+                          <input size="30" id="msg" type="text" class="form-control" name="nghia" placeholder="Xin chào" value="">
+                      </div>
+                      <?php if($errors->has('nghia')): ?>
+                    <span class="help-block">
+                        <strong><?php echo $errors->first('nghia'); ?></strong>
+                    </span>
+                <?php endif; ?>
+                  </div>
+
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
 </div>

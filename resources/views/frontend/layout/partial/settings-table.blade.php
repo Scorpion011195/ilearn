@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="">
 </head>
 <body>
-
-<<<<<<< HEAD
-=======
-?>
->>>>>>> master
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Danh sách từ</h3>
@@ -23,25 +18,6 @@
             <div class="row">
                 <div class="col-sm-6">
                 </div>
-<<<<<<< HEAD
-                
-           </div>
-           <div class="row">
-            <div class="col-sm-12">
-                <table id="example1" class="table table-bordered table-striped " role="grid"
-                aria-describedby="example1_info">
-                <thead>
-                    <tr role="row">
-                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                        aria-label="Browser: activate to sort column ascending" style="width: 150px;">Từ
-=======
-                <div class="col-sm-6">
-                    <div id="example1_filter" class=""><label>Search:<input type="search"
-                     class="form-control input-sm"
-                     placeholder=""
-                     aria-controls="example1"></label>
-                 </div>
-             </div>
              </div>
              <div class="row">
                 <div class="col-sm-12">
@@ -49,23 +25,14 @@
                     aria-describedby="example1_info">
                     <thead>
                         <tr role="row">
-                            <th class="" tabindex="" aria-controls="" rowspan="1" colspan="1"
-                            aria-sort="" aria-label=""
-                            style="width: 50px;"> STT
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="Browser: activate to sort column ascending" style="width: 150px;">Từ
                         </th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                         aria-label="Platform(s): activate to sort column ascending" style="width: 150px;">
                         Nghĩa
->>>>>>> master
                     </th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                    aria-label="Platform(s): activate to sort column ascending" style="width: 150px;">
-                    Nghĩa
-                </th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-<<<<<<< HEAD
                 aria-label="Engine version: activate to sort column ascending" style="width: 143px;">
                 Loại từ
             </th>
@@ -102,41 +69,10 @@
     </tbody>
 
 </table>
-=======
-                aria-label="CSS grade: activate to sort column ascending" style="width: 153px;">Từ điển
-            </th>
-            <th class="" tabindex="0" aria-controls="" rowspan="1" colspan="1"
-            aria-label="" style="width: 50px;">Notification</th>
-            <th class="" tabindex="1" aria-controls="" rowspan=""
-            aria-label="" style="width: 103px;">Hành động</th>
-        </thead>
-        <tbody>
-            @if(isset($data))
-            @foreach($data as $row)
-            <tr>
-                <td>{{ $row['STT'] }}</td>
-                <td class="sorting_1">{!! $row['from_text'] !!}</td>
-                <td>{!! $row['to_text'] !!} </td>
-                <td>{!! $row['type_to'] !!} </td>
-                <td>{!! $row['from'] !!}-{!! $row['to'] !!}</td>
-                <td class="delete">{!! $row['notification'] !!} </td>
 
-                <td class="editable editable-click" aria-hidden="false">
-                <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-               <a class="deleteProduct" data-id="{{ $row['STT'] }}" data-token="{{ csrf_token() }}"> <i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-left: 10px"></i></a>
-                </td>
-            </tr>
-            @endforeach
-            @endif
-        </tbody>
-
-    </table>
->>>>>>> master
 
 </div>
 </div>
-
-<<<<<<< HEAD
 <script>
     $(document).ready(function(){
         $("a.deleteRecord").on('click', function(E){
@@ -166,9 +102,3 @@
         });
     });
 </script>
-=======
-       <!-- /.box-body -->
-   </div>
-
-   
->>>>>>> master

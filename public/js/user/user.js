@@ -5,9 +5,10 @@ $(document).ready(function() {
 		var from = $("#_langFrom :selected").text();
 		var to = $("#_langTo :selected").text();
 		var id = $(this).attr('data-id');
-		var from_text = $('._text-search').val();
+		var from_text = $('#_text-search').val();
 		var to_text = $(this).next().next().text();
 		var _token = $('input[name=_token]').val();
+		alert(from_text)
 		$.ajax ({
 			url: 'HistoryAddNew',
 			type: 'POST',
