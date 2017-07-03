@@ -15,6 +15,7 @@ use App\Models\Vietnamese;
 use App\Services\VietnameseService;
 use App\Models\Japanese;
 use App\Services\JapaneseService;
+use App\Http\Requests\AdminUploadCsvRequest;
 
 class UploadExcelController extends Controller
 {
@@ -23,14 +24,17 @@ class UploadExcelController extends Controller
     	$checkWord = DB::table($tableXXX)
             ->where('word', '=', $word)
             ->get();
+        //dd($checkWord); die;
+         // echo "<pre>"; print_r(count($checkWord)); die;
     	if(count($checkWord) > 0) {
     		return true;
-    	}
+    	}else{
     	return false;
+    }
     }
 
     // Return function getMaxIdMapping from Controller DictionaryManagementController
-	public function importExcel(Request $request)
+	public function importExcel(AdminUploadCsvRequest $request)
 	{	
 		if($request->hasFile('csv-file')){
 			$path = $request->file('csv-file')->getRealPath();
@@ -42,8 +46,7 @@ class UploadExcelController extends Controller
 					if ($value ->language == "") {
 						$id_mapping++;
 						continue;
-					}
-					
+					}					
 					$word = array("type" => $value->type, "word" => $value->word);
 					$insert = null;
 					$insert[] = [
@@ -55,8 +58,9 @@ class UploadExcelController extends Controller
 						'created_at' => date('Y-m-d H:i:s'),
 						'updated_at' => date('Y-m-d H:i:s'),
 					];
-					if($this->checkTonTai($value->language, $word))
-					{
+					//dd($this->checkTonTai($value->language, $word)); die;
+					if($this->checkTonTai($value->language, json_encode($word)))
+					{						
 						continue;
 					}
 					DB::table($value->language)->insert($insert);
