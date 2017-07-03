@@ -107,10 +107,10 @@
                                       <td class="_word" id="_td-word{!! $row->id !!}" style="vertical-align:middle">{!! $word->word !!}</td>
                                       <td class="_explain" id="_td-explain{!! $row->id !!}">{!! $row->explain !!}</td>
                                       <td class="text-center" style="vertical-align:middle">
-                                        <button class="_update-word _tooltip-me button-icon" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
+                                        <button class="_update-word _tooltip-me btn__icon btn--color-link" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
                                           <span class="glyphicon glyphicon-edit"></span>
                                         </button>
-                                        <button class="_delete-word-to _tooltip-me button-icon" title="Xóa!">
+                                        <button class="_delete-word-to _tooltip-me btn__icon btn--color-link" title="Xóa!">
                                           <span class="glyphicon glyphicon-trash"></span>
                                         </button>
                                       </td>

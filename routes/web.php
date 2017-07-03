@@ -22,11 +22,10 @@ Route::get('/result', function () {
 Route::get('/', array('as' => '',
     'uses' => 'LaguageController@getAllLanguage'));
 
-Route::get('/search', array('as' => 'search',
-    'uses' => 'LaguageController@getAllLanguage'));
 
-Route::post('/search', array('as' => 'search',
+Route::get('/search', array('as' => 'search',
     'uses' => 'LaguageController@search'));
+
 
 
 /*=================/Function Search================*/

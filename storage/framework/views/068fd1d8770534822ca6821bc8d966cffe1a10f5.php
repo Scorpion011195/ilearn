@@ -17,7 +17,7 @@
 <div class="container panel text-center">
     <div class="panel-body">
     </div>
-    <form action="<?php echo e(utf8_encode(route('settingUpdate'))); ?>" method="POST" role="form">
+    <form action="<?php echo e(route('settingUpdate')); ?>" method="POST" role="form">
         <div class="container col-sm-6 col-sm-offset-3">
             <div class="form-group">
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
