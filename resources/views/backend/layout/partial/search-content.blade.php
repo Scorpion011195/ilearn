@@ -64,11 +64,11 @@
       @if (isset($code))
           @if($code == "FailedCannotFind")
             <div>
-              <p style="color:red" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Không tìm thấy kết quả</p>
+              <p class="alert--fail" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Không tìm thấy kết quả</p>
             </div>
           @elseif($code == "Success")
             <div>
-              <p style="color:blue" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $countTo !!} kết quả được tìm thấy</p>
+              <p class="alert--success" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $countTo !!} kết quả được tìm thấy</p>
             </div>
           @endif
      @endif
@@ -82,18 +82,18 @@
                                    aria-describedby="example1_info">
                                 <thead>
                                 <tr role="row">
-                                    <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Browser: activate to sort column ascending" style="width: 50px;">ID
+                                    <th class="text-center col--width05" aria-controls="example1" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">ID
                                     </th>
-                                    <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Browser: activate to sort column ascending" style="width: 300px;">Nghĩa
+                                    <th class="text-center col--width3" aria-controls="example1" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Nghĩa
                                     </th>
-                                    <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending" style="width: 400px;">
+                                    <th class="text-center col--width4" aria-controls="example1" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">
                                         Giải thích
                                     </th>
-                                    <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Engine version: activate to sort column ascending" style="width: 103px;">
+                                    <th class="text-center col--width1" aria-controls="example1" rowspan="1" colspan="1"
+                                        aria-label="Engine version: activate to sort column ascending">
                                         Hành động
                                     </th>
                                 </tr>
@@ -103,10 +103,10 @@
                                  @foreach($result as $row)
                                    <?php $word = json_decode($row->word); ?>
                                    <tr role="row" class="odd" id="_tr{!! $row->id !!}">
-                                      <td class="_word-id text-center" data-id="{!! $row->id !!}" style="vertical-align:middle">{!! $row->id !!}</td>
-                                      <td class="_word" id="_td-word{!! $row->id !!}" style="vertical-align:middle">{!! $word->word !!}</td>
-                                      <td class="_explain" id="_td-explain{!! $row->id !!}">{!! $row->explain !!}</td>
-                                      <td class="text-center" style="vertical-align:middle">
+                                      <td class="_word-id text-center align--vertical-middle" data-id="{!! $row->id !!}">{!! $row->id !!}</td>
+                                      <td class="_word align--vertical-middle" id="_td-word{!! $row->id !!}">{!! $word->word !!}</td>
+                                      <td class="_explain align--vertical-middle" id="_td-explain{!! $row->id !!}">{!! $row->explain !!}</td>
+                                      <td class="text-center align--vertical-middle">
                                         <button class="_update-word _tooltip-me btn__icon btn--color-link" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
                                           <span class="glyphicon glyphicon-edit"></span>
                                         </button>

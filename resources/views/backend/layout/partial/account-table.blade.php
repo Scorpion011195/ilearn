@@ -1,11 +1,11 @@
 @if (isset($code) && count($errors)<=0)
   @if($code == "RequestInput")
     <div>
-        <p style="color:red" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Xin hãy nhập Tài khoản hoặc chọn Ngày đăng ký!</p>
+        <p class="alert--fail" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Xin hãy nhập Tài khoản hoặc chọn Ngày đăng ký!</p>
     </div>
   @elseif($code == "Success")
     <div>
-        <p style="color:blue" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $noOfAccounts !!} kết quả được tìm thấy</p>
+        <p class="alert--success" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $noOfAccounts !!} kết quả được tìm thấy</p>
     </div>
   @endif
 @endif
@@ -22,26 +22,26 @@
                         aria-describedby="example1_info">
                         <thead>
                             <tr role="row">
-                                <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
+                                <th class="text-center col--width05" aria-controls="example1" rowspan="1" colspan="1"
                                 aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                                style="width: 50px;">ID
+                                >ID
                                 </th>
-                                <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                            aria-label="Browser: activate to sort column ascending" style="width: 207px;">Tài khoản
+                                <th class="text-center col--width3" aria-controls="example1" rowspan="1" colspan="1"
+                            aria-label="Browser: activate to sort column ascending">Tài khoản
                                 </th>
-                                <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                        aria-label="Platform(s): activate to sort column ascending" style="width: 100px;">
+                                <th class="text-center col--width2" aria-controls="example1" rowspan="1" colspan="1"
+                        aria-label="Platform(s): activate to sort column ascending">
                         Tình trạng
                                 </th>
-                                <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                    aria-label="Engine version: activate to sort column ascending" style="width: 100px;">
+                                <th class="text-center col--width2" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Engine version: activate to sort column ascending">
                     Quyền
                                 </th>
-                                <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                aria-label="CSS grade: activate to sort column ascending" style="width: 103px;">Ngày đăng ký
+                                <th class="text-center col--width2" aria-controls="example1" rowspan="1" colspan="1"
+                aria-label="CSS grade: activate to sort column ascending">Ngày đăng ký
                                 </th>
-                                <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-            aria-label="CSS grade: activate to sort column ascending" style="width: 103px;">Hành động
+                                <th class="text-center col--width2" aria-controls="example1" rowspan="1" colspan="1"
+            aria-label="CSS grade: activate to sort column ascending">Hành động
                                 </th>
                             </tr>
                         </thead>
@@ -50,7 +50,7 @@
                         <?php
                         function changeColor($str, $key)
                         {
-                            return str_replace($key, "<span style='color:red;'>$key</span>", $str);
+                            return str_replace($key, "<span class='font--color-red'>$key</span>", $str);
                         }
                         ?>
                         <!-- /.change key color -->

@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 // Do not remove it!
 class MyConstant
 {
-    // Mảng này khớp với table languages trong database
+    // Table languages in database
     const LANGUAGES_TABLE = ['1'=>'english','2'=>'vietnamese','3'=>'japanese'];
 
     const TYPE_OF_WORD_ENGLISH = ['1'=>'Noun',

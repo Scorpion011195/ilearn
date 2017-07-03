@@ -298,7 +298,7 @@ footer p {
 }
 
 /* VALIDATE */
-.help-block--color-red{
+.help-block--color-apple-blossom{
     color: #a94442;
 }
 /* /.VALIDATE */
@@ -322,6 +322,39 @@ footer p {
     color: #3097D1;
 }
 /* /.BUTTON */
+
+/* TABLE */
+.col--width05{
+    width: 50px;
+}
+.col--width1{
+    width: 100px;
+}
+.col--width2{
+    width: 200px;
+}
+.col--width3{
+    width: 300px;
+}
+.col--width4{
+    width: 400px;
+}
+.col--width5{
+    width: 500px;
+}
+/* /.TABLE */
+
+/* FONT */
+.font--color-red{
+    color: red;
+}
+/* /.FONT */
+
+/* ALIGN */
+.align--vertical-middle{
+    vertical-align:middle !important;
+}
+/* /.ALIGN */
 
 /* RESPONSIVE */
 @media screen and (max-width: 699px) and (min-width: 520px), (min-width: 1261px) {

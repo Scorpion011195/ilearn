@@ -1,3 +1,7 @@
+<?php $__env->startSection('title'); ?>
+    Quản lý tài khoản
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content-header'); ?>
     <h1>Quản lý tài khoản</h1>
 <?php $__env->stopSection(); ?>

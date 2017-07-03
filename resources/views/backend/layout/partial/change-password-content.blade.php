@@ -3,15 +3,15 @@
             @if(session('alertUpdatePassword'))
                 @if(session('alertUpdatePassword')=='failPass')
                     <div>
-                      <p style="color:red"><span class="glyphicon glyphicon-warning-sign"></span>   Mật khẩu cũ không đúng!</p>
+                      <p class="alert--fail"><span class="glyphicon glyphicon-warning-sign"></span>   Mật khẩu cũ không đúng!</p>
                     </div>
                 @elseif(session('alertUpdatePassword')=='failPassConfirm')
                     <div>
-                      <p style="color:red"><span class="glyphicon glyphicon-warning-sign"></span>   Xác nhận mật khẩu không đúng!</p>
+                      <p class="alert--fail"><span class="glyphicon glyphicon-warning-sign"></span>   Xác nhận mật khẩu không đúng!</p>
                     </div>
                 @else
                     <div>
-                      <p style="color:red"><span class="glyphicon glyphicon-ok"></span>   Đã thay đổi mật khẩu thành công!</p>
+                      <p class="alert--success"><span class="glyphicon glyphicon-ok"></span>   Đã thay đổi mật khẩu thành công!</p>
                     </div>
                 @endif
             @endif
@@ -20,7 +20,7 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Mật khẩu cũ</lable>
                     <div class="col-sm-8 {!! $errors->has('profile-password-old') ? ' has-error' : '' !!}">
-                        <input type="password" name="profile-password-old" class="form-control" value="{!! old('profile-password-old') !!}">
+                        <input type="password" name="profile-password-old" class="form-control" value="{!! old('profile-password-old') !!}" required>
                     </div>
                 </div>
                 @if ($errors->has('profile-password-old'))
@@ -36,7 +36,7 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Mật khẩu mới</lable>
                     <div class="col-sm-8 {!! $errors->has('profile-password-new') ? ' has-error' : '' !!}">
-                        <input type="password" name="profile-password-new" class="form-control" value="{!! old('profile-password-new') !!}">
+                        <input type="password" name="profile-password-new" class="form-control" value="{!! old('profile-password-new') !!}" required>
                     </div>
                 </div>
                 @if ($errors->has('profile-password-new'))
@@ -52,7 +52,7 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Nhập lại mật khẩu mới</lable>
                     <div class="col-sm-8 {!! $errors->has('profile-password-new-confirm') ? ' has-error' : '' !!}">
-                        <input type="password" name="profile-password-new-confirm" class="form-control" value="{!! old('profile-password-new-confirm') !!}">
+                        <input type="password" name="profile-password-new-confirm" class="form-control" value="{!! old('profile-password-new-confirm') !!}" required>
                     </div>
                 </div>
                 @if ($errors->has('profile-password-new-confirm'))

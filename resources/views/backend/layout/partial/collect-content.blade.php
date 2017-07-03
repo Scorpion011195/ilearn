@@ -34,31 +34,29 @@
                                        aria-describedby="example1_info">
                                     <thead>
                                     <tr role="row">
-                                        <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                                            style="width: 50px;">ID
+                                        <th class="text-center col--width1" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID
                                         </th>
-                                        <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                                            style="width: 250px;">Từ
+                                        <th class="text-center col--width3" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Từ
                                         </th>
-                                        <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="Browser: activate to sort column ascending" style="width: 250px;">Nghĩa
+                                        <th class="text-center col--width3" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending">Nghĩa
                                         </th>
-                                        <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="Platform(s): activate to sort column ascending" style="width: 184px;">
+                                        <th class="text-center col--width2" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="Platform(s): activate to sort column ascending">
                                             Từ điển
                                         </th>
-                                        <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="Engine version: activate to sort column ascending" style="width: 100px;">
+                                        <th class="text-center col--width2" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="Engine version: activate to sort column ascending">
                                             Lượt sử dụng
                                         </th>
-                                        <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="Engine version: activate to sort column ascending" style="width: 100px;">
+                                        <th class="text-center col--width2" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="Engine version: activate to sort column ascending">
                                             Từ loại
                                         </th>
-                                        <th class="text-center" aria-controls="example1" rowspan="1" colspan="1"
-                                            aria-label="Engine version: activate to sort column ascending" style="width: 100px;">
+                                        <th class="text-center col--width2" aria-controls="example1" rowspan="1" colspan="1"
+                                            aria-label="Engine version: activate to sort column ascending">
                                             Tình trạng
                                         </th>
                                     </tr>

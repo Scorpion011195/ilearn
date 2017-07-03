@@ -2,7 +2,7 @@
         <div class="panel-body">
             @if(session('alertUpdateProfile'))
             <div>
-              <p style="color:blue"><span class="glyphicon glyphicon-ok"></span>   {!! session('alertUpdateProfile') !!}</p>
+              <p class="alert--success"><span class="glyphicon glyphicon-ok"></span>   {!! session('alertUpdateProfile') !!}</p>
             </div>
             @endif
             <form action="{{ route('adminUpdateProfile') }} "  method="post">

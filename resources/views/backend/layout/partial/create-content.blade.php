@@ -2,12 +2,12 @@
     <div class="panel-body">
       @if ($errors->has('Success'))
       <div>
-        <p class="font--success"><span class="glyphicon glyphicon-ok"></span>   {!! $errors->first('Success') !!}</p>
+        <p class="alert--success"><span class="glyphicon glyphicon-ok"></span>   {!! $errors->first('Success') !!}</p>
       </div>
       @endif
       @if ($errors->has('FailedCannotFind'))
       <div>
-        <p class="_fail"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('FailedCannotFind') !!}</p>
+        <p class="alert--fail"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('FailedCannotFind') !!}</p>
       </div>
       @endif
       <form class="form-inline" action="{{ route('adminDictCreateWord') }}" method="post">
@@ -63,10 +63,10 @@
           <div class="col-sm-6 {{ $errors->has('_txttu') ? ' has-error' : '' }}">
             <div class="input-group ">
               <span class="input-group-addon">Từ</span>
-              <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="Hello" value="{!! old('_txttu') !!}" required maxlength="50">
+              <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="Hello" value="{{ old('_txttu') }}" required maxlength="50">
             </div>
             @if ($errors->has('_txttu'))
-            <span class="glyphicon glyphicon-warning-sign help-block--color-red"></span>   <strong class="help-block--color-red">{!! $errors->first('_txttu') !!}</strong>
+            <span class="glyphicon glyphicon-warning-sign help-block--color-apple-blossom"></span>   <strong class="help-block--color-apple-blossom">{!! $errors->first('_txttu') !!}</strong>
             @endif
           </div>
           <div class="col-sm-6 {{ ($errors->has('_txtnghia')&&!($errors->has('_txttu'))) ? ' has-error' : '' }}">
@@ -75,7 +75,7 @@
               <input size="30" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="Xin chào" value="{!! old('_txtnghia') !!}" required maxlength="50">
             </div>
             @if ($errors->has('_txtnghia')&&!($errors->has('_txttu')))
-            <span class="glyphicon glyphicon-warning-sign help-block--color-red"></span>   <strong class="help-block--color-red">{!! $errors->first('_txtnghia') !!}</strong>
+            <span class="glyphicon glyphicon-warning-sign help-block--color-apple-blossom"></span>   <strong class="help-block--color-apple-blossom">{!! $errors->first('_txtnghia') !!}</strong>
             @endif
           </div>
         </div>
