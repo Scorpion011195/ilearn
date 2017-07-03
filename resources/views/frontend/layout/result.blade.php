@@ -5,7 +5,8 @@
         <div class = "col-sm-6 col-sm-offset-3 form-group row">
             <div class ="row panel panel-default no-radius-left no-radius-right">
                 <div class="col-xs-8 col-sm-6">
-                    <span class="title">Bản dịch từ:{!! ($inputText) !!}</span>
+                    <span class="title">Bản dịch từ:&nbsp;{!! ($inputText) !!}</span>
+
                         @if(isset($workInfo))
                             <?php $type = '' ?>
                             @foreach ($workInfo as $language)
@@ -19,7 +20,7 @@
                                             <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
                                         @endif
                                         @if(Auth::guest())
-                                            <span class="glyphicon glyphicon-plus">{!! $language->listen !!}</span>
+                                            <span>{!! $language->listen !!}</span>
                                             <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
                                             <span> {!! $language ->word !!} </span> &nbsp;<br>
                                         @endif
@@ -31,7 +32,7 @@
                                         <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
                                     @endif
                                     @if(Auth::guest())
-                                        <span class="glyphicon glyphicon-plus">{!! $language->listen !!}</span>
+                                        <span>{!! $language->listen !!}</span>
                                         <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
                                         <span> {!! $language ->word !!} </span> &nbsp;<br>
                                     @endif
@@ -46,25 +47,25 @@
                         @endif
                     </form>
                 </div>
-
             <div class="col-xs-4 col-sm-6">
-                <span class="title">Giải thích từ:{!! ($inputText) !!}</span>
+                <span class="title">Giải thích từ:&nbsp;{!! ($inputText) !!}</span>
                     @if(isset($workInfo))
                         <?php $type = '' ?>
                         @foreach ($workInfo as $language)
                             <?php
                             $getData='';
                             ?>
-                            @if(is_null($language->explain))
+                            @if(empty($language->explain))
+
                             @else
-                            @if(!($type == $language->type))
-                                <?php  $type = $language->type ?><br>
+                                @if(!($type == $language->type))
+                                    <?php  $type = $language->type ?><br>
                                     <b class="_type" >{!! $language->type !!}</b>:<br>
                                     <span> {!! $language ->explain !!} </span> &nbsp;<br>
                                 @endif
-                                @endif
-                            @endforeach
-                        @endif
+                            @endif
+                        @endforeach
+                    @endif
                     </div>
                 </div>
             </div>
