@@ -20,7 +20,7 @@
                                             <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
                                         @endif
                                         @if(Auth::guest())
-                                            <span class="glyphicon glyphicon-plus">{!! $language->listen !!}</span>
+                                            <span>{!! $language->listen !!}</span>
                                             <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
                                             <span> {!! $language ->word !!} </span> &nbsp;<br>
                                         @endif
@@ -32,7 +32,7 @@
                                         <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
                                     @endif
                                     @if(Auth::guest())
-                                        <span class="glyphicon glyphicon-plus">{!! $language->listen !!}</span>
+                                        <span>{!! $language->listen !!}</span>
                                         <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
                                         <span> {!! $language ->word !!} </span> &nbsp;<br>
                                     @endif
