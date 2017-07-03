@@ -55,9 +55,11 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
         return view('frontend.historys');
     });
   Route::POST('HistoryAddNew', 'HistoryController@addNew');
-  Route::POST('HistoryDelete', 'HistoryController@delete');
+  Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
 
 Route::get('/historys','HistoryController@store' );
+
+Route::POST('/historys/delete' ,['as'=> 'HistoryDelete', 'uses' => 'HistoryController@deleteRecordByAjax' ]);
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
 Route::POST('/historys/addNew' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@AddNew' ]);
@@ -69,7 +71,7 @@ Route::POST('/historys/addNew' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryContr
 
 
 /*=================== Test area ===============*/
-Route::get('test', 'StatisticManagementController@testInsertArrayToHistory');
+Route::get('test', 'HistoryController@test');
 
 Route::get('tests', function(){
     echo DB::table('vietnamese')->max('id_mapping');
