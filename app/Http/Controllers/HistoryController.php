@@ -45,53 +45,7 @@ class HistoryController extends Controller implements  BaseController
 
         $historys = History::where('id_history', $id)->first();
         $arr= json_decode($historys->content, true);
-<<<<<<< HEAD
-        $arr[]= array('type_to'=>$request->typeword,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'notification'=> 'F');
-=======
-        $a=count($arr);
-        $arr[]= array('type_to'=>$request->typeword,'STT'=> $a,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'notification'=> 'F');
->>>>>>> master
-
-        if($request->tu  == null && $request->nghia !== null ){
-            return redirect('/historys')->with("message","<strong>Lỗi!</strong> Vui lòng nhập đầy đủ thông tin.");
-        }
-        else{
-
-           $json = json_encode($arr,true);
-           $info = ['content' => $json];
-
-           History::where('id_history',$id)->update($info);
-           return view('frontend.history',['data' => $arr,
-            'getTypeEnglish'=>$listTypeEnglish,
-<<<<<<< HEAD
-            'SSMessageDuration' => 'History has been update']);     
-            }
-            exit();
-
-       }
-
-    public function store(Request $request)
-       {
-=======
-            'SSMessageDuration' => 'History has been update',]);     }
-
-     }
-
-     public function store(Request $request)
-     {
->>>>>>> master
-        $history= new History;
-        $listTypeEnglish = MyConstant::TYPE_OF_WORD_ENGLISH;
-
-        $id=Auth::user()->id_user;
-                // Lấy ID user để update cho user
-        $historys = History::where('id_history', $id)->first();
-        // $data =json_decode($historys->content);
-        $arr= json_decode($historys->content, true);
-        return view('frontend.history',['data' => $arr,
-            'getTypeEnglish'=>$listTypeEnglish]);
-    }
-<<<<<<< HEAD
+}
     public function addNew(Request $request) {
 
         $listTypeEnglish = MyConstant::TYPE_OF_WORD_ENGLISH;
@@ -170,11 +124,10 @@ class HistoryController extends Controller implements  BaseController
     }
 
     public function getSettings($id) {
->>>>>>> master
 
     }
 
-<<<<<<< HEAD
+
     public function editRecordByAjax($id) {
 
     }
@@ -203,7 +156,6 @@ class HistoryController extends Controller implements  BaseController
         echo "<pre>";
         print_r($arr);
         echo "<pre>";
-=======
     public function setSettings($id, Request $request) {
 
     }
@@ -236,8 +188,5 @@ class HistoryController extends Controller implements  BaseController
             return json_encode($dataResponse);
         }
 
-
-
->>>>>>> master
     }
 }

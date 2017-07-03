@@ -54,11 +54,8 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
         return view('frontend.historys');
     });
   Route::POST('HistoryAddNew', 'HistoryController@addNew');
-<<<<<<< HEAD
   Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
-=======
   Route::POST('HistoryDelete', 'HistoryController@delete');
->>>>>>> master
 
 Route::get('/historys','HistoryController@store' );
 
