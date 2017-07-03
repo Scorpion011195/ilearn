@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -11,8 +10,7 @@ use DB;
 use Auth;
 use Illuminate\Support\MessageBag;
 
-
-class UserController extends Controller implements BaseController
+class UserController extends Controller
 {
 
   public function __construct(UserRepository $user)
