@@ -5,16 +5,20 @@
         <div class = "col-sm-6 col-sm-offset-3 form-group row">
             <div class ="row panel panel-default no-radius-left no-radius-right">
                 <div class="col-xs-8 col-sm-6">
-                    <span class="title">Bản dịch từ:&nbsp;{!! ($inputText) !!}</span>
-
+                    <span class="title">Bản dịch từ:{!! ($inputText) !!}</span>
                         @if(isset($workInfo))
                             <?php $type = '' ?>
                             @foreach ($workInfo as $language)
                                 <?php $getData ='';?>
                                 @if(!($type == $language->type))
+<<<<<<< HEAD
                                     <?php  $type = $language->type ?>
                                     <br>
                                     <b class="_type{!! $language->type !!}" id ="_type">{!! $language->type !!}</b>:<br>
+=======
+                                    <?php  $type = $language->type ?> <br>
+                                    <b class="type" >{!! $language->type !!}</b>:<br> 
+>>>>>>> e68ba846de380164698936d4a804d3858d2d46ef
                                         @if(!Auth::guest())
                                             <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
                                             <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
