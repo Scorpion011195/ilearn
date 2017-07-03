@@ -7,7 +7,11 @@
     </div>
     <!-- /.box-header -->
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div class="box-body">
+=======
+    <div class="body">
+>>>>>>> master
 =======
     <div class="body">
 >>>>>>> master
@@ -17,7 +21,11 @@
                 </div>
                 <div class="col-sm-6">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
+=======
+                    <div id="example1_filter" class=""><label>Search:<input type="search"
+>>>>>>> master
 =======
                     <div id="example1_filter" class=""><label>Search:<input type="search"
 >>>>>>> master
@@ -53,7 +61,11 @@
             <th class="" tabindex="0" aria-controls="" rowspan="1" colspan="1"
             aria-label="" style="width: 50px;">Notification</th>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <th class="" tabindex="0" aria-controls="" rowspan="1" colspan="1"
+=======
+            <th class="" tabindex="1" aria-controls="" rowspan=""
+>>>>>>> master
 =======
             <th class="" tabindex="1" aria-controls="" rowspan=""
 >>>>>>> master
@@ -65,12 +77,17 @@
             <tr>
                 <td><?php echo e(utf8_encode($row['STT'])); ?></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <td><?php echo $row['from_text']; ?></td>
+=======
+                <td class="sorting_1"><?php echo $row['from_text']; ?></td>
+>>>>>>> master
                 <td><?php echo $row['to_text']; ?> </td>
-                <td><?php echo e(utf8_encode($row['type_to'])); ?> </td>
-                <td><?php echo e(utf8_encode($row['from'])); ?>-<?php echo e(utf8_encode($row['to'])); ?></td>
-                <td><?php echo e(utf8_encode($row['notification'])); ?> </td>
+                <td><?php echo $row['type_to']; ?> </td>
+                <td><?php echo $row['from']; ?>-<?php echo $row['to']; ?></td>
+                <td class="delete"><?php echo $row['notification']; ?> </td>
 
+<<<<<<< HEAD
                 <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
 =======
                 <td class="sorting_1"><?php echo $row['from_text']; ?></td>
@@ -79,10 +96,13 @@
                 <td><?php echo $row['from']; ?>-<?php echo $row['to']; ?></td>
                 <td class="delete"><?php echo $row['notification']; ?> </td>
 
+=======
+>>>>>>> master
                 <td class="editable editable-click" aria-hidden="false">
                 <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                <a class="deleteProduct" data-id="<?php echo e(utf8_encode($row['STT'])); ?>" data-token="<?php echo e(utf8_encode(csrf_token())); ?>"> <i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-left: 10px"></i></a>
                 </td>
+<<<<<<< HEAD
 >>>>>>> master
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -93,6 +113,11 @@
 
 
 =======
+>>>>>>> master
+=======
+            </tr>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
 >>>>>>> master
         </tbody>
 
@@ -113,7 +138,13 @@
 
        <!-- /.box-body -->
 <<<<<<< HEAD
+<<<<<<< HEAD
    </div>
+=======
+   </div>
+
+   
+>>>>>>> master
 =======
    </div>
 

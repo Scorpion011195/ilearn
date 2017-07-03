@@ -26,28 +26,6 @@
                         @endif
                         @else
 
-                        @if(!Auth::guest())
-                        <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
-                        <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
-                        <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
-                        @endif
-                        @if(Auth::guest())
-                        <span class="glyphicon glyphicon-plus">{!! $language->listen !!}</span>
-                        <span class="glyphicon glyphicon-volume-up">{!! $language->listen !!}</span>
-                        <span> {!! $language ->word !!} </span> &nbsp;<br>
-                        @endif
-                        @endif
-                        @endforeach
-                        @endif
-
-                        @if(Auth::guest())
-                        <div class="right-group">
-                            <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
-                        </div>
-                        @endif
-                        @if(!Auth::guest())
-                        
-                        @endif
                     </form>
                     <!-- test script -->
                 </div>
@@ -70,10 +48,5 @@
                     @endif
                     @endforeach
                     @endif
+                    
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
