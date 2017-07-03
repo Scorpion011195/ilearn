@@ -7,7 +7,7 @@
     {!! Form::open(array('route' => 'search','method' => 'get', 'class' =>'container')) !!}
     <div class="col-sm-6 col-sm-offset-3 form-group row">
         <div class="col-sm-10 no-padding">
-            {!! Form::text('search', '', ['class' => 'form-control no-radius-right', 'autofocus']) !!}
+            {!! Form::text('search', '', ['id' => 'from','class' => 'form-control no-radius-right', 'autofocus']) !!}
         </div>
         {!! Form::submit('Tra từ', ['class' => 'btn btn-success ilearn-background-color col-sm-2 no-radius-left']) !!}
         <div class="error-form">
@@ -36,7 +36,7 @@
 
         <div class="col-sm-3 col-sm-offset-0 ">
             <label for="sel1"> Đích:</label>
-            <select name="lagTo" class="form-control" id="sel1">
+            <select name="lagTo" class="form-control" id="sel2">
              <?php foreach($data as $item =>$value){
                 $language = $value->language;
                 ?>
@@ -47,7 +47,7 @@
                 @endif
                 <?php }?>
             </select>
-        </div>
+                    </div>
     </div>
     {!! Form::close() !!}
 </div>
