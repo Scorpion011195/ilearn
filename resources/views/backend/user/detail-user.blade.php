@@ -1,5 +1,9 @@
 @extends('backend.ilearn')
 
+@section('title')
+    Thông tin tài khoản
+@endsection
+
 @section('content-header')
     <h1>Thông tin tài khoản<small>{{ $user->username }}</small></h1>
 @endsection

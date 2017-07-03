@@ -1,3 +1,7 @@
+<?php $__env->startSection('title'); ?>
+    Thêm từ
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content-header'); ?>
     <h1>Thêm từ</h1>
 <?php $__env->stopSection(); ?>

@@ -1,5 +1,9 @@
 @extends('backend.ilearn')
 
+@section('title')
+    Thêm file csv
+@endsection
+
 @section('content-header')
     <h1>Thêm file csv</h1>
 @endsection

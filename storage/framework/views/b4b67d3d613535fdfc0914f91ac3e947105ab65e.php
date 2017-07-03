@@ -1,3 +1,7 @@
+<?php $__env->startSection('title'); ?>
+    Thống kê
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content-header'); ?>
     <h1>Thống kê</h1>
 <?php $__env->stopSection(); ?>

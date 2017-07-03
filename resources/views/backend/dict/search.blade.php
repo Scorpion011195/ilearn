@@ -1,5 +1,9 @@
 @extends('backend.ilearn')
 
+@section('title')
+    Tra từ
+@endsection
+
 @section('content-header')
     <h1>Tra từ</h1>
 @endsection

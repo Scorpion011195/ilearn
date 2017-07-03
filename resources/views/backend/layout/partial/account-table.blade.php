@@ -92,7 +92,7 @@
                                     <a href="{{ route('adminGetDetailUser',$_idUser) }}" class="_detail-user _tooltip-me" title="Xem thông tin!">
                                       <span class="glyphicon glyphicon-edit"></span>
                                     </a>
-                                    <button class="_delete-user button-icon _tooltip-me" title="Xóa!">
+                                    <button class="_delete-user btn__icon btn--color-link _tooltip-me" title="Xóa!">
                                       <span class="glyphicon glyphicon-trash"></span>
                                     </button>
                                 </td>

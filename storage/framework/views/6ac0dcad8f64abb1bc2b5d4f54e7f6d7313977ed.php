@@ -1,3 +1,7 @@
+<?php $__env->startSection('title'); ?>
+    Thông Tin Cá Nhân
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content-header'); ?>
     <h1>Thông Tin Cá Nhân</h1>
 <?php $__env->stopSection(); ?>

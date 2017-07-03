@@ -1,5 +1,9 @@
 @extends('backend.ilearn')
 
+@section('title')
+    Quản lý tài khoản
+@endsection
+
 @section('content-header')
     <h1>Quản lý tài khoản</h1>
 @endsection
