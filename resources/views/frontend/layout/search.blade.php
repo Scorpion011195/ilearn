@@ -5,14 +5,14 @@
         {!! Form::open(array('route' => 'search','method' => 'get', 'class' =>'container')) !!}
         <div class="col-sm-6 col-sm-offset-3 form-group row">
             <div class="col-sm-10 no-padding">
-                {!! Form::text('search', '', ['class' => 'form-control no-radius-right', 'autofocus']) !!}
+                {!! Form::text('search', '', ['id' => '_text-search','class' => 'form-control no-radius-right', 'autofocus']) !!}
             </div>
             {!! Form::submit('Tra từ', ['class' => 'btn btn-success ilearn-background-color col-sm-2 no-radius-left']) !!}
         </div>
         <div class="col-sm-6 col-sm-offset-3 form-group row">
             <div class="col-sm-3 form-inline ">
                 <label for="sel1">Nguồn:</label>
-                <select name="lagFrom" class="form-control ilearn-margin-right" id="sel1">
+                <select name="lagFrom" class="lagFrom form-control ilearn-margin-right" id="sel1">
                  <?php foreach($data as $item =>$value){
                     $language = $value->language;
                     ?>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-sm-3 form-inline ">
                 <label for="sel1"> Đích:</label>
-                <select name="lagTo" class="form-control ilearn-margin-right" id="sel1">
+                <select name="lagTo" class="lagTo form-control ilearn-margin-right" id="sel1">
                  <?php foreach($data as $item =>$value){
                     $language = $value->language;
                     ?>

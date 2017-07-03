@@ -25,9 +25,6 @@
                     aria-describedby="example1_info">
                     <thead>
                         <tr role="row">
-                            <th class="" tabindex="" aria-controls="" rowspan="1" colspan="1"
-                            aria-sort="" aria-label=""
-                            style="width: 50px;"> STT
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
                             aria-label="Browser: activate to sort column ascending" style="width: 150px;">Từ
                         </th>
@@ -51,7 +48,6 @@
             @if(isset($data))
             @foreach($data as $row)
             <tr>
-                <td>{{ $row['STT'] }}</td>
                 <td class="sorting_1">{!! $row['from_text'] !!}</td>
                 <td>{!! $row['to_text'] !!} </td>
                 <td>{!! $row['type_to'] !!} </td>
@@ -60,7 +56,7 @@
 
                 <td class="editable editable-click" aria-hidden="false">
                 <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-               <a class="deleteProduct" data-id="{{ $row['STT'] }}" data-token="{{ csrf_token() }}"> <i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-left: 10px"></i></a>
+               <a class="deleteProduct" data-id="" data-token="{{ csrf_token() }}"> <i class="fa fa-pencil-square-o" aria-hidden="true" style="padding-left: 10px"></i></a>
                 </td>
             </tr>
             @endforeach
