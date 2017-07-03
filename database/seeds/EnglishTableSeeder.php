@@ -14,7 +14,7 @@ class EnglishTableSeeder extends Seeder
         DB::table('english')->insert([
             ['id'=>1,'word'=>'{"type":"Noun","word":"hello"}','listen'=>'','explain'=>'','id_mapping'=>1],
             ['id'=>2,'word'=>'{"type":"Noun","word":"book"}','listen'=>'','explain'=>'','id_mapping'=>2],
-            ['id'=>3,'word'=>'{"type":"Verd","word":"book"}','listen'=>'','explain'=>'','id_mapping'=>3]
+            ['id'=>3,'word'=>'{"type":"Verb","word":"book"}','listen'=>'','explain'=>'','id_mapping'=>3]
         ]);
     }
 }

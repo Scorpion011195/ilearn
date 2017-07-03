@@ -25,25 +25,8 @@
 @include('frontend.layout.footer-script')
 @include('frontend.layout.register')
 <!-- SET UP EDITABLE -->
-<script>
-    $(document).ready(function() {
-        $.fn.editable.defaults.mode = 'inline';
-        $(document).ready(function() {
-            $(' td ').editable();
-        });
-        $('#username').editable({
-            type: 'text',
-            pk: 1,
-            url: '/post',
-            title: 'Enter username'
-        });
-        var table = $('#example').DataTable();
-
-        $('#example tbody').on('click', 'tr', function () {
-            var data = table.row( this ).data();
-            alert( 'You clicked on '+data[0]+'\'s row' );
-        } );
-    } );
-</script>
+<!-- <script>
+    
+</script> -->
 </body>
 </html>

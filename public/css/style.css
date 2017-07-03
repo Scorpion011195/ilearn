@@ -12,24 +12,12 @@ html, body {
     margin-bottom: 100px;
 }
 
-@media screen and (max-width: 699px) and (min-width: 520px), (min-width: 1261px) {
-    .center {
-
-    }
-}
-
-@media screen and (min-width: 1261px) and (max-width: 1270px){
-    .center {
-
-    }
-}
-
-.ilearn-background-color {
+ .ilearn-background-color {
     background-color: #00e3ff;
     border-color: #00e3ff;
 }
 
-.facebook-font-color {
+ .facebook-font-color {
     color: white;
 }
 
@@ -108,8 +96,9 @@ html, body {
 }
 .menu{
     width:100%;
+    height: 57px;
     background:#fff;
-    box-shadow:0 3px 3px rgba(146,146,146,1.00);
+    border-bottom: 2px solid blue;
 }
 .slider{
     width:100%;
@@ -302,12 +291,79 @@ footer p {
     margin-bottom: 11px;
 }
 
-/* /REGISTER MODAL */
-
 /* SETTINGS NOTIFICATION */
 .checkbox-left {
     left: 0;
 
 }
 
-/* /SETTINGS NOTIFICATION */
+/* VALIDATE */
+.help-block--color-apple-blossom{
+    color: #a94442;
+}
+/* /.VALIDATE */
+
+/* ALERT */
+.alert--success{
+    color: blue;
+}
+.alert--fail{
+    color: red;
+}
+/* /.ALERT */
+
+/* BUTTON */
+.btn__icon{
+    border: none;
+    background: none;
+}
+
+.btn--color-link{
+    color: #3097D1;
+}
+/* /.BUTTON */
+
+/* TABLE */
+.col--width05{
+    width: 50px;
+}
+.col--width1{
+    width: 100px;
+}
+.col--width2{
+    width: 200px;
+}
+.col--width3{
+    width: 300px;
+}
+.col--width4{
+    width: 400px;
+}
+.col--width5{
+    width: 500px;
+}
+/* /.TABLE */
+
+/* FONT */
+.font--color-red{
+    color: red;
+}
+/* /.FONT */
+
+/* ALIGN */
+.align--vertical-middle{
+    vertical-align:middle !important;
+}
+/* /.ALIGN */
+
+/* RESPONSIVE */
+@media screen and (max-width: 699px) and (min-width: 520px), (min-width: 1261px) {
+    .center {
+    }
+}
+
+@media screen and (min-width: 1261px) and (max-width: 1270px){
+    .center {
+    }
+}
+/* /.RESPONSIVE */

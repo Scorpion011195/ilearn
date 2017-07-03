@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -11,8 +10,7 @@ use DB;
 use Auth;
 use Illuminate\Support\MessageBag;
 
-
-class UserController extends Controller implements BaseController
+class UserController extends Controller
 {
 
   public function __construct(UserRepository $user)
@@ -67,7 +65,7 @@ class UserController extends Controller implements BaseController
   }
   public function postLogin(Request $request)
   {
-
+    \Session::put('flagLogin', 'isLogin');
     $rules = [
     'username' => 'required',
     'password' =>'required|min:6|max:32',
@@ -82,9 +80,11 @@ class UserController extends Controller implements BaseController
     $validator = Validator::make($request->all(), $rules, $messages);
 
     if($validator->fails())
+
     {
       return redirect()->back()->withErrors($validator)->withInput();
     }
+
     else {
       $username = $request->input('username');
       $password = $request->input('password');
@@ -92,10 +92,10 @@ class UserController extends Controller implements BaseController
 
       if(Auth()->attempt(['username' =>$username, 'password' => $password],$remember)) {
         return redirect()->action('LaguageController@getAllLanguage');
-
       }
       else {
         $errors = new MessageBag(['errorLogin' => 'Email hoặc mật khẩu không đúng']);
+
         return redirect()->back()->withInput()->withErrors($errors);
       }
     }
@@ -107,7 +107,7 @@ class UserController extends Controller implements BaseController
   }
   public function postRegister(RegisterRequest $request)
   {
-
+    \Session::put('flagLogin', 'isRegister');
     $user = new \App\Models\User();
     $user->email = $request->email;
     $user->username = $request->username;
