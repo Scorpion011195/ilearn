@@ -6,7 +6,6 @@
             <div class ="row panel panel-default no-radius-left no-radius-right">
                 <div class="col-xs-8 col-sm-6">
 <<<<<<< HEAD
-<<<<<<< HEAD
                     <span class="title">Bản dịch từ:{!! ucfirst($inputText) !!}</span>
                     <form action="{{route('HistoryAddNew')}}" method="POST" role="form">
                         @if(isset($workInfo))
@@ -53,7 +52,6 @@
                                             <span> {!! $language ->word !!} </span> &nbsp;<br>
                                         @endif
                                 @else
-<<<<<<< HEAD
 
                                     @if(!Auth::guest())
                                         <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>

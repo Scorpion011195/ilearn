@@ -1,0 +1,9 @@
+diff a/resources/views/frontend/layout/result.blade.php b/resources/views/frontend/layout/result.blade.php	(rejected hunks)
+@@ -53,6 +53,7 @@
+                                             <span> {!! $language ->word !!} </span> &nbsp;<br>
+                                         @endif
+                                 @else
++<<<<<<< HEAD
+ 
+                                     @if(!Auth::guest())
+                                         <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
