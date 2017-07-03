@@ -45,8 +45,6 @@
                                 <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
                             </div>
                         @endif
-
-<<<<<<< HEAD
                         @if(!Auth::guest())
                         <div class="right-group">
                             Góp ý và chỉnh sửa <a data-toggle="modal" data-target="#myModal">Tại đây</a>
@@ -73,44 +71,7 @@
                         } );
                     </script>
                 </div>
-                <div class="col-xs-4 col-sm-6">
-                    <span class="title">Giải thích từ:{!! ucfirst($inputText) !!}</span>
-                        @if(isset($workInfo))
-                            <?php $type = '' ?>
-                            @foreach ($workInfo as $language)
-                                <?php
-                                $getData='';
-                                ?>
-                                @if(is_null($language->explain))                               
-                                @else
-                                @if(!($type == $language->type))
-                                    <?php  $type = $language->type ?><br>
-                                        <b class="_type" >{!! $language->type !!}</b>:<br>
-                                        <span> {!! $language ->explain !!} </span> &nbsp;<br>
-                                @else
-=======
-                                <input type="hidden" name="getData1" value="{!! $language->type !!}">
-                                <input type="hidden" name="getData2" value="{!! $language->word !!}">
-                                <input type="hidden" name="getData3" value="{!! $language->explain !!}">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            </form>
-                            @endif
-                        @endforeach
-                    @endif
-                <!-- test script -->
-                <script>
-                    $(document).ready(function() {
-                        $('._push-his').on('click', function(E){
-                            var from = $("#_langFrom :selected").text();
-                            var to = $("#_langTo :selected").text();
-                            var id = $(this).attr('data-id');
-                            var from_text = $('._text-search').val();
-                            var to_text = $(this).next().next().text();
-                            alert(from+"-"+to+"-"+from_text+"-"+to_text+"-"+id);
-                        });
-                    } );
-                </script>
-            </div>
+            
             <div class="col-xs-4 col-sm-6">
                 <span class="title">Giải thích từ:{!! ucfirst($inputText) !!}</span>
                     @if(isset($workInfo))
@@ -124,13 +85,12 @@
                             @if(!($type == $language->type))
                                 <?php  $type = $language->type ?><br>
                                     <b class="_type" >{!! $language->type !!}</b>:<br>
->>>>>>> c186160a6629627fa1e450157d10a2fcf997ab52
                                     <span> {!! $language ->explain !!} </span> &nbsp;<br>
                                 @endif
                                 @endif
                             @endforeach
                         @endif
-
+                    </div>
                 </div>
             </div>
         </div>
