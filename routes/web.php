@@ -101,6 +101,9 @@ Route::group(['prefix' => 'admin'], function () {
         // Xóa từ
         Route::post('delete', 'DictionaryManagementController@deleteWord');
 
+        // Cập nhật từ
+        Route::post('update', 'DictionaryManagementController@updateWord')->name('adminDictUpdateWord');
+
         // Thống kê
         Route::get('collect', 'StatisticManagementController@displayStatisticalResult')->name('adminDictCollect');
         Route::post('collect-added', 'StatisticManagementController@displayStatisticalResultByCondition')->name('adminDictCollectByCondition');
@@ -134,7 +137,8 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::post('update', 'AdminController@updateProfile')->name('adminUpdateProfile');
 
-        Route::post('changePassword','AdminController@changePassword')->name('adminChangePassword');
+        Route::get('changePassword','AdminController@getChangePassword')->name('adminGetChangePassword');
+        Route::post('changePassword','AdminController@postChangePassword')->name('adminPostChangePassword');
     });
 });
 /*=================== /.Admin area ===============*/
