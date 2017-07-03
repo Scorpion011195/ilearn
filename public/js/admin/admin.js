@@ -203,6 +203,12 @@ $(document).ready(function(){
 
     // TOOLTIP
     $(document).find('._tooltip-me').tooltip();
+
+
+    $('.datepicker').datepicker({
+        format: 'mm/dd/yyyy',
+        startDate: '-3d'
+    });
 });
 
 

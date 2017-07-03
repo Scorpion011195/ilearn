@@ -11,8 +11,8 @@
                 </div>
                 <div class="col-sm-5">
                     {!! Form::label('collect-date', 'Ngày đăng ký', ['class' => ' control-label col-sm-4 text-center-vertical text-right']) !!}
-                    <div class="col-sm-8 {!! $errors->has('_keyngaydk') ? ' has-error' : '' !!}" id="datetimepicker">
-                    {!! Form::date('_keyngaydk', '', ['class' => 'form-control', 'id' => 'collect-date']) !!}
+                    <div class="col-sm-8 {!! $errors->has('_keyngaydk') ? ' has-error' : '' !!} date" data-provide="datepicker">
+                    {!! Form::text('_keyngaydk', '', ['class' => 'form-control', 'id' => 'collect-date']) !!}
                     </div>
                 </div>
                 <div class="col-sm-2">
