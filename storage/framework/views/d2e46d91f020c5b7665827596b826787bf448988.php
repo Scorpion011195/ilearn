@@ -20,7 +20,7 @@
                                             <span contenteditable> <?php echo $language ->word; ?> </span> &nbsp;<br>
                                         <?php endif; ?>
                                         <?php if(Auth::guest()): ?>
-                                            <span class="glyphicon glyphicon-plus"><?php echo $language->listen; ?></span>
+                                            <span><?php echo $language->listen; ?></span>
                                             <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span>
                                             <span> <?php echo $language ->word; ?> </span> &nbsp;<br>
                                         <?php endif; ?>
@@ -32,7 +32,7 @@
                                         <span contenteditable> <?php echo $language ->word; ?> </span> &nbsp;<br>
                                     <?php endif; ?>
                                     <?php if(Auth::guest()): ?>
-                                        <span class="glyphicon glyphicon-plus"><?php echo $language->listen; ?></span>
+                                        <span><?php echo $language->listen; ?></span>
                                         <span class="glyphicon glyphicon-volume-up"><?php echo $language->listen; ?></span>
                                         <span> <?php echo $language ->word; ?> </span> &nbsp;<br>
                                     <?php endif; ?>
