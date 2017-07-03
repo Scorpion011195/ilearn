@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/AdminLTE.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/skins/skin-blue.css">
-
+    <link href="{!! asset('css/style.css') !!}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -34,15 +34,14 @@
     <div class="login-box-body">
         <p class="login-box-msg">Đăng nhập</p>
         @if ($errors->has('errorLogin'))
-        <div class="container">
-                <p style="color:red"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('errorLogin') !!}</p>
+        <div class="">
+                <p class="alert--fail"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('errorLogin') !!}</p>
         </div>
         @endif
-
         <form action="{{ route('adminPostLogin') }}" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" placeholder="Username" name="username" value="{!! old('username') !!}">
+                <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}" required minlength="6" maxlength="32">
                 @if ($errors->has('username'))
                     <span class="help-block">
                         <strong>{!! $errors->first('username') !!}</strong>
@@ -51,7 +50,7 @@
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                <input type="password" class="form-control" placeholder="Password" name="password">
+                <input type="password" class="form-control" placeholder="Password" name="password" required minlength="6" maxlength="32">
                 @if ($errors->has('password'))
                     <span class="help-block">
                         <strong>{!! $errors->first('password') !!}</strong>

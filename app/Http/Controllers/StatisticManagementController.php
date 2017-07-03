@@ -13,7 +13,7 @@ use App\Http\Controllers\MyConstant;
 
 class StatisticManagementController extends Controller
 {
-    // Lấy key loại từ của một bảng để chuyển đổi sang loại từ của bảng ngôn ngữ khác
+    // Get key of type word
     function getKeyFromValue($tableFrom, $value){
         switch($tableFrom){
             case 'english':
@@ -28,7 +28,7 @@ class StatisticManagementController extends Controller
         return $key;
     }
 
-    // Từ key chuyển sang loại từ tương ứng của bảng ngôn ngữ khác
+    // Key to type
     function getValueFromKey($tableTo, $key){
         switch($tableTo){
             case 'english':
@@ -58,10 +58,7 @@ class StatisticManagementController extends Controller
         return $arrContent;
     }
 
-    /* Thống kê từ vựng của 1 user
-    So sánh các từ trong lịch sử của 1 user đã có trong mảng thống kê chưa
-    Nếu có rồi thì tăng chỉ số lên 1
-    Chưa có thì thêm từ đó vào mảng thống kê
+    /* Statistic words of one user
     Called by function statisticAllUser() */
     function statisticOneUser($idUser){
         $lengthStatistic = sizeof(MyConstant::$arr_statistic_word);
@@ -71,7 +68,7 @@ class StatisticManagementController extends Controller
         foreach ($arrContent as $rowOfContentUser) {
             $i=0;
             foreach(MyConstant::$arr_statistic_word as $rowOfStatistic){
-                // Nếu từ đã có -> Tăng quanlity lên 1
+                // If word existed -> Increase quanlity
                 if($rowOfContentUser->from_text==$rowOfStatistic['from_text']&&$rowOfContentUser->to_text==$rowOfStatistic['to_text']){
                     MyConstant::$arr_statistic_word[$i]['quanlity']++;
                     break;
@@ -79,12 +76,12 @@ class StatisticManagementController extends Controller
 
                 $i++;
 
-                // Nếu từ chưa có -> Thêm từ vào mảng và gán quanlity=1
+                // If word doesn't exist -> Add word to array, quanlity=1
                 if($i == $lengthStatistic){
                     $stt = sizeof(MyConstant::$arr_statistic_word);
                     $stt++;
 
-                    // Kiểm tra từ đã có trong database chưa?
+                    // Check word exist in database?
                     $tableFrom = $rowOfContentUser->from;
                     $tableTo = $rowOfContentUser->to;
                     $column = 'word';
@@ -100,7 +97,7 @@ class StatisticManagementController extends Controller
                         $status = 'Waiting';
                     }
 
-                    // Thêm từ mới vào mảng thống kê
+                    // Add word to statistical array
                     $pushMe = ['STT'=>$stt,'from'=>$rowOfContentUser->from,'to'=>$rowOfContentUser->to,'from_text'=>$rowOfContentUser->from_text,'to_text'=>$rowOfContentUser->to_text,'quanlity'=>1,'type_from'=>$typeFrom,'status'=> $status];
 
                     array_push(MyConstant::$arr_statistic_word, $pushMe);
@@ -109,7 +106,7 @@ class StatisticManagementController extends Controller
         }
     }
 
-    // Thống kê từ vựng của tất cả user
+    // Statistic of entire users
     function statisticAllUser(){
         $userService = new UserService(new User);
         $users = $userService->getAll();
@@ -120,14 +117,14 @@ class StatisticManagementController extends Controller
         $submitionService = new SubmitionService(new Submition);
         $submitionService->reset();
 
-        // Thống kê -> kết quả lưu vào array MyConstant::$arr_statistic_word
+        // Statistic -> Store in MyConstant::$arr_statistic_word
         for($i=0; $i<$countUsers; $i++){
             $idUser = $users[$i]->id_user;
 
             $this->statisticOneUser($idUser);
         }
 
-        // Đưa mảng đã thống kê vào submitions table
+        // Push result to submitions table
         foreach (MyConstant::$arr_statistic_word as $row) {
             if($row['quanlity']==0){
                 continue;
@@ -136,7 +133,7 @@ class StatisticManagementController extends Controller
         }
     }
 
-    // Hiển thị kết quả thống kê
+    // Display result after statistic
     function displayStatisticalResult(){
         $noOfSubmitions = Submition::count();
         $noOfPages = 5;
@@ -148,7 +145,7 @@ class StatisticManagementController extends Controller
         return view('backend.dict.collect', $param);
     }
 
-    // Hiển thị kết quả theo điều kiện đã có hay chưa có trong từ điển
+    // Display result by condition
     function displayStatisticalResultByCondition(Request $request){
         // Input
         $condition = $request->_condition;

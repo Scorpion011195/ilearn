@@ -112,7 +112,6 @@ class UserManagementController extends Controller
         return redirect()->route('adminGetDetailUser',$idUser)->with('alertUpdateDetailUser','Cập nhật thành công!');
     }
 
-    // Tìm kiếm tài khoản
     function searchUser(AdminAccountManagementRequest $request){
         $keyTaiKhoan = $request->_keytaikhoan;
         $keyNgayDk = $request->_keyngaydk;
@@ -124,7 +123,7 @@ class UserManagementController extends Controller
         $userRoleService = new UserRoleService(new UserRole);
         $listRoles = $userRoleService->getAll();
 
-        // Chưa nhập key Tài khoản và chưa chọn Ngày đăng ký
+        // Empty key Account and Date
         if(empty($keyTaiKhoan)&&empty($keyNgayDk)){
             $accounts = User::paginate($noOfPages);
             $noOfAccounts = User::count();
@@ -132,7 +131,7 @@ class UserManagementController extends Controller
             $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>'','code'=>'RequestInput'];
             return view('backend.user.user-management', $param);
         }
-        // Chỉ nhập Tài khoản
+        // Only type Account
         else if(empty($keyNgayDk)){
             $accounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->paginate($noOfPages);
             $noOfAccounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->count();
@@ -140,7 +139,7 @@ class UserManagementController extends Controller
             $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>'','code'=>'Success'];
             return view('backend.user.user-management', $param);
         }
-        // Chỉ chọn Ngày đăng ký
+        // Only get Date
         else if(empty($keyTaiKhoan)){
             $accounts = User::where('created_at', '>=', $keyNgayDk." 00:00:00")->paginate($noOfPages);
             $noOfAccounts = User::where('created_at', '>=', $keyNgayDk." 00:00:00") ->count();
@@ -148,7 +147,7 @@ class UserManagementController extends Controller
             $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>$keyNgayDk,'code'=>'Success'];
             return view('backend.user.user-management', $param);
         }
-        // Cả hai được nhập và chọn
+        // Choose all
         else{
             $accounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->orWhere('created_at', '>=', $keyNgayDk." 00:00:00")->paginate($noOfPages);
             $noOfAccounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->orWhere('created_at', '>=', $keyNgayDk." 00:00:00")->count();

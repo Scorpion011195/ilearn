@@ -45,7 +45,7 @@ class HistoryController extends Controller implements  BaseController
         $historys = History::where('id_history', $id)->first();
         $arr= json_decode($historys->content, true);
         $a=count($arr);
-        $arr[]= array('type_to'=>$request->typeword,'STT'=> $a,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'tb1'=> 'F');
+        $arr[]= array('type_to'=>$request->typeword,'STT'=> $a,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'notification'=> 'F');
 
         if($request->tu  == null && $request->nghia !== null ){
             return redirect('/historys')->with("message","<strong>Lỗi!</strong> Vui lòng nhập đầy đủ thông tin.");
@@ -59,13 +59,13 @@ class HistoryController extends Controller implements  BaseController
          return view('frontend.history',['data' => $arr,
             'getTypeEnglish'=>$listTypeEnglish,
             'SSMessageDuration' => 'History has been update',]);     }
-     
- }
 
- public function store(Request $request)
- {
+     }
+
+     public function store(Request $request)
+     {
         $history= new History;
-         $listTypeEnglish = MyConstant::TYPE_OF_WORD_ENGLISH;
+        $listTypeEnglish = MyConstant::TYPE_OF_WORD_ENGLISH;
 
         $id=Auth::user()->id_user;
                 // Lấy ID user để update cho user
@@ -73,34 +73,61 @@ class HistoryController extends Controller implements  BaseController
         // $data =json_decode($historys->content);
         $arr= json_decode($historys->content, true);
         return view('frontend.history',['data' => $arr,
-                'getTypeEnglish'=>$listTypeEnglish]);
-}
+            'getTypeEnglish'=>$listTypeEnglish]);
+    }
 
-public function delete($id)
-{
-            // TODO: Implement delete() method.
-}
+    public function delete($id)
+    {
+            $dataResponse = ["data"=>"fine"];
+            return json_encode($dataResponse);
+           
+    }
 
-public function getNotifications($id) {
+    public function getNotifications($id) {
 
-}
+    }
 
-public function setNotifications($id, Request $request) {
+    public function setNotifications($id, Request $request) {
 
-}
+    }
 
-public function getSettings($id) {
+    public function getSettings($id) {
 
-}
+    }
 
-public function setSettings($id, Request $request) {
+    public function setSettings($id, Request $request) {
 
-}
+    }
 
-public function test(Request $request) {
+    public function addNew(Request $request) {
+
+        $listTypeEnglish = MyConstant::TYPE_OF_WORD_ENGLISH;
+        $history= new History;
+
+        $id=Auth::user()->id_user;
+        // Lấy ID user để update cho user
+
+        $historys = History::where('id_history', $id)->first();
+        $arr= json_decode($historys->content);
+        $a=count($arr);
+
+        $arr[]= array('type_to'=>$request->type,'STT'=> $a,'from' => $request->from, 'to'=> $request->to,'from_text'=>$request->from_text,'to_text'=>$request->to_text,'notification'=> 'F');
+
+        $json = json_encode($arr,JSON_UNESCAPED_UNICODE);
+        $info = ['content' => $json];
+
+        $successUpdate= History::where('id_history',$id)->update($info);
+
+        if(isset($successUpdate)){
+            $dataResponse = ["data"=>"fine"];
+            return json_encode($dataResponse);
+        }
+        else{
+            $dataResponse = ["data"=>"false"];
+            return json_encode($dataResponse);
+        }
 
 
 
-
-}
+    }
 }

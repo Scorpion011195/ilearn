@@ -1,7 +1,6 @@
 <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -17,7 +16,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <label>Nghĩa</label>
             <span class="{{ $errors->has('_nghia') ? ' has-error' : '' }}">
-              <input type="text" class="form-control" id="_nghia" name="_nghia">
+              <input type="text" class="form-control" id="_mean" name="_nghia">
               @if($errors->has('_nghia'))
                   <div>
                       <p class="help-block"><span class="glyphicon glyphicon-warning-sign"></span>   <strong>{!! $errors->first('_nghia') !!}</strong></p>
@@ -40,13 +39,12 @@
             <br>
             <input type="hidden" class="form-control" id="_table-modal" name="_table_modal">
             <input type="hidden" class="form-control" id="_id-word-modal" name="_id_word_modal">
-            <input class="btn btn-info" type="submit" value="Cập nhật">
+            <input class="btn btn-info" type="submit" value="Cập nhật" id="_btn-update">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
-
     </div>
   </div>

@@ -22,11 +22,10 @@ Route::get('/result', function () {
 Route::get('/', array('as' => '',
     'uses' => 'LaguageController@getAllLanguage'));
 
-Route::get('/search', array('as' => 'search',
-    'uses' => 'LaguageController@getAllLanguage'));
 
-Route::post('/search', array('as' => 'search',
+Route::get('/search', array('as' => 'search',
     'uses' => 'LaguageController@search'));
+
 
 
 /*=================/Function Search================*/
@@ -54,11 +53,13 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
  Route::get('/historys', function () {
         return view('frontend.historys');
     });
+  Route::POST('HistoryAddNew', 'HistoryController@addNew');
+  Route::POST('HistoryDelete', 'HistoryController@delete');
 
 Route::get('/historys','HistoryController@store' );
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
-Route::POST('/historys/add' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@' ]);
+Route::POST('/historys/addNew' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@AddNew' ]);
 
 
  Route::get('getAddCreateDictMeaning/{index}', function ($index) {
@@ -69,8 +70,8 @@ Route::POST('/historys/add' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryControll
 /*=================== Test area ===============*/
 Route::get('test', 'StatisticManagementController@testInsertArrayToHistory');
 
-Route::get('tests', function(){
-    echo DB::table('vietnamese')->max('id_mapping');
+Route::get('push', function(){
+    return view('backend.index');
 });
 /*=================== /.Test area ===============*/
 
@@ -96,8 +97,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('create', 'DictionaryManagementController@createWord')->name('adminDictCreateWord');
 
         // Tra từ adminDictSearch
-        Route::get('search', 'DictionaryManagementController@getSearch')->name('adminDictSearch');
-        Route::post('search', 'DictionaryManagementController@postSearch')->name('adminDictSearchWord');
+        Route::get('search', 'DictionaryManagementController@displaySearch')->name('adminDictSearch');
+        Route::get('search-word', 'DictionaryManagementController@getSearch')->name('adminDictSearchWord');
 
         // Xóa từ
         Route::post('delete', 'DictionaryManagementController@deleteWord');
@@ -121,6 +122,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('get', 'UserManagementController@getAccount')->name('adminUserManagement');
 
         Route::post('status', 'UserManagementController@changeStatus');
+
 
         Route::post('role', 'UserManagementController@changeRole');
 
