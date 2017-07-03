@@ -54,11 +54,13 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
  Route::get('/historys', function () {
         return view('frontend.historys');
     });
+  Route::POST('HistoryAddNew', 'HistoryController@addNew');
+  Route::POST('HistoryDelete', 'HistoryController@delete');
 
 Route::get('/historys','HistoryController@store' );
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
-Route::POST('/historys/add' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@' ]);
+Route::POST('/historys/addNew' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@AddNew' ]);
 
 
  Route::get('getAddCreateDictMeaning/{index}', function ($index) {
@@ -121,6 +123,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('get', 'UserManagementController@getAccount')->name('adminUserManagement');
 
         Route::post('status', 'UserManagementController@changeStatus');
+
 
         Route::post('role', 'UserManagementController@changeRole');
 
