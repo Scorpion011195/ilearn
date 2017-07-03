@@ -37,13 +37,8 @@
                                     @endif
                                 @endif
                             @endforeach
-                        @endif
+                        @endif                                  
 
-                        @if(Auth::guest())
-                            <div class="right-group">
-                                <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
-                            </div>
-                        @endif
                     </form>
                 </div>
             <div class="col-xs-4 col-sm-6">
@@ -65,9 +60,12 @@
                             @endif
                         @endforeach
                     @endif
-                    </div>
-                </div>
-            </div>
+            </div>            
         </div>
+            @if(Auth::guest())
+                <div class="right-group">
+                    <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
+                </div>
+            @endif
     </div>
 </div>
