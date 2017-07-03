@@ -1,13 +1,13 @@
 @if (isset($code) && count($errors)<=0)
-    @if($code == "RequestInput")
-      <div>
+  @if($code == "RequestInput")
+    <div>
         <p style="color:red" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Xin hãy nhập Tài khoản hoặc chọn Ngày đăng ký!</p>
-      </div>
-    @elseif($code == "Success")
-      <div>
+    </div>
+  @elseif($code == "Success")
+    <div>
         <p style="color:blue" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $noOfAccounts !!} kết quả được tìm thấy</p>
-      </div>
-    @endif
+    </div>
+  @endif
 @endif
     <div class="box">
         <div class="box-header">
