@@ -7,8 +7,41 @@
   <link rel="stylesheet" href="{!! asset('css/button.css') !!}">
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
   <!-- <script src="push.js"></script> -->
+
+
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" media="screen"
+              href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
 </head>
 <body>
+
+        <div class="well">
+            <div id="datetimepicker4" class="input-append">
+                <input data-format="yyyy-MM-dd" type="text"></input>
+                <span class="add-on">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i>
+                </span>
+            </div>
+        </div>
+
+        <script type="text/javascript"
+                src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+        </script>
+        <script type="text/javascript"
+                src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+        </script>
+        <script type="text/javascript"
+                src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+        </script>
+        <script type="text/javascript"
+                src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker4').datetimepicker({pickTime: false});
+            });
+        </script>
+
 
 <h1>
   Notification Web API Example
@@ -45,7 +78,7 @@ var options = {
 //var n = new Notification('Scorpion',options);
 
 //n.timestamp // should return original timestamp
-window.setInterval(loopPush, 3000);
+//window.setInterval(loopPush, 3000);
 
 function loopPush() {
     var n = new Notification('Scorpion',options);

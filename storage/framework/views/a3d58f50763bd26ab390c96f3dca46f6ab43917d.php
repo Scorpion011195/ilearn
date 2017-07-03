@@ -40,7 +40,7 @@
 
         <div class="col-sm-3 col-sm-offset-0 ">
             <label for="sel1"> Đích:</label>
-            <select name="lagTo" class="form-control" id="sel1">
+            <select name="lagTo" class="form-control" id="sel2">
              <?php foreach($data as $item =>$value){
                 $language = $value->language;
                 ?>
@@ -51,7 +51,7 @@
                 <?php endif; ?>
                 <?php }?>
             </select>
-        </div>
+                    </div>
     </div>
     <?php echo Form::close(); ?>
 

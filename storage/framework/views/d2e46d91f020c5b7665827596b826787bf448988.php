@@ -11,8 +11,9 @@
                             <?php $__currentLoopData = $workInfo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php $getData ='';?>
                                 <?php if(!($type == $language->type)): ?>
-                                    <?php  $type = $language->type ?> <br>
-                                    <b class="type" ><?php echo $language->type; ?></b>:<br> 
+                                    <?php  $type = $language->type ?>
+                                    <br>
+                                    <b class="_type<?php echo $language->type; ?>" id ="_type"><?php echo $language->type; ?></b>:<br>
                                         <?php if(!Auth::guest()): ?>
                                             <span class="glyphicon glyphicon-plus _push-his" id="_id<?php echo $language->id; ?>" data-id="<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
                                             <span class="glyphicon glyphicon-volume-up" id="_id<?php echo $language->id; ?>"><?php echo $language->listen; ?></span>
@@ -59,7 +60,7 @@
                             <?php else: ?>
                                 <?php if(!($type == $language->type)): ?>
                                     <?php  $type = $language->type ?><br>
-                                    <b class="_type" ><?php echo $language->type; ?></b>:<br>
+                                    <b class="type" ><?php echo $language->type; ?></b>:<br>
                                     <span> <?php echo $language ->explain; ?> </span> &nbsp;<br>
                                 <?php endif; ?>
                             <?php endif; ?>
