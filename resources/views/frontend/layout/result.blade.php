@@ -5,7 +5,7 @@
         <div class = "col-sm-6 col-sm-offset-3 form-group row">
             <div class ="row panel panel-default no-radius-left no-radius-right">
                 <div class="col-xs-8 col-sm-6">
-                    <span class="title">Bản dịch từ:{!! ucfirst($inputText) !!}</span>
+                    <span class="title">Bản dịch từ:{!! ($inputText) !!}</span>
                     <form action="{{route('HistoryAddNew')}}" method="POST" role="form">
                         @if(isset($workInfo))
                             <?php $type = '' ?>
@@ -73,7 +73,7 @@
                 </div>
             
             <div class="col-xs-4 col-sm-6">
-                <span class="title">Giải thích từ:{!! ucfirst($inputText) !!}</span>
+                <span class="title">Giải thích từ:{!! ($inputText) !!}</span>
                     @if(isset($workInfo))
                         <?php $type = '' ?>
                         @foreach ($workInfo as $language)
