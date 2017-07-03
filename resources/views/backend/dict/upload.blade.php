@@ -33,7 +33,15 @@
         </div>
         {!! Form::close() !!}
     </div>
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{!! $error !!}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if(isset($info))
         <div class='col-md-3'></div>
             <div class="col-md-6">
