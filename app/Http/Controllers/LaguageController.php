@@ -21,17 +21,17 @@ class LaguageController extends Controller
     public function search(SearchWordRequest $request)
     {
         //get all infor from screen
-        $langueInput = $request->input('cb1');
-        $langueOutput = $request->input('cb2');
+        $langueInput = $request->input('lagFrom');
+        $langueOutput = $request->input('lagTo');
         $inputText = $request->input('search');
         $language = \DB::table('languages')->get();
         //search word :
         $workInfo = $this->lang->findWord($langueInput, $langueOutput, $inputText);
-            \Session::put('flagLanguage1', $request->input('cb1'));
-            \Session::put('flagLanguage2', $request->input('cb2'));
-            
+            \Session::put('flagLanguage1', $request->input('lagFrom'));
+            \Session::put('flagLanguage2', $request->input('lagTo'));
+        
         if($workInfo == false) {
-            // echo 'k co tu dung'; exit;
+            //echo 'k co tu dung'; exit;
             $fail['text'] = 'flag';
             return view('index')->with([
                     'flag' => $fail,

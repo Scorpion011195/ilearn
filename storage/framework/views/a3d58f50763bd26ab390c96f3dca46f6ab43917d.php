@@ -45,19 +45,17 @@
         <?php echo Form::close(); ?>
 
     </div>
-     <?php if(count($errors) > 0): ?>
-         <div class = "alert alert-danger">
-            <ul>
-               <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li><?php echo e(utf8_encode($error)); ?></li>
-               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </ul>
-         </div>
-    <?php endif; ?>
     <br>
 <div class="result">
     <?php echo $__env->make('frontend.layout.result', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </div>
+
+
 <div class="create-dict">
     <?php echo $__env->make('frontend.layout.create-dict', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+
+
+</div>
+
 </div>
