@@ -20,13 +20,6 @@
 
                         {!! Form::open(array('route' => 'dangnhap', 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
 
-                        @if($errors->has('errorLogin'))
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            {!! $errors->first('errorLogin') !!}
-                        </div>
-                        @endif
-
                         <div class="form-inline row">
                             {!! Form::text('username', Illuminate\Support\Facades\Input::old('username'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
 
@@ -73,6 +66,13 @@
         </div>
     </header>
 </div><!--menu-->
+    
+    @if($errors->has('errorLogin'))
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {!! $errors->first('errorLogin') !!}
+        </div>
+    @endif
 <script type="text/javascript">
    $( document ).ready(function() {
         @if (($errors -> has('username') || $errors -> has('email') || $errors -> has('password') || $errors -> has('confirm_password')))
