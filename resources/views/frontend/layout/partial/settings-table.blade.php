@@ -48,16 +48,15 @@
         @if(isset($data))
         @foreach($data as $row)
         <tr>
-            
-            <td class="from">{!! $row['from_text'] !!}</td>
-            <td class="to">{!! $row['to_text'] !!} </td>
-            <td class="type_to">{!! $row['type_to'] !!} </td>
+            <td id="_from" value="{!! $row['from_text'] !!}">{!! $row['from_text'] !!}</td>
+            <td id="_to" data-id="{!! $row['to_text'] !!}">{!! $row['to_text'] !!} </td>
+            <td id="type_to" data-id="">{!! $row['type_to'] !!} </td>
             <td>{!! $row['from'] !!}-{!! $row['to'] !!}</td>
             <td class="delete">{!! $row['notification'] !!} </td>
 
             <td class="editable editable-click" aria-hidden="false">
                 <span>
-                    <a class="deleteRecord" data-id="{!! $row['to_text'] !!}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a class="deleteRecord" data-id="{!! $row['to_text'] !!}" value="{!! $row['from_text'] !!}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 </span>
                 <span>
                     <a class="editRecord" data-id=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -73,32 +72,3 @@
 
 </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $("a.deleteRecord").on('click', function(E){
-            var _element = $(this);
-            var data =$(this).attr('data-id');
-            var _element = $(this);
-            var _token = $('input[name=_token]').val();
-                        alert(data);
-             if(!confirm('Bạn có muốn xóa ID ?')){
-                        E.preventDefault();
-                        return false;
-            }
-            else{
-                $.ajax({
-                    url: 'HistoryDelete',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {'data': data,'_token' : _token},
-                    success : function(response){
-                       if(response['data'] == "fine"){
-                         _element.closest('tr').remove();
-                        alert("Bạn đã xóa thành công");
-                        }    
-                    },
-                });
-            }
-        });
-    });
-</script>
