@@ -33,7 +33,7 @@ $(document).ready(function(){
         var to = $(this).attr('data-id');
         var from = $(this).attr('value');
         var _token = $('input[name=_token]').val();
-        if(!confirm('Bạn có muốn xóa từ : ' + from'?')){
+        if(!confirm('Bạn có muốn xóa từ : ' + from+'?')){
             E.preventDefault();
             return false;
         }
