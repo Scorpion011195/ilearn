@@ -64,8 +64,6 @@
 <div class="create-dict">
 <?php echo $__env->make('frontend.layout.create-dict', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </div>
-
-
 </div>
 
 </div>

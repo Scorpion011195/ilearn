@@ -86,7 +86,7 @@ html, body {
 .right-group {
     float: right;
     margin-bottom: 11px;
-    margin-top: 11px;
+    margin-top: -15px;
 }
 
 .header_top{
