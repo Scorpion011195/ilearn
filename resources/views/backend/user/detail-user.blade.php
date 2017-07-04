@@ -13,5 +13,6 @@
 @endsection
 
 @section('script')
+    <script src="{!! asset('js/admin/admin.js') !!}"></script>
     <script src="{!! asset('js/admin/admin-accounts.js') !!}"></script>
 @endsection

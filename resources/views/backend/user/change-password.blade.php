@@ -9,5 +9,5 @@
 @endsection
 
 @section('script')
-
+    <script src="{!! asset('js/admin/admin.js') !!}"></script>
 @endsection

@@ -11,6 +11,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>
+    <script src="<?php echo asset('js/admin/admin.js'); ?>"></script>
     <script src="<?php echo asset('js/admin/admin-profile.js'); ?>"></script>
 <?php $__env->stopSection(); ?>
 
