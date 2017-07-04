@@ -26,38 +26,37 @@
                     <thead>
                         <tr role="row">
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                            aria-label="Browser: activate to sort column ascending" style="width: 150px;">Từ
-                        </th>
+                            aria-label="Browser: activate to sort column ascending">Từ
+                        </th>   
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                        aria-label="Platform(s): activate to sort column ascending" style="width: 150px;">
+                        aria-label="Platform(s): activate to sort column ascending">
                         Nghĩa
                     </th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                aria-label="Engine version: activate to sort column ascending" style="width: 143px;">
+                aria-label="Engine version: activate to sort column ascending">
                 Loại từ
             </th>
             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-            aria-label="CSS grade: activate to sort column ascending" style="width: 153px;">Từ điển
+            aria-label="CSS grade: activate to sort column ascending">Từ điển
         </th>
         <th class="" tabindex="0" aria-controls="" rowspan="1" colspan="1"
         aria-label="" style="width: 50px;">Notification</th>
         <th class="" tabindex="1" aria-controls="" rowspan=""
-        aria-label="" style="width: 103px;">Hành động</th>
+        aria-label="">Hành động</th>
     </thead>
     <tbody>
         @if(isset($data))
         @foreach($data as $row)
         <tr>
-            
-            <td class="from">{!! $row['from_text'] !!}</td>
-            <td class="to">{!! $row['to_text'] !!} </td>
-            <td class="type_to">{!! $row['type_to'] !!} </td>
+            <td id="_from" value="{!! $row['from_text'] !!}">{!! $row['from_text'] !!}</td>
+            <td id="_to" data-id="{!! $row['to_text'] !!}">{!! $row['to_text'] !!} </td>
+            <td id="type_to" data-id="">{!! $row['type_to'] !!} </td>
             <td>{!! $row['from'] !!}-{!! $row['to'] !!}</td>
             <td class="delete">{!! $row['notification'] !!} </td>
 
             <td class="editable editable-click" aria-hidden="false">
                 <span>
-                    <a class="deleteRecord" data-id="{!! $row['to_text'] !!}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a class="deleteRecord" data-id="{!! $row['to_text'] !!}" value="{!! $row['from_text'] !!}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 </span>
                 <span>
                     <a class="editRecord" data-id=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -73,32 +72,3 @@
 
 </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $("a.deleteRecord").on('click', function(E){
-            var _element = $(this);
-            var data =$(this).attr('data-id');
-            var _element = $(this);
-            var _token = $('input[name=_token]').val();
-                        alert(data);
-             if(!confirm('Bạn có muốn xóa ID ?')){
-                        E.preventDefault();
-                        return false;
-            }
-            else{
-                $.ajax({
-                    url: 'HistoryDelete',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {'data': data,'_token' : _token},
-                    success : function(response){
-                       if(response['data'] == "fine"){
-                         _element.closest('tr').remove();
-                        alert("Bạn đã xóa thành công");
-                        }    
-                    },
-                });
-            }
-        });
-    });
-</script>

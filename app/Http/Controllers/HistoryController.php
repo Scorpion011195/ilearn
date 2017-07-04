@@ -37,7 +37,7 @@ class HistoryController extends Controller implements  BaseController
         $historys = History::where('id_history', $id)->first();
         $arr= json_decode($historys->content, true);
         $a=count($arr);
-        $arr[]= array('type_to'=>$request->typeword,'STT'=> $a,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'notification'=> 'F');
+        $arr[]= array('type_to'=>$request->typeword,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'notification'=> 'F');
         if($request->tu  == null && $request->nghia !== null ){
             return redirect('/historys')->with("message","<strong>Lỗi!</strong> Vui lòng nhập đầy đủ thông tin.");
         }
@@ -63,9 +63,7 @@ class HistoryController extends Controller implements  BaseController
     }
     public function delete($id)
     {
-            $dataResponse = ["data"=>"fine"];
-            return json_encode($dataResponse);
-           
+
     }
     public function getNotifications($id) {
     }
@@ -83,7 +81,7 @@ class HistoryController extends Controller implements  BaseController
         $historys = History::where('id_history', $id)->first();
         $arr= json_decode($historys->content);
         $a=count($arr);
-        $arr[]= array('type_to'=>$request->type,'STT'=> $a,'from' => $request->from, 'to'=> $request->to,'from_text'=>$request->from_text,'to_text'=>$request->to_text,'notification'=> 'F');
+        $arr[]= array('type_to'=>$request->type,'from' => $request->from, 'to'=> $request->to,'from_text'=>$request->from_text,'to_text'=>$request->to_text,'notification'=> 'F');
         $json = json_encode($arr,JSON_UNESCAPED_UNICODE);
         $info = ['content' => $json];
         $successUpdate= History::where('id_history',$id)->update($info);
@@ -96,4 +94,33 @@ class HistoryController extends Controller implements  BaseController
             return json_encode($dataResponse);
         }
     }
+    public function deleteRecordByAjax(Request $request){
+
+     $history= new History;
+     $listTypeEnglish = MyConstant::TYPE_OF_WORD_ENGLISH;
+
+     $id=Auth::user()->id_user;
+                // Lấy ID user để update cho user
+     $historys = History::where('id_history', $id)->first();
+        // $data =json_decode($historys->content);
+     $arr= json_decode($historys->content, true);
+
+     foreach ($arr as $key => $value) {
+        if($value['to_text'] == $request->to || $value['from_text'] == $request->from){
+            unset($arr[$key]);
+
+            $json = json_encode($arr,JSON_UNESCAPED_UNICODE);
+            $info = ['content' => $json];
+            $successUpdate= History::where('id_history',$id)->update($info);
+            if(!$successUpdate){
+                $dataResponse = ["data"=>"false"];
+                return json_encode($dataResponse);
+            }
+            else{   
+                $dataResponse = ["data"=>"fine"];
+                return json_encode($dataResponse);
+                }
+        }        
+        }
+}
 }

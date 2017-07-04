@@ -48,16 +48,15 @@
         <?php if(isset($data)): ?>
         <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            
-            <td class="from"><?php echo $row['from_text']; ?></td>
-            <td class="to"><?php echo $row['to_text']; ?> </td>
-            <td class="type_to"><?php echo $row['type_to']; ?> </td>
+            <td id="_from" value="<?php echo $row['from_text']; ?>"><?php echo $row['from_text']; ?></td>
+            <td id="_to" data-id="<?php echo $row['to_text']; ?>"><?php echo $row['to_text']; ?> </td>
+            <td id="type_to" data-id=""><?php echo $row['type_to']; ?> </td>
             <td><?php echo $row['from']; ?>-<?php echo $row['to']; ?></td>
             <td class="delete"><?php echo $row['notification']; ?> </td>
 
             <td class="editable editable-click" aria-hidden="false">
                 <span>
-                    <a class="deleteRecord" data-id="<?php echo $row['to_text']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a class="deleteRecord" data-id="<?php echo $row['to_text']; ?>" value="<?php echo $row['from_text']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 </span>
                 <span>
                     <a class="editRecord" data-id=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -73,32 +72,3 @@
 
 </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $("a.deleteRecord").on('click', function(E){
-            var _element = $(this);
-            var data =$(this).attr('data-id');
-            var _element = $(this);
-            var _token = $('input[name=_token]').val();
-                        alert(data);
-             if(!confirm('Bạn có muốn xóa ID ?')){
-                        E.preventDefault();
-                        return false;
-            }
-            else{
-                $.ajax({
-                    url: 'HistoryDelete',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {'data': data,'_token' : _token},
-                    success : function(response){
-                       if(response['data'] == "fine"){
-                         _element.closest('tr').remove();
-                        alert("Bạn đã xóa thành công");
-                        }    
-                    },
-                });
-            }
-        });
-    });
-</script>
