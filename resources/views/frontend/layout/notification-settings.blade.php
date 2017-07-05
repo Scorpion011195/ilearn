@@ -1,4 +1,5 @@
    <?php
+    $data = DB::table('setting_type_reminders')->get(); 
     if (Session::has('message')) {
      ?>
      <div class="alert alert-success">
@@ -48,9 +49,10 @@
             <label for="" class="control-label col-sm-4 text-center-vertical">Hiển thị</label>
             <div class="col-sm-8">
                 <select name="des_infomation" id="" class="form-control">
-                    <option value="1">Từ</option>
-                    <option value="2">Nghĩa</option>
-                    <option value="3">Từ và nghĩa</option>
+                    @foreach ($data as $value)
+                    <option value="{!!$value->id_reminder!!}">{!!$value->type!!}</option>
+                    
+                    @endforeach
                 </select>
             </div>
         </div>
