@@ -48,10 +48,7 @@
               </div>
             </div>
             {!! Form::close() !!}
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-body">
+            <br>
             @include('backend.layout.partial.account-table')
         </div>
     </div>
