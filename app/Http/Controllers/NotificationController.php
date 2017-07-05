@@ -22,7 +22,7 @@ class NotificationController extends Controller
         $timeReminder = $setting->time_to_remind;
 
         // Change minutes to miliseconds
-        $time = $timeReminder*60*1000;
+        $time = 1000;
 
         $dataResponse = ["code"=>true,"time"=>$time];
         return json_encode($dataResponse);

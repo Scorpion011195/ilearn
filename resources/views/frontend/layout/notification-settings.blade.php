@@ -1,6 +1,10 @@
    <?php
-    $data = DB::table('setting_type_reminders')->get(); 
-    if (Session::has('message')) {
+   $data = DB::table('setting_type_reminders')->get(); 
+   $time= array('5','10','15','20','25','60');
+   foreach ($data as  $value) {
+    $id = $value->id_reminder;
+    }
+      if (Session::has('message')) {
      ?>
      <div class="alert alert-success">
         <?php
@@ -27,44 +31,56 @@
             <div class="form-group">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="row">
-                    <label for="" class="control-label col-sm-4 text-center-vertical">Thông báo</label>
+                    <label for="" class="control-label col-sm-4 text-center-vertical" name="noti">Thông báo</label>
                     <div class="col-sm-8"><input type="checkbox" id="toggle-one" data-toggle="toggle" data-on="Bật" data-off="Tắt"></div>
                 </div>
             </div>
-        <div class="row">
-        <label for="" class="control-label col-sm-4 text-center-vertical">Thời gian</label>
-            <div class="col-sm-8">
-                <select name="time" id="" class="form-control">
-                    <option value="5">5 phút</option>
-                    <option value="10">10 phút</option>
-                    <option value="15">15 phút</option>
-                    <option value="20">20 phút</option>
-                    <option value="25">25 phút</option>
-                    <option value="60">1 tiếng</option>
-                </select>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <label for="" class="control-label col-sm-4 text-center-vertical">Hiển thị</label>
-            <div class="col-sm-8">
-                <select name="des_infomation" id="" class="form-control">
-                    @foreach ($data as $value)
-                    <option value="{!!$value->id_reminder!!}">{!!$value->type!!}</option>
+            <div class="row">
+                <label for="" class="control-label col-sm-4 text-center-vertical">Thời gian</label>
+                <div class="col-sm-8">
+                    <select name="time" id="" class="form-control">
+                    @if(isset($time))
+                    @foreach($time as $value)
+                    @if (Session::get('time') == $value)
+
+                        <option value="{!!$value!!}" selected="true">{!!$value!!} phút</option>
+                    @else
+                    <option value="{!!$value!!}">{!!$value!!} phút</option>
                     
+                    @endif
                     @endforeach
-                </select>
+                    @endif
+                    </select>
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="row">
-          <center>{!! Form::submit('Lưu', ['class' => 'btn btn-success']) !!}</center>
+            <br>
+            <div class="row">
+                <label for="" class="control-label col-sm-4 text-center-vertical">Hiển thị</label>
+                <div class="col-sm-8">
+                    <select name="des_infomation" id="" class="form-control">
+
+                    <?php foreach($data as $value){
+                             $remind = $value->id_reminder;
+                            ?>
+                            @if (Session::get('info') == $remind)
+                            <option value="{!!$remind!!}" selected>{!!$value->type!!}</option>
+                            @else
+                            <option value="{!!$value->id_reminder!!}">{!!$value->type!!}</option>
+                            @endif
+                            <?php }?>
+
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                  <center>{!! Form::submit('Lưu', ['class' => 'btn btn-success']) !!}</center>
+              </div>
+              <br>
+          </form>
       </div>
-      <br>
-  </form>
-</div>
-</div>
-{!! Form::close() !!}
+  </div>
+  {!! Form::close() !!}
 </div>
 </div>
 
