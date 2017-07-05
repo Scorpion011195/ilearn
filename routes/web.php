@@ -44,17 +44,17 @@ Route::get('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@getRegister']
 Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister']);
 /*================/src_user_register====================  */
 // setting
- Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
+Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
 
 
- Route::get('/settings', function () {
-        return view('frontend.settings');
-    });
- Route::get('/historys', function () {
-        return view('frontend.historys');
-    });
-  Route::POST('HistoryAddNew', 'HistoryController@addNew');
-  Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
+Route::get('/settings', function () {
+    return view('frontend.settings');
+});
+Route::get('/historys', function () {
+    return view('frontend.historys');
+});
+Route::POST('HistoryAddNew', 'HistoryController@addNew');
+Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
 
 Route::get('/historys','HistoryController@store' );
 
@@ -64,9 +64,9 @@ Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryContr
 Route::POST('/historys/addNew' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@AddNew' ]);
 
 
- Route::get('getAddCreateDictMeaning/{index}', function ($index) {
+Route::get('getAddCreateDictMeaning/{index}', function ($index) {
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
- });
+});
 
 
 /*=================== Test area ===============*/
