@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Setting;
 use App\Repositories\SettingRepository;
+use DB;
 
 class SettingService extends BaseService implements SettingRepository
 {

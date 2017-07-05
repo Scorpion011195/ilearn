@@ -17,6 +17,7 @@ class CreateSettingsTable extends Migration
             $table->integer('id_user');
             $table->integer('time_to_remind')->nullable()->default(null);
             $table->integer('id_reminder')->nullable()->default(null);
+            $table->string('status',10);
         });
     }
     /**

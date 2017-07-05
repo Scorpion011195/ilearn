@@ -30,6 +30,11 @@ class MyConstant
                                   '5'=>'前置詞',
                                   '6'=>'間投詞'];
 
+    // Table setting_type_reminders
+    const TYPE_REMINDERS = ['1'=>'Từ',
+                            '2'=>'Nghĩa',
+                            '3'=>'Từ và nghĩa'];
+
     /*This is not a constant
     Instance of submitions table
     init array to statistic*/

@@ -26,23 +26,23 @@
                     <thead>
                         <tr role="row">
                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                            aria-label="Browser: activate to sort column ascending" style="width: 150px;">Từ
-                        </th>
+                            aria-label="Browser: activate to sort column ascending">Từ
+                        </th>   
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                        aria-label="Platform(s): activate to sort column ascending" style="width: 150px;">
+                        aria-label="Platform(s): activate to sort column ascending">
                         Nghĩa
                     </th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                aria-label="Engine version: activate to sort column ascending" style="width: 143px;">
+                aria-label="Engine version: activate to sort column ascending">
                 Loại từ
             </th>
             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-            aria-label="CSS grade: activate to sort column ascending" style="width: 153px;">Từ điển
+            aria-label="CSS grade: activate to sort column ascending">Từ điển
         </th>
         <th class="" tabindex="0" aria-controls="" rowspan="1" colspan="1"
         aria-label="" style="width: 50px;">Notification</th>
         <th class="" tabindex="1" aria-controls="" rowspan=""
-        aria-label="" style="width: 103px;">Hành động</th>
+        aria-label="">Hành động</th>
     </thead>
     <tbody>
         <?php if(isset($data)): ?>

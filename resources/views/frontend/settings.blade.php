@@ -2,6 +2,7 @@
 <html lang="en">
 
 @include('frontend.layout.html_header')
+<body>
 @include('frontend.layout.header')
 <section class="container margin-top margin-footer">
     <div class="">
@@ -9,13 +10,10 @@
             @include('frontend.layout.notification-settings')
         </div>
         <div class=" text-center">
-         
         </div>
     </div>
 </section>
 @include('frontend.layout.footer')
-@include('frontend.layout.footer-script')
-@include('frontend.layout.register')
     <!-- SET UP EDITABLE -->
 </body>
 </html>

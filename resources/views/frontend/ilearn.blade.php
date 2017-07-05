@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en">
 @include('frontend.layout.html_header')
+<body>
 @include('frontend.layout.header')
 @include('frontend.layout.search')
 @include('frontend.layout.footer')
 @include('frontend.layout.register')
-        <script>
+        <!-- <script>
             $( document ).ready(function () {
                 $( '#create-dict' ).addClass('collapse');
             });
-        </script>
+        </script> -->
 </body>
 </html>
