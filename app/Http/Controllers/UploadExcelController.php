@@ -44,7 +44,6 @@ class UploadExcelController extends Controller
 			$path = $request->file('csvFile')->getRealPath();
 
 			$data = Excel::load($path, function($reader) {})->get();
-			dd($data);
 			$list = array();
 			$error = false;
 			$listTable = array();
