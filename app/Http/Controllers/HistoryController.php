@@ -99,7 +99,6 @@ class HistoryController extends Controller implements  BaseController
         $historys = History::where('id_history', $id)->first();
 
         $arr= json_decode($historys->content,true);/*Chuyển json thành mảng*/
-
         $arr[]= array('type_to'=>$request->type,'from' => $request->from, 'to'=> $request->to,'from_text'=>$request->from_text,'to_text'=>$request->to_text,'notification'=> 'F');
        
         $json = json_encode($arr,JSON_UNESCAPED_UNICODE); /*Chuyển mảng mới get qua json*/
