@@ -2,7 +2,7 @@
  * Created by silverhawk on 11/06/2017.
  */
 function doSubmit() {
-           if($( '.nav-login' ).hasClass('in')) {
+        if($( '.nav-login' ).hasClass('in')) {
             $( '.nav-login').removeClass('in');
             $('#nav-form-login' ).find( "input[type=submit]" ).removeClass('btn-success');
             $('#nav-form-login' ).submit();
