@@ -39,7 +39,7 @@
                         @endforeach
                     @endif
                 </div>
-                <div class="col-xs-4 col-sm-6">
+                <div class="col-xs-4 col-sm-6 word--break-word">
                     <span class="title">Giải thích từ:&nbsp;{!! ($inputText) !!}</span>
                         @if(isset($workInfo))
                             <?php $type = '' ?>

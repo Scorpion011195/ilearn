@@ -28,7 +28,7 @@ class DictionaryManagementController extends Controller
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
         $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> 1,'idTableDich'=>2,'idLoaiTu'=>6, 'lastTxtTu'=>'', 'lastTxtNghia'=>'', 'code'=>'none'];
-        return view('backend.dict.create', $param);
+        return view('backend.pages.dict.create', $param);
     }
 
     /*=================== Add word area ===============*/
@@ -106,10 +106,10 @@ class DictionaryManagementController extends Controller
 
         // Check input?
         if(empty($txtTu)){
-            return view('backend.dict.create', $param);
+            return view('backend.pages.dict.create', $param);
         }
         else if(empty($txtNghia)){
-            return view('backend.dict.create', $param);
+            return view('backend.pages.dict.create', $param);
         }
 
         // Find table
@@ -241,7 +241,7 @@ class DictionaryManagementController extends Controller
         $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
         $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'idCbTypeWord'=>1, 'idCbTableFrom'=>1,'idCbTableTo'=>2, 'countTo'=>0];
-        return view('backend.dict.search', $param);
+        return view('backend.pages.dict.search', $param);
     }
 
     function getSearch(AdminSearchWordRequest $request){
@@ -282,7 +282,7 @@ class DictionaryManagementController extends Controller
         // If word doesn't exist
         if($countFrom<=0){
             $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'FailedCannotFind', 'countTo'=>0];
-                return view('backend.dict.search', $param);
+                return view('backend.pages.dict.search', $param);
         }
         else{
             /* If word existed
@@ -305,12 +305,12 @@ class DictionaryManagementController extends Controller
             // If cann't find mean
             if($countTo<=0){
                 $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'FailedCannotFind', 'countTo'=>0];
-                return view('backend.dict.search', $param);
+                return view('backend.pages.dict.search', $param);
             }
             // If find mean successful
             else{
                 $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord, 'lastKey'=>$keyTraTu, 'idCbTypeWord'=>$typeWord, 'idCbTableFrom'=>$tableFrom,'idCbTableTo'=>$tableTo, 'code'=>'Success', 'result'=>$resultTo, 'countTo'=>$countTo];
-                return view('backend.dict.search', $param);
+                return view('backend.pages.dict.search', $param);
             }
         }
     }

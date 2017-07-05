@@ -12,4 +12,8 @@ class Setting extends Model
     protected $fillable = [
         'id_user', 'time_to_remind','id_reminder'
     ];
+
+    function settingTypeReminder(){
+        return $this->hasOne('App\Models\SettingTypeReminder','id_reminder','id_reminder');
+    }
 }

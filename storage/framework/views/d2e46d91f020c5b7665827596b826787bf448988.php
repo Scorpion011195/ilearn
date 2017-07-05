@@ -39,7 +39,7 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php endif; ?>
                 </div>
-                <div class="col-xs-4 col-sm-6">
+                <div class="col-xs-4 col-sm-6 word--break-word">
                     <span class="title">Giải thích từ:&nbsp;<?php echo ($inputText); ?></span>
                         <?php if(isset($workInfo)): ?>
                             <?php $type = '' ?>

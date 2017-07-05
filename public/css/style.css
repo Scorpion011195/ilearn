@@ -357,6 +357,10 @@ footer p {
 .font--color-red{
     color: red;
 }
+.word--break-word{
+    word-wrap: break-word;
+    table-layout: fixed;
+}
 /* /.FONT */
 
 /* ALIGN */

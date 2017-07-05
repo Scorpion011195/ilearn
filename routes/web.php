@@ -10,75 +10,63 @@ require __DIR__.'/web_ilearn_partial.php';
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*===================Function Search===============*/
 
-/*================src_user_register====================  */
-
+/*=================== GUEST AREA ===============*/
 Route::get('/result', function () {
     return view('result');
-
 });
 
 Route::get('/', array('as' => '',
     'uses' => 'LaguageController@getAllLanguage'));
 
-
 Route::get('/search', array('as' => 'search',
     'uses' => 'LaguageController@search'));
 
-
-
-/*=================/Function Search================*/
-
-/*===================Function Login===============*/
 Auth::routes();
-
 // Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@getLogin']);
 Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogin']);
-
-/*===================/Function Login===============*/
 
 Route::get('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@getRegister']);
 Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister']);
 /*================/src_user_register====================  */
 // setting
- Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
+Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
+
+/*=================== /.GUEST AREA ===============*/
+
+/*=================== USER AREA ===============*/
+// setting
+Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
+
+Route::get('/settings', function () {
+
+    return view('frontend.settings');
+});
+Route::get('/historys', function () {
+    return view('frontend.historys');
+});
 
 
- Route::get('/settings', function () {
-        return view('frontend.settings');
-    });
- Route::get('/historys', function () {
-        return view('frontend.historys');
-    });
-  Route::POST('HistoryAddNew', 'HistoryController@addNew');
-  Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
-
+Route::POST('HistoryAddNew', 'HistoryController@addNew');
+Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
 Route::get('/historys','HistoryController@store' );
 
-Route::POST('/historys/delete' ,['as'=> 'HistoryDelete', 'uses' => 'HistoryController@deleteRecordByAjax' ]);
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
 Route::POST('/historys/addNew' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@AddNew' ]);
 
-
- Route::get('getAddCreateDictMeaning/{index}', function ($index) {
+Route::get('getAddCreateDictMeaning/{index}', function ($index) {
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
- });
-
-
-/*=================== Test area ===============*/
-Route::get('test', 'HistoryController@test');
-
-Route::get('push', function(){
-    return view('backend.index');
 });
-/*=================== /.Test area ===============*/
+
+// Push notification
+Route::get('pushWord','NotificationController@getWordNotification');
+Route::get('pushTime','NotificationController@getTimeNotification');
+/*=================== /.USER AREA ===============*/
 
 
-/*=================== Admin area ===============*/
+/*=================== ADMIN AREA ===============*/
 Route::group(['prefix' => 'admin'], function () {
     // Đăng nhập
     Route::get('login', 'AdminController@getLogin')->name('adminGetLogin');
@@ -89,8 +77,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Trang chủ
     Route::get('home', 'DictionaryManagementController@home')->name('adminHome')->middleware('adminLogin');
-
-    Route::get('/getData', 'LaguageController@getData')->name('getData');
 
     // Quản lý từ điển
     Route::group(['prefix' => 'dict','middleware'=>'adminLogin'], function () {
@@ -114,7 +100,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         // Thêm file scv
         Route::get('upload', function () {
-            return view('backend.dict.upload');
+            return view('backend.pages.dict.upload');
         })->name('adminDictUpload');
         Route::post('upload', 'UploadExcelController@importExcel')->name('adminDictUpload');
     });
@@ -124,7 +110,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('get', 'UserManagementController@getAccount')->name('adminUserManagement');
 
         Route::post('status', 'UserManagementController@changeStatus');
-
 
         Route::post('role', 'UserManagementController@changeRole');
 
@@ -146,7 +131,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('changePassword','AdminController@postChangePassword')->name('adminPostChangePassword');
     });
 });
-/*=================== /.Admin area ===============*/
+/*=================== /.ADMIN AREA ===============*/
 
 
 

@@ -1,4 +1,4 @@
-@extends('backend.ilearn')
+@extends('backend.layouts.ilearn')
 
 @section('title')
     Quản lý tài khoản
@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    @include('backend.layout.partial.user-management-content')
+    @include('backend.components.user.user-management.user-management-content')
 @endsection
 
 @section('script')

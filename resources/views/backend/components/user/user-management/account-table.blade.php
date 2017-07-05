@@ -9,15 +9,11 @@
     </div>
   @endif
 @endif
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Danh sách tài khoản</h3>
-        </div>
         <!-- /.box-header -->
         <div class="box-body">
             <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 table-responsive">
                         <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
                         aria-describedby="example1_info">
                         <thead>
@@ -87,7 +83,9 @@
                                         </select>
                                  <!-- /.comboBox role -->
                                 </td>
-                                <td class="sorting_1">{!! changeColor(date('d-m-Y', strtotime($ac->created_at)), date('d-m-Y', strtotime($key_day))) !!}</td>
+                                <td class="sorting_1">
+                                {!! changeColor(date('d-m-Y', strtotime($ac->created_at)), date('d-m-Y', strtotime($key_day))) !!}
+                                </td>
                                 <td class="sorting_1">
                                     <a href="{{ route('adminGetDetailUser',$_idUser) }}" class="_detail-user _tooltip-me" title="Xem thông tin!">
                                       <span class="glyphicon glyphicon-edit"></span>
@@ -111,6 +109,5 @@
                 <div class="col-sm-7"></div>
             </div>
         </div>
-    </div>
 {!! $accounts->links() !!}
 
