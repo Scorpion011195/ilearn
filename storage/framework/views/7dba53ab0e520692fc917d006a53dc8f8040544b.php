@@ -80,10 +80,10 @@
     </header>
 </div><!--menu-->
 <script type="text/javascript">
-   $( document ).ready(function() {
+    $( document ).ready(function() {
         <?php if(($errors -> has('username') || $errors -> has('email') || $errors -> has('password') || $errors -> has('confirm_password'))): ?>
         document.getElementById('idXXX').click();
-        <?php endif; ?>   
-});
+        <?php endif; ?>
+    });
 </script>
 

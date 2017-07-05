@@ -8,7 +8,7 @@
 
     <div class="col-sm-6 col-sm-offset-3 form-group row">
         <div class="col-sm-10 no-padding">
-            <?php echo Form::text('search', '', ['class' => 'form-control no-radius-right', 'autofocus']); ?>
+            <?php echo Form::text('search', '', ['id' => 'from','class' => 'form-control no-radius-right', 'autofocus']); ?>
 
         </div>
         <?php echo Form::submit('Tra từ', ['class' => 'btn btn-success ilearn-background-color col-sm-2 no-radius-left']); ?>
@@ -40,7 +40,7 @@
 
         <div class="col-sm-3 col-sm-offset-0 ">
             <label for="sel1"> Đích:</label>
-            <select name="lagTo" class="form-control" id="sel1">
+            <select name="lagTo" class="form-control" id="sel2">
              <?php foreach($data as $item =>$value){
                 $language = $value->language;
                 ?>
@@ -51,7 +51,7 @@
                 <?php endif; ?>
                 <?php }?>
             </select>
-        </div>
+                    </div>
     </div>
     <?php echo Form::close(); ?>
 
@@ -64,8 +64,6 @@
 <div class="create-dict">
 <?php echo $__env->make('frontend.layout.create-dict', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </div>
-
-
 </div>
 
 </div>

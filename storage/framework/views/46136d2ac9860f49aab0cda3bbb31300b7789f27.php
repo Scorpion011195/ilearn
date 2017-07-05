@@ -10,7 +10,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <?php echo $__env->make('backend.layout.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <?php echo $__env->make('backend.layout.left-sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <?php echo $__env->make('backend.layout.content', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-        <?php echo $__env->make('backend.layout.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         <?php echo $__env->make('backend.layout.script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     </div>
 </body>

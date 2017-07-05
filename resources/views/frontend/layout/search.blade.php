@@ -59,8 +59,6 @@
 <div class="create-dict">
 @include('frontend.layout.create-dict')
 </div>
-
-
 </div>
 
 </div>

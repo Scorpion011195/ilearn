@@ -1,5 +1,7 @@
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
     <!-- FONT -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -25,4 +27,8 @@
     <!-- ILEARN JS -->
     <script src="<?php echo asset('js/ilearn.js'); ?>"></script>
     <script src="<?php echo asset('js/user/user.js'); ?>"></script>
+
+    <!-- TOGGLE BUTTON -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>

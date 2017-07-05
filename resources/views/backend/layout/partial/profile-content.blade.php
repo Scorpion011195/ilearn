@@ -18,7 +18,7 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Tên</lable>
                     <div class="col-sm-8 {!! $errors->has('profile-name') ? ' has-error' : '' !!}">
-                        <input type="text" name="profile-name" class="form-control"
+                        <input type="text" name="profile-name" maxlength="100" class="form-control"
                         @if ($errors->has('profile-name'))
                           value="{!! old('profile-name') !!}"
                         @else
@@ -39,7 +39,7 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Địa chỉ</lable>
                     <div class="col-sm-8 {{ $errors->has('profile-address') ? ' has-error' : '' }}">
-                        <input type="text" name="profile-address" class="form-control"
+                        <input type="text" name="profile-address" maxlength="200" class="form-control"
                         @if ($errors->has('profile-address'))
                           value="{!! old('profile-address') !!}"
                         @else
@@ -60,7 +60,7 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Số điện thoại</lable>
                     <div class="col-sm-8 {{ $errors->has('profile-phone') ? ' has-error' : '' }}">
-                        <input type="text" name="profile-phone" class="form-control"
+                        <input type="text" name="profile-phone" maxlength="11" class="form-control"
                         @if ($errors->has('profile-phone'))
                           value="{!! old('profile-phone') !!}"
                         @else
@@ -81,7 +81,12 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Ngày sinh</lable>
                     <div class="col-sm-8 {{ $errors->has('profile-dob') ? ' has-error' : '' }}">
-                        <input type="date" name="profile-dob" class="form-control" id="profile-dob" value="{{ $profile->date_of_birth }}">
+                        <input type="text" name="profile-dob" class="form-control" id="datepicker"
+                        @if ($errors->has('profile-dob'))
+                          value="{!! old('profile-dob') !!}"
+                        @else
+                          value="{{ date('d-m-Y', strtotime($profile->date_of_birth)) }}"
+                        @endif >
                     </div>
                 </div>
                 @if ($errors->has('profile-dob'))

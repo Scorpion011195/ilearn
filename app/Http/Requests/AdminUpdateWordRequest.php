@@ -35,7 +35,7 @@ class AdminUpdateWordRequest extends FormRequest
             '_nghia.required' => 'Bạn chưa nhập từ',
             '_nghia.max' => 'Từ phải ít hơn 50 kí tự',
             '_gtTo.required'  => 'Bạn chưa nhập nghĩa',
-            '_gtTo.max' => 'Nghĩa phải ít hơn 50 kí tự'
+            '_gtTo.max' => 'Nghĩa phải ít hơn 1000 kí tự'
         ];
     }
 }

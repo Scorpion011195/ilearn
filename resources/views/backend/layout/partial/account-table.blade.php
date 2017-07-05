@@ -87,7 +87,7 @@
                                         </select>
                                  <!-- /.comboBox role -->
                                 </td>
-                                <td class="sorting_1">{!! changeColor(date('Y-m-d', strtotime($ac->created_at)), $key_day) !!}</td>
+                                <td class="sorting_1">{!! changeColor(date('d-m-Y', strtotime($ac->created_at)), date('d-m-Y', strtotime($key_day))) !!}</td>
                                 <td class="sorting_1">
                                     <a href="{{ route('adminGetDetailUser',$_idUser) }}" class="_detail-user _tooltip-me" title="Xem thông tin!">
                                       <span class="glyphicon glyphicon-edit"></span>

@@ -1,6 +1,7 @@
-/* Result JS */
 $(document).ready(function() {
-    $('._push-his').on('click', function(E){
+    /* SETTING SCREEN */
+    /* Result JS */
+    $(document).on('click','._push-his', function(evt){
         var type = $("#_type").text();
         var from = $("#sel1 :selected").text();
         var to = $("#sel2 :selected").text();
@@ -23,18 +24,15 @@ $(document).ready(function() {
             }
         });
     });
-});
-/*End Result JS*/
-// DataTableJS
 
-$(document).ready(function(){
-    $("a.deleteRecord").on('click', function(E){
+    // DataTableJS
+    $(document).on('click', "a.deleteRecord", function(evt){
         var _element = $(this);
         var to = $(this).attr('data-id');
         var from = $(this).attr('value');
         var _token = $('input[name=_token]').val();
         if(!confirm('Bạn có muốn xóa từ : ' + from+'?')){
-            E.preventDefault();
+            evt.preventDefault();
             return false;
         }
         else{
@@ -47,12 +45,109 @@ $(document).ready(function(){
                     if(response['data'] == "fine"){
                     _element.closest('tr').remove();
                     alert("Bạn đã xóa thành công");
-                    }  
+                    }
                     else{
                     alert("ERROR ! Please try again");
-                    } 
-                } 
+                    }
+                }
            });
         }
     });
+
+    // Toggle button
+    $(document).find('#toggle-one').bootstrapToggle();
+    /* /.SETTING SCREEN */
+
+    /* PUSH NOTIFICATION */
+    // Get options
+    function getOptions(option, word, mean){
+        switch(option){
+            case 'Từ':
+                return options = {
+                    body: word,
+                    noscreen: true,
+                    icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
+                }
+            case 'Nghĩa':
+                return options = {
+                    body: mean,
+                    noscreen: true,
+                    icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
+                }
+            case 'Từ và nghĩa':
+                return options = {
+                    body: word+'-'+mean,
+                    noscreen: true,
+                    icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
+                }
+        }
+    }
+
+    // Toggle button Notification
+    var isRun = false;
+    $(document).on('change','#toggle-one', function(evt){
+        if($(this).prop('checked')){
+            isRun = true;
+            ajaxGetTimeToPush();
+        }
+        else{
+            isRun = false;
+        }
+    })
+    /* /.PUSH NOTIFICATION */
+
+    /* ----- AJAX ----- */
+    function ajaxGetTimeToPush(){
+        $.ajax({
+            url:'pushTime',
+            method:'get',
+            dataType:'json',
+            success : function(response){
+                if(response['code']==true){
+                    var time = response['time'];
+                    ajaxGetWordToPush(time);
+                }
+            },
+            error: function(xhr, error) {
+               console.log(error);
+            }
+        });
+    }
+
+    function ajaxGetWordToPush(time){
+        $.ajax({
+            url:'pushWord',
+            method:'get',
+            dataType:'json',
+            success : function(response){
+                if(response['code']==true){
+                    var title = 'Remember';
+
+                    var type = response['type'];
+                    var arrContent = $.parseJSON(response['content']);
+                    var lenghtContent = arrContent.length;
+
+                    setInterval(loopPush, time);
+
+                    function loopPush(){
+                        if(isRun){
+                            var index = Math.floor(Math.random() * lenghtContent);
+                            var word = arrContent[index]['from_text'];
+                            var mean = arrContent[index]['to_text'];
+
+                            var options = getOptions(type, word, mean);
+                            var n = new Notification(title, options);
+                            setTimeout(n.close.bind(n), 5000);
+                        }
+                    }
+                }
+            },
+            error: function(xhr, error) {
+               console.log(error);
+            }
+        });
+    }
+    /* ----- /.AJAX ----- */
 });
+
+

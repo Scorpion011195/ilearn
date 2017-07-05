@@ -102,7 +102,7 @@ class UserManagementController extends Controller
         $name = $request['profile-name'];
         $address = $request['profile-address'];
         $phone = $request['profile-phone'];
-        $dateOfBirth = $request['profile-dob'];
+        $dateOfBirth = date('Y-m-d', strtotime($request['profile-dob']));
 
         $attributes = ['name'=>$name, 'address'=>$address, 'phone'=>$phone, 'date_of_birth'=>$dateOfBirth];
 
@@ -114,7 +114,9 @@ class UserManagementController extends Controller
 
     function searchUser(AdminAccountManagementRequest $request){
         $keyTaiKhoan = $request->_keytaikhoan;
-        $keyNgayDk = $request->_keyngaydk;
+        $keyNgayDk = date('Y-m-d', strtotime($request->_keyngaydk));
+
+        $formatdate = '1970-01-01';
 
         $noOfPages = 5;
         $statusService = new StatusService(new Status);
@@ -124,7 +126,7 @@ class UserManagementController extends Controller
         $listRoles = $userRoleService->getAll();
 
         // Empty key Account and Date
-        if(empty($keyTaiKhoan)&&empty($keyNgayDk)){
+        if(empty($keyTaiKhoan)&&($keyNgayDk==$formatdate)){
             $accounts = User::paginate($noOfPages);
             $noOfAccounts = User::count();
 
@@ -132,7 +134,7 @@ class UserManagementController extends Controller
             return view('backend.user.user-management', $param);
         }
         // Only type Account
-        else if(empty($keyNgayDk)){
+        else if($keyNgayDk==$formatdate){
             $accounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->paginate($noOfPages);
             $noOfAccounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->count();
 

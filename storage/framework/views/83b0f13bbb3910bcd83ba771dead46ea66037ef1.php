@@ -13,4 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
+    <!-- DATEPICKER -->
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <?php echo $__env->yieldContent('script'); ?>

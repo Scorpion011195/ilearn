@@ -6,13 +6,13 @@
                     {!! csrf_field() !!}
                     {!! Form::label('collect-phrase', 'Tài khoản', ['class' => ' control-label col-sm-4 text-center-vertical text-right']) !!}
                     <div class="col-sm-8 {!! $errors->has('_keytaikhoan') ? ' has-error' : '' !!}">
-                        {!! Form::text('_keytaikhoan', '', ['class' => 'form-control']) !!}
+                        {!! Form::text('_keytaikhoan', '', ['class' => 'form-control','maxlength'=>"32"]) !!}
                     </div>
                 </div>
                 <div class="col-sm-5">
                     {!! Form::label('collect-date', 'Ngày đăng ký', ['class' => ' control-label col-sm-4 text-center-vertical text-right']) !!}
-                    <div class="col-sm-8 {!! $errors->has('_keyngaydk') ? ' has-error' : '' !!} date" data-provide="datepicker">
-                    {!! Form::text('_keyngaydk', '', ['class' => 'form-control', 'id' => 'collect-date']) !!}
+                    <div class="col-sm-8 {!! $errors->has('_keyngaydk') ? ' has-error' : '' !!} date">
+                    {!! Form::text('_keyngaydk', '', ['class' => 'form-control datepicker', 'id' => 'datepicker']) !!}
                     </div>
                 </div>
                 <div class="col-sm-2">

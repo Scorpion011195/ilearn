@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    /* -----  TRA TỪ SCREEN ----- */
+    /* -----  ADD WORD SCREEN ----- */
     // Confirm delete word to
     $(document).on('click','._delete-word-to', function(evt){
         var _element = $(this).closest('tr');
@@ -43,9 +43,9 @@ $(document).ready(function(){
           ajaxUpdateWord(idWord, table, updateWord, updateExplain, _token);
         }
     });
-    /* -----  /.TRA TỪ SCREEN ----- */
+    /* -----  /.ADD WORD SCREEN ----- */
 
-    /* ----- QUẢN LÝ TÀI KHOẢN SCREEN ----- */
+    /* ----- ACCOUNTS MANAGEMENT SCREEN ----- */
     // Update status
     $(document).on('change','.choose-status', function(evt){
         var _element = $(this).closest('tr');
@@ -79,7 +79,7 @@ $(document).ready(function(){
             ajaxDeleteUser(_element, idUser, _token, userName);
         }
     });
-    /* ----- /.QUẢN LÝ TÀI KHOẢN SCREEN ----- */
+    /* ----- /.ACCOUNTS MANAGEMENT SCREEN ----- */
 
     // function chooseProcess(_this, _case){
     //     var _token = $('input[name=_token]').val();
@@ -151,7 +151,7 @@ $(document).ready(function(){
     }
 
     function updateRowWord(id, word, explain){
-        return '<tr style="color:blue" role="row" class="odd" id="_tr'+id+'"><td class="_word-id text-center" data-id="'+id+'" style="vertical-align:middle">'+id+'</td><td class="_word" id="_td-word'+id+'" style="vertical-align:middle">'+word+'</td><td class="_explain" id="_td-explain'+id+'">'+explain+'</td><td class="text-center" style="vertical-align:middle"><button class="_update-word _tooltip-me button-icon" data-toggle="modal" title="Cập nhật!" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span></button><button class="_delete-word-to _tooltip-me button-icon" title="Xóa!"><span class="glyphicon glyphicon-trash"></span></button></td></tr>';
+        return '<tr style="color:blue" role="row" class="odd" id="_tr'+id+'"><td class="_word-id text-center" data-id="'+id+'" style="vertical-align:middle">'+id+'</td><td class="_word" id="_td-word'+id+'" style="vertical-align:middle">'+word+'</td><td class="_explain" id="_td-explain'+id+'">'+explain+'</td><td class="text-center" style="vertical-align:middle"><button class="_update-word _tooltip-me btn__icon btn--color-link" data-toggle="modal" title="Cập nhật!" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span></button><button class="_delete-word-to _tooltip-me btn__icon btn--color-link" title="Xóa!"><span class="glyphicon glyphicon-trash"></span></button></td></tr>';
     }
 
     function ajaxChangeStatus(idUser, idStatus, _token, userName){
@@ -204,10 +204,9 @@ $(document).ready(function(){
     // TOOLTIP
     $(document).find('._tooltip-me').tooltip();
 
-
-    $('.datepicker').datepicker({
-        format: 'mm/dd/yyyy',
-        startDate: '-3d'
+    // DATEPICKER
+    $(document).find('#datepicker').datepicker({
+        dateFormat: "dd-mm-yy",
     });
 });
 

@@ -23,10 +23,11 @@ class AdminAccountManagementRequest extends FormRequest
      */
     public function rules()
     {
-        $currentDay = date('Y-m-d',strtotime("+1 day"));
+        $currentDay = date('d-m-Y',strtotime("+1 day"));
+        $formatDay = '01-01-1970';
         return [
             '_keytaikhoan' => 'max:32',
-            //'_keyngaydk' => 'before:'.$currentDay,
+            '_keyngaydk' => 'nullable|date_format:"d-m-Y"|before:'.$currentDay.'|after:'.$formatDay
         ];
     }
 
@@ -34,7 +35,9 @@ class AdminAccountManagementRequest extends FormRequest
     {
         return [
             '_keytaikhoan.max' => 'Từ phải ít hơn 32 kí tự',
-            //'_keyngaydk.before' => 'Ngày đăng ký phải trước ngày hiện tại'
+            '_keyngaydk.date_format' => 'Không đúng định dạng d-m-Y',
+            '_keyngaydk.before' => 'Ngày đăng ký phải trước ngày hôm nay',
+            '_keyngaydk.after' => 'Ngày đăng ký phải sau ngày 01-01-1970'
         ];
     }
 }

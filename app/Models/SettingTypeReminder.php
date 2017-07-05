@@ -8,4 +8,8 @@ class SettingTypeReminder extends Model
 {
     protected $table='setting_type_reminders';
     public $timestamps = false;
+
+    protected $fillable = [
+        'id_reminder','type'
+    ];
 }

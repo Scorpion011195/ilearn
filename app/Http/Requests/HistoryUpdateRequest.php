@@ -24,7 +24,7 @@ class HistoryUpdateRequest extends FormRequest
     public function rules()
     {   
         return [
-            'tu'=>'required|min : 1|max:100',
+            'tu'=>'required|min: 1|max:100',
             'nghia'=>'required|min : 1|max:100'
         ];
     }
@@ -33,6 +33,7 @@ class HistoryUpdateRequest extends FormRequest
         return [
             'tu.required' => 'Bạn chưa nhập Từ',
             'tu.max' => 'Từ phải nhỏ hơn 100 kí tự',
+            'tu.min' => 'Từ phải lớn hơn 1 ',
             'nghia.required'  => 'Bạn chưa nhập nghĩa',
             'nghia.max' => 'Nghĩa phải nhỏ hơn 100 kí tự',
         ];

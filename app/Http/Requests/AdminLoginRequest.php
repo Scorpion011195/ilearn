@@ -24,8 +24,8 @@ class AdminLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|min:6|max:32',
-            'password' => 'required|min:6|max:32'
+            'username' => 'required|max:32',
+            'password' => 'required|max:32'
         ];
     }
 
@@ -33,10 +33,8 @@ class AdminLoginRequest extends FormRequest
     {
         return [
             'username.required' => 'Bạn chưa nhập Username',
-            'username.min' => 'Username phải lớn hơn 6 kí tự',
             'username.max' => 'Username phải nhỏ hơn 32 kí tự',
             'password.required'  => 'Bạn chưa nhập Password',
-            'password.min' => 'Mật khẩu phải lớn hơn 6 kí tự',
             'password.max' => 'Mật khẩu phải nhỏ hơn 32 kí tự',
         ];
     }

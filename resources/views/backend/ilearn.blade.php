@@ -10,7 +10,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         @include('backend.layout.header')
         @include('backend.layout.left-sidebar')
         @include('backend.layout.content')
-        @include('backend.layout.footer')
         @include('backend.layout.script')
     </div>
 </body>

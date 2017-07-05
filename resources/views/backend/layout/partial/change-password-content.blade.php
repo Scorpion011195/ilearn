@@ -20,7 +20,7 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Mật khẩu cũ</lable>
                     <div class="col-sm-8 {!! $errors->has('profile-password-old') ? ' has-error' : '' !!}">
-                        <input type="password" name="profile-password-old" class="form-control" value="{!! old('profile-password-old') !!}" required>
+                        <input type="password" name="profile-password-old" class="form-control" value="{!! old('profile-password-old') !!}" required maxlength="32">
                     </div>
                 </div>
                 @if ($errors->has('profile-password-old'))
@@ -36,7 +36,7 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Mật khẩu mới</lable>
                     <div class="col-sm-8 {!! $errors->has('profile-password-new') ? ' has-error' : '' !!}">
-                        <input type="password" name="profile-password-new" class="form-control" value="{!! old('profile-password-new') !!}" required>
+                        <input type="password" name="profile-password-new" class="form-control" value="{!! old('profile-password-new') !!}" required maxlength="32">
                     </div>
                 </div>
                 @if ($errors->has('profile-password-new'))
@@ -52,7 +52,7 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Nhập lại mật khẩu mới</lable>
                     <div class="col-sm-8 {!! $errors->has('profile-password-new-confirm') ? ' has-error' : '' !!}">
-                        <input type="password" name="profile-password-new-confirm" class="form-control" value="{!! old('profile-password-new-confirm') !!}" required>
+                        <input type="password" name="profile-password-new-confirm" class="form-control" value="{!! old('profile-password-new-confirm') !!}" required maxlength="32">
                     </div>
                 </div>
                 @if ($errors->has('profile-password-new-confirm'))

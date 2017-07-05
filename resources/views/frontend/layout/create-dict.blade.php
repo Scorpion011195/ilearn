@@ -66,7 +66,7 @@
                 <div class="col-sm-6">
                   <div class="input-group {{ $errors->has('tu') ? ' has-error' : '' }}" >
                       <span class="input-group-addon">Từ</span>
-                      <input size="30" id="msg" type="text" class="form-control" name="tu" placeholder="Hello" value="">
+                      <input size="30" id="msg" type="text" class="form-control" name="tu" placeholder="Hello" value="" required>
                   </div>
                   <br>
                    @if ($errors->has('tu'))
@@ -82,7 +82,7 @@
                   <div class="col-sm-6">
                       <div class="input-group {{ $errors->has('tu') ? ' has-error' : '' }}">
                           <span class="input-group-addon">Nghĩa</span>
-                          <input size="30" id="msg" type="text" class="form-control" name="nghia" placeholder="Xin chào" value="">
+                          <input size="30" id="msg" type="text" class="form-control" name="nghia" placeholder="Xin chào" value="" required>
                       </div>
                       @if ($errors->has('nghia'))
                     <span class="help-block">
