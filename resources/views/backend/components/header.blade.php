@@ -28,7 +28,7 @@
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <!-- <img src="#" class="img-circle" alt="User Image"> -->
+                                <img src="{{ asset('images/star-scav-joeld-300x300.png') }}" class="img-circle _tooltip-me" alt="User Image" id="img-profile" title="My profile">
                                 <p>
                                     {{ Session::get('user')->username }}
                                     <small>Thành viên từ {{ date('d-m-Y', strtotime(Session::get('user')->created_at)) }}</small>

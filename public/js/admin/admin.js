@@ -199,6 +199,7 @@ $(document).ready(function(){
             }
         });
     }
+
     /* ----- /.AJAX ----- */
 
     // TOOLTIP
@@ -207,6 +208,12 @@ $(document).ready(function(){
     // DATEPICKER
     $(document).find('#datepicker').datepicker({
         dateFormat: "dd-mm-yy",
+    });
+
+    // GET PROFILE
+
+    $(document).on('click', '#img-profile', function(evt){
+        window.location.href = "/ilearn.vn/public/admin/profile/get";
     });
 });
 
