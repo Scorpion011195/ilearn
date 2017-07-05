@@ -1,21 +1,4 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="">
-    <link href="{!! asset('css/btn.css') !!}" rel="stylesheet">
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <style></style>
-</head>
-<body>
-
-
-    <?php
+   <?php
     if (Session::has('message')) {
      ?>
      <div class="alert alert-success">
@@ -28,7 +11,7 @@
     <?php
 
 }
-?> 
+?>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style= "padding-top: 10px">
     <center> <h1>Cài đặt thông báo</h1></center>
 </div>
@@ -44,20 +27,9 @@
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="row">
                     <label for="" class="control-label col-sm-4 text-center-vertical">Thông báo</label>
-                    <div class="col-sm-8">
-
-                        <input type="checkbox" id="toggle-two">
-                        <script>
-                          $(function() {
-                            $('#toggle-two').bootstrapToggle({
-                                on: 'Bật',
-                                off: 'Tắt'
-                            });
-                        })
-                    </script>
+                    <div class="col-sm-8"><input type="checkbox" id="toggle-one" data-toggle="toggle" data-on="Bật" data-off="Tắt"></div>
                 </div>
             </div>
-        </div>    
         <div class="row">
         <label for="" class="control-label col-sm-4 text-center-vertical">Thời gian</label>
             <div class="col-sm-8">
@@ -78,7 +50,7 @@
                 <select name="des_infomation" id="" class="form-control">
                     <option value="1">Từ</option>
                     <option value="2">Nghĩa</option>
-                    <option value="3">  Tất cả</option>    
+                    <option value="3">Từ và nghĩa</option>
                 </select>
             </div>
         </div>
@@ -93,7 +65,4 @@
 {!! Form::close() !!}
 </div>
 </div>
-
-</body>
-</html>
 

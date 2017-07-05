@@ -74,10 +74,10 @@
     </header>
 </div><!--menu-->
 <script type="text/javascript">
-   $( document ).ready(function() {
+    $( document ).ready(function() {
         @if (($errors -> has('username') || $errors -> has('email') || $errors -> has('password') || $errors -> has('confirm_password')))
         document.getElementById('idXXX').click();
-        @endif   
-});
+        @endif
+    });
 </script>
 

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    /* -----  TRA TỪ SCREEN ----- */
+    /* -----  ADD WORD SCREEN ----- */
     // Confirm delete word to
     $(document).on('click','._delete-word-to', function(evt){
         var _element = $(this).closest('tr');
@@ -43,9 +43,9 @@ $(document).ready(function(){
           ajaxUpdateWord(idWord, table, updateWord, updateExplain, _token);
         }
     });
-    /* -----  /.TRA TỪ SCREEN ----- */
+    /* -----  /.ADD WORD SCREEN ----- */
 
-    /* ----- QUẢN LÝ TÀI KHOẢN SCREEN ----- */
+    /* ----- ACCOUNTS MANAGEMENT SCREEN ----- */
     // Update status
     $(document).on('change','.choose-status', function(evt){
         var _element = $(this).closest('tr');
@@ -79,7 +79,7 @@ $(document).ready(function(){
             ajaxDeleteUser(_element, idUser, _token, userName);
         }
     });
-    /* ----- /.QUẢN LÝ TÀI KHOẢN SCREEN ----- */
+    /* ----- /.ACCOUNTS MANAGEMENT SCREEN ----- */
 
     // function chooseProcess(_this, _case){
     //     var _token = $('input[name=_token]').val();

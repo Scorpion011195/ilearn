@@ -14,7 +14,7 @@ class SettingTypeRemindersTableSeeder extends Seeder
         DB::table('setting_type_reminders')->insert([
             ['id_reminder'=>1,'type'=>'Từ'],
             ['id_reminder'=>2,'type'=>'Nghĩa'],
-            ['id_reminder'=>3,'type'=>'Giải thích']
+            ['id_reminder'=>3,'type'=>'Từ và nghĩa']
             ]);
     }
 }
