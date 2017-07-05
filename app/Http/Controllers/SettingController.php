@@ -27,7 +27,7 @@ class SettingController extends Controller
      */
     public function create(Request $request)
     {
-        
+
     }
 
 
@@ -81,13 +81,20 @@ class SettingController extends Controller
     // $setting->id_reminder= $time;
     // $setting->time_to_remind= $name;
     // $setting->save();
-        $attributes = ['id_reminder'=>$des_info,'time_to_remind'=>$time];
-        Setting::where('id_user',$id)->update($attributes);
-         Session::put('time', $request->time);
-        Session::put('info', $request->des_infomation);
-
+        $result = $request->noti;
+        if( $result== null){
+            $result ='OFF';
+        }
+        else{
+            $result ='ON';
+        }
+        $attributes = ['id_reminder'=>$des_info,'time_to_remind'=>$time,'status'=> $result];
+        $getNoti= Setting::where('id_user',$id)->update($attributes);
+        Session::put('time', $getNoti['time_to_remind']);
+        Session::put('info', $getNoti['id_reminder']);
+        Session::put('noti', $result);
         // return view('frontend.settings',['time'=>$timeSetting]);
-    return redirect('/settings')->with("message","<strong>Cài đặt thành công!</strong>");
+        return redirect('/settings')->with("message","<strong>Cài đặt thành công!</strong>");
     }
     
 

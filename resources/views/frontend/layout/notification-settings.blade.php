@@ -31,8 +31,15 @@
             <div class="form-group">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="row">
-                    <label for="" class="control-label col-sm-4 text-center-vertical" name="noti">Thông báo</label>
-                    <div class="col-sm-8"><input type="checkbox" id="toggle-one" data-toggle="toggle" data-on="Bật" data-off="Tắt"></div>
+                    <label for="" class="control-label col-sm-4 text-center-vertical" name="">Thông báo</label>
+                     @if(Session::get('noti') == 'OFF')
+                    <div class="col-sm-8"><input name="noti" type="checkbox" id="toggle-one" data-toggle="toggle" value-on="ON"
+                    value= "OFF" data="OFF" data-off="OFF" value= "" ></div>
+                    @else(Session::get('status') == 'ON')
+                    <div class="col-sm-8"><input name="noti" type="checkbox" id="toggle-one" data-toggle="toggle" value-on="ON"
+                    value= "OFF" data="ON" data-off="OFF" value= "" checked></div>
+                    @endif
+
                 </div>
             </div>
             <div class="row">
