@@ -29,33 +29,36 @@ Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogi
 
 Route::get('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@getRegister']);
 Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister']);
-/*=================== /.GUEST AREA ===============*/
+/*================/src_user_register====================  */
+// setting
+Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
 
+/*=================== /.GUEST AREA ===============*/
 
 /*=================== USER AREA ===============*/
 // setting
 Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
 
 Route::get('/settings', function () {
-        return view('frontend.settings');
-    });
+
+    return view('frontend.settings');
+});
 Route::get('/historys', function () {
-        return view('frontend.historys');
-    });
+    return view('frontend.historys');
+});
+       
 
 Route::POST('HistoryAddNew', 'HistoryController@addNew');
 Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
-
 Route::get('/historys','HistoryController@store' );
 
-Route::POST('/historys/delete' ,['as'=> 'HistoryDelete', 'uses' => 'HistoryController@deleteRecordByAjax' ]);
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
 Route::POST('/historys/addNew' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@AddNew' ]);
 
 Route::get('getAddCreateDictMeaning/{index}', function ($index) {
     return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
- });
+});
 
 // Push notification
 Route::get('pushWord','NotificationController@getWordNotification');
