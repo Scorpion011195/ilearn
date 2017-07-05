@@ -1,4 +1,4 @@
-@extends('backend.ilearn')
+@extends('backend.layouts.ilearn')
 
 @section('title')
     Thông Tin Cá Nhân
@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    @include('backend.layout.partial.profile-content')
+    @include('backend.components.user.profile.profile-content')
 @endsection
 
 @section('script')

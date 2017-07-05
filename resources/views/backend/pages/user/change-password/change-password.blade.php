@@ -1,11 +1,11 @@
-@extends('backend.ilearn')
+@extends('backend.layouts.ilearn')
 
 @section('content-header')
     <h1>Đổi mật khẩu</h1>
 @endsection
 
 @section('content')
-    @include('backend.layout.partial.change-password-content')
+    @include('backend.components.user.change-password.change-password-content')
 @endsection
 
 @section('script')

@@ -35,7 +35,7 @@ class UploadExcelController extends Controller
 
     // Return function getMaxIdMapping from Controller DictionaryManagementController
 	public function importExcel(AdminUploadCsvRequest $request)
-	{	
+	{
 		if($request->hasFile('csv-file')){
 			$path = $request->file('csv-file')->getRealPath();
 
@@ -46,7 +46,7 @@ class UploadExcelController extends Controller
 					if ($value ->language == "") {
 						$id_mapping++;
 						continue;
-					}					
+					}
 					$word = array("type" => $value->type, "word" => $value->word);
 					$insert = null;
 					$insert[] = [
@@ -60,18 +60,18 @@ class UploadExcelController extends Controller
 					];
 					//dd($this->checkTonTai($value->language, $word)); die;
 					if($this->checkTonTai($value->language, json_encode($word)))
-					{						
+					{
 						continue;
 					}
 					DB::table($value->language)->insert($insert);
 				}
-				
+
 				// echo 'Upload file successfully'; exit;
 				$successful['text'] = 'info';
-				return view('backend.dict.upload')->with('info', '$successful');			
+				return view('backend.pages.dict.upload')->with('info', '$successful');
 			}
-			
+
 		}
-					
-	}		
+
+	}
 }

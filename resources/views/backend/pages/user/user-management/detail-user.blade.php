@@ -1,4 +1,4 @@
-@extends('backend.ilearn')
+@extends('backend.layouts.ilearn')
 
 @section('title')
     Thông tin tài khoản
@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    @include('backend.layout.partial.detail-user-content')
+    @include('backend.components.user.user-management.detail-user-content')
 @endsection
 
 @section('script')
