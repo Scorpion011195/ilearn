@@ -32,7 +32,7 @@ class UserManagementController extends Controller
         $listRoles = $userRoleService->getAll();
 
         $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>''];
-        return view('backend.user.user-management', $param);
+        return view('backend.pages.user.user-management.user-management', $param);
     }
 
     function changeStatus(Request $request){
@@ -91,7 +91,7 @@ class UserManagementController extends Controller
 
         $param = ['user'=>$user,'userInformation'=>$userInformation];
 
-        return view('backend.user.detail-user',$param);
+        return view('backend.pages.user.user-management.detail-user',$param);
     }
 
     function postDetailUser(AdminDetailUserRequest $request)
@@ -131,7 +131,7 @@ class UserManagementController extends Controller
             $noOfAccounts = User::count();
 
             $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>'','code'=>'RequestInput'];
-            return view('backend.user.user-management', $param);
+            //return view('backend.pages.user.user-management.user-management', $param);
         }
         // Only type Account
         else if($keyNgayDk==$formatdate){
@@ -139,7 +139,7 @@ class UserManagementController extends Controller
             $noOfAccounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->count();
 
             $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>'','code'=>'Success'];
-            return view('backend.user.user-management', $param);
+            //return view('backend.pages.user.user-management.user-management', $param);
         }
         // Only get Date
         else if(empty($keyTaiKhoan)){
@@ -147,7 +147,7 @@ class UserManagementController extends Controller
             $noOfAccounts = User::where('created_at', '>=', $keyNgayDk." 00:00:00") ->count();
 
             $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>'','key_day'=>$keyNgayDk,'code'=>'Success'];
-            return view('backend.user.user-management', $param);
+            //return view('backend.pages.user.user-management.user-management', $param);
         }
         // Choose all
         else{
@@ -155,8 +155,9 @@ class UserManagementController extends Controller
             $noOfAccounts = User::where('username', 'LIKE', '%'.$keyTaiKhoan.'%')->orWhere('created_at', '>=', $keyNgayDk." 00:00:00")->count();
 
             $param = ['accounts'=>$accounts,'noOfPages'=>$noOfPages,'noOfAccounts'=>$noOfAccounts,'listStatus'=>$listStatus,'listRoles'=>$listRoles,'key_username'=>$keyTaiKhoan,'key_day'=>$keyNgayDk,'code'=>'Success'];
-            return view('backend.user.user-management', $param);
+            //return view('backend.pages.user.user-management.user-management', $param);
         }
+        return view('backend.pages.user.user-management.user-management', $param);
     }
 }
 ?>

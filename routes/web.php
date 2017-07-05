@@ -45,7 +45,7 @@ Route::get('/settings', function () {
 Route::get('/historys', function () {
     return view('frontend.historys');
 });
-       
+
 
 Route::POST('HistoryAddNew', 'HistoryController@addNew');
 Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
@@ -64,9 +64,6 @@ Route::get('pushWord','NotificationController@getWordNotification');
 Route::get('pushTime','NotificationController@getTimeNotification');
 /*=================== /.USER AREA ===============*/
 
-Route::get('test', function(){
-    return view('backend.index');
-});
 
 /*=================== ADMIN AREA ===============*/
 Route::group(['prefix' => 'admin'], function () {
@@ -102,7 +99,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         // Thêm file scv
         Route::get('upload', function () {
-            return view('backend.dict.upload');
+            return view('backend.pages.dict.upload');
         })->name('adminDictUpload');
         Route::post('upload', 'UploadExcelController@importExcel')->name('adminDictUpload');
     });

@@ -1,4 +1,4 @@
-@extends('backend.ilearn')
+@extends('backend.layouts.ilearn')
 
 @section('title')
     Thêm file csv
@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    @include('backend.layout.partial.upload-content')
+    @include('backend.components.dict.upload.upload-content')
 @endsection
 
 @section('script')

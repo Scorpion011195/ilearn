@@ -20,7 +20,7 @@ class AdminController extends Controller
 {
     function getLogin()
     {
-        return view('backend.login');
+        return view('backend.pages.login');
     }
 
     function postLogin(AdminLoginRequest $request)
@@ -60,7 +60,7 @@ class AdminController extends Controller
             $profile = $userInformationService->getByColumn($column, $value);
         }
 
-        return view('backend.user.profile',['profile'=>$profile]);
+        return view('backend.pages.user.profile.profile',['profile'=>$profile]);
     }
 
     function updateProfile(AdminPersonalInformationRequest $request)
@@ -82,7 +82,7 @@ class AdminController extends Controller
     }
 
     function getChangePassword(){
-        return view('backend.user.change-password');
+        return view('backend.pages.user.change-password.change-password');
     }
 
     function postChangePassword(AdminResetPasswordRequest $request)

@@ -40,7 +40,7 @@
             aria-label="CSS grade: activate to sort column ascending">Từ điển
         </th>
         <th class="" tabindex="0" aria-controls="" rowspan="1" colspan="1"
-        aria-label="" style="width: 50px;">Notification</th>
+        aria-label="" style="">Notification</th>
         <th class="" tabindex="1" aria-controls="" rowspan=""
         aria-label="">Hành động</th>
     </thead>
@@ -56,10 +56,7 @@
 
             <td class="editable editable-click" aria-hidden="false">
                 <span>
-                    <a class="deleteRecord" data-id="<?php echo $row['to_text']; ?>" value="<?php echo $row['from_text']; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                </span>
-                <span>
-                    <a class="editRecord" data-id=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a class="deleteRecord" data-id="<?php echo $row['to_text']; ?>" value="<?php echo $row['from_text']; ?>" data-toggle="tooltip" data-placement="left" title="Xóa!"><i class="fa fa-trash-o fa-2x" aria-hidden="true"  "></i></a>
                 </span>
             </td>
         </tr>

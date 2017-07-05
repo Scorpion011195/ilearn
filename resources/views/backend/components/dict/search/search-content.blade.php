@@ -77,8 +77,8 @@
             <div class="box-body">
                 <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                        <div class="col-sm-12 table-responsive">
+                            <table id="example1" class="table table-bordered table-striped dataTable word--break-word" role="grid"
                                    aria-describedby="example1_info">
                                 <thead>
                                 <tr role="row">
@@ -136,6 +136,6 @@
       </div>
   </div>
 <!-- /.Table -->
-@include('backend.layout.modal.modal-search')
+@include('backend.components.dict.search.modal-search')
 
 

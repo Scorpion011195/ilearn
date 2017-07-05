@@ -142,7 +142,7 @@ class StatisticManagementController extends Controller
         $cbTypeWord = "Tất cả";
 
         $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions, 'listSearch'=>$listSearch,'cbTypeWord'=>$cbTypeWord];
-        return view('backend.dict.collect', $param);
+        return view('backend.pages.dict.collect', $param);
     }
 
     // Display result by condition
@@ -170,6 +170,6 @@ class StatisticManagementController extends Controller
                 $cbTypeWord = "Waiting";
         }
         $param = ['submitions'=>$submitions,'noOfSubmitions'=>$noOfSubmitions, 'listSearch'=>$listSearch, 'cbTypeWord'=>$cbTypeWord];
-        return view('backend.dict.collect', $param);
+        return view('backend.pages.dict.collect', $param);
     }
 }
