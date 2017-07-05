@@ -7,7 +7,7 @@
     {!! Form::open(array('route' => 'search','method' => 'get', 'class' =>'container')) !!}
     <div class="col-sm-6 col-sm-offset-3 form-group row {{ $errors->has('search') ? ' has-error' : '' }}">
         <div class="col-sm-10 no-padding">
-            {!! Form::text('search', '', ['class' => 'form-control no-radius-right', 'autofocus']) !!}
+            {!! Form::text('search', '', ['class' => 'form-control no-radius-right', 'autofocus', 'maxlength' => 50]) !!}
         </div>
         {!! Form::submit('Tra từ', ['class' => 'btn btn-success ilearn-background-color col-sm-2 no-radius-left']) !!}
         <div class="error-form">

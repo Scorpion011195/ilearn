@@ -11,9 +11,9 @@
                 {!! Form::open(array('route' => 'dangnhap', 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
 
                 <div class="form-inline row">
-                    {!! Form::text('username', Illuminate\Support\Facades\Input::old('username'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
+                    {!! Form::text('name', Illuminate\Support\Facades\Input::old('name'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
 
-                    <input class="form-control nav-login collapse" placeholder="Mật khẩu của bạn" name="password" type="password" value="{{ old('password') }}"/>
+                    <input class="form-control nav-login collapse" placeholder="Mật khẩu của bạn" name="pass" type="password" value="{{ old('pass') }}"/>
 
                     <input class= "nav-login" type="checkbox" name="remember" {!! old('remember') ? 'checked' : '' !!}>  <span class="nav-login">Remember</span>
                     {!! Form::button('Đăng nhập', ['class' => 'btn btn-default', 'id' => 'nav-login-btn', 'onclick' => 'doSubmit()']) !!}
@@ -59,7 +59,7 @@
 <script type="text/javascript">
    $( document ).ready(function() {
         @if (($errors -> has('username') || $errors -> has('email') || $errors -> has('password') || $errors -> has('confirm_password')))
-        document.getElementById('idXXX').click();
+            document.getElementById('idXXX').click();
         @endif   
 });
 </script>
