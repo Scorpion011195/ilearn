@@ -71,7 +71,7 @@ class AdminController extends Controller
         $name = $request['profile-name'];
         $address = $request['profile-address'];
         $phone = $request['profile-phone'];
-        $dateOfBirth = $request['profile-dob'];
+        $dateOfBirth = date('Y-m-d', strtotime($request['profile-dob']));
 
         $attributes = ['name'=>$name, 'address'=>$address, 'phone'=>$phone, 'date_of_birth'=>$dateOfBirth];
 
