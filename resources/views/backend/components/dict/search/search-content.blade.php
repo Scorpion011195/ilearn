@@ -136,6 +136,6 @@
       </div>
   </div>
 <!-- /.Table -->
-@include('backend.layout.modal.modal-search')
+@include('backend.components.dict.search.modal-search')
 
 

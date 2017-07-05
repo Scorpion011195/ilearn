@@ -1,4 +1,4 @@
-@extends('backend.ilearn')
+@extends('backend.layouts.ilearn')
 
 @section('title')
     Thống kê
@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    @include('backend.layout.partial.collect-content')
+    @include('backend.components.dict.collect.collect-content')
 @endsection
 
 @section('script')

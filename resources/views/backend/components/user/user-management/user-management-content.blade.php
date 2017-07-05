@@ -49,6 +49,6 @@
             </div>
             {!! Form::close() !!}
             <br>
-            @include('backend.layout.partial.account-table')
+            @include('backend.components.user.user-management.account-table')
         </div>
     </div>
