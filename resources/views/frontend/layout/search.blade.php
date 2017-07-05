@@ -11,10 +11,10 @@
         </div>
         {!! Form::submit('Tra từ', ['class' => 'btn btn-success ilearn-background-color col-sm-2 no-radius-left']) !!}
         <div class="error-form">
-            @if ($errors->any())
-                <div class="alert alert-danger">
+            @if ($errors->has('search'))
+                 <p class="alert--fail"><span class="glyphicon glyphicon-warning-sign"></span>
                     {!! $errors->first('search') !!}
-                </div>
+                </p>
             @endif
         </div>
     </div>

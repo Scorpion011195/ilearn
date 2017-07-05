@@ -16,11 +16,11 @@ use App\Services\VietnameseService;
 use App\Models\Japanese;
 use App\Services\JapaneseService;
 use App\Http\Requests\AdminUploadCsvRequest;
+use Illuminate\Support\MessageBag;
 
 class UploadExcelController extends Controller
 {
     public function checkTonTai($tableXXX, $word) {
-
     	$checkWord = DB::table($tableXXX)
             ->where('word', '=', $word)
             ->get();
@@ -32,24 +32,28 @@ class UploadExcelController extends Controller
     	return false;
     }
     }
-
     // Return function getMaxIdMapping from Controller DictionaryManagementController
 	public function importExcel(AdminUploadCsvRequest $request)
 	{
-		if($request->hasFile('csv-file')){
-			$path = $request->file('csv-file')->getRealPath();
+		$extension = \File::extension($request->file('csvFile')->getClientOriginalName());
+		if($extension != "csv") {
+			$errors = new MessageBag(['errorUpload' => 'File sai']);
+        	return redirect()->back()->withInput()->withErrors($errors);
+		}
+		if($request->hasFile('csvFile')){
+			$path = $request->file('csvFile')->getRealPath();
 
 			$data = Excel::load($path, function($reader) {})->get();
+			dd($data);
+			$list = array();
+			$error = false;
+			$listTable = array();
 			if(!empty($data) && $data->count()){
 				$id_mapping = DictionaryManagementController::getMaxIdMapping() + 1;
 				foreach ($data as $key => $value) {
-					if ($value ->language == "") {
-						$id_mapping++;
-						continue;
-					}
 					$word = array("type" => $value->type, "word" => $value->word);
 					$insert = null;
-					$insert[] = [
+					$insert = [
 						'word' => json_encode($word,JSON_UNESCAPED_UNICODE),
 						// 'word' => json_decode($word),
 						'explain' => $value->explain,
@@ -57,21 +61,42 @@ class UploadExcelController extends Controller
 						'id_mapping'=> $id_mapping,
 						'created_at' => date('Y-m-d H:i:s'),
 						'updated_at' => date('Y-m-d H:i:s'),
-					];
-					//dd($this->checkTonTai($value->language, $word)); die;
-					if($this->checkTonTai($value->language, json_encode($word)))
-					{
+					];				
+
+					if ($value ->language == "" || $value ->language == "End") {
+						if($error == false) {
+							$this->doInsert($list, $listTable);
+							$id_mapping++;
+							$list = array();
+							$listTable = array();
+						}
+						else {
+							$error = false;
+							$list = array();
+							$listTable = array();
+						}
 						continue;
 					}
-					DB::table($value->language)->insert($insert);
+					else {
+						if($this->checkTonTai($value->language, json_encode($word)))
+						{
+							$error = true;
+						}
+						array_push($list, $insert);
+						array_push($listTable, $value->language);
+					}
 				}
-
 				// echo 'Upload file successfully'; exit;
 				$successful['text'] = 'info';
 				return view('backend.pages.dict.upload')->with('info', '$successful');
 			}
-
 		}
-
+	}
+	private function doInsert($list, $listTable) {
+		$index = 0;
+		foreach ($list as $key) {
+			DB::table($listTable[$index])->insert($key);
+			$index++;
+		}
 	}
 }
