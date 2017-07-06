@@ -101,6 +101,13 @@ class DictionaryManagementController extends Controller
         $taTu = $request->_tatu;
         $taNghia = $request->_tanghia;
 
+        // Check validate
+        if(!$this->checkValidate($txtTu)){
+            $errors = new MessageBag(['_txttu' => 'Từ có các kí tự không hợp lệ!']);
+            $errors = new MessageBag(['_txtnghia' => 'Nghĩa có các kí tự không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+
         // Params
         $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu];
 
@@ -378,5 +385,17 @@ class DictionaryManagementController extends Controller
         return json_encode($dataResponse);
     }
     /*=================== /.Update word area ===============*/
-}
 
+    // Check validate input
+    function checkValidate($input){
+        $pattern = "/<.*script.*>/";
+        if(preg_match($pattern, $input)){
+            //echo "Invalidate!";
+            return false;
+        }
+        else{
+            //echo "Validate";
+            return true;
+        }
+    }
+}
