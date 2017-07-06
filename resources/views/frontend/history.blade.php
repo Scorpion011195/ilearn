@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html lang="en">
 
 @include('frontend.layout.html_header')

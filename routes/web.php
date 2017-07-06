@@ -42,9 +42,7 @@ Route::get('/settings', function () {
 
     return view('frontend.settings');
 });
-Route::get('/historys', function () {
-    return view('frontend.historys');
-});
+
 
 Route::POST('HistoryAddNew', 'HistoryController@addNew');
 Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');

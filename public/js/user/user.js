@@ -17,6 +17,7 @@ $(document).ready(function() {
             success : function(response){
                 if(response['data'] == "fine"){
                     alert("Đã thêm vào lịch sử");
+                    
                 }
                 else{
                     alert("Opps! Vui lòng xem lại thông tin");
@@ -148,7 +149,7 @@ $(document).ready(function() {
        });
     }
 
-    $(document).on('click','#action', function(){
+    $(document).on('click','.action', function(){
         var to = $(this).closest('tr').find('._to').text();
         var from = $(this).closest('tr').find('._from').text();
         var _token = $('input[name=_token]').val();
@@ -156,7 +157,7 @@ $(document).ready(function() {
             var notification = "T";
         }
         else{
-         var notification = "F"
+            var notification ="F";
         };
          //var _token = $('input[name=_token]').val()
          alert(notification); 
