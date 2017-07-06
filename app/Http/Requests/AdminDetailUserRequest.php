@@ -26,8 +26,8 @@ class AdminDetailUserRequest extends FormRequest
         $currentDay = date('d-m-Y',strtotime("+1 day"));
         $formatDay = '01-01-1970';
         return [
-            'profile-name' => 'nullable|max:100',
-            'profile-address' => 'nullable|max:200',
+            'profile-name' => 'nullable|max:50',
+            'profile-address' => 'nullable|max:100',
             'profile-phone' => 'nullable|digits_between:9, 11',
             'profile-dob' => 'nullable|date_format:"d-m-Y"|before:'.$currentDay.'|after:'.$formatDay
         ];
@@ -36,8 +36,8 @@ class AdminDetailUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'profile-name.max' => 'Tên phải không quá 100 kí tự',
-            'profile-address.max' => 'Địa chỉ phải không quá 200 kí tự',
+            'profile-name.max' => 'Tên phải không quá 50 kí tự',
+            'profile-address.max' => 'Địa chỉ phải không quá 100 kí tự',
             'profile-phone.digits_between'  => 'Số điện thoại không hợp lệ',
             'profile-dob.date_format' => 'Không đúng định dạng d-m-Y',
             'profile-dob.before' => 'Ngày sinh phải trước ngày hôm nay',
