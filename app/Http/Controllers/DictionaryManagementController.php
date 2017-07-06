@@ -357,7 +357,7 @@ class DictionaryManagementController extends Controller
                 $$japaneseService->deleteByColumn($column, $idWord);
         }
 
-        $dataResponse = ["data"=>"OK"];
+        $dataResponse = ["data"=>true];
         return json_encode($dataResponse);
     }
     /*=================== /.Delete word area ===============*/

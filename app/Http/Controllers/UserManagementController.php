@@ -45,7 +45,7 @@ class UserManagementController extends Controller
         $userService = new UserService(new User);
         $userService->updateByColumn($column, $value, $attributes);
 
-        $dataResponse = ["data"=>"OK"];
+        $dataResponse = ["data"=>true];
         return json_encode($dataResponse);
     }
 
@@ -58,7 +58,7 @@ class UserManagementController extends Controller
         $userService = new UserService(new User);
         $userService->updateByColumn($column, $value, $attributes);
 
-        $dataResponse = ["data"=>"OK"];
+        $dataResponse = ["data"=>true];
         return json_encode($dataResponse);
     }
 
@@ -78,7 +78,7 @@ class UserManagementController extends Controller
         $historyService = new HistoryService(new History);
         $historyService->deleteByColumn('id_history', $value);
 
-        $dataResponse = ["data"=>"OK"];
+        $dataResponse = ["data"=>true];
         return json_encode($dataResponse);
     }
 

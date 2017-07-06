@@ -130,7 +130,7 @@ $(document).ready(function(){
             data : {'idWord': idWord,'table': table, '_token' : _token},
             dataType:'json',
             success : function(response){
-                if(response['data'] == "OK"){
+                if(response['data'] == true){
                    _element.remove();
                     $("#_notify").html('Đã xóa từ "'+ word +'"');
                 }
@@ -172,7 +172,7 @@ $(document).ready(function(){
             data : {'idUser': idUser, 'idStatus' : idStatus, '_token' : _token},
             dataType:'json',
             success : function(response){
-                if(response['data'] == "OK"){
+                if(response['data'] == true){
                   var task = '<div id="alert-content" class="text-center">Bạn đã cập nhật "Tình trạng" của tài khoản "'+userName+'"</div>';
                   $('#alert-content').replaceWith( task );
                   $('#modal-alert').modal('show');
@@ -188,7 +188,7 @@ $(document).ready(function(){
             data : {'idUser': idUser, 'idRole' : idRole, '_token' : _token},
             dataType:'json',
             success : function(response){
-                if(response['data'] == "OK"){
+                if(response['data'] == true){
                   var task = '<div id="alert-content" class="text-center">Bạn đã cập nhật "Quyền" của tài khoản "'+userName+'"</div>';
                   $('#alert-content').replaceWith( task );
                   $('#modal-alert').modal('show');
@@ -204,7 +204,7 @@ $(document).ready(function(){
             data : {'idUser': idUser, '_token' : _token},
             dataType:'json',
             success : function(response){
-                if(response['data'] == "OK"){
+                if(response['data'] == true){
                   _element.closest('tr').remove();
                   var task = '<div id="alert-content" class="text-center">Bạn đã xóa tài khoản "'+userName+'"</div>';
                   $('#alert-content').replaceWith( task );
