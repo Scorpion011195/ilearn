@@ -370,7 +370,7 @@ footer p {
 /* /.ALIGN */
 
 /* RESPONSIVE */
-@media screen and (max-width: 699px) and (min-width: 520px), (min-width: 1261px) {
+@media screen and (max-width: 699px) and (min-width: 520px){
     .center {
     }
 }

@@ -24,17 +24,20 @@ class AdminLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|max:32',
-            'password' => 'required|max:32'
+            'username' => 'alpha_dash|required|min:6|max:32',
+            'password' => 'required|min:6|max:32'
         ];
     }
 
     public function messages()
     {
         return [
+            'username.alpha_dash' => 'Chỉ nhập các kí tự là: chữ, số, "-", "_"',
             'username.required' => 'Bạn chưa nhập Username',
+            'username.min' => 'Username phải có từ 6 kí tự',
             'username.max' => 'Username phải nhỏ hơn 32 kí tự',
             'password.required'  => 'Bạn chưa nhập Password',
+            'password.min' => 'Password phải có từ 6 kí tự',
             'password.max' => 'Mật khẩu phải nhỏ hơn 32 kí tự',
         ];
     }

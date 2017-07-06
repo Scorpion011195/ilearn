@@ -52,3 +52,5 @@
             @include('backend.components.user.user-management.account-table')
         </div>
     </div>
+    <!-- Modal -->
+    @include('backend.components.user.user-management.modal-alert')

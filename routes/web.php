@@ -65,6 +65,7 @@ Route::get('pushWord','NotificationController@getWordNotification');
 Route::get('pushTime','NotificationController@getTimeNotification');
 /*=================== /.USER AREA ===============*/
 
+Route::get('test', 'DictionaryManagementController@checkValidate');
 
 /*=================== ADMIN AREA ===============*/
 Route::group(['prefix' => 'admin'], function () {

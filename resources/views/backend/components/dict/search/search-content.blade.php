@@ -1,8 +1,7 @@
-  <!-- Search -->
   <div class="panel">
       <div class="panel-body">
           <div class="row">
-            <div class="col-sm-12" >
+            <div class="col-sm-12 text-center">
               <form action="{{ route('adminDictSearchWord') }}" class="form-inline" method="get">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="form-group">
@@ -59,9 +58,9 @@
               </form>
             </div>
           </div>
-          <br>
-  <!-- /.Search -->
+
       @if (isset($code))
+          <br>
           @if($code == "FailedCannotFind")
             <div>
               <p class="alert--fail" id="_notify"><span class="glyphicon glyphicon-warning-sign"></span>   Không tìm thấy kết quả</p>
@@ -71,71 +70,73 @@
               <p class="alert--success" id="_notify"><span class="glyphicon glyphicon-ok"></span>   Có {!! $countTo !!} kết quả được tìm thấy</p>
             </div>
           @endif
-     @endif
-  <!-- Table -->
-          <div class="box">
-            <div class="box-body">
-                <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                    <div class="row">
-                        <div class="col-sm-12 table-responsive">
-                            <table id="example1" class="table table-bordered table-striped dataTable word--break-word" role="grid"
-                                   aria-describedby="example1_info">
-                                <thead>
-                                <tr role="row">
-                                    <th class="text-center col--width05" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Browser: activate to sort column ascending">ID
-                                    </th>
-                                    <th class="text-center col--width3" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Browser: activate to sort column ascending">Nghĩa
-                                    </th>
-                                    <th class="text-center col--width4" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Platform(s): activate to sort column ascending">
-                                        Giải thích
-                                    </th>
-                                    <th class="text-center col--width1" aria-controls="example1" rowspan="1" colspan="1"
-                                        aria-label="Engine version: activate to sort column ascending">
-                                        Hành động
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if(isset($result))
-                                 @foreach($result as $row)
-                                   <?php $word = json_decode($row->word); ?>
-                                   <tr role="row" class="odd" id="_tr{!! $row->id !!}">
-                                      <td class="_word-id text-center align--vertical-middle" data-id="{!! $row->id !!}">{!! $row->id !!}</td>
-                                      <td class="_word align--vertical-middle" id="_td-word{!! $row->id !!}">{!! $word->word !!}</td>
-                                      <td class="_explain align--vertical-middle" id="_td-explain{!! $row->id !!}">{!! $row->explain !!}</td>
-                                      <td class="text-center align--vertical-middle">
-                                        <button class="_update-word _tooltip-me btn__icon btn--color-link" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
-                                          <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                        <button class="_delete-word-to _tooltip-me btn__icon btn--color-link" title="Xóa!">
-                                          <span class="glyphicon glyphicon-trash"></span>
-                                        </button>
-                                      </td>
-                                   </tr>
-                                 @endforeach
+          <!-- Table -->
+          <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+              <div class="row">
+                  <div class="col-sm-12 table-responsive">
+                      <table id="example1" class="table table-bordered table-striped dataTable word--break-word" role="grid"
+                             aria-describedby="example1_info">
+                          <thead>
+                          <tr role="row">
+                              <th class="text-center col--width05" aria-controls="example1" rowspan="1" colspan="1"
+                                  aria-label="Browser: activate to sort column ascending">ID
+                              </th>
+                              <th class="text-center col--width3" aria-controls="example1" rowspan="1" colspan="1"
+                                  aria-label="Browser: activate to sort column ascending">Nghĩa
+                              </th>
+                              <th class="text-center col--width4" aria-controls="example1" rowspan="1" colspan="1"
+                                  aria-label="Platform(s): activate to sort column ascending">
+                                  Giải thích
+                              </th>
+                              <!-- If not contributor -->
+                              @if((Auth::user()->id_role != 4))
+                                <th class="text-center col--width1" aria-controls="example1" rowspan="1" colspan="1"
+                                  aria-label="Engine version: activate to sort column ascending">
+                                  Hành động
+                                </th>
+                              @endif
+                          </tr>
+                          </thead>
+                          <tbody>
+                          @if(isset($result))
+                           @foreach($result as $row)
+                             <?php $word = json_decode($row->word); ?>
+                             <tr role="row" class="odd" id="_tr{!! $row->id !!}">
+                                <td class="_word-id text-center align--vertical-middle" data-id="{!! $row->id !!}">{!! $row->id !!}</td>
+                                <td class="_word align--vertical-middle" id="_td-word{!! $row->id !!}">{!! $word->word !!}</td>
+                                <td class="_explain align--vertical-middle" id="_td-explain{!! $row->id !!}">{!! $row->explain !!}</td>
+                                <!-- If not contributor -->
+                                @if((Auth::user()->id_role != 4))
+                                <td class="text-center align--vertical-middle">
+                                  <button class="_update-word _tooltip-me btn__icon btn--color-link" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                  </button>
+                                  <button class="_delete-word-to _tooltip-me btn__icon btn--color-link" title="Xóa!" data-toggle="confirmation" data-placement="left">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                  </button>
+                                </td>
                                 @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Tổng cộng có {{ $countTo }} kết quả
-                            </div>
-                        </div>
-                        <div class="col-sm-7">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.box-body -->
+                             </tr>
+                           @endforeach
+                          @endif
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-5">
+                      <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Tổng cộng có {{ $countTo }} kết quả
+                      </div>
+                  </div>
+                  <div class="col-sm-7">
+                  </div>
+              </div>
           </div>
-      </div>
-  </div>
-<!-- /.Table -->
+          <!-- /.Table -->
+      @endif
+        </div>
+    </div>
 @include('backend.components.dict.search.modal-search')
+@include('backend.components.dict.search.modal-success')
 
 
