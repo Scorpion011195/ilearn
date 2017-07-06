@@ -111,7 +111,7 @@
                                   <button class="_update-word _tooltip-me btn__icon btn--color-link" data-toggle="modal" title="Cập nhật!" data-target="#myModal">
                                     <span class="glyphicon glyphicon-edit"></span>
                                   </button>
-                                  <button class="_delete-word-to _tooltip-me btn__icon btn--color-link" title="Xóa!">
+                                  <button class="_delete-word-to _tooltip-me btn__icon btn--color-link" title="Xóa!" data-toggle="confirmation" data-placement="left">
                                     <span class="glyphicon glyphicon-trash"></span>
                                   </button>
                                 </td>
@@ -137,5 +137,6 @@
         </div>
     </div>
 @include('backend.components.dict.search.modal-search')
+@include('backend.components.dict.search.modal-success')
 
 

@@ -97,7 +97,7 @@
                                   <span class="glyphicon glyphicon-edit"></span>
                                 </a>
                                 @if((Auth::user()->id_role == 1))
-                                <button class="_delete-user btn__icon btn--color-link _tooltip-me" title="Xóa!">
+                                <button class="_delete-user btn__icon btn--color-link _tooltip-me" title="Xóa!" data-toggle="confirmation" data-placement="left">
                                   <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                                 @endif
