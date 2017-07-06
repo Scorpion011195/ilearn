@@ -83,10 +83,22 @@ class AdminController extends Controller
         $column = 'id_user';
         $value = Session::get('user')->id_user;
 
+        // Input
         $name = $request['profile-name'];
         $address = $request['profile-address'];
         $phone = $request['profile-phone'];
         $dateOfBirth = date('Y-m-d', strtotime($request['profile-dob']));
+
+        // If profile-name invalidate
+        if(!DictionaryManagementController::checkValidate($name)){
+            $errors = new MessageBag(['profile-name' => 'Tên không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+        // If profile-address invalidate
+        if(!DictionaryManagementController::checkValidate($address)){
+            $errors = new MessageBag(['profile-address' => 'Địa chỉ không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
 
         $attributes = ['name'=>$name, 'address'=>$address, 'phone'=>$phone, 'date_of_birth'=>$dateOfBirth];
 

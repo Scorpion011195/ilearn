@@ -9,7 +9,7 @@ $(document).ready(function(){
         var _token = $('input[name=_token]').val();
 
         $(this).confirmation({
-              title: 'Bạn có muốn xóa từ "'+word+'"?',
+              title: 'Bạn có muốn xóa từ này?',
               onConfirm: function() {
                 ajaxDeleteWord(_element, idWord, word, table, _token);
               },
@@ -80,7 +80,7 @@ $(document).ready(function(){
         var userName = _element.find('._user-name').text();
 
         $(this).confirmation({
-              title: 'Bạn có muốn xóa tài khoản "'+userName+'"?',
+              title: 'Bạn có muốn xóa tài khoản này?',
               onConfirm: function() {
                 ajaxDeleteUser(_element, idUser, _token, userName);
               },

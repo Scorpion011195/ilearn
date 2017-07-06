@@ -20,9 +20,9 @@
                     <div class="col-sm-8 {!! $errors->has('profile-name') ? ' has-error' : '' !!}">
                         <input type="text" name="profile-name" maxlength="100" class="form-control"
                         @if ($errors->has('profile-name'))
-                          value="{!! old('profile-name') !!}"
+                          value="{{ old('profile-name') }}"
                         @else
-                          value="{!! $profile->name !!}"
+                          value="{{ $profile->name }}"
                         @endif >
                     </div>
                 </div>
@@ -41,9 +41,9 @@
                     <div class="col-sm-8 {{ $errors->has('profile-address') ? ' has-error' : '' }}">
                         <input type="text" name="profile-address" maxlength="200" class="form-control"
                         @if ($errors->has('profile-address'))
-                          value="{!! old('profile-address') !!}"
+                          value="{{ old('profile-address') }}"
                         @else
-                          value="{!! $profile->address !!}"
+                          value="{{ $profile->address }}"
                         @endif >
                     </div>
                 </div>
@@ -62,9 +62,9 @@
                     <div class="col-sm-8 {{ $errors->has('profile-phone') ? ' has-error' : '' }}">
                         <input type="text" name="profile-phone" maxlength="11" class="form-control"
                         @if ($errors->has('profile-phone'))
-                          value="{!! old('profile-phone') !!}"
+                          value="{{ old('profile-phone') }}"
                         @else
-                          value="{!! $profile->phone !!}"
+                          value="{{ $profile->phone }}"
                         @endif >
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                     <div class="col-sm-8 {{ $errors->has('profile-dob') ? ' has-error' : '' }}">
                         <input type="text" name="profile-dob" class="form-control" id="datepicker"
                         @if ($errors->has('profile-dob'))
-                          value="{!! old('profile-dob') !!}"
+                          value="{{ old('profile-dob') }}"
                         @else
                           value="{{ date('d-m-Y', strtotime($profile->date_of_birth)) }}"
                         @endif >

@@ -26,9 +26,9 @@ class AdminDetailUserRequest extends FormRequest
         $currentDay = date('d-m-Y',strtotime("+1 day"));
         $formatDay = '01-01-1970';
         return [
-            'profile-name' => 'max:100',
-            'profile-address' => 'max:200',
-            'profile-phone' => 'digits_between:9, 11',
+            'profile-name' => 'nullable|max:100',
+            'profile-address' => 'nullable|max:200',
+            'profile-phone' => 'nullable|digits_between:9, 11',
             'profile-dob' => 'nullable|date_format:"d-m-Y"|before:'.$currentDay.'|after:'.$formatDay
         ];
     }

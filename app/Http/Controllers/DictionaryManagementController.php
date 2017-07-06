@@ -101,10 +101,14 @@ class DictionaryManagementController extends Controller
         $taTu = $request->_tatu;
         $taNghia = $request->_tanghia;
 
-        // Check validate
+        // If from_text invalidate
         if(!$this->checkValidate($txtTu)){
-            $errors = new MessageBag(['_txttu' => 'Từ có các kí tự không hợp lệ!']);
-            $errors = new MessageBag(['_txtnghia' => 'Nghĩa có các kí tự không hợp lệ!']);
+            $errors = new MessageBag(['_txttu' => 'Kí tự không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+        // If to_text invalidate
+        if(!$this->checkValidate($txtNghia)){
+            $errors = new MessageBag(['_txtnghia' => 'Kí tự không hợp lệ!']);
             return redirect()->back()->withInput()->withErrors($errors);
         }
 
@@ -258,6 +262,12 @@ class DictionaryManagementController extends Controller
        $tableTo = $request->_cbdichtratu;
        $typeWord = $request->_cbloaitutratu;
 
+       // If _keytratu invalidate
+        if(!$this->checkValidate($keyTraTu)){
+            $errors = new MessageBag(['_keytratu' => 'Kí tự không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+
        // Init
        $englishService = new EnglishService(new English);
        $vietnameseService = new VietnameseService(new Vietnamese);
@@ -387,7 +397,7 @@ class DictionaryManagementController extends Controller
     /*=================== /.Update word area ===============*/
 
     // Check validate input
-    function checkValidate($input){
+    static function checkValidate($input){
         $pattern = "/<.*script.*>/";
         if(preg_match($pattern, $input)){
             //echo "Invalidate!";
