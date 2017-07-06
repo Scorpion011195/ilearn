@@ -36,14 +36,6 @@ class UserController extends Controller
     ];
 
     $validator = Validator::make($request->all(), $rules, $messages);
-
-    if($validator->fails())
-
-    {
-      return redirect()->back()->withErrors($validator)->withInput();
-    }
-
-    else {
       $username = $request->input('name');
       $password = $request->input('pass');
       $remember = $request->input('remember');
@@ -56,7 +48,6 @@ class UserController extends Controller
 
         return redirect()->back()->withInput()->withErrors($errors);
       }
-    }
   }
 
   public function getRegister()

@@ -3,15 +3,15 @@
         <div class="container">
             @if(Auth::guest())
             <ul class="nav navbar-nav">
-              <li><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-              <li><a href="#">Lịch sử</a></li>
-              <li><a href="#">Cài đặt</a></li>             
+              <li><a href="{{ url('/') }}">Trang chủ</a></li>
+              <!-- <li><a href="{{ url('note')}}">Lịch sử</a></li>
+              <li><a href="{{ url ('note')}}">Cài đặt</a></li> -->             
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {!! Form::open(array('route' => 'dangnhap', 'class' => 'brand-btn', 'id' => 'nav-form-login', 'form' => '1') )!!}
 
                 <div class="form-inline row">
-                    {!! Form::text('name', Illuminate\Support\Facades\Input::old('name'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập']) !!}
+                    {!! Form::text('name', Illuminate\Support\Facades\Input::old('name'), ['class' => 'form-control nav-login collapse', 'placeholder' => 'Tên đăng nhập', 'required']) !!}
 
                     <input class="form-control nav-login collapse" placeholder="Mật khẩu của bạn" name="pass" type="password" value="{{ old('pass') }}"/>
 
@@ -24,7 +24,7 @@
             </ul>
             @else
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="{{ url('/') }}">Trang chủ</a></li>
                     <li><a href="{{ url('/historys') }}">Lịch sử</a></li>
                     <li><a href="{{ url('/settings') }}">Cài đặt</a></li>             
                 </ul>
