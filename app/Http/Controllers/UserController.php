@@ -20,7 +20,7 @@ class UserController extends Controller
 
   public function getLogin()
   {
-    return view('index');
+    return view('frontend.pages.login');
   }
   public function postLogin(Request $request)
   {
@@ -36,6 +36,15 @@ class UserController extends Controller
     ];
 
     $validator = Validator::make($request->all(), $rules, $messages);
+    $validator = Validator::make($request->all(), $rules, $messages);
+
+    if($validator->fails())
+
+    {
+      return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    else {
       $username = $request->input('name');
       $password = $request->input('pass');
       $remember = $request->input('remember');
@@ -48,11 +57,12 @@ class UserController extends Controller
 
         return redirect()->back()->withInput()->withErrors($errors);
       }
+    }
   }
 
   public function getRegister()
   {
-    return view('index');
+    return view('frontend.pages.register');
   }
   public function postRegister(RegisterRequest $request)
   {
@@ -90,7 +100,7 @@ class UserController extends Controller
 
   }
     $success['text'] = 'flash';
-    return view("index")->with([
+    return view("frontend.pages.home")->with([
                     'flash' => $success,
                     'data' => $language ]);
 

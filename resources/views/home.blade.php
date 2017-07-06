@@ -5,9 +5,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-
                 <div class="panel-body">
-                    <a href="javascript:void(0);" onclick="loginToAdd()">Đăng nhập</a> để có thêm nhiều tiện ích
+                    <a href="{{ url('dangnhap') }}">Đăng nhập</a> để có thêm nhiều tiện ích
                 </div>
             </div>
         </div>
