@@ -12,7 +12,7 @@ class SubmitionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('submitions')->insert([
-            ['STT'=>1,'from'=>'english','to'=>'vietnamese','from_text'=>'hello','to_text'=>'xin chào','quanlity'=>0,'type_from'=>'Noun','status'=>'added']
+            ['STT'=>1,'from'=>'english','to'=>'vietnamese','from_text'=>'hello','to_text'=>'xin chào','quanlity'=>0,'type_from'=>'Noun','status'=>'Added']
             ]);
     }
 }
