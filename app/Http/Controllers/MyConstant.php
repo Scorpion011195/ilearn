@@ -35,6 +35,13 @@ class MyConstant
                             '2'=>'Nghĩa',
                             '3'=>'Từ và nghĩa'];
 
+    const ROLE = ['superadmin'=>'1',
+                  'admin'=>'2',
+                  'editor'=>'3',
+                  'contributor'=>'4',
+                  'user'=>'5'
+                 ];
+
     /*This is not a constant
     Instance of submitions table
     init array to statistic*/
