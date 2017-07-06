@@ -370,4 +370,37 @@ footer p {
     .center {
     }
 }
+
 /* /.RESPONSIVE */
+
+/* 
+Form Setting + History table */
+.titelSetting{
+    padding-top: 30px;
+    padding-bottom: 10px;
+
+}
+.containerpanel{
+    padding-top: 40px;
+    border:  1px solid #ddd;
+}
+
+/* History Table */
+ .from_text{
+    width:  200px;
+ }
+ .to_text{
+    width: 200px;
+ }
+ .type{
+    width: 100px;
+ }
+ .dirct{
+    width: 250px;
+ }
+ .notification{
+    width: 50px;
+ }
+ .action{
+    width: 100px;
+ }

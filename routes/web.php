@@ -46,9 +46,9 @@ Route::get('/historys', function () {
     return view('frontend.historys');
 });
 
-
 Route::POST('HistoryAddNew', 'HistoryController@addNew');
 Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
+Route::POST('historyEdit', 'HistoryController@editInfomationChecker');
 Route::get('/historys','HistoryController@store' );
 
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);

@@ -90,9 +90,11 @@ class SettingController extends Controller
         }
         $attributes = ['id_reminder'=>$des_info,'time_to_remind'=>$time,'status'=> $result];
         $getNoti= Setting::where('id_user',$id)->update($attributes);
-        Session::put('time', $getNoti['time_to_remind']);
-        Session::put('info', $getNoti['id_reminder']);
+        Session::put('time', $time);
+        Session::put('info', $des_info);
         Session::put('noti', $result);
+
+        var_dump($getNoti);
         // return view('frontend.settings',['time'=>$timeSetting]);
         return redirect('/settings')->with("message","<strong>Cài đặt thành công!</strong>");
     }

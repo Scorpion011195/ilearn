@@ -43,14 +43,14 @@ $(document).ready(function() {
                 data: {'to': to,'from': from, '_token' : _token},
                 success : function(response){
                     if(response['data'] == "fine"){
-                    _element.closest('tr').remove();
-                    alert("Bạn đã xóa thành công");
+                        _element.closest('tr').remove();
+                        alert("Bạn đã xóa thành công");
                     }
                     else{
-                    alert("ERROR ! Please try again");
+                        alert("ERROR ! Please try again");
                     }
                 }
-           });
+            });
         }
     });
 
@@ -63,23 +63,23 @@ $(document).ready(function() {
     function getOptions(option, word, mean){
         switch(option){
             case 'Từ':
-                return options = {
-                    body: word,
-                    noscreen: true,
-                    icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
-                }
+            return options = {
+                body: word,
+                noscreen: true,
+                icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
+            }
             case 'Nghĩa':
-                return options = {
-                    body: mean,
-                    noscreen: true,
-                    icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
-                }
+            return options = {
+                body: mean,
+                noscreen: true,
+                icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
+            }
             case 'Từ và nghĩa':
-                return options = {
-                    body: word+'-'+mean,
-                    noscreen: true,
-                    icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
-                }
+            return options = {
+                body: word+'-'+mean,
+                noscreen: true,
+                icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
+            }
         }
     }
 
@@ -110,8 +110,8 @@ $(document).ready(function() {
             },
             error: function(xhr, error) {
                console.log(error);
-            }
-        });
+           }
+       });
     }
 
     function ajaxGetWordToPush(time){
@@ -144,10 +144,36 @@ $(document).ready(function() {
             },
             error: function(xhr, error) {
                console.log(error);
-            }
-        });
+           }
+       });
     }
-    /* ----- /.AJAX ----- */
-});
+
+    $(document).on('click','#action', function(){
+        var to = $(this).closest('tr').find('._to').text();
+        var from = $(this).closest('tr').find('._from').text();
+        var _token = $('input[name=_token]').val();
+        if (this.checked){
+            var notification = "T";
+        }
+        else{
+         var notification = "F"
+        };
+         //var _token = $('input[name=_token]').val()
+         alert(notification); 
+         $.ajax({
+             url:'historyEdit',
+             method:'POST',
+             dataType:'json',
+             data: {'from': from,'to': to,'notification' : notification, '_token' : _token},
+             success : function(response){
+                if(response['data']=="fine"){
+                 alert("Thêm vào thành công");
+             }  else{
+           }
+       },
+   });    
+    });
+
+ });
 
 

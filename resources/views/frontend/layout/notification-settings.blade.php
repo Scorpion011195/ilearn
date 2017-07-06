@@ -17,13 +17,13 @@
 
 }
 ?>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style= "padding-top: 10px">
-    <center> <h1>Cài đặt thông báo</h1></center>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 info" style= "padding-top: 10px">
+    <center> <h1 class="titelSetting"><b>CÀI ĐẶT THÔNG BÁO</b></h1></center>
 </div>
 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 
 </div>
-<div class="col-sm-8 container panel " style="box-shadow: 0.5px 1px 5px rgba(0, 0, 0, 10);" >
+<div class="col-sm-8 containerpanel "" >
     <div class="panel-body">
     </div>
     <form action="{{ route('settingUpdate') }}" method="POST" role="form">
