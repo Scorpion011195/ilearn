@@ -10,17 +10,31 @@ use App\Services\UserInformationService;
 use App\Models\UserInformation;
 use App\Services\UserService;
 use App\Models\User;
+use App\Models\Language;
+use App\Services\languageService;
 use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Support\MessageBag;
 use App\Http\Requests\AdminPersonalInformationRequest;
 use App\Http\Requests\AdminResetPasswordRequest;
+use App\Http\Controllers\DictionaryManagementController;
 
 
 class AdminController extends Controller
 {
     function getLogin()
     {
-        return view('backend.pages.login');
+        if(Session::has('user')){
+            $languageService = new LanguageService(new Language);
+            $listLanguage = $languageService->getAll();
+
+            $listTypeOfWord = MyConstant::TYPE_OF_WORD_VIETNAMESE;
+
+            $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> 1,'idTableDich'=>2,'idLoaiTu'=>6, 'lastTxtTu'=>'', 'lastTxtNghia'=>'', 'code'=>'none'];
+            return view('backend.pages.dict.create', $param);
+        }
+        else{
+            return view('backend.pages.login');
+        }
     }
 
     function postLogin(AdminLoginRequest $request)
@@ -28,8 +42,9 @@ class AdminController extends Controller
         $username = $request['username'];
         $password = $request['password'];
 
-        $check = ['username'=>$username,'password'=>$password,'id_role'=>1,'id_status'=>1];
-        if(Auth::attempt($check)){
+        $check = ['username'=>$username,'password'=>$password,'id_status'=>1];
+
+        if(Auth::attempt($check)&&(Auth::user()->id_role!=MyConstant::ROLE['user'])){
             Session::put('user', Auth::user());
             return redirect()->route('adminHome');
         }
