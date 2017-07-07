@@ -17,6 +17,7 @@ use App\Services\UserRoleService;
 use App\Models\UserRole;
 use App\Http\Requests\AdminAccountManagementRequest;
 use App\Http\Requests\AdminDetailUserRequest;
+use Illuminate\Support\MessageBag;
 
 class UserManagementController extends Controller
 {
@@ -44,7 +45,7 @@ class UserManagementController extends Controller
         $userService = new UserService(new User);
         $userService->updateByColumn($column, $value, $attributes);
 
-        $dataResponse = ["data"=>"OK"];
+        $dataResponse = ["data"=>true];
         return json_encode($dataResponse);
     }
 
@@ -57,7 +58,7 @@ class UserManagementController extends Controller
         $userService = new UserService(new User);
         $userService->updateByColumn($column, $value, $attributes);
 
-        $dataResponse = ["data"=>"OK"];
+        $dataResponse = ["data"=>true];
         return json_encode($dataResponse);
     }
 
@@ -77,7 +78,7 @@ class UserManagementController extends Controller
         $historyService = new HistoryService(new History);
         $historyService->deleteByColumn('id_history', $value);
 
-        $dataResponse = ["data"=>"OK"];
+        $dataResponse = ["data"=>true];
         return json_encode($dataResponse);
     }
 
@@ -99,10 +100,22 @@ class UserManagementController extends Controller
         $column = 'id_user';
         $idUser = $request['_idUser'];
 
+        // Input
         $name = $request['profile-name'];
         $address = $request['profile-address'];
         $phone = $request['profile-phone'];
         $dateOfBirth = date('Y-m-d', strtotime($request['profile-dob']));
+
+        // If profile-name invalidate
+        if(!DictionaryManagementController::checkValidate($name)){
+            $errors = new MessageBag(['profile-name' => 'Tên không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+        // If profile-address invalidate
+        if(!DictionaryManagementController::checkValidate($address)){
+            $errors = new MessageBag(['profile-address' => 'Địa chỉ không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
 
         $attributes = ['name'=>$name, 'address'=>$address, 'phone'=>$phone, 'date_of_birth'=>$dateOfBirth];
 

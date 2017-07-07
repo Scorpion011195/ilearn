@@ -26,8 +26,8 @@ class AdminAddWordRequest extends FormRequest
         return [
             '_txttu' => 'required|max:50',
             '_txtnghia' => 'required|max:50',
-            '_tatu' => 'max:1000',
-            '_tanghia' => 'max:1000'
+            '_tatu' => 'max:500',
+            '_tanghia' => 'max:500'
         ];
     }
 
@@ -38,8 +38,8 @@ class AdminAddWordRequest extends FormRequest
             '_txttu.max' => 'Từ phải ít hơn 50 kí tự',
             '_txtnghia.required'  => 'Bạn chưa nhập nghĩa',
             '_txtnghia.max' => 'Nghĩa phải ít hơn 50 kí tự',
-            '_tatu.max' => 'Giải thích phải ít hơn 1000 kí tự',
-            '_tanghia.max' => 'Giải thích phải ít hơn 1000 kí tự'
+            '_tatu.max' => 'Giải thích phải ít hơn 500 kí tự',
+            '_tanghia.max' => 'Giải thích phải ít hơn 500 kí tự'
         ];
     }
 }
