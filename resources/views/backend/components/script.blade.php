@@ -7,8 +7,6 @@
             crossorigin="anonymous"></script>
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
-    <!-- ILEARN JS -->
-    <script src="{!! asset('js/ilearn.js') !!}"></script>
     <!-- X-EDITABLE JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>

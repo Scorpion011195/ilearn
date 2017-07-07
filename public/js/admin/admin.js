@@ -230,7 +230,7 @@ $(document).ready(function(){
     // GET PROFILE
 
     $(document).on('click', '#img-profile', function(evt){
-        window.location.href = "/ilearn/public/admin/profile/get";
+        window.location.href = "/ilearn.vn/public/admin/profile/get";
     });
 });
 
