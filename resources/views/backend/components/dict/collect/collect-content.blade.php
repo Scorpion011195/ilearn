@@ -2,7 +2,7 @@
         <div class="panel-body">
             <div class="row">
               <div class="col-sm-12">
-                <form class="form-inline" action="{{ route('adminDictCollectByCondition') }}" method="post">
+                <form class="form-inline margin--top-none" action="{{ route('adminDictCollectByCondition') }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                       <div class="input-group ">

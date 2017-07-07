@@ -10,7 +10,7 @@
         <p class="alert--fail"><span class="glyphicon glyphicon-warning-sign"></span>   {!! $errors->first('FailedCannotFind') !!}</p>
       </div>
       @endif
-      <form class="form-inline" action="{{ route('adminDictCreateWord') }}" method="post">
+      <form class="form-inline margin--top-none" action="{{ route('adminDictCreateWord') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="row">
           <div class="col-sm-6">

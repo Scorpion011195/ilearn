@@ -306,10 +306,10 @@ footer p {
 
 /* ALERT */
 .alert--success{
-    color: blue;
+    color: #3c8dbc;
 }
 .alert--fail{
-    color: red;
+    color: #a94442;
 }
 /* /.ALERT */
 
@@ -361,7 +361,11 @@ footer p {
 }
 /* /.ALIGN */
 
-/*
+/* MARGIN */
+.margin--top-none{
+    margin-top: 0% !important;
+}
+/* /.MARGIN */
 
 
 /* RESPONSIVE */

@@ -2,7 +2,7 @@
       <div class="panel-body">
           <div class="row">
             <div class="col-sm-12">
-              <form action="{{ route('adminDictSearchWord') }}" class="form-inline" method="get">
+              <form action="{{ route('adminDictSearchWord') }}" class="form-inline margin--top-none" method="get">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="form-group">
                     <span class="{{ $errors->has('_keytratu') ? ' has-error' : '' }}">
