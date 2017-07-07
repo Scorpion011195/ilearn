@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 @include('frontend.components.html_header')
 <body>
 	<div class="container-fuild">

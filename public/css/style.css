@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    overflow: auto;
 }
 .container .result{
     padding-bottom: 100px;
@@ -364,7 +365,19 @@ footer p {
 
 
 /* RESPONSIVE */
-@media screen and (max-width: 699px) and (min-width: 520px){
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) { ... }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { ... }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { ... }
+
+/*@media screen and (max-width: 699px) and (min-width: 520px){
     .center {
     }
 }
@@ -372,7 +385,7 @@ footer p {
 @media screen and (min-width: 1261px) and (max-width: 1270px){
     .center {
     }
-}
+}*/
 
 /* /.RESPONSIVE */
 @media (max-width: @screen-xs-max) { ... }

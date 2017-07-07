@@ -63,6 +63,9 @@
                         <button class="btn btn-info btn-register" type="submit" >
                             Đăng ký
                         </button>
+                        <a class="btn btn-link" href="{{url('dangnhap')}}">
+                            Quay lại đăng nhập
+                        </a>
                     </div>    
                 </form>
             </div>
