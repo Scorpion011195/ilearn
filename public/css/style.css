@@ -82,7 +82,10 @@ html, body {
 .in {
     display: inline-block !important;
 }
-
+.btn-default {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 .right-group {
     float: right;
     margin-bottom: 11px;
@@ -102,6 +105,9 @@ html, body {
 }
 .slider{
     width:100%;
+}
+.navbar{
+    background: #E9633B;
 }
 
 .navbar-inner {
@@ -133,12 +139,12 @@ html, body {
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a.active,
 .navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus, .active-menu {
-    background: #00e3ff !important;
-    color: #000 !important;
+    background: #47AFAF !important;
+    color: #E3DEC1 !important;
 }
 
 .navbar .nav > li > a {
-    color: #00e3ff !important;
+    color: white !important;
     float: none;
     height: 100%;
     font-family: 'Roboto', sans-serif;
@@ -261,7 +267,7 @@ html, body {
 }
 
 footer {
-    background-color: #00e3ff;
+    background-color: #E9633B;
     position: fixed ;
     left: 0;
     bottom: 0;
@@ -275,6 +281,9 @@ footer p {
     padding: 10.5px;
     margin: 0px;
     line-height: 100%;
+}
+.form-inline {
+    margin-top: 2%;
 }
 
 /* REGISTER MODAL */
@@ -360,19 +369,6 @@ footer p {
 }
 /* /.ALIGN */
 
-/* RESPONSIVE */
-@media screen and (max-width: 699px) and (min-width: 520px){
-    .center {
-    }
-}
-
-@media screen and (min-width: 1261px) and (max-width: 1270px){
-    .center {
-    }
-}
-
-/* /.RESPONSIVE */
-
 /* 
 Form Setting + History table */
 .titelSetting{
@@ -406,3 +402,22 @@ background-color:
  .action{
     width: 100px;
  }
+/* RESPONSIVE */
+@media screen and (max-width: 699px) and (min-width: 520px){
+    .center {
+    }
+}
+
+@media screen and (min-width: 1261px) and (max-width: 1270px){
+    .center {
+    }
+}
+
+/* /.RESPONSIVE */
+
+@media (max-width: @screen-xs-max) { ... }
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+@media (min-width: @screen-lg-min) { ... }
+
+/*Form*/

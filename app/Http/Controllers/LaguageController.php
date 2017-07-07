@@ -15,7 +15,7 @@ class LaguageController extends Controller
     {
         $language = \DB::table('languages')->get();
 
-        return view('index')->with('data', $language);
+        return view('frontend.pages.home')->with('data', $language);
     }
 
     public function search(SearchWordRequest $request)
@@ -33,7 +33,7 @@ class LaguageController extends Controller
         if($workInfo == false) {
             //echo 'k co tu dung'; exit;
             $fail['text'] = 'flag';
-            return view('index')->with([
+            return view('frontend.pages.home')->with([
                     'flag' => $fail,
                     'data' => $language ]);
         }
@@ -61,8 +61,7 @@ class LaguageController extends Controller
             }
         } 
             // $GetData= array('from' => $inputText, 'from_language' => $langueInput , 'To_language' => $langueOutput, 'to' => $word, 'explain'=>$explain,'notification' => 'T');
-
-            return view('result')->with([
+            return view('frontend.pages.result')->with([
                     'workInfo' => $arraySaveView,
                     'data' => $language ,
                     'inputText' => $inputText,
