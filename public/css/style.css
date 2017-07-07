@@ -12,11 +12,6 @@ html, body {
     margin-bottom: 100px;
 }
 
- .ilearn-background-color {
-    background-color: #00e3ff;
-    border-color: #00e3ff;
-}
-
  .facebook-font-color {
     color: white;
 }
@@ -104,10 +99,6 @@ html, body {
 
 .slider{
     width:100%;
-}
-
-.navbar{
-    background: #E9633B;
 }
 
 .navbar-inner {
@@ -267,7 +258,7 @@ html, body {
 }
 
 footer {
-    background-color: #E9633B;
+    background-color: #31b0d5;
     position: fixed ;
     left: 0;
     bottom: 0;
@@ -386,3 +377,17 @@ footer p {
 @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
 @media (min-width: @screen-lg-min) { ... }
 /*Form*/
+
+/*Color css for web*/
+/*
+.theme--color-burnt-sienna {
+    color:#31b0d5;
+}
+*/
+.navbar{
+    background: #31b0d5;
+}
+ .ilearn-background-color {
+    background-color: #31b0d5;
+    border-color: #31b0d5;
+}

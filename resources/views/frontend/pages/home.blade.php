@@ -1,6 +1,6 @@
 @extends('frontend.layouts.index')
 @section('content')
-@include('frontend.components.search')
+@include('frontend.components.search.search')
 	@if(isset($flash))
         <div class='col-md-3'></div>
             <div class="col-md-6">
