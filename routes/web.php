@@ -31,7 +31,6 @@ Route::get('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@getRegister']
 Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister']);
 /*================/src_user_register====================  */
 // setting
-Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
 
 /*=================== /.GUEST AREA ===============*/
 
@@ -43,13 +42,11 @@ Route::get('/settings', function () {
 
     return view('frontend.settings');
 });
-Route::get('/historys', function () {
-    return view('frontend.historys');
-});
 
 
 Route::POST('HistoryAddNew', 'HistoryController@addNew');
 Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
+Route::POST('historyEdit', 'HistoryController@editInfomationChecker');
 Route::get('/historys','HistoryController@store' );
 
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
@@ -65,6 +62,7 @@ Route::get('pushWord','NotificationController@getWordNotification');
 Route::get('pushTime','NotificationController@getTimeNotification');
 /*=================== /.USER AREA ===============*/
 
+Route::get('test', 'DictionaryManagementController@checkValidate');
 
 /*=================== ADMIN AREA ===============*/
 Route::group(['prefix' => 'admin'], function () {

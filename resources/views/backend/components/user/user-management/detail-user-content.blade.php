@@ -19,11 +19,11 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Tên</lable>
                     <div class="col-sm-8 {!! $errors->has('profile-name') ? ' has-error' : '' !!}">
-                        <input type="text" name="profile-name" maxlength="100" class="form-control"
+                        <input type="text" name="profile-name" maxlength="50" class="form-control"
                         @if ($errors->has('profile-name'))
-                          value="{!! old('profile-name') !!}"
+                          value="{{ old('profile-name') }}"
                         @else
-                          value="{!! $userInformation->name !!}"
+                          value="{{ $userInformation->name }}"
                         @endif >
                     </div>
                 </div>
@@ -40,11 +40,11 @@
                 <div class="row margin-top">
                     <lable class="control-label col-sm-4 text-center-vertical">Địa chỉ</lable>
                     <div class="col-sm-8 {{ $errors->has('profile-address') ? ' has-error' : '' }}">
-                        <input type="text" name="profile-address" maxlength="200" class="form-control"
+                        <input type="text" name="profile-address" maxlength="100" class="form-control"
                         @if ($errors->has('profile-address'))
-                          value="{!! old('profile-address') !!}"
+                          value="{{ old('profile-address') }}"
                         @else
-                          value="{!! $userInformation->address !!}"
+                          value="{{ $userInformation->address }}"
                         @endif >
                     </div>
                 </div>
@@ -63,9 +63,9 @@
                     <div class="col-sm-8 {{ $errors->has('profile-phone') ? ' has-error' : '' }}">
                         <input type="text" name="profile-phone" maxlength="11" class="form-control"
                         @if ($errors->has('profile-phone'))
-                          value="{!! old('profile-phone') !!}"
+                          value="{{ old('profile-phone') }}"
                         @else
-                          value="{!! $userInformation->phone !!}"
+                          value="{{ $userInformation->phone }}"
                         @endif >
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <div class="col-sm-8 {{ $errors->has('profile-dob') ? ' has-error' : '' }}">
                         <input type="text" name="profile-dob" class="form-control" id="datepicker"
                         @if ($errors->has('profile-dob'))
-                          value="{!! old('profile-dob') !!}"
+                          value="{{ old('profile-dob') }}"
                         @else
                           value="{{ date('d-m-Y', strtotime($userInformation->date_of_birth)) }}"
                         @endif >

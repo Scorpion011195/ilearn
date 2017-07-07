@@ -26,7 +26,7 @@ class AdminAccountManagementRequest extends FormRequest
         $currentDay = date('d-m-Y',strtotime("+1 day"));
         $formatDay = '01-01-1970';
         return [
-            '_keytaikhoan' => 'alpha_dash|max:32',
+            '_keytaikhoan' => 'nullable|alpha_dash|max:32',
             '_keyngaydk' => 'nullable|date_format:"d-m-Y"|before:'.$currentDay.'|after:'.$formatDay
         ];
     }

@@ -25,7 +25,7 @@
             </span>
             <br>
             <label>Giải thích</label>
-            <span class="{{ $errors->has('_nghia') ? ' has-error' : '' }}">
+            <span class="{{ $errors->has('_gtTo') ? ' has-error' : '' }}">
               <textarea class="form-control" id="_gtTo" name="_gtTo"></textarea>
               <script type="text/javascript">CKEDITOR.replace( '_gtTo',{
                 enterMode: Number(2),

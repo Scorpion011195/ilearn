@@ -101,6 +101,17 @@ class DictionaryManagementController extends Controller
         $taTu = $request->_tatu;
         $taNghia = $request->_tanghia;
 
+        // If from_text invalidate
+        if(!$this->checkValidate($txtTu)){
+            $errors = new MessageBag(['_txttu' => 'Kí tự không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+        // If to_text invalidate
+        if(!$this->checkValidate($txtNghia)){
+            $errors = new MessageBag(['_txtnghia' => 'Kí tự không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+
         // Params
         $param = ['listLanguage'=>$listLanguage,'listTypeOfWord'=>$listTypeOfWord,'idTableNguon'=> $idTableNguon,'idTableDich'=>$idTableDich,'idLoaiTu'=>$idLoaiTu];
 
@@ -251,6 +262,12 @@ class DictionaryManagementController extends Controller
        $tableTo = $request->_cbdichtratu;
        $typeWord = $request->_cbloaitutratu;
 
+       // If _keytratu invalidate
+        if(!$this->checkValidate($keyTraTu)){
+            $errors = new MessageBag(['_keytratu' => 'Kí tự không hợp lệ!']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+
        // Init
        $englishService = new EnglishService(new English);
        $vietnameseService = new VietnameseService(new Vietnamese);
@@ -340,7 +357,7 @@ class DictionaryManagementController extends Controller
                 $$japaneseService->deleteByColumn($column, $idWord);
         }
 
-        $dataResponse = ["data"=>"OK"];
+        $dataResponse = ["data"=>true];
         return json_encode($dataResponse);
     }
     /*=================== /.Delete word area ===============*/
@@ -378,5 +395,17 @@ class DictionaryManagementController extends Controller
         return json_encode($dataResponse);
     }
     /*=================== /.Update word area ===============*/
-}
 
+    // Check validate input
+    static function checkValidate($input){
+        $pattern = "/<.*script.*>/";
+        if(preg_match($pattern, $input)){
+            //echo "Invalidate!";
+            return false;
+        }
+        else{
+            //echo "Validate";
+            return true;
+        }
+    }
+}

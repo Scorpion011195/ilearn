@@ -24,16 +24,17 @@ class AdminUploadCsvRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-         'csv-file'=> 'required|mimes:csv,txt',
+         'csvFile'=> 'required',
         ];
+
+
     }
 
     public function messages()
     {
         return [
-            'csv-file.required' => 'Bạn chưa chọn file csv',
-            'csv-file.mimes' => 'Vui lòng chọn đúng file csv',
+            'csvFile.required' => 'Bạn chưa chọn file csv',
+            
         ];
     }
 }

@@ -2,8 +2,8 @@
         <div class="panel-body">
             {!! Form::open(array('enctype' => 'multipart/form-data', 'files' =>true, 'accept-charset' => 'utf-8')) !!}
             <div class="panel-content">
-                {!! Form::label('csv-file', 'Tải lên file csv') !!}
-                {!! Form::file('csv-file', ['class' => 'btn btn-default']) !!}
+                {!! Form::label('csvFile', 'Tải lên file csv') !!}
+                {!! Form::file('csvFile', ['class' => 'btn btn-default']) !!}
             </div>
             @if ($errors->any())
                 <div>

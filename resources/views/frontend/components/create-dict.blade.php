@@ -1,11 +1,20 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
 <?php $data = DB::table('languages')->get(); ?>
-<?php if(isset($SSMessageDuration)): ?>
+@if(isset($SSMessageDuration))
          <div class="alert alert-success">
              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-             <center><?php echo e(utf8_encode($SSMessageDuration)); ?></center>
+             <center>{{ $SSMessageDuration }}</center>
          </div>
-<?php endif; ?>
+@endif
 <br>
 
 <div id="create-dict"  class="container">
@@ -17,32 +26,32 @@
     <div class="panel-body">
         <div class="panel">
             <div class="panel-body">
-                <form class="form-inline" action="<?php echo e(utf8_encode(route('historyUpdate'))); ?>" method="post">
-                    <input type="hidden" name="_token" value="<?php echo e(utf8_encode(csrf_token())); ?>">
+                <form class="form-inline" action="{{ route('historyUpdate') }}" method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                               <select class="form-control" name="cb1">
-                                  <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                  <option value="<?php echo $language->language; ?>"><?php echo $language->language; ?></option>
-                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                  @foreach($data as $language)
+                                  <option value="{!! $language->language !!}">{!! $language->language !!}</option>
+                                  @endforeach
                               </select>
-                              <?php if(isset($getTypeEnglish)): ?>
+                              @if(isset($getTypeEnglish))
                               <select class="type form-control" name="typeword">
-                                  <?php $__currentLoopData = $getTypeEnglish; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                  @foreach($getTypeEnglish as $key=>$value)
                                   <option
-                                  value="<?php echo e(utf8_encode($value)); ?>"><?php echo $value; ?></option>
-                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                  value="{{ $value }}">{!! $value !!}</option>
+                                  @endforeach
                               </select>
-                              <?php endif; ?>
+                              @endif
                           </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
                           <select class="form-control" name="cb2">
-                              <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo $language->language; ?>"><?php echo $language->language; ?></option>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              @foreach($data as $language)
+                              <option value="{!! $language->language !!}">{!! $language->language !!}</option>
+                              @endforeach
                           </select>
                           <button type="submit" class="btn btn-success ilearn-background-color">
                               <span class="glyphicon glyphicon-upload"></span>Thêm
@@ -55,31 +64,31 @@
 
               <div class="row">
                 <div class="col-sm-6">
-                  <div class="input-group <?php echo e(utf8_encode($errors->has('tu') ? ' has-error' : '')); ?>" >
+                  <div class="input-group {{ $errors->has('tu') ? ' has-error' : '' }}" >
                       <span class="input-group-addon">Từ</span>
                       <input size="30" id="msg" type="text" class="form-control" name="tu" placeholder="Hello" value="" required>
                   </div>
                   <br>
-                   <?php if($errors->has('tu')): ?>
+                   @if ($errors->has('tu'))
                     <span class="help-block">
-                        <strong><?php echo $errors->first('tu'); ?></strong>
+                        <strong>{!! $errors->first('tu') !!}</strong>
                     </span>
-                <?php endif; ?>
+                @endif
 
                   <div>
                       </div>
 
                   </div>
                   <div class="col-sm-6">
-                      <div class="input-group <?php echo e(utf8_encode($errors->has('tu') ? ' has-error' : '')); ?>">
+                      <div class="input-group {{ $errors->has('tu') ? ' has-error' : '' }}">
                           <span class="input-group-addon">Nghĩa</span>
                           <input size="30" id="msg" type="text" class="form-control" name="nghia" placeholder="Xin chào" value="" required>
                       </div>
-                      <?php if($errors->has('nghia')): ?>
+                      @if ($errors->has('nghia'))
                     <span class="help-block">
-                        <strong><?php echo $errors->first('nghia'); ?></strong>
+                        <strong>{!! $errors->first('nghia') !!}</strong>
                     </span>
-                <?php endif; ?>
+                @endif
                   </div>
 
               </div>

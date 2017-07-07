@@ -1,7 +1,7 @@
   <div class="panel">
       <div class="panel-body">
           <div class="row">
-            <div class="col-sm-12 text-center">
+            <div class="col-sm-12">
               <form action="{{ route('adminDictSearchWord') }}" class="form-inline" method="get">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="form-group">
@@ -10,7 +10,7 @@
                     @if(isset($code))
                       value="{!! $lastKey !!}"
                     @else
-                      value="{!! old('_keytratu') !!}"
+                      value="{{ old('_keytratu') }}"
                     @endif
                     required maxlength="50"></span>
                     <select class="form-control" name="_cbloaitutratu">
