@@ -16,6 +16,11 @@ Route::get('/result', function () {
     return view('result');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
+
 Route::get('/', array('as' => '',
     'uses' => 'LaguageController@getAllLanguage'));
 
@@ -61,8 +66,6 @@ Route::get('getAddCreateDictMeaning/{index}', function ($index) {
 Route::get('pushWord','NotificationController@getWordNotification');
 Route::get('pushTime','NotificationController@getTimeNotification');
 /*=================== /.USER AREA ===============*/
-
-Route::get('test', 'DictionaryManagementController@checkValidate');
 
 /*=================== ADMIN AREA ===============*/
 Route::group(['prefix' => 'admin'], function () {

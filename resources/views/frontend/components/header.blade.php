@@ -1,5 +1,5 @@
 <meta name="csrf-token" content="{!! csrf_token() !!}">
-    <nav class="navbar navbar">
+    <nav class="navbar">
         <div class="container-fluid">
             @if(Auth::guest())
             <ul class="nav navbar-nav">

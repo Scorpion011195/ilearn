@@ -1,6 +1,6 @@
 @extends('frontend.layouts.index')
 @section('content')
-@include('frontend.components.search')
+@include('frontend.components.search.search')
 	<div class="container">
     <div class="col-xs-12 result">
         <div class = "col-sm-6 col-sm-offset-3 form-group row">
