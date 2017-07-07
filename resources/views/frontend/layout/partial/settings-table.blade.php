@@ -12,16 +12,15 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="example1" class="table table-responsive table-bordered table-striped table table-hover " role="grid"
-                    aria-describedby="example1_info">
+                    <table id="example1" class="table-bordered table-striped table table-hover " role="grid">
                     <thead>
                         <tr role="row">
-                            <th class="from_text">Từ</th>   
-                            <th class="to_text">Nghĩa</th>
-                            <th class="type">Loại từ </th>
-                            <th class="dirct">Từ điển</th>
-                            <th class="notification" style="">Notification</th>
-                            <th class="action" tabindex="1" aria-controls="" rowspan=""
+                            <th class="col--width2">Từ</th>   
+                            <th class="col--width2">Nghĩa</th>
+                            <th class="col--width1">Loại từ </th>
+                            <th class="col--width3">Từ điển</th>
+                            <th class="col--width1" style="">Notification</th>
+                            <th class="col--width05" tabindex="1" aria-controls="" rowspan=""
                             aria-label="">Hành động</th>
                         </thead>
                         <tbody>
