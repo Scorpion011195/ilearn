@@ -17,7 +17,7 @@ $(document).ready(function() {
             success : function(response){
                 if(response['data'] == "fine"){
                     alert("Đã thêm vào lịch sử");
-                    
+
                 }
                 else{
                     alert("Opps! Vui lòng xem lại thông tin");
@@ -88,8 +88,21 @@ $(document).ready(function() {
     var isRun = false;
     $(document).on('change','#toggle-one', function(evt){
         if($(this).prop('checked')){
-            isRun = true;
-            ajaxGetTimeToPush();
+            if (!Notification in window) {
+                alert('Desktop notifications are not available in your browser!');
+            }
+            else if (Notification.permission !== 'granted') {
+                Notification.requestPermission((permission) => {
+                  if (permission === 'granted') {
+                    isRun = true;
+                    ajaxGetTimeToPush();
+                  }
+                });
+            }
+            else {
+                isRun = true;
+                ajaxGetTimeToPush();
+            }
         }
         else{
             isRun = false;
@@ -160,7 +173,7 @@ $(document).ready(function() {
             var notification ="F";
         };
          //var _token = $('input[name=_token]').val()
-         alert(notification); 
+         alert(notification);
          $.ajax({
              url:'historyEdit',
              method:'POST',
@@ -172,7 +185,7 @@ $(document).ready(function() {
              }  else{
            }
        },
-   });    
+   });
     });
 
  });

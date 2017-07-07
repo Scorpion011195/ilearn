@@ -1,22 +1,21 @@
 
 <html lang="en">
 
-@include('frontend.layout.html_header')
+@include('frontend.components.html_header')
 <body>
-@include('frontend.layout.header')
+@include('frontend.components.header')
 <section class="container margin-top margin-footer">
     <div class="">
         <div class="panel-content">
-            @include('frontend.layout.create-dict')
+            @include('frontend.components.partial.create-dict')
         </div>
         <div class=" text-center">
             @include('frontend.layout.partial.settings-table')
         </div>
     </div>
 </section>
-@include('frontend.layout.footer')
-@include('frontend.layout.footer-script')
-@include('frontend.layout.register')
+@include('frontend.components.footer')
+@include('frontend.components.footer-script')
 <!-- SET UP EDITABLE -->
 <!-- <script>
     
