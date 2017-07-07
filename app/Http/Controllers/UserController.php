@@ -20,22 +20,22 @@ class UserController extends Controller
 
   public function getLogin()
   {
-    return view('index');
+    return view('frontend.pages.login');
   }
   public function postLogin(Request $request)
   {
-    \Session::put('flagLogin', 'isLogin');
     $rules = [
-    'username' => 'required',
-    'password' =>'required|min:6|max:32',
+    'name' => 'required',
+    'pass' =>'required|min:6|max:32',
     ];
     $messages = [
-    'username.required' => 'Trường username là bắt buộc',
-    'password.required' => 'Mật khẩu là bắt buộc',
-    'password.min' => 'Mật khẩu lớn hơn 6 kí tự',
-    'password.max' => 'Mật khẩu nhỏ hơn 32 kí tự'
+    'name.required' => 'Trường username là bắt buộc',
+    'pass.required' => 'Mật khẩu là bắt buộc',
+    'pass.min' => 'Mật khẩu lớn hơn 6 kí tự',
+    'pass.max' => 'Mật khẩu nhỏ hơn 32 kí tự'
     ];
 
+    $validator = Validator::make($request->all(), $rules, $messages);
     $validator = Validator::make($request->all(), $rules, $messages);
 
     if($validator->fails())
@@ -45,8 +45,8 @@ class UserController extends Controller
     }
 
     else {
-      $username = $request->input('username');
-      $password = $request->input('password');
+      $username = $request->input('name');
+      $password = $request->input('pass');
       $remember = $request->input('remember');
 
       if(Auth()->attempt(['username' =>$username, 'password' => $password],$remember)) {
@@ -62,11 +62,10 @@ class UserController extends Controller
 
   public function getRegister()
   {
-    return view('index');
+    return view('frontend.pages.register');
   }
   public function postRegister(RegisterRequest $request)
   {
-    \Session::put('flagLogin', 'isRegister');
     $user = new \App\Models\User();
     $user->email = $request->email;
     $user->username = $request->username;
@@ -101,7 +100,7 @@ class UserController extends Controller
 
   }
     $success['text'] = 'flash';
-    return view("index")->with([
+    return view("frontend.pages.home")->with([
                     'flash' => $success,
                     'data' => $language ]);
 

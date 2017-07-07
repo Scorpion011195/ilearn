@@ -32,6 +32,7 @@ class HistoryUpdateRequest extends FormRequest
     {
         return [
             'tu.required' => 'Bạn chưa nhập Từ',
+            'tu.Regex' =>'Không được chứa số',
             'tu.max' => 'Từ phải nhỏ hơn 100 kí tự',
             'tu.min' => 'Từ phải lớn hơn 1 ',
             'nghia.required'  => 'Bạn chưa nhập nghĩa',
