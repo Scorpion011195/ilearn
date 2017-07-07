@@ -2,13 +2,14 @@ $(document).ready(function() {
     /* SETTING SCREEN */
     /* Result JS */
     $(document).on('click','._push-his', function(evt){
-        var type = $("#_type").text();
+        var type = $("b #_type").text();
         var from = $("#sel1 :selected").text();
         var to = $("#sel2 :selected").text();
         var id = $(this).attr('data-id');
         var from_text = $('#from').val();
         var to_text = $(this).next().next().text();
         var _token = $('input[name=_token]').val();
+        alert(type);
         $.ajax ({
             url: 'HistoryAddNew',
             type: 'POST',
@@ -24,35 +25,6 @@ $(document).ready(function() {
                 }
             }
         });
-    });
-
-    // DataTableJS
-    $(document).on('click', "a.deleteRecord", function(evt){
-        var _element = $(this);
-        var to = $(this).attr('data-id');
-        var from = $(this).attr('value');
-        var _token = $('input[name=_token]').val();
-        if(!confirm('Bạn có muốn xóa từ : ' + from+'?')){
-            evt.preventDefault();
-            return false;
-        }
-        else{
-            $.ajax({
-                url: 'HistoryDelete',
-                type: 'POST',
-                dataType: 'json',
-                data: {'to': to,'from': from, '_token' : _token},
-                success : function(response){
-                    if(response['data'] == "fine"){
-                        _element.closest('tr').remove();
-                        alert("Bạn đã xóa thành công");
-                    }
-                    else{
-                        alert("ERROR ! Please try again");
-                    }
-                }
-            });
-        }
     });
 
     // Toggle button
@@ -123,9 +95,9 @@ $(document).ready(function() {
                 }
             },
             error: function(xhr, error) {
-               console.log(error);
-           }
-       });
+             console.log(error);
+         }
+     });
     }
 
     function ajaxGetWordToPush(time){
@@ -157,9 +129,9 @@ $(document).ready(function() {
                 }
             },
             error: function(xhr, error) {
-               console.log(error);
-           }
-       });
+             console.log(error);
+            }
+        });
     }
 
     $(document).on('click','.action', function(){
@@ -173,21 +145,55 @@ $(document).ready(function() {
             var notification ="F";
         };
          //var _token = $('input[name=_token]').val()
-         alert(notification);
-         $.ajax({
-             url:'historyEdit',
-             method:'POST',
-             dataType:'json',
-             data: {'from': from,'to': to,'notification' : notification, '_token' : _token},
-             success : function(response){
-                if(response['data']=="fine"){
+        alert(notification);
+        $.ajax({
+           url:'historyEdit',
+           method:'POST',
+           dataType:'json',
+           data: {'from': from,'to': to,'notification' : notification, '_token' : _token},
+           success : function(response){
+              if(response['data']=="fine"){
                  alert("Thêm vào thành công");
-             }  else{
-           }
-       },
-   });
+              }else{
+              }
+           },
+        });
     });
 
- });
+    $(document).on('click', "a.deleteRecord", function(evt){
+        var _element = $(this).closest('tr');
+        var to = $(this).closest('tr').find('._to').text();
+        var from = $(this).closest('tr').find('._from').text();
+        var _token = $('input[name=_token]').val();
+        $(this).confirmation({
+          title: 'Xóa!',
+          onConfirm: function() {
+            HistoryDeleteByAjax(_element, to, from, _token);
+          },
+          onCancel: function() {
+          },
+        });
+        $(this).confirmation('show');
+    });
+
+    function  HistoryDeleteByAjax(_element, to, from, _token){
+        $.ajax({
+            url:'HistoryDelete',
+            method: 'POST',
+            data : {'to': to,'from': from, '_token' : _token},
+            dataType:'json',
+            success : function(response){
+                if(response['data'] == "fine"){
+                 _element.remove();
+                $.notify("Đã xóa thành công!", "success");
+                }
+            },
+            error: function(xhr, error) {
+                $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
+            }
+        });
+    }
+
+});
 
 
