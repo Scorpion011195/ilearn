@@ -82,10 +82,7 @@ html, body {
 .in {
     display: inline-block !important;
 }
-.btn-default {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+
 .right-group {
     float: right;
     margin-bottom: 11px;
@@ -97,15 +94,18 @@ html, body {
     height:10px;
     background:#00e3ff;
 }
+
 .menu{
     width:100%;
     height: 57px;
     background:#fff;
     border-bottom: 2px solid blue;
 }
+
 .slider{
     width:100%;
 }
+
 .navbar{
     background: #E9633B;
 }
