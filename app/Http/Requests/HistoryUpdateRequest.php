@@ -24,7 +24,7 @@ class HistoryUpdateRequest extends FormRequest
     public function rules()
     {   
         return [
-            'tu'=>'required|min: 1|max:100 | Regex :/^[a-zA-Z]*$/',
+            'tu'=>'required|min: 1|max:100 |',
             'nghia'=>'required|min : 1|max:100'
         ];
     }

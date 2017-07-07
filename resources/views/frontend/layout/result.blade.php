@@ -12,7 +12,7 @@
                             <?php $getData ='';?>
                             @if(!($type == $language->type))
                                 <?php  $type = $language->type ?> <br>
-                                <b class="type" >{!! $language->type !!}</b>:<br>
+                                <b id="_type" >{!! $language->type !!}</b>:<br>
                                     @if(!Auth::guest())
                                         <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
                                         <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
@@ -52,7 +52,7 @@
                                 @else
                                     @if(!($type == $language->type))
                                         <?php  $type = $language->type ?><br>
-                                        <b class="_type" >{!! $language->type !!}</b>:<br>
+                                        <b id="_type" >{!! $language->type !!}</b>:<br>
                                         <span> {!! $language ->explain !!} </span> &nbsp;<br>
                                     @endif
                                 @endif
