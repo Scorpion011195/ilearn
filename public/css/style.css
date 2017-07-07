@@ -340,7 +340,7 @@ footer p {
     width: 100px;
 }
 .col--width2{
-    width: 200px;
+    width: 50px;
 }
 .col--width3{
     width: 300px;
@@ -370,38 +370,8 @@ footer p {
 /* /.ALIGN */
 
 /* 
-Form Setting + History table */
-.titelSetting{
-    padding-top: 30px;
-    padding-bottom: 10px;
 
-}
-.containerpanel{
-    padding-top: 40px;
-    border:  1px solid #ddd;
-}
-.table > thead > tr > th{
-background-color:     
-}
-/* History Table */
- .from_text{
-    width:  200px;
- }
- .to_text{
-    width: 200px;
- }
- .type{
-    width: 100px;
- }
- .dirct{
-    width: 250px;
- }
- .notification{
-    width: 50px;
- }
- .action{
-    width: 100px;
- }
+
 /* RESPONSIVE */
 @media screen and (max-width: 699px) and (min-width: 520px){
     .center {
