@@ -1,15 +1,8 @@
-<!doctype html>
+
 <html lang="en">
 
 @include('frontend.layout.html_header')
-<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"
-      rel="stylesheet"/>
-<!-- X EDITABLE CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
-      rel="stylesheet"/>
-<!-- X-EDITABLE JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<body>
 @include('frontend.layout.header')
 <section class="container margin-top margin-footer">
     <div class="">

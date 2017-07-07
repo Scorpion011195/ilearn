@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Setting;
 use Auth;
 use app\Controller\userController;
+use Session;
 class SettingController extends Controller
 {
     /**
@@ -26,7 +27,7 @@ class SettingController extends Controller
      */
     public function create(Request $request)
     {
-        
+
     }
 
 
@@ -74,16 +75,28 @@ class SettingController extends Controller
     {
         $id=Auth::user()->id_user;
         $setting = Setting::where('id_user',$id)->first();
+        $timeSetting= array('5','10','15','20','25','60');
         $time=$request->time;
         $des_info=$request->des_infomation;
     // $setting->id_reminder= $time;
     // $setting->time_to_remind= $name;
     // $setting->save();
-        $attributes = ['id_reminder'=>$des_info,'time_to_remind'=>$time];
-        Setting::where('id_user',$id)->update($attributes);
+        $result = $request->noti;
+        if( $result== null){
+            $result ='OFF';
+        }
+        else{
+            $result ='ON';
+        }
+        $attributes = ['id_reminder'=>$des_info,'time_to_remind'=>$time,'status'=> $result];
+        $getNoti= Setting::where('id_user',$id)->update($attributes);
+        Session::put('time', $time);
+        Session::put('info', $des_info);
+        Session::put('noti', $result);
 
+        var_dump($getNoti);
+        // return view('frontend.settings',['time'=>$timeSetting]);
         return redirect('/settings')->with("message","<strong>Cài đặt thành công!</strong>");
-    // return redirect('/settings')->with("message","<strong>Cài đặt thành công!</strong>");
     }
     
 
