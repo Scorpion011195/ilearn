@@ -37,7 +37,7 @@ class UploadExcelController extends Controller
 	{
 		$extension = \File::extension($request->file('csvFile')->getClientOriginalName());
 		if($extension != "csv") {
-			$errors = new MessageBag(['errorUpload' => 'File sai']);
+			$errors = new MessageBag(['errorUpload' => 'File không đúng địng dạng!']);
         	return redirect()->back()->withInput()->withErrors($errors);
 		}
 		if($request->hasFile('csvFile')){
@@ -60,7 +60,7 @@ class UploadExcelController extends Controller
 						'id_mapping'=> $id_mapping,
 						'created_at' => date('Y-m-d H:i:s'),
 						'updated_at' => date('Y-m-d H:i:s'),
-					];				
+					];
 
 					if ($value ->language == "" || $value ->language == "End") {
 						if($error == false) {
