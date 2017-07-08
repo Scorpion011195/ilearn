@@ -1,11 +1,11 @@
 @extends('frontend.layouts.index')
 @section('content')
 <div class="row page">
-    <div id="view1" class="col-md-6 col-lg-6 col-xs-12"> 
+    <div id="view1" class="col-md-6 col-lg-6 col-xs-12">
         <ui-view name="main" class="ng-scope">
-            <div class="col-md-12 register-screen ng-scope">
+            <div class="col-md-12 register-screen ng-scope margin--top-10-px">
                 <form name="loginRegister" action="{{ route('dangki') }}" role="form" method="POST" accept-charset="utf-8">
-                {!! csrf_field() !!} 
+                {!! csrf_field() !!}
                     <legend>Đăng ký tài khoản mới</legend>
                     <label class="control-label">
                         Username:
@@ -19,7 +19,7 @@
                             <span><i class="fa fa-times text-danger"></i>{!! $errors->first('username') !!}</span>
                         </div>
                     @endif
-                    <br>  
+                    <br>
                     <label class="control-label">
                         Email:
                     </label>
@@ -32,7 +32,7 @@
                             <span><i class="fa fa-times text-danger"></i>{!! $errors->first('email') !!}</span>
                         </div>
                     @endif
-                    <br>     
+                    <br>
                     <label class="control-label">
                         Mật khẩu:
                     </label>
@@ -66,7 +66,7 @@
                         <a class="btn btn-link" href="{{url('dangnhap')}}">
                             Quay lại đăng nhập
                         </a>
-                    </div>    
+                    </div>
                 </form>
             </div>
         </ui-view>

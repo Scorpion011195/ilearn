@@ -92,36 +92,6 @@ $(document).ready(function(){
     });
     /* ----- /.ACCOUNTS MANAGEMENT SCREEN ----- */
 
-    // function chooseProcess(_this, _case){
-    //     var _token = $('input[name=_token]').val();
-    //     var _element = _this.closest('tr');
-
-    //     switch(_case){
-    //         case 'ajaxDeleteWord':
-    //             var idWord = _element.find('._word-id').attr('data-id');
-    //             var word = _element.find('._word').text();
-    //             var table = $("#_table-to :selected").text();
-    //             ajaxDeleteWord(_element, idWord, word, table, _token);
-    //             break;
-    //         case 'ajaxChangeStatus':
-    //             var idUser = _element.find('._user-id').attr('data-id');
-    //             var idStatus = $(this).val();
-    //             var userName = _element.find('._user-name').text();
-    //             ajaxChangeStatus(idUser, idStatus, _token, userName);
-    //             break;
-    //         case 'ajaxChangeRole':
-    //             var idUser = _element.find('._user-id').attr('data-id');
-    //             var idRole = $(this).val();
-    //             var userName = _element.find('._user-name').text();
-    //             ajaxChangeRole(idUser, idRole, _token, userName);
-    //             break;
-    //         case 'ajaxDeleteUser':
-    //             var idUser = _element.find('._user-id').attr('data-id');
-    //             var userName = _element.find('._user-name').text();
-    //             ajaxDeleteUser(_element, idUser, _token, userName);
-    //     }
-    // }
-
     /* ----- AJAX ----- */
     function ajaxDeleteWord(_element, idWord, word, table, _token){
         $.ajax({

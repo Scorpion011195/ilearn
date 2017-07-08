@@ -3,11 +3,11 @@
         <h1 class="text-center">ILEARN</h1>
     </div>
     {!! Form::open(array('route' => 'search','method' => 'get', 'class' =>'container')) !!}
-    <div class="row add-margin">
+    <div class="row">
         <div class="col-md-3"></div>
             <div class="col-md-6 ">
         <div class="col-sm-10 no-padding">
-            {!! Form::text('search', '', ['id' => 'from','class' => 'form-control no-radius-right', 'autofocus', 'maxlength' => 50]) !!}
+            {!! Form::text('search', '', ['id' => 'from','class' => 'form-control no-radius-right', 'autofocus', 'required', 'maxlength' => 50]) !!}
         </div>
             {!! Form::submit('Tra từ', ['class' => 'btn btn-warning ilearn-background-color col-sm-2 no-radius-left']) !!}
         <div class="error-form">
@@ -20,13 +20,12 @@
         <div class="col-md-3"></div>
     </div>
     </div>
-    <div class="row add-margin">
-        <div class="col-md-4"></div>
-        <div class="col-md-2 add-margin">
-            <div class="input-group ">
-                <span for="sel1" class="input-group-addon">Nguồn</span>
-                <select class="form-control" name="lagFrom" id="sel1">
-                    <?php foreach($data as $item =>$value){
+
+    <div class="form-inline margin--top-5-px text-center">
+        <div class="input-group ">
+            <span for="sel1" class="input-group-addon">Nguồn</span>
+            <select class="form-control" name="lagFrom" id="sel1">
+                <?php foreach($data as $item =>$value){
                     $language = $value->language;
                     ?>
                     @if (\Session::get('flagLanguage1') == $language)
@@ -37,12 +36,10 @@
                     <?php }?>
                 </select>
             </div>
-        </div>
-        <div class="col-md-2 add-margin">
             <div class="input-group">
                 <span for="sel2" class="input-group-addon">Đích</span>
                 <select name="lagTo" class="form-control" id="sel2" selected="vietnamese">
-                 <?php foreach($data as $item =>$value){
+                   <?php foreach($data as $item =>$value){
                     $language = $value->language;
                     ?>
                     @if (\Session::get('flagLanguage2') == $language)
@@ -54,7 +51,6 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-4"></div>
     </div>
     {!! Form::close() !!}
 </div>

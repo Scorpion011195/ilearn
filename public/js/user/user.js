@@ -6,7 +6,7 @@ $(document).ready(function() {
         var to = $("#sel2 :selected").text();
         var id = $(this).attr('data-id');
         var from_text = $('#from').val();
-        var to_text = $(this).next().next().text();
+        var to_text = $(this).next().next().next().text();// +1 next() if add tooltip
         var _token = $('input[name=_token]').val();
 
         $.ajax ({
@@ -15,12 +15,13 @@ $(document).ready(function() {
             dataType: 'json',
             data: {'from': from,'to': to, 'id': id,'from_text': from_text,'to_text': to_text,'_token' : _token},
             success : function(response){
-                if(response['data'] == "fine")
-                {
-                    $.notify('Đã thêm nghĩa của từ "'+ from_text +'" vào lịch sử!', "success");
+                if(response['data'] == "fine"){
+                    $.notify('Đã thêm từ "'+from_text+'" với nghĩa "'+to_text+'"vào lịch sử!', "success");
                 }
-                else
-                {
+                else if(response['data'] == "existed"){
+                    $.notify('Từ "'+ from_text +'" với nghĩa "'+ to_text +'" đã có!', "success");
+                }
+                else{
                     $.notify('Lỗi, vui lòng thử lại!', "error");
                 }
             }
@@ -152,7 +153,13 @@ $(document).ready(function() {
            data: {'from': from,'to': to,'notification' : notification, '_token' : _token},
            success : function(response){
                 if(response['data']=="fine"){
-                   $.notify("Chỉnh sửa trạng thái thành công", "success");
+                    if(notification == "T"){
+                        $.notify('Đã thêm từ "'+ from +'" vào thông báo!', 'success');
+                    }
+                    else{
+                        $.notify('Đã loại từ "'+ from +'" khỏi thông báo!', 'success');
+                    }
+
                 }else{
                     $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
                 }
@@ -187,7 +194,7 @@ $(document).ready(function() {
             success : function(response){
                 if(response['data'] == "fine"){
                      _element.remove();
-                    $.notify("Đã xóa thành công!", "success");
+                    $.notify('Đã xóa từ "'+ from + '"  khỏi lịch sử!', "success");
                 }
             },
              error: function(xhr, error) {
@@ -239,6 +246,7 @@ $(document).ready(function() {
 
         AjaxAddNewHistory(typeWord, from, to, fromText, toText, _token);
     })
+
     function  AjaxAddNewHistory(typeWord, from, to, fromText, toText, _token){
         $.ajax({
             url:'historyUpdate',
@@ -247,7 +255,12 @@ $(document).ready(function() {
             dataType:'json',
             success : function(response){
                 if(response["data"]== true){
-                    $.notify("Cài đặt thành công !", "success");
+                    var rowAdd = getRowAddHistory(fromText, toText, typeWord, from, to);
+                    $(document).find("#example1").append( rowAdd );
+                    $.notify('Đã thêm từ "'+ fromText +'" vào lịch sử!', "success");
+                }
+                else{
+                    $.notify('Từ "'+ fromText +'" với nghĩa "'+ toText +'" đã có!', "success");
                 }
             },
             error: function(xhr, error) {
@@ -255,6 +268,23 @@ $(document).ready(function() {
             }
         });
     }
+
+    function getRowAddHistory(fromText, toText, typeWord, from, to){
+        return '<tr><td class="_from text-center">'+fromText+'</td>'+
+                    '<td class="_to text-center">'+toText+'</td>'+
+                    '<td class="type_to text-center">'+typeWord+'</td>'+
+                    '<td class="text-center">'+from+'-'+to+'</td>'+
+                    '<td class="text-center"><input type="checkbox" name="notification" class="action"></td>'+
+                    '<td class="text-center">'+
+                        '<span>'+
+                            '<a class="deleteRecord" data-toggle="tooltip" data-placement="left" title="Xóa!"><i class=" fa fa-trash-o fa-1x" aria-hidden="true"  "></i></a>'+
+                        '</span>'+
+                    '</td>'+
+                '</tr>';
+    }
+
+    // TOOLTIP
+    $(document).find('._tooltip-me').tooltip();
 });
 
 

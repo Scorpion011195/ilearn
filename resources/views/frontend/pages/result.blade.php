@@ -1,8 +1,8 @@
 @extends('frontend.layouts.index')
 @section('content')
 @include('frontend.components.search.search')
-	<div class="container">
-    <div class="col-xs-12 result">
+<div class="container">
+    <div class="col-xs-12 result margin--top-10-px">
         <div class = "col-sm-6 col-sm-offset-3 form-group row">
             <div class ="row panel panel-default no-radius-left no-radius-right">
                 <div class="col-xs-8 col-sm-6">
@@ -15,7 +15,7 @@
                                 <?php  $type = $language->type ?> <br>
                                 <b class="type" >{!! $language->type !!}</b>:<br>
                                     @if(!Auth::guest())
-                                        <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
+                                        <span class="glyphicon glyphicon-plus _push-his _tooltip-me" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}" title="Thêm vào lịch sử">{!! $language->listen !!}</span>
                                         <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
                                         <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
                                     @endif
@@ -25,9 +25,8 @@
                                         <span> {!! $language ->word !!} </span> &nbsp;<br>
                                     @endif
                             @else
-
                                 @if(!Auth::guest())
-                                    <span class="glyphicon glyphicon-plus _push-his" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}">{!! $language->listen !!}</span>
+                                    <span class="glyphicon glyphicon-plus _push-his _tooltip-me" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}" title="Thêm vào lịch sử">{!! $language->listen !!}</span>
                                     <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
                                     <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
                                 @endif

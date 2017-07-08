@@ -58,7 +58,7 @@
         <div class="col-sm-6">
           <div class="input-group {{ $errors->has('tu') ? ' has-error' : '' }}">
               <span class="input-group-addon">Từ</span>
-              <input size="30" type="text" class="form-control" id="fromText" placeholder="Hello"  required>
+              <input size="30" type="text" class="form-control" id="fromText" placeholder="Hello"  required maxlength="50">
           </div>
             <br>
              @if ($errors->has('tu'))
@@ -70,7 +70,7 @@
         <div class="col-sm-6">
             <div class="input-group {{ $errors->has('nghia') ? ' has-error' : '' }}">
                 <span class="input-group-addon">Nghĩa</span>
-                <input size="30" type="text" class="form-control" id="toText" placeholder="Xin chào" value="" required>
+                <input size="30" type="text" class="form-control" id="toText" placeholder="Xin chào" required maxlength="50">
             </div>
             @if ($errors->has('nghia'))
               <span class="help-block">

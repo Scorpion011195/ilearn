@@ -29,14 +29,21 @@ class HistoryController extends Controller
         // Lấy ID user để update cho user
 
         $historys = History::where('id_history', $id)->first();
-
         $arr= json_decode($historys->content, JSON_UNESCAPED_UNICODE);
 
-        // Session::put('type_to',$request->typeTo);
-        // Session::put('fromLg', $request->cb1);
-        // Session::put('toLg', $request->cb2);
+        // Input
+        $fromText = $request->fromText;
+        $toText = $request->toText;
 
-        $arr[]= array('type_to'=>$request->typeTo,'from' => $request->from, 'to'=> $request->to,'from_text'=>$request->fromText,'to_text'=>$request->toText,'notification'=> 'F');
+        // Check word existed?
+        foreach ($arr as $row) {
+            if($fromText == $row['from_text']&&$toText == $row['to_text']){
+                $dataResponse = ["data"=>false];
+                return json_encode($dataResponse);
+            }
+        }
+
+        $arr[]= array('type_to'=>$request->typeTo,'from' => $request->from, 'to'=> $request->to,'from_text'=>$fromText,'to_text'=>$toText,'notification'=> 'F');
 
         $json = json_encode($arr,JSON_UNESCAPED_UNICODE); /*Chuyển mảng mới get qua json*/
         $info = ['content' => $json]; /*Gán column content => file JSon mới get*/
@@ -45,37 +52,37 @@ class HistoryController extends Controller
         $dataResponse = ["data" => true];
         return json_encode($dataResponse);
     }
- public function store(Request $request)
- {
-    $history= new History;
-    $lang = DB::table('languages')->get();
-    $getTypeVietnamese = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-    $id=Auth::user()->id_user;
-    Session::put('fromLg', $request->cb1);
-    Session::put('toLg', $request->cb2);
+    public function store(Request $request)
+    {
+        $history= new History;
+        $lang = DB::table('languages')->get();
+        $getTypeVietnamese = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
-                // Lấy ID user để update cho user
-    $historys = History::where('id_history', $id)->first();
+        $id=Auth::user()->id_user;
+        Session::put('fromLg', $request->cb1);
+        Session::put('toLg', $request->cb2);
 
-        // $data =json_decode($historys->content);
-    $arr= json_decode($historys->content, JSON_UNESCAPED_UNICODE);
+                    // Lấy ID user để update cho user
+        $historys = History::where('id_history', $id)->first();
 
-     return view('frontend.pages.history',['data' => $arr,'Lg' => $lang, 'getTypeVietnamese'=>$getTypeVietnamese]);
-}
+            // $data =json_decode($historys->content);
+        $arr= json_decode($historys->content, JSON_UNESCAPED_UNICODE);
+
+         return view('frontend.pages.history',['data' => $arr,'Lg' => $lang, 'getTypeVietnamese'=>$getTypeVietnamese]);
+    }
 
 public function addNew(Request $request) {
     $englishService = new EnglishService(new English);
     $vietnameseService = new VietnameseService(new Vietnamese);
     $japaneseService = new JapaneseService(new Japanese);
-
     $history= new History;
 
     $id=Auth::user()->id_user;
-        // Lấy ID user để update cho user
-    $historys = History::where('id_history', $id)->first();
 
-    $arr= json_decode($historys->content,JSON_UNESCAPED_UNICODE);/*Chuyển json thành mảng*/
+    // Lấy ID user để update cho user
+    $historys = History::where('id_history', $id)->first();
+    $arr= json_decode($historys->content,JSON_UNESCAPED_UNICODE);
 
     $tableTo = $request->to;
     $idTo = $request->id;
@@ -94,7 +101,19 @@ public function addNew(Request $request) {
     $word = $rowWord->word;
     $typeTo = json_decode($word,JSON_UNESCAPED_UNICODE);
 
-    $arr[]= array('type_to'=>$typeTo['type'],'from' => $request->from, 'to'=> $request->to,'from_text'=>$request->from_text,'to_text'=>$request->to_text,'notification'=> 'F');
+    // Input
+    $fromText = $request->from_text;
+    $toText = $request->to_text;
+
+    // Check word existed?
+    foreach ($arr as $row) {
+        if($fromText == $row['from_text']&&$toText == $row['to_text']){
+            $dataResponse = ["data"=>"existed"];
+            return json_encode($dataResponse);
+        }
+    }
+
+    $arr[]= array('type_to'=>$typeTo['type'],'from' => $request->from, 'to'=> $request->to,'from_text'=>$fromText,'to_text'=>$toText,'notification'=> 'F');
 
     $json = json_encode($arr,JSON_UNESCAPED_UNICODE); /*Chuyển mảng mới get qua json*/
 
@@ -103,15 +122,11 @@ public function addNew(Request $request) {
     $successUpdate= History::where('id_history',$id)->update($info);/*Update content nơi mà cái ID của history = với Id của user đang thực hiện add*/
 
     if(isset($successUpdate)){
-
         $dataResponse = ["data"=>"fine"];
-
         return json_encode($dataResponse);
     }
     else{
-
         $dataResponse = ["data"=>"false"];
-
         return json_encode($dataResponse);
     }
 }
