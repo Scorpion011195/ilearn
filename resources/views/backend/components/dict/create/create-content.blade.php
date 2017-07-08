@@ -63,7 +63,7 @@
           <div class="col-sm-6 {{ $errors->has('_txttu') ? ' has-error' : '' }}">
             <div class="input-group ">
               <span class="input-group-addon">Từ</span>
-              <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="hello" value="{{ old('_txttu') }}" required maxlength="50">
+              <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="hello" value="{!! old('_txttu') !!}" required maxlength="50">
             </div>
             @if ($errors->has('_txttu'))
             <span class="glyphicon glyphicon-warning-sign help-block--color-apple-blossom"></span>   <strong class="help-block--color-apple-blossom">{!! $errors->first('_txttu') !!}</strong>
@@ -72,7 +72,7 @@
           <div class="col-sm-6 {{ ($errors->has('_txtnghia')&&!($errors->has('_txttu'))) ? ' has-error' : '' }}">
             <div class="input-group">
               <span class="input-group-addon">Nghĩa</span>
-              <input size="30" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="xin chào" value="{{ old('_txtnghia') }}" required maxlength="50">
+              <input size="30" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="xin chào" value="{!! old('_txtnghia') !!}" required maxlength="50">
             </div>
             @if ($errors->has('_txtnghia')&&!($errors->has('_txttu')))
             <span class="glyphicon glyphicon-warning-sign help-block--color-apple-blossom"></span>   <strong class="help-block--color-apple-blossom">{!! $errors->first('_txtnghia') !!}</strong>

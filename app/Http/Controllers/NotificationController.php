@@ -22,7 +22,7 @@ class NotificationController extends Controller
         $timeReminder = $setting->time_to_remind;
 
         // Change minutes to miliseconds
-        $time = 3000;//$timeReminder*60*1000;
+        $time = $timeReminder*60*1000;
 
         $dataResponse = ["code"=>true,"time"=>$time];
         return json_encode($dataResponse);
@@ -37,13 +37,24 @@ class NotificationController extends Controller
 
         // Get Historys
         $history = $historyService->getByColumn('id_history', $id);
-        $arrContentHistory = $history->content;
+        $strContentHistory = $history->content;
+        $arrContentHistory = json_decode($strContentHistory);
+
+        // Get words to push
+        $arrContentPush = array();
+        foreach ($arrContentHistory as $row) {
+            if($row->notification=="T"){
+                array_push($arrContentPush, $row);
+            }
+        }
+
+        $strContentPush = json_encode($arrContentPush, JSON_UNESCAPED_UNICODE);
 
         // Get Settings
         $setting = $settingService->getByColumn('id_user', $id);
         $typeReminder = MyConstant::TYPE_REMINDERS[$setting->id_reminder];
 
-        $dataResponse = ["code"=>true,"content"=>$arrContentHistory,"type"=>$typeReminder];
+        $dataResponse = ["code"=>true,"content"=>$strContentHistory,"type"=>$typeReminder];
         return json_encode($dataResponse);
     }
 }

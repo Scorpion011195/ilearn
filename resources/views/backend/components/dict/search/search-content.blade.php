@@ -7,7 +7,7 @@
                   <div class="form-group">
                     <span class="{{ $errors->has('_keytratu') ? ' has-error' : '' }}">
                     <input class="form-control" type="text" placeholder="Nhập từ" name="_keytratu"
-                    @if(isset($code))
+                    @if(isset($code)&&!$errors->has('_keytratu'))
                       value="{!! $lastKey !!}"
                     @else
                       value="{{ old('_keytratu') }}"
@@ -59,7 +59,7 @@
             </div>
           </div>
 
-      @if (isset($code))
+      @if (isset($code)&&!$errors->has('_keytratu'))
           <br>
           @if($code == "FailedCannotFind")
             <div>
