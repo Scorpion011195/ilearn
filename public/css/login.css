@@ -39,8 +39,7 @@ h1, h2, h3, h4, h5, h6 {
     color: inherit;
 }
 .page {
-    margin-right: auto;
-    margin-top: auto;
+    margin:10px;
 }
 .title {
     font-weight: 700;

@@ -33,6 +33,15 @@
                         </div>
                     @endif
                  <br>
+                 <div class="input-group"> 
+                        @if($errors->has('errorLogin'))
+                            <div class="form-group">
+                                <div class="text-danger ng-hide">
+                                    {!! $errors->first('errorLogin') !!}
+                                </div>
+                            </div>
+                        @endif  
+                    </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="remember" {!! old('remember') ? 'checked' : '' !!}>
@@ -46,7 +55,7 @@
                         <a class="btn btn-link" href="{{url('dangki')}}">
                             Đăng ký tài khoản mới
                         </a>
-                    </div>    
+                    </div> 
                 </form>
             </div>
         </ui-view>
