@@ -182,7 +182,7 @@ $(document).ready(function() {
 
     
     //update setting  
-    $(document).on('click','.save-setting',function(evt){
+    $(document).on('click','#_save-setting',function(evt){
         if($('#toggle-one').prop('checked')){
             var notificationBtn = "ON";
         }
@@ -203,12 +203,12 @@ $(document).ready(function() {
             data : {'timeRemind': timeRemind, 'typeRemind': typeRemind, 'notificationBtn': notificationBtn, '_token' : _token},
             dataType:'json',
             success : function(response){
-                if(response['data'] == true){
-                    alert("successful");
+                if(response["data"]== true){
+                    alert("ok");
                 }
             },
-             error: function(xhr, error) {
-                $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
+            error: function(xhr, error) {
+                // $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
             }
         });
     }

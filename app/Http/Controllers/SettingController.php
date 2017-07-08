@@ -28,7 +28,7 @@ class SettingController extends Controller
         return view('frontend.pages.settings',['arrTypeReminder'=>$arrTypeReminder,'typeTime' => $arrTypeTime,'time' => $time, 'typeReminder' => $typeReminder, 'status' =>$status]);
     }
 
-    public function updateSetting(Request $request)
+    public function postSetting(Request $request)
     {
         $id=Auth::user()->id_user;
 
@@ -37,17 +37,11 @@ class SettingController extends Controller
         $typeRemind = $request->typeRemind;
         $status = $request->notificationBtn;
 
-        echo $time;
-        echo "<br>";
-        echo $typeRemind;
-        echo "<br>";
-        echo $status;
-        die();
         // Update
         $dataUpdate = ['time_to_remind' => $time, 'id_reminder' => $typeRemind, 'status' => $status];
         Setting::where('id_user',$id)->update($dataUpdate);
         
-        // $response = ["data"=>true];
-        // return json_encode($response);
+        $response = ["data"=>true];
+        return json_encode($response);
     }
 }

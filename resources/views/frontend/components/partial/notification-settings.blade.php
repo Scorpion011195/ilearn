@@ -2,13 +2,10 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 info" style= "padding-top: 10px">
     <center> <h1 class="titelSetting"><b>CÀI ĐẶT THÔNG BÁO</b></h1></center>
 </div>
-<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-
-</div>
-<div class="col-sm-8 containerpanel "" >
-    <div class="panel-body">
-    </div>
-    <form action="" method="" role="form">
+<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+<div class="col-sm-8 containerpanel" >
+    <div class="panel-body"></div>
+    <form>
         <div class="container col-sm-6 col-sm-offset-3">
             <div class="form-group">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -50,14 +47,13 @@
                     </select>
                 </div>
             </div>
-                <br>
-                <div class="row">
-                  <center>{!! Form::submit('Lưu', ['class' => 'save-setting btn btn-success']) !!}</center>
-              </div>
-              <br>
+            <br>
+            <div class="row">
+                <center><button type="submit" class="btn btn-success" id="_save-setting">Lưu</button></center>
+            </div>
+           <br>
           </form>
       </div>
   </div>
-  {!! Form::close() !!}
 </div>
 </div>
