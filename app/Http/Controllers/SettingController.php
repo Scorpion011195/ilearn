@@ -10,105 +10,44 @@ use app\Controller\userController;
 use Session;
 class SettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update( Request $request)
+    public function getSetting()
     {
         $id=Auth::user()->id_user;
         $setting = Setting::where('id_user',$id)->first();
-        $timeSetting= array('5','10','15','20','25','60');
-        $time=$request->time;
-        $des_info=$request->des_infomation;
-    // $setting->id_reminder= $time;
-    // $setting->time_to_remind= $name;
-    // $setting->save();
-        $result = $request->noti;
-        if( $result== null){
-            $result ='OFF';
-        }
-        else{
-            $result ='ON';
-        }
-        $attributes = ['id_reminder'=>$des_info,'time_to_remind'=>$time,'status'=> $result];
-        $getNoti= Setting::where('id_user',$id)->update($attributes);
-        Session::put('time', $time);
-        Session::put('info', $des_info);
-        Session::put('noti', $result);
+        $time = $setting->time_to_remind;
+        $idReminder  = $setting->id_reminder;
+        $typeReminder = MyConstant::TYPE_REMINDERS[$idReminder];
+        $status = $setting->status;
+        
 
-        var_dump($getNoti);
-        // return view('frontend.settings',['time'=>$timeSetting]);
-        return redirect('/settings')->with("message","<strong>Cài đặt thành công!</strong>");
+        // Get All type time
+        $arrTypeTime = MyConstant::TYPE_TIME_REMINDERS;
+        $arrTypeReminder = MyConstant::TYPE_REMINDERS;
+
+        return view('frontend.pages.settings',['arrTypeReminder'=>$arrTypeReminder,'typeTime' => $arrTypeTime,'time' => $time, 'typeReminder' => $typeReminder, 'status' =>$status]);
     }
-    
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function updateSetting(Request $request)
     {
-        //
+        $id=Auth::user()->id_user;
+
+        // Input
+        $time = $request->timeRemind;
+        $typeRemind = $request->typeRemind;
+        $status = $request->notificationBtn;
+
+        echo $time;
+        echo "<br>";
+        echo $typeRemind;
+        echo "<br>";
+        echo $status;
+        die();
+        // Update
+        $dataUpdate = ['time_to_remind' => $time, 'id_reminder' => $typeRemind, 'status' => $status];
+        Setting::where('id_user',$id)->update($dataUpdate);
+        
+        // $response = ["data"=>true];
+        // return json_encode($response);
     }
 }

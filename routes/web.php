@@ -40,15 +40,12 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
 /*=================== /.GUEST AREA ===============*/
 
 /*=================== USER AREA ===============*/
+
 // setting
-Route::POST('/settings' ,['as'=> 'settingUpdate', 'uses' => 'SettingController@update' ]);
+Route::GET('settings', 'SettingController@getSetting');
+Route::POST('settingUpdate', 'SettingController@updateSetting');
 
-Route::get('/settings', function () {
-
-    return view('frontend.settings');
-});
-
-
+// History
 Route::POST('HistoryAddNew', 'HistoryController@addNew');
 Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
 Route::POST('historyEdit', 'HistoryController@editInfomationChecker');
@@ -56,11 +53,7 @@ Route::get('/historys','HistoryController@store' );
 
 Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
 
-Route::POST('/historys/addNew' ,['as'=> 'HistoryAddNew', 'uses' => 'HistoryController@AddNew' ]);
 
-Route::get('getAddCreateDictMeaning/{index}', function ($index) {
-    return view('frontend.layout.partial.create-dict-meaning')->with(['index' => $index])->render();
-});
 
 // Push notification
 Route::get('pushWord','NotificationController@getWordNotification');

@@ -4,96 +4,77 @@ use App\Repositories\HistoryRepository;
 use App\Repositories\NotificationRepository;
 use Illuminate\Http\Request;
 use App\Models\History;
+use App\Models\English;
+use App\Services\EnglishService;
+use App\Models\Vietnamese;
+use App\Services\VietnameseService;
+use App\Models\Japanese;
+use App\Services\JapaneseService;
 use auth;
 use DB;
+use Session;
 use App\Http\Controllers\LaguageController;
 use App\Http\Controllers\MyConstant;
 use App\Http\Requests\HistoryUpdateRequest;
-class HistoryController extends Controller implements  BaseController
-{
-    public function __construct(HistoryRepository $history)
-    {
-        $this->history = $history;
-    }
-    //
-    public function getAll()
-    {
-        // TODO: Implement getAll() method.$h
-    }
-    public function getByID($id)
-    {
-        // TODO: Implement getByID() method.
-    }
-    public function find(Request $request)
-    {
-        // TODO: Implement find() method.
-    }
+class HistoryController extends Controller
+{   
     public function update(HistoryUpdateRequest $request)
     {   
-    $listTypeEnglish = MyConstant::TYPE_OF_WORD_ENGLISH;
+        $getTypeVietnamese = MyConstant::TYPE_OF_WORD_VIETNAMESE;
+        $lang = DB::table('languages')->get();
 
-    $history= new History;
+        $history= new History;
 
-    $id=Auth::user()->id_user;
-    // Lấy ID user để update cho user
+        $id=Auth::user()->id_user;
+        // Lấy ID user để update cho user
 
-    $historys = History::where('id_history', $id)->first();
+        $historys = History::where('id_history', $id)->first();
 
-    $arr= json_decode($historys->content, true);
+        $arr= json_decode($historys->content, JSON_UNESCAPED_UNICODE);
 
-    $arr[]= array('type_to'=>$request->typeword,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'notification'=> 'F');
+        Session::put('type_to',$request->typeword);
+        Session::put('fromLg', $request->cb1);
+        Session::put('toLg', $request->cb2);
 
-    if($request->tu  == null && $request->nghia !== null ){
+        $arr[]= array('type_to'=>$request->typeword,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'notification'=> 'F');
+        if($request->tu  == null && $request->nghia !== null ){
 
-        return redirect('/historys')->with("message","<strong>Lỗi!</strong> Vui lòng nhập đầy đủ thông tin.");
+            return redirect('/historys')->with("message","<strong>Lỗi!</strong> Vui lòng nhập đầy đủ thông tin.");
+        }
+        else{
+
+            $json = json_encode($arr, JSON_UNESCAPED_UNICODE);
+
+            $info = ['content' => $json];
+
+            History::where('id_history',$id)->update($info);
+  
+            return view('frontend.pages.history',['data' => $arr,'Lg' => $lang, 'getTypeVietnamese'=>$getTypeVietnamese]);
+        }
     }
-    else{
-
-     $json = json_encode($arr,true);
-
-     $info = ['content' => $json];
-
-     History::where('id_history',$id)->update($info);
-
-       // return ('frontend.history',['data' => $arr,
-       //  'getTypeEnglish'=>$listTypeEnglish,
-       //  'SSMessageDuration' => 'History has been update',]);     
-     return back()->with(['data' => $arr,
-       'getTypeEnglish'=>$listTypeEnglish,
-       'SSMessageDuration' => 'History has been update',]);
-     }
- }
  public function store(Request $request)
  {
     $history= new History;
-
-    $listTypeEnglish = MyConstant::TYPE_OF_WORD_ENGLISH;
+    $lang = DB::table('languages')->get();
+    $getTypeVietnamese = MyConstant::TYPE_OF_WORD_VIETNAMESE;
 
     $id=Auth::user()->id_user;
+    Session::put('fromLg', $request->cb1);
+    Session::put('toLg', $request->cb2);
 
                 // Lấy ID user để update cho user
     $historys = History::where('id_history', $id)->first();
 
         // $data =json_decode($historys->content);
-    $arr= json_decode($historys->content, true);
+    $arr= json_decode($historys->content, JSON_UNESCAPED_UNICODE);
 
-    return view('frontend.history',['data' => $arr,
+     return view('frontend.pages.history',['data' => $arr,'Lg' => $lang, 'getTypeVietnamese'=>$getTypeVietnamese]);
+}
 
-        'getTypeEnglish'=>$listTypeEnglish]);
-}
-public function delete($id)
-{
-
-}
-public function getNotifications($id) {
-}
-public function setNotifications($id, Request $request) {
-}
-public function getSettings($id) {
-}
-public function setSettings($id, Request $request) {
-}
 public function addNew(Request $request) {
+    $englishService = new EnglishService(new English);
+    $vietnameseService = new VietnameseService(new Vietnamese);
+    $japaneseService = new JapaneseService(new Japanese);
 
     $history= new History;
 
@@ -101,9 +82,26 @@ public function addNew(Request $request) {
         // Lấy ID user để update cho user
     $historys = History::where('id_history', $id)->first();
 
-    $arr= json_decode($historys->content,true);/*Chuyển json thành mảng*/
+    $arr= json_decode($historys->content,JSON_UNESCAPED_UNICODE);/*Chuyển json thành mảng*/
 
-    $arr[]= array('type_to'=>$request->type,'from' => $request->from, 'to'=> $request->to,'from_text'=>$request->from_text,'to_text'=>$request->to_text,'notification'=> 'F');
+    $tableTo = $request->to;
+    $idTo = $request->id;
+    
+    switch($tableTo){
+        case 'english':
+            $rowWord  =  $englishService->getById($idTo);
+            break;
+        case 'vietnamese':
+            $rowWord  =  $vietnameseService->getById($idTo);
+            break;
+        case 'japanese':
+            $rowWord  = $japaneseService->getById($idTo);
+    }
+
+    $word = $rowWord->word;
+    $typeTo = json_decode($word,JSON_UNESCAPED_UNICODE);
+
+    $arr[]= array('type_to'=>$typeTo['type'],'from' => $request->from, 'to'=> $request->to,'from_text'=>$request->from_text,'to_text'=>$request->to_text,'notification'=> 'F');
 
     $json = json_encode($arr,JSON_UNESCAPED_UNICODE); /*Chuyển mảng mới get qua json*/
 
@@ -124,61 +122,53 @@ public function addNew(Request $request) {
         return json_encode($dataResponse);
     }
 }
+
 public function deleteRecordByAjax(Request $request){
 
      $history= new History;
 
      $id=Auth::user()->id_user;
+     
+     $historys = History::where('id_history', $id)->first();// Lấy ID user để update cho user
 
-                    // Lấy ID user để update cho user
-     $historys = History::where('id_history', $id)->first();
-
-            // $data =json_decode($historys->content);
-     $arr= json_decode($historys->content, true);
+     $arr= json_decode($historys->content, true); // $data =json_decode($historys->content);
 
      foreach ($arr as $key => $value) {
         if($value['to_text'] == $request->to && $value['from_text'] == $request->from){
 
-            unset($arr[$key]); /*Xóa record nơi mà từ == key đã chọn ngoài view*/
-
-        
-    }        
-}
+            unset($arr[$key]); /*Xóa record nơi mà từ == key đã chọn ngoài view*/     
+        }        
+     }
 
     $json = json_encode($arr,JSON_UNESCAPED_UNICODE);
-
     $info = ['content' => $json];
-
     $successUpdate= History::where('id_history',$id)->update($info);
 
-if(!$successUpdate){
+    if(!$successUpdate){
 
     $dataResponse = ["data"=>"false"];
 
     return json_encode($dataResponse);
+    }
+    else{   
+        $dataResponse = ["data"=>"fine"];
+        return json_encode($dataResponse);
+    }
 }
-else{   
-    $dataResponse = ["data"=>"fine"];
 
-    return json_encode($dataResponse);
-}
-}
 public function editInfomationChecker(Request $request){
     $history= new History;
 
     $id=Auth::user()->id_user;
 
-                // Lấy ID user để update cho user
-    $historys = History::where('id_history', $id)->first();
+    $historys = History::where('id_history', $id)->first(); // Lấy ID user để update cho user
 
-
-    $arr = json_decode($historys->content, true);
+    $arr = json_decode($historys->content, JSON_UNESCAPED_UNICODE);
     $toResult = $request->to;
     $fromResult = $request->from;
 
     foreach ($arr as $key=>$value) {
         if($value['to_text'] == $toResult && $value['from_text'] == $fromResult){
-            
             $arr[$key]['notification'] = $request->notification; 
         }
     }
