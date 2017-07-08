@@ -220,15 +220,41 @@ $(document).ready(function() {
             dataType:'json',
             success : function(response){
                 if(response["data"]== true){
-                    alert("ok");
+                    $.notify("Cài đặt thành công !", "success");
                 }
             },
             error: function(xhr, error) {
-                // $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
+                $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
             }
         });
     }
 
+    $(document).on('click','#btnAddHistory',function(evt){
+        var from =  $("#selectFromLg").val();
+        var typeWord =  $("#typeWord").val();
+        var to = $("#selectToLg").val();
+        var fromText = $("#fromText").val();
+        var toText = $("#toText").val();
+        var _token = $('input[name=_token]').val();
+
+        AjaxAddNewHistory(typeWord, from, to, fromText, toText, _token);
+    })
+    function  AjaxAddNewHistory(typeWord, from, to, fromText, toText, _token){
+        $.ajax({
+            url:'historyUpdate',
+            method: 'POST',
+            data : {'typeTo': typeWord,'from': from,'to': to,'fromText': fromText,'toText': toText, '_token' : _token},
+            dataType:'json',
+            success : function(response){
+                if(response["data"]== true){
+                    $.notify("Cài đặt thành công !", "success");
+                }
+            },
+            error: function(xhr, error) {
+                $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
+            }
+        });
+    }
 });
 
 

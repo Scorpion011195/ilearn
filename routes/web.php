@@ -32,9 +32,6 @@ Route::post('dangnhap', [ 'as' => 'dangnhap', 'uses' => 'UserController@postLogi
 
 Route::get('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@getRegister']);
 Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister']);
-/*================/src_user_register====================  */
-// setting
-
 /*=================== /.GUEST AREA ===============*/
 
 /*=================== USER AREA ===============*/
@@ -49,9 +46,7 @@ Route::POST('HistoryDelete', 'HistoryController@deleteRecordByAjax');
 Route::POST('historyEdit', 'HistoryController@editInfomationChecker');
 Route::get('/historys','HistoryController@store' );
 
-Route::POST('/historys/update' ,['as'=> 'historyUpdate', 'uses' => 'HistoryController@update' ]);
-
-
+Route::POST('historyUpdate','HistoryController@update');
 
 // Push notification
 Route::get('pushWord','NotificationController@getWordNotification');

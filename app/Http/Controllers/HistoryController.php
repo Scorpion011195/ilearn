@@ -17,9 +17,9 @@ use App\Http\Controllers\LaguageController;
 use App\Http\Controllers\MyConstant;
 use App\Http\Requests\HistoryUpdateRequest;
 class HistoryController extends Controller
-{   
-    public function update(HistoryUpdateRequest $request)
-    {   
+{
+    public function update(Request $request)
+    {
         $getTypeVietnamese = MyConstant::TYPE_OF_WORD_VIETNAMESE;
         $lang = DB::table('languages')->get();
 
@@ -32,25 +32,18 @@ class HistoryController extends Controller
 
         $arr= json_decode($historys->content, JSON_UNESCAPED_UNICODE);
 
-        Session::put('type_to',$request->typeword);
-        Session::put('fromLg', $request->cb1);
-        Session::put('toLg', $request->cb2);
+        // Session::put('type_to',$request->typeTo);
+        // Session::put('fromLg', $request->cb1);
+        // Session::put('toLg', $request->cb2);
 
-        $arr[]= array('type_to'=>$request->typeword,'from' => $request->cb1, 'to'=> $request->cb2,'from_text'=>$request->tu,'to_text'=>$request->nghia,'notification'=> 'F');
-        if($request->tu  == null && $request->nghia !== null ){
+        $arr[]= array('type_to'=>$request->typeTo,'from' => $request->from, 'to'=> $request->to,'from_text'=>$request->fromText,'to_text'=>$request->toText,'notification'=> 'F');
 
-            return redirect('/historys')->with("message","<strong>Lỗi!</strong> Vui lòng nhập đầy đủ thông tin.");
-        }
-        else{
+        $json = json_encode($arr,JSON_UNESCAPED_UNICODE); /*Chuyển mảng mới get qua json*/
+        $info = ['content' => $json]; /*Gán column content => file JSon mới get*/
+        $successUpdate= History::where('id_history',$id)->update($info);/*Update content nơi mà cái ID của history = với Id của user đang thực hiện add*/
 
-            $json = json_encode($arr, JSON_UNESCAPED_UNICODE);
-
-            $info = ['content' => $json];
-
-            History::where('id_history',$id)->update($info);
-  
-            return view('frontend.pages.history',['data' => $arr,'Lg' => $lang, 'getTypeVietnamese'=>$getTypeVietnamese]);
-        }
+        $dataResponse = ["data" => true];
+        return json_encode($dataResponse);
     }
  public function store(Request $request)
  {
@@ -86,7 +79,7 @@ public function addNew(Request $request) {
 
     $tableTo = $request->to;
     $idTo = $request->id;
-    
+
     switch($tableTo){
         case 'english':
             $rowWord  =  $englishService->getById($idTo);
@@ -128,7 +121,7 @@ public function deleteRecordByAjax(Request $request){
      $history= new History;
 
      $id=Auth::user()->id_user;
-     
+
      $historys = History::where('id_history', $id)->first();// Lấy ID user để update cho user
 
      $arr= json_decode($historys->content, true); // $data =json_decode($historys->content);
@@ -136,8 +129,8 @@ public function deleteRecordByAjax(Request $request){
      foreach ($arr as $key => $value) {
         if($value['to_text'] == $request->to && $value['from_text'] == $request->from){
 
-            unset($arr[$key]); /*Xóa record nơi mà từ == key đã chọn ngoài view*/     
-        }        
+            unset($arr[$key]); /*Xóa record nơi mà từ == key đã chọn ngoài view*/
+        }
      }
 
     $json = json_encode($arr,JSON_UNESCAPED_UNICODE);
@@ -150,7 +143,7 @@ public function deleteRecordByAjax(Request $request){
 
     return json_encode($dataResponse);
     }
-    else{   
+    else{
         $dataResponse = ["data"=>"fine"];
         return json_encode($dataResponse);
     }
@@ -169,17 +162,17 @@ public function editInfomationChecker(Request $request){
 
     foreach ($arr as $key=>$value) {
         if($value['to_text'] == $toResult && $value['from_text'] == $fromResult){
-            $arr[$key]['notification'] = $request->notification; 
+            $arr[$key]['notification'] = $request->notification;
         }
     }
-    
+
     $json = json_encode($arr,JSON_UNESCAPED_UNICODE);
-    
+
     $info = ['content' => $json];
     $successUpdate= History::where('id_history',$id)->update($info);
     $dataResponse = ["data"=>"fine"];
     return json_encode($dataResponse);
-    
+
 
 }
 }

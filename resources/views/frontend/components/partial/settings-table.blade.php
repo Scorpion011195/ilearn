@@ -4,11 +4,10 @@
         <h3 class="box-title">Danh sách từ</h3>
     </div>
     @if(isset($SSMessageDuration))
-         
+
              <center>{{ $SSMessageDuration }}</center>
          </div>
 @endif
-<br>
     <!-- /.box-header -->
     <div class="body">
         <div id="example_wrapper" class=" form-inline dt-bootstrap">
@@ -22,7 +21,7 @@
                     aria-describedby="example1_info">
                     <thead>
                         <tr role="row">
-                            <th class="text-center col--width2">Từ</th>   
+                            <th class="text-center col--width2">Từ</th>
                             <th class="text-center col--width2">Nghĩa</th>
                             <th class="text-center col--width1">Loại từ </th>
                             <th class="text-center col--width3">Từ điển</th>
