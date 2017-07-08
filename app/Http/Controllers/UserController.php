@@ -82,6 +82,7 @@ class UserController extends Controller
 
     $userSet = new \App\Models\Setting();
     $userSet->id_user = $user->id_user;
+    $userSet->status = 'OFF';
     $userSet->save();
 
     $userID = User::find($user->id_user);

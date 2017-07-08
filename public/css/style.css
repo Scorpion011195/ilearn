@@ -38,7 +38,10 @@ html, body {
 }
 
 .no-margin {
-    margin: 0px !important;
+    margin: 0px;
+}
+.add-margin {
+    margin:10px -10px 10px 0px;
 }
 
 .no-padding {

@@ -10,7 +10,7 @@ class Setting extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id_user', 'time_to_remind','id_reminder'
+        'id_user', 'time_to_remind','id_reminder','status',
     ];
 
     function settingTypeReminder(){

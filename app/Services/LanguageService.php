@@ -14,7 +14,9 @@ class LanguageService extends BaseService implements LanguageRepository{
     public function findWord($langueInput, $langueOutput, $inputText) {
         //get ID maping :
         $lagInfor = \DB::table($langueInput)->select('id_mapping')->where('word', 'like', '%word":"'.$inputText.'"}')->get();
+
         $lagMapping = array();
+
         for($i=0; $i<count($lagInfor); $i++ )
         {
              if(!isset($lagInfor[$i])) {
@@ -27,7 +29,6 @@ class LanguageService extends BaseService implements LanguageRepository{
             
          }
         } 
-
         return $lagMapping;
     }
     public function findWordSelf($langueInput, $inputText)

@@ -3,7 +3,9 @@
         <h1 class="text-center">ILEARN</h1>
     </div>
     {!! Form::open(array('route' => 'search','method' => 'get', 'class' =>'container')) !!}
-    <div class="col-sm-6 col-sm-offset-3 form-group row">
+    <div class="row add-margin">
+        <div class="col-md-3"></div>
+            <div class="col-md-6 ">
         <div class="col-sm-10 no-padding">
             {!! Form::text('search', '', ['id' => 'from','class' => 'form-control no-radius-right', 'autofocus', 'maxlength' => 50]) !!}
         </div>
@@ -15,10 +17,12 @@
                 </p>
             @endif
         </div>
+        <div class="col-md-3"></div>
     </div>
-    <div class="col-sm-6 col-sm-offset-3 form-group row ">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-5 ">
+    </div>
+    <div class="row add-margin">
+        <div class="col-md-4"></div>
+        <div class="col-md-2 add-margin">
             <div class="input-group ">
                 <span for="sel1" class="input-group-addon">Nguồn</span>
                 <select class="form-control" name="lagFrom" id="sel1">
@@ -34,15 +38,15 @@
                 </select>
             </div>
         </div>
-        <div class="col-sm-5">
+        <div class="col-md-2 add-margin">
             <div class="input-group">
                 <span for="sel2" class="input-group-addon">Đích</span>
-                <select name="lagTo" class="form-control" id="sel2">
+                <select name="lagTo" class="form-control" id="sel2" selected="vietnamese">
                  <?php foreach($data as $item =>$value){
                     $language = $value->language;
                     ?>
                     @if (\Session::get('flagLanguage2') == $language)
-                    <option value="{!! $language !!}" selected>{!! $language !!}</option>
+                    <option value="{!! $language !!}" selected >{!! $language !!}</option>
                     @else
                     <option value="{!! $language !!}">{!! $language !!}</option>
                     @endif
@@ -50,7 +54,7 @@
                 </select>
             </div>
         </div>
-    <div class="col-sm-1"></div>
+        <div class="col-md-4"></div>
     </div>
     {!! Form::close() !!}
 </div>
