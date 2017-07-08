@@ -147,7 +147,6 @@ html, body {
     padding: 0 15px;
     text-decoration: none;
     text-shadow: none;
-    letter-spacing: 2.322px;
 }
 
 .dropdown-menu > li {
@@ -381,6 +380,12 @@ footer p {
     margin-right: 5px !important;
 }
 /* /.MARGIN */
+
+/* PADDING */
+.padding--top-10-px{
+    padding-top: 10px !important;
+}
+/* /.PADDING */
 
 
 /* RESPONSIVE */

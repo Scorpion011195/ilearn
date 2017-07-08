@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use DB;
 use Auth;
+use Session;
 use Illuminate\Support\MessageBag;
+use App\Models\Setting;
 
 class UserController extends Controller
 {
@@ -50,6 +52,13 @@ class UserController extends Controller
       $remember = $request->input('remember');
 
       if(Auth()->attempt(['username' =>$username, 'password' => $password],$remember)) {
+        // Get status push notification
+        $id=Auth::user()->id_user;
+        $setting = Setting::where('id_user',$id)->first();
+        $status = $setting->status;
+        Session::put('statusPushNotification', $status);
+        Session::put('isStartSessionPush', 'true');
+
         return redirect()->action('LaguageController@getAllLanguage');
       }
       else {

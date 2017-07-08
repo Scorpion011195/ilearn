@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 info" style= "padding-top: 10px">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 info padding--top-10-px">
     <center> <h1 class="titelSetting"><b>CÀI ĐẶT THÔNG BÁO</b></h1></center>
 </div>
 <div class="col-sm-8 col-sm-offset-2 form-group row panel panel-default no-radius">

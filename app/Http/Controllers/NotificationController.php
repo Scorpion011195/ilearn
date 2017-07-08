@@ -9,6 +9,7 @@ use App\Services\HistoryService;
 use App\Models\History;
 use App\Services\SettingService;
 use App\Models\Setting;
+use Session;
 
 class NotificationController extends Controller
 {
@@ -22,7 +23,10 @@ class NotificationController extends Controller
         $timeReminder = $setting->time_to_remind;
 
         // Change minutes to miliseconds
-        $time = $timeReminder*60*1000;
+        $time = 5000;//$timeReminder*60*1000;
+
+        // Change session push
+        Session::put('isStartSessionPush', 'false');
 
         $dataResponse = ["code"=>true,"time"=>$time];
         return json_encode($dataResponse);
@@ -48,13 +52,21 @@ class NotificationController extends Controller
             }
         }
 
-        $strContentPush = json_encode($arrContentPush, JSON_UNESCAPED_UNICODE);
+        // Size of array to push
+        $sizeArrPush = sizeof($arrContentPush);
+        // If no word checked to push
+        if($sizeArrPush == 0){
+            $dataResponse = ["code"=>false];
+            return json_encode($dataResponse);
+        }
 
+        // If have words to push
+        $strContentPush = json_encode($arrContentPush, JSON_UNESCAPED_UNICODE);
         // Get Settings
         $setting = $settingService->getByColumn('id_user', $id);
         $typeReminder = MyConstant::TYPE_REMINDERS[$setting->id_reminder];
 
-        $dataResponse = ["code"=>true,"content"=>$strContentHistory,"type"=>$typeReminder];
+        $dataResponse = ["code"=>true,"content"=>$strContentPush,"type"=>$typeReminder];
         return json_encode($dataResponse);
     }
 }

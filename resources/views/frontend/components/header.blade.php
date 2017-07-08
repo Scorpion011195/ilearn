@@ -11,13 +11,13 @@
         </ul>
         @else
         <ul class="nav navbar-nav">
-            <li><a href="{{ url('/') }}">Trang chủ</a></li>
-            <li><a href="{{ url('/historys') }}">Lịch sử</a></li>
-            <li><a href="{{ url('/settings') }}">Cài đặt</a></li>
+            <li id='keep-push-home'><a href="{{ url('/') }}">Trang chủ</a></li>
+            <li id='keep-push-history'><a href="{{ url('/historys') }}">Lịch sử</a></li>
+            <li id='keep-push-setting'><a href="{{ url('/settings') }}">Cài đặt</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right margin--right-5-px">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id='keep-push-name'>
                     {{ Auth::user()->username }} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
@@ -34,6 +34,8 @@
                 </ul>
             </li>
         </ul>
+        <input type="hidden" name="ss-push" value="{{ Session::get('statusPushNotification') }}">
+        <input type="hidden" name="is-ss-push" value="{{ Session::get('isStartSessionPush') }}">
         @endif
     </div>
 </nav>

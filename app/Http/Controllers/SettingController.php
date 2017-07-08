@@ -8,6 +8,7 @@ use App\Models\Setting;
 use Auth;
 use app\Controller\userController;
 use Session;
+
 class SettingController extends Controller
 {
 
@@ -19,7 +20,6 @@ class SettingController extends Controller
         $idReminder  = $setting->id_reminder;
         $typeReminder = MyConstant::TYPE_REMINDERS[$idReminder];
         $status = $setting->status;
-        
 
         // Get All type time
         $arrTypeTime = MyConstant::TYPE_TIME_REMINDERS;
@@ -40,7 +40,10 @@ class SettingController extends Controller
         // Update
         $dataUpdate = ['time_to_remind' => $time, 'id_reminder' => $typeRemind, 'status' => $status];
         Setting::where('id_user',$id)->update($dataUpdate);
-        
+
+        // Update session push
+        Session::put('statusPushNotification', $status);
+
         $response = ["data"=>true];
         return json_encode($response);
     }

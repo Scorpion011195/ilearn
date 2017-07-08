@@ -63,10 +63,10 @@ class HistoryController extends Controller
         Session::put('fromLg', $request->cb1);
         Session::put('toLg', $request->cb2);
 
-                    // Lấy ID user để update cho user
+        // Lấy ID user để update cho user
         $historys = History::where('id_history', $id)->first();
 
-            // $data =json_decode($historys->content);
+        // $data =json_decode($historys->content);
         $arr= json_decode($historys->content, JSON_UNESCAPED_UNICODE);
 
          return view('frontend.pages.history',['data' => $arr,'Lg' => $lang, 'getTypeVietnamese'=>$getTypeVietnamese]);

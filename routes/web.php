@@ -16,8 +16,9 @@ Route::get('/result', function () {
     return view('result');
 });
 
-Route::get('test', 'NotificationController@getWordNotification');
-
+Route::get('test', function () {
+    return view('push');
+});
 
 Route::get('/', array('as' => '',
     'uses' => 'LaguageController@getAllLanguage'));

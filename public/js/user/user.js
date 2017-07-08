@@ -60,27 +60,59 @@ $(document).ready(function() {
     // Toggle button Notification
     var isRun = false;
     $(document).on('change','#toggle-one', function(evt){
-        if($(this).prop('checked')){
+        if($('#toggle-one').prop('checked')){
             if (!Notification in window) {
                 alert('Desktop notifications are not available in your browser!');
             }
             else if (Notification.permission !== 'granted') {
                 Notification.requestPermission((permission) => {
                   if (permission === 'granted') {
+                    $.notify('Đã bật chức năng thông báo. Bấm Lưu để xác nhận!', "success");
                     isRun = true;
                     ajaxGetTimeToPush();
                   }
                 });
             }
             else {
+                $.notify('Đã bật chức năng thông báo. Bấm Lưu để xác nhận!', "success");
                 isRun = true;
                 ajaxGetTimeToPush();
             }
         }
         else{
             isRun = false;
+            $.notify('Đã tắt chức năng thông báo. Bấm Lưu để xác nhận!', "success");
         }
     })
+
+    $(document).ready(function() {
+        var statusPushNotification = $('input[name=ss-push]').val();
+        var isStartSessionPush = $('input[name=is-ss-push]').val();
+
+        if(statusPushNotification=="ON"){
+            if (!Notification in window) {
+                alert('Desktop notifications are not available in your browser!');
+            }
+            else if (Notification.permission !== 'granted') {
+                Notification.requestPermission((permission) => {
+                  if (permission === 'granted') {
+                    if(isStartSessionPush=='true'){
+                        $.notify('Đã bật chức năng thông báo', "success");
+                    }
+                    isRun = true;
+                    ajaxGetTimeToPush();
+                  }
+                });
+            }
+            else {
+                if(isStartSessionPush=='true'){
+                    $.notify('Đã bật chức năng thông báo', "success");
+                }
+                isRun = true;
+                ajaxGetTimeToPush();
+            }
+        }
+    });
     /* /.PUSH NOTIFICATION */
 
     /* ----- AJAX ----- */
@@ -101,6 +133,7 @@ $(document).ready(function() {
      });
     }
 
+    var setLoop;
     function ajaxGetWordToPush(time){
         $.ajax({
             url:'pushWord',
@@ -114,7 +147,7 @@ $(document).ready(function() {
                     var arrContent = $.parseJSON(response['content']);
                     var lenghtContent = arrContent.length;
 
-                    setInterval(loopPush, time);
+                    setLoop = window.setInterval(loopPush, time);
 
                     function loopPush(){
                         if(isRun){
@@ -128,6 +161,10 @@ $(document).ready(function() {
                         }
                     }
                 }
+                // If code ==  false
+                else{
+                    $.notify('Xin chọn ít nhất 1 từ bên Lịch sử để nhận thông báo!', "success");
+                }
             },
             error: function(xhr, error) {
              console.log(error);
@@ -135,6 +172,7 @@ $(document).ready(function() {
         });
     }
 
+    // History push words
     $(document).on('click','.action', function(){
         var to = $(this).closest('tr').find('._to').text();
         var from = $(this).closest('tr').find('._from').text();
@@ -154,10 +192,10 @@ $(document).ready(function() {
            success : function(response){
                 if(response['data']=="fine"){
                     if(notification == "T"){
-                        $.notify('Đã thêm từ "'+ from +'" vào thông báo!', 'success');
+                        $.notify('Đã thêm từ "'+ from +'" với nghĩa "'+ to +'"vào thông báo!', 'success');
                     }
                     else{
-                        $.notify('Đã loại từ "'+ from +'" khỏi thông báo!', 'success');
+                        $.notify('Đã loại từ "'+ from +'" với nghĩa "'+ to +'"khỏi thông báo!', 'success');
                     }
 
                 }else{
@@ -167,6 +205,7 @@ $(document).ready(function() {
         });
     });
 
+    // History delete words
     $(document).on('click', "a.deleteRecord", function(evt){
         var _element = $(this).closest('tr');
         var to = $(this).closest('tr').find('._to').text();
@@ -194,7 +233,7 @@ $(document).ready(function() {
             success : function(response){
                 if(response['data'] == "fine"){
                      _element.remove();
-                    $.notify('Đã xóa từ "'+ from + '"  khỏi lịch sử!', "success");
+                    $.notify('Đã xóa từ "'+ from + '"với nghĩa "'+ to +'" khỏi lịch sử!', "success");
                 }
             },
              error: function(xhr, error) {
@@ -203,6 +242,53 @@ $(document).ready(function() {
         });
     }
 
+    // History add words
+    $(document).on('click','#btnAddHistory',function(evt){
+        var from =  $("#selectFromLg").val();
+        var typeWord =  $("#typeWord").val();
+        var to = $("#selectToLg").val();
+        var fromText = $("#fromText").val();
+        var toText = $("#toText").val();
+        var _token = $('input[name=_token]').val();
+
+        AjaxAddNewHistory(typeWord, from, to, fromText, toText, _token);
+    })
+
+    function  AjaxAddNewHistory(typeWord, from, to, fromText, toText, _token){
+        $.ajax({
+            url:'historyUpdate',
+            method: 'POST',
+            data : {'typeTo': typeWord,'from': from,'to': to,'fromText': fromText,'toText': toText, '_token' : _token},
+            dataType:'json',
+            success : function(response){
+                if(response["data"]== true){
+                    var rowAdd = getRowAddHistory(fromText, toText, typeWord, from, to);
+                    $(document).find("#example1").append( rowAdd );
+                    $.notify('Đã thêm từ "'+fromText+'" với nghĩa "'+toText+'"vào lịch sử!', "success");
+                }
+                else{
+                    $.notify('Từ "'+ fromText +'" với nghĩa "'+ toText +'" đã có!', "success");
+                }
+            },
+            error: function(xhr, error) {
+                $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
+            }
+        });
+    }
+
+    function getRowAddHistory(fromText, toText, typeWord, from, to){
+        return '<tr><td class="_from text-center">'+fromText+'</td>'+
+                    '<td class="_to text-center">'+toText+'</td>'+
+                    '<td class="type_to text-center">'+typeWord+'</td>'+
+                    '<td class="text-center">'+from+'-'+to+'</td>'+
+                    '<td class="text-center"><input type="checkbox" name="notification" class="action"></td>'+
+                    '<td class="text-center">'+
+                        '<span>'+
+                            '<a class="deleteRecord" data-toggle="tooltip" data-placement="left" title="Xóa!"><i class=" fa fa-trash-o fa-1x" aria-hidden="true"  "></i></a>'+
+                        '</span>'+
+                    '</td>'+
+                '</tr>';
+    }
 
     //update setting
     $(document).on('click','#_save-setting',function(evt){
@@ -228,59 +314,17 @@ $(document).ready(function() {
             success : function(response){
                 if(response["data"]== true){
                     $.notify("Cài đặt thành công !", "success");
+                    if($('#toggle-one').prop('checked')){
+                        window.clearInterval(setLoop);
+                        isRun = true;
+                        ajaxGetTimeToPush();
+                    }
                 }
             },
             error: function(xhr, error) {
                 $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
             }
         });
-    }
-
-    $(document).on('click','#btnAddHistory',function(evt){
-        var from =  $("#selectFromLg").val();
-        var typeWord =  $("#typeWord").val();
-        var to = $("#selectToLg").val();
-        var fromText = $("#fromText").val();
-        var toText = $("#toText").val();
-        var _token = $('input[name=_token]').val();
-
-        AjaxAddNewHistory(typeWord, from, to, fromText, toText, _token);
-    })
-
-    function  AjaxAddNewHistory(typeWord, from, to, fromText, toText, _token){
-        $.ajax({
-            url:'historyUpdate',
-            method: 'POST',
-            data : {'typeTo': typeWord,'from': from,'to': to,'fromText': fromText,'toText': toText, '_token' : _token},
-            dataType:'json',
-            success : function(response){
-                if(response["data"]== true){
-                    var rowAdd = getRowAddHistory(fromText, toText, typeWord, from, to);
-                    $(document).find("#example1").append( rowAdd );
-                    $.notify('Đã thêm từ "'+ fromText +'" vào lịch sử!', "success");
-                }
-                else{
-                    $.notify('Từ "'+ fromText +'" với nghĩa "'+ toText +'" đã có!', "success");
-                }
-            },
-            error: function(xhr, error) {
-                $.notify("Oppps: Lỗi, vui lòng thử lại", "warn");
-            }
-        });
-    }
-
-    function getRowAddHistory(fromText, toText, typeWord, from, to){
-        return '<tr><td class="_from text-center">'+fromText+'</td>'+
-                    '<td class="_to text-center">'+toText+'</td>'+
-                    '<td class="type_to text-center">'+typeWord+'</td>'+
-                    '<td class="text-center">'+from+'-'+to+'</td>'+
-                    '<td class="text-center"><input type="checkbox" name="notification" class="action"></td>'+
-                    '<td class="text-center">'+
-                        '<span>'+
-                            '<a class="deleteRecord" data-toggle="tooltip" data-placement="left" title="Xóa!"><i class=" fa fa-trash-o fa-1x" aria-hidden="true"  "></i></a>'+
-                        '</span>'+
-                    '</td>'+
-                '</tr>';
     }
 
     // TOOLTIP
