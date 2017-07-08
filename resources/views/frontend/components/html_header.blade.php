@@ -13,7 +13,6 @@
     <link href="{!! asset('css/style.css') !!}" rel="stylesheet">
     <link href="{!! asset('css/result.css') !!}" rel="stylesheet">
     <link href="{!! asset('css/login.css') !!}" rel="stylesheet">
-    @yield('css')
 
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.2.1.js"
@@ -23,11 +22,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-
-    @yield('js')
-    <!-- ILEARN JS -->
-    <script src="{!! asset('js/ilearn.js') !!}"></script>
-    <script src="{!! asset('js/user/user.js') !!}"></script>
 
     <!-- TOGGLE BUTTON -->
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">

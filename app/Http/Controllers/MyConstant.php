@@ -41,6 +41,8 @@ class MyConstant
                   'contributor'=>'4',
                   'user'=>'5'
                  ];
+    // Type time to Remind ( minutes )
+    const TYPE_TIME_REMINDERS = ['5','10','15','30','45','60'];
 
     /*This is not a constant
     Instance of submitions table
