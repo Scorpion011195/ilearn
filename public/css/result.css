@@ -8,4 +8,8 @@ span.title strong {
 }
 b._type {
 	line-height: 30px;
+	
+}
+div.row.panel.panel-default.no-radius-left.no-radius-right {
+	padding-bottom: 10px;
 }
