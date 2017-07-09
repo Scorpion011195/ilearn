@@ -21,6 +21,7 @@ class RegisterRequest extends FormRequest
      *
      * @return array
      */
+
     public function rules()
     {
         return [
@@ -30,7 +31,11 @@ class RegisterRequest extends FormRequest
             'confirm_password' =>'required|same:password',
             'username' => 'alpha_dash|required|unique:users,username'
         ];
-        [
+    }
+
+    public function messages()
+    {
+        return [
         'email.required' => 'Trường email là bắt buộc',
         'email.email' => 'Bạn chưa nhập đúng định dạng email',
         'email.unique' => 'Email này đã tồn tại',

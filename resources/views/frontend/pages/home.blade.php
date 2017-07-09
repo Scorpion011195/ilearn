@@ -2,13 +2,13 @@
 @section('content')
 @include('frontend.components.search.search')
 	@if(isset($flash))
-        <div class='col-md-3'></div>
-        <div class="col-md-6">
+        <div class='col-md-3 margin--top-10-px'></div>
+        <div class="col-md-6 margin--top-10-px">
             <div class="alert alert-info" id='idsuccess'>
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h2 align="center"><strong>Well done!</strong> You register successfully.</h2>
+            <h2 align="center"><strong>Chúc mừng!</strong> Bạn đã đăng ký thành công.</h2>
             </div>
-            Click here &nbsp; <a href="{{ url('dangnhap') }}">Đăng nhập</a> &nbsp; để đăng nhập
+            Bấm <a href="{{ url('dangnhap') }}">Đăng nhập</a> để đăng nhập
         </div>
     @endif
 

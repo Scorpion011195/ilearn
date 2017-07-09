@@ -1,17 +1,17 @@
 @extends('frontend.layouts.index')
 @section('content')
 <div class="row page">
-    <div id="view1" class="col-md-6 col-lg-6 col-xs-12"> 
+    <div id="view1" class="col-md-6 col-lg-6 col-xs-12">
         <ui-view name="main" class="ng-scope">
             <div class="col-md-12 register-screen ng-scope">
                 <form name="loginRegister" action="{{ route('dangnhap') }}" role="form" method="POST" accept-charset="utf-8">
-                {!! csrf_field() !!} 
+                {!! csrf_field() !!}
                     <legend>Đăng nhập</legend>
                     <label class="control-label">
                         Username:
                     </label>
                     <div class="input-group {{ $errors->has('name') ? ' has-error' : '' }}">
-                        <input id="name" type="text" class="form-control" name="name" value="{!! old('name') !!}" required minlenght="6" maxlength="22" autofocus placeholder="Tên đăng nhập của bạn">
+                        <input id="name" type="text" class="form-control" name="name" value="{!! old('name') !!}" required minlength="6" maxlength="32" autofocus placeholder="Tên đăng nhập của bạn">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     </div>
                     @if ($errors->has('name'))
@@ -19,7 +19,7 @@
                             <span><i class="fa fa-times text-danger"></i>{!! $errors->first('name') !!}</span>
                         </div>
                     @endif
-                    <br>      
+                    <br>
                     <label class="control-label">
                         Mật khẩu:
                     </label>
@@ -33,14 +33,14 @@
                         </div>
                     @endif
                  <br>
-                 <div class="input-group"> 
+                 <div class="input-group">
                         @if($errors->has('errorLogin'))
                             <div class="form-group">
                                 <div class="text-danger ng-hide">
                                     {!! $errors->first('errorLogin') !!}
                                 </div>
                             </div>
-                        @endif  
+                        @endif
                     </div>
                     <div class="checkbox">
                         <label>
@@ -55,7 +55,7 @@
                         <a class="btn btn-link" href="{{url('dangki')}}">
                             Đăng ký tài khoản mới
                         </a>
-                    </div> 
+                    </div>
                 </form>
             </div>
         </ui-view>
@@ -70,7 +70,7 @@
               <p>3. Thêm từ vào lịch sử của bạn</p>
               <p>4. Xem lịch sử từ của bạn</p>
               <p>5. Xóa từ trong lịch sử của bạn</p>
-             </div>   
+             </div>
             </div>
         </ui-view>
     </div>

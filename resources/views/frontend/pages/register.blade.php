@@ -11,7 +11,7 @@
                         Username:
                     </label>
                     <div class="input-group {{ $errors->has('username') ? ' has-error' : '' }}">
-                        <input id="username" type="text" class="form-control" name="username" value="{!! old('username') !!}" required autofocus placeholder="Tên đăng nhập của bạn">
+                        <input id="username" type="text" class="form-control" name="username" value="{!! old('username') !!}" required minlength="6" maxlength="32" autofocus placeholder="Tên đăng nhập của bạn">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     </div>
                     @if ($errors->has('username'))
@@ -24,7 +24,7 @@
                         Email:
                     </label>
                     <div class="input-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input id="email" type="email" class="form-control" name="email" value="{!! old('email') !!}" required autofocus placeholder="Email của bạn">
+                        <input id="email" type="email" class="form-control" name="email" value="{!! old('email') !!}" required maxlength="150" autofocus placeholder="Email của bạn">
                         <span class="input-group-addon">@</span>
                     </div>
                     @if ($errors->has('email'))
@@ -50,7 +50,7 @@
                         Nhập lại mật khẩu:
                     </label>
                     <div class="input-group {{ $errors->has('confirm_password') ? ' has-error' : '' }}">
-                        <input id="confirm_password" type="password" class="form-control" name="confirm_password" value="{!! old('confirm_password') !!}" required autofocus placeholder="Nhập lại mật khẩu của bạn">
+                        <input id="confirm_password" type="password" class="form-control" name="confirm_password" value="{!! old('confirm_password') !!}" required maxlength="32" autofocus placeholder="Nhập lại mật khẩu của bạn">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
                     </div>
                     @if ($errors->has('confirm_password'))

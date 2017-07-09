@@ -27,11 +27,12 @@ class UserController extends Controller
   public function postLogin(Request $request)
   {
     $rules = [
-    'name' => 'required',
+    'name' => 'alpha_dash|required',
     'pass' =>'required|min:6|max:32',
     ];
     $messages = [
     'name.required' => 'Trường username là bắt buộc',
+    'name.alpha_dash' => 'Chỉ nhập các kí tự là: chữ, số, "-", "_"',
     'pass.required' => 'Mật khẩu là bắt buộc',
     'pass.min' => 'Mật khẩu lớn hơn 6 kí tự',
     'pass.max' => 'Mật khẩu nhỏ hơn 32 kí tự'
