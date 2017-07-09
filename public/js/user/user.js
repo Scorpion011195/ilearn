@@ -16,10 +16,10 @@ $(document).ready(function() {
             data: {'from': from,'to': to, 'id': id,'from_text': from_text,'to_text': to_text,'_token' : _token},
             success : function(response){
                 if(response['data'] == "fine"){
-                    $.notify('Đã thêm từ "'+from_text+'" với nghĩa "'+to_text+'"vào lịch sử!', "success");
+                    $.notify('Đã thêm từ "'+from_text+'" với nghĩa "'+to_text+'" vào lịch sử!', "success");
                 }
                 else if(response['data'] == "existed"){
-                    $.notify('Từ "'+ from_text +'" với nghĩa "'+ to_text +'" đã có!', "success");
+                    $.notify('Từ "'+ from_text +'" với nghĩa "'+to_text+'" đã có!', "success");
                 }
                 else if(response['data'] == "tooLong"){
                     $.notify('Từ không được quá 50 kí tự!', "warn");
@@ -199,10 +199,10 @@ $(document).ready(function() {
            success : function(response){
                 if(response['data']=="fine"){
                     if(notification == "T"){
-                        $.notify('Đã thêm từ "'+ from +'" với nghĩa "'+ to +'"vào thông báo!', 'success');
+                        $.notify('Đã thêm từ "'+ from +'" với nghĩa "'+ to +'" vào thông báo!', 'success');
                     }
                     else{
-                        $.notify('Đã loại từ "'+ from +'" với nghĩa "'+ to +'"khỏi thông báo!', 'success');
+                        $.notify('Đã loại từ "'+ from +'" với nghĩa "'+ to +'" khỏi thông báo!', 'success');
                     }
 
                 }else{
@@ -240,7 +240,7 @@ $(document).ready(function() {
             success : function(response){
                 if(response['data'] == "fine"){
                      _element.remove();
-                    $.notify('Đã xóa từ "'+ from + '"với nghĩa "'+ to +'" khỏi lịch sử!', "success");
+                    $.notify('Đã xóa từ "'+ from + '" với nghĩa "'+ to +'" khỏi lịch sử!', "success");
                 }
             },
              error: function(xhr, error) {
@@ -271,7 +271,7 @@ $(document).ready(function() {
                 if(response["data"]== true){
                     var rowAdd = getRowAddHistory(fromText, toText, typeWord, from, to);
                     $(document).find("#example1").append( rowAdd );
-                    $.notify('Đã thêm từ "'+fromText+'" với nghĩa "'+toText+'"vào lịch sử!', "success");
+                    $.notify('Đã thêm từ "'+fromText+'" với nghĩa "'+toText+'" vào lịch sử!', "success");
                 }
                 else if(response["data"]== false){
                     $.notify('Từ "'+ fromText +'" với nghĩa "'+ toText +'" đã có!', "success");
