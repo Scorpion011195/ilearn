@@ -8,7 +8,7 @@
                 {!! csrf_field() !!}
                     <legend>Đăng nhập</legend>
                     <label class="control-label">
-                        Username:
+                        Tài khoản:
                     </label>
                     <div class="input-group {{ $errors->has('name') ? ' has-error' : '' }}">
                         <input id="name" type="text" class="form-control" name="name" value="{!! old('name') !!}" required minlength="6" maxlength="32" autofocus placeholder="Tên đăng nhập của bạn">
