@@ -73,24 +73,43 @@ $(document).ready(function() {
             else if (Notification.permission !== 'granted') {
                 Notification.requestPermission((permission) => {
                   if (permission === 'granted') {
-                    $.notify('Đã bật chức năng thông báo. Bấm Lưu để xác nhận!', "success");
+                    $.notify('Đã bật chức năng thông báo', "success");
                     isRun = true;
                     ajaxGetTimeToPush();
                   }
                 });
             }
             else {
-                $.notify('Đã bật chức năng thông báo. Bấm Lưu để xác nhận!', "success");
+                $.notify('Đã bật chức năng thông báo!', "success");
                 isRun = true;
                 ajaxGetTimeToPush();
             }
         }
         else{
+            // Set status setting to off
             isRun = false;
-            $.notify('Đã tắt chức năng thông báo. Bấm Lưu để xác nhận!', "success");
+            window.clearInterval(setLoop);
+            ajaxSetStatusSettingOff();
         }
     })
 
+    function ajaxSetStatusSettingOff(){
+        $.ajax({
+            url:'setStatusOff',
+            method:'get',
+            dataType:'json',
+            success : function(response){
+                if(response['code']==true){
+                    $.notify('Đã tắt chức năng thông báo!', "success");
+                }
+            },
+            error: function(xhr, error) {
+             console.log(error);
+            }
+        });
+    }
+
+    // Push when start page
     $(document).ready(function() {
         var statusPushNotification = $('input[name=ss-push]').val();
         var isStartSessionPush = $('input[name=is-ss-push]').val();
@@ -103,7 +122,7 @@ $(document).ready(function() {
                 Notification.requestPermission((permission) => {
                   if (permission === 'granted') {
                     if(isStartSessionPush=='true'){
-                        $.notify('Đã bật chức năng thông báo', "success");
+                        $.notify('Đã bật chức năng thông báo!', "success");
                     }
                     isRun = true;
                     ajaxGetTimeToPush();
@@ -112,7 +131,7 @@ $(document).ready(function() {
             }
             else {
                 if(isStartSessionPush=='true'){
-                    $.notify('Đã bật chức năng thông báo', "success");
+                    $.notify('Đã bật chức năng thông báo!', "success");
                 }
                 isRun = true;
                 ajaxGetTimeToPush();
@@ -135,8 +154,8 @@ $(document).ready(function() {
             },
             error: function(xhr, error) {
              console.log(error);
-         }
-     });
+            }
+        });
     }
 
     var setLoop;

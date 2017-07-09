@@ -47,4 +47,18 @@ class SettingController extends Controller
         $response = ["data"=>true];
         return json_encode($response);
     }
+
+    public function setStatusOff(){
+        $id=Auth::user()->id_user;
+
+        // Update status to off
+        $dataUpdate = ['status' => 'OFF'];
+        Setting::where('id_user',$id)->update($dataUpdate);
+
+        // Update session push
+        Session::put('statusPushNotification', 'OFF');
+
+        $response = ["code"=>true];
+        return json_encode($response);
+    }
 }

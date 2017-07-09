@@ -40,6 +40,7 @@ Route::post('dangki', [ 'as' => 'dangki', 'uses' => 'UserController@postRegister
 // setting
 Route::GET('settings', 'SettingController@getSetting');
 Route::POST('settingUpdate', 'SettingController@postSetting');
+Route::GET('setStatusOff', 'SettingController@setStatusOff');
 
 // History
 Route::POST('HistoryAddNew', 'HistoryController@addNew');

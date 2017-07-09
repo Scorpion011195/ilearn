@@ -22,8 +22,15 @@ class NotificationController extends Controller
         $setting = $settingService->getByColumn('id_user', $id);
         $timeReminder = $setting->time_to_remind;
 
+        // Update settings status to ON
+        $dataUpdate = ['status' => 'ON'];
+        Setting::where('id_user',$id)->update($dataUpdate);
+
+        // Update session push
+        Session::put('statusPushNotification', 'ON');
+
         // Change minutes to miliseconds
-        $time = 5000;//$timeReminder*60*1000;
+        $time = 10000;//$timeReminder*60*1000;
 
         // Change session push
         Session::put('isStartSessionPush', 'false');
