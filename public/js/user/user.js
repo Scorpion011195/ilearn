@@ -41,18 +41,21 @@ $(document).ready(function() {
                 body: word,
                 noscreen: true,
                 icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
+                //sound: '/sounds/push.wav'
             }
             case 'Nghĩa':
             return options = {
                 body: mean,
                 noscreen: true,
                 icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
+                //sound: '/sounds/push.wav'
             }
             case 'Từ và nghĩa':
             return options = {
                 body: word+'-'+mean,
                 noscreen: true,
                 icon: 'http://felix.hamburg/files/codepen/rMgbrJ/notification.png'
+                //sound: '/sounds/push.wav'
             }
         }
     }
@@ -157,6 +160,7 @@ $(document).ready(function() {
 
                             var options = getOptions(type, word, mean);
                             var n = new Notification(title, options);
+                            //n.sound;
                             setTimeout(n.close.bind(n), 5000);
                         }
                     }
@@ -266,8 +270,17 @@ $(document).ready(function() {
                     $(document).find("#example1").append( rowAdd );
                     $.notify('Đã thêm từ "'+fromText+'" với nghĩa "'+toText+'"vào lịch sử!', "success");
                 }
-                else{
+                else if(response["data"]== false){
                     $.notify('Từ "'+ fromText +'" với nghĩa "'+ toText +'" đã có!', "success");
+                }
+                else if(response["data"]== 'invalidate'){
+                    $.notify('Từ không hợp lệ!', "warn");
+                }
+                else if(response["data"]== 'emptyFrom'){
+                    $.notify('Bạn chưa nhập từ!', "warn");
+                }
+                else if(response["data"]== 'emptyTo'){
+                    $.notify('Bạn chưa nhập nghĩa!', "warn");
                 }
             },
             error: function(xhr, error) {

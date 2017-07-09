@@ -11,9 +11,9 @@
         </ul>
         @else
         <ul class="nav navbar-nav">
-            <li id='keep-push-home'><a href="{{ url('/') }}">Trang chủ</a></li>
-            <li id='keep-push-history'><a href="{{ url('/historys') }}">Lịch sử</a></li>
-            <li id='keep-push-setting'><a href="{{ url('/settings') }}">Cài đặt</a></li>
+            <li><a href="{{ url('/') }}">Trang chủ</a></li>
+            <li><a href="{{ url('/historys') }}">Lịch sử</a></li>
+            <li><a href="{{ url('/settings') }}">Cài đặt</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right margin--right-5-px">
             <li class="dropdown">

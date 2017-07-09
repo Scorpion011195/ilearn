@@ -35,6 +35,26 @@ class HistoryController extends Controller
         $fromText = $request->fromText;
         $toText = $request->toText;
 
+        // If text empty
+        if(empty($fromText)){
+            $dataResponse = ["data"=>'emptyFrom'];
+            return json_encode($dataResponse);
+        }
+        if(empty($toText)){
+            $dataResponse = ["data"=>'emptyTo'];
+            return json_encode($dataResponse);
+        }
+
+        // If text invalidate
+        if(!DictionaryManagementController::checkValidate($fromText)){
+            $dataResponse = ["data"=>'invalidate'];
+            return json_encode($dataResponse);
+        }
+        if(!DictionaryManagementController::checkValidate($toText)){
+            $dataResponse = ["data"=>'invalidate'];
+            return json_encode($dataResponse);
+        }
+
         // Check word existed?
         foreach ($arr as $row) {
             if($fromText == $row['from_text']&&$toText == $row['to_text']){
