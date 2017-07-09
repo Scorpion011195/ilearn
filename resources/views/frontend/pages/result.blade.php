@@ -6,7 +6,7 @@
         <div class = "col-sm-6 col-sm-offset-3 form-group row">
             <div class ="row panel panel-default no-radius-left no-radius-right">
                 <div class="col-xs-8 col-sm-6">
-                <span class="title">Bản dịch từ:&nbsp;{!!($inputText)!!}</span>
+                    <span class="title">Bản dịch từ:&nbsp;{!!($inputText)!!}</span>
                     @if(isset($workInfo))
                         <?php $type = '' ?>
                         @foreach ($workInfo as $language)
@@ -41,25 +41,25 @@
                 </div>
                 <div class="col-xs-8 col-sm-6">
                     <span class="title">Giải thích từ:&nbsp;{!!($inputText)!!}</span>
-                        @if(isset($workInfo))
-                            <?php $type = '' ?>
-                            @foreach ($explainSeft as $language)
-                                <?php
-                                $getData='';
-                                ?>
-                                @if(is_null($language->explain))
+                    @if(isset($explainSeft))
+                        <?php $type = '' ?>
+                        @foreach ($explainSeft as $language)
+                            <?php
+                            $getData='';
+                            ?>
+                            @if(empty($language->explain))
 
+                            @else
+                                @if(!($type == $language->type))
+                                    <?php  $type = $language->type ?><br>
+                                    <b class="type" >{!! $language->type !!}</b>:<br>
+                                    <span> {!! $language->explain !!} </span> &nbsp;<br>
                                 @else
-                                    @if(!($type == $language->type))
-                                        <?php  $type = $language->type ?><br>
-                                        <b class="_type" >{!! $language->type !!}</b>:<br>
-                                        <span> {!! $language->explain !!} </span> &nbsp;<br>
-                                    @else
-                                        <span> {!! $language->explain !!} </span> &nbsp;<br>
-                                    @endif
+                                    <span> {!! $language->explain !!} </span> &nbsp;<br>
                                 @endif
-                            @endforeach
-                        @endif
+                            @endif
+                        @endforeach
+                    @endif
                 </div>
             </div>
             @if(Auth::guest())
