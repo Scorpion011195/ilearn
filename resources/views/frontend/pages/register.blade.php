@@ -75,10 +75,10 @@
         <ui-view name="right" class="ng-scope">
             <div class="col-md-12 register-screen ng-scope">
               <h3>Điều khoản sử dụng</h3>
-              <p>Với việc sử dụng ILEARN, bao gồm phiên bản trình duyệt và các phiên bản dành cho điện thoại di động, bạn đồng ý chấp nhận các điều khoản nêu dưới đây. Những điều khoảng này có hiệu lực ngay khi bạn lần đầu tiên dùng Ilearn.</p>
+              <p>Với việc sử dụng ILEARN, bao gồm phiên bản trình duyệt và các phiên bản dành cho điện thoại di động, bạn đồng ý chấp nhận các điều khoản nêu dưới đây. Những điều khoảng này có hiệu lực ngay khi bạn lần đầu tiên dùng ILEARN.</p>
 
               <p class="title">Sử dụng ILEARN</p>
-              <p>Bạn đồng ý dùng ILEARN chỉ với mục đích hỗ trợ, tham khảo và không xâm phạm quyền, giới hạn hoặc ngăn cấm người khác sử dụng Ilearn.</p>
+              <p>Bạn đồng ý dùng ILEARN chỉ với mục đích hỗ trợ, tham khảo và không xâm phạm quyền, giới hạn hoặc ngăn cấm người khác sử dụng ILEARN.</p>
             </div>
         </ui-view>
     </div>

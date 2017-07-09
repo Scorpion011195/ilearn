@@ -63,7 +63,7 @@
     <div id="view2" class="col-md-6 col-lg-6 col-xs-12">
         <ui-view name="right" class="ng-scope">
             <div class="col-md-12 register-screen ng-scope">
-              <h3>Đăng nhập Ilearn</h3>
+              <h3>Đăng nhập ILEARN</h3>
               <p class="title">Để hưởng nhiều tiện ích khác</p>
               <p>1. Cài đặt và nhận thông báo </p>
               <p>2. Chỉnh sửa từ cho riêng bạn</p>
