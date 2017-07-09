@@ -125,6 +125,14 @@ public function addNew(Request $request) {
     $fromText = $request->from_text;
     $toText = $request->to_text;
 
+    // Check maxlength word
+    $lengthFromText = strlen($fromText);
+    $lengthToText = strlen($toText);
+    if($lengthFromText>50||$lengthToText>50){
+        $dataResponse = ["data"=>"tooLong"];
+        return json_encode($dataResponse);
+    }
+
     // Check word existed?
     foreach ($arr as $row) {
         if($fromText == $row['from_text']&&$toText == $row['to_text']){

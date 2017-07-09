@@ -21,6 +21,9 @@ $(document).ready(function() {
                 else if(response['data'] == "existed"){
                     $.notify('Từ "'+ from_text +'" với nghĩa "'+ to_text +'" đã có!', "success");
                 }
+                else if(response['data'] == "tooLong"){
+                    $.notify('Từ không được quá 50 kí tự!', "warn");
+                }
                 else{
                     $.notify('Lỗi, vui lòng thử lại!', "error");
                 }
@@ -290,12 +293,12 @@ $(document).ready(function() {
     }
 
     function getRowAddHistory(fromText, toText, typeWord, from, to){
-        return '<tr><td class="_from text-center">'+fromText+'</td>'+
-                    '<td class="_to text-center">'+toText+'</td>'+
-                    '<td class="type_to text-center">'+typeWord+'</td>'+
-                    '<td class="text-center">'+from+'-'+to+'</td>'+
-                    '<td class="text-center"><input type="checkbox" name="notification" class="action"></td>'+
-                    '<td class="text-center">'+
+        return '<tr><td class="_from text-center align--vertical-middle">'+fromText+'</td>'+
+                    '<td class="_to text-center align--vertical-middle">'+toText+'</td>'+
+                    '<td class="type_to text-center align--vertical-middle">'+typeWord+'</td>'+
+                    '<td class="text-center align--vertical-middle">'+from+'-'+to+'</td>'+
+                    '<td class="text-center align--vertical-middle"><input type="checkbox" name="notification" class="action"></td>'+
+                    '<td class="text-center align--vertical-middle">'+
                         '<span>'+
                             '<a class="deleteRecord" data-toggle="tooltip" data-placement="left" title="Xóa!"><i class=" fa fa-trash-o fa-1x" aria-hidden="true"  "></i></a>'+
                         '</span>'+

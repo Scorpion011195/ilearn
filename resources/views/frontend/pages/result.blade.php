@@ -17,7 +17,7 @@
                                     @if(!Auth::guest())
                                         <span class="glyphicon glyphicon-plus _push-his _tooltip-me" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}" title="Thêm vào lịch sử">{!! $language->listen !!}</span>
                                         <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
-                                        <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
+                                        <span contenteditable maxlength="50"> {!! $language ->word !!} </span> &nbsp;<br>
                                     @endif
                                     @if(Auth::guest())
                                         <span>{!! $language->listen !!}</span>
@@ -28,7 +28,7 @@
                                 @if(!Auth::guest())
                                     <span class="glyphicon glyphicon-plus _push-his _tooltip-me" id="_id{!! $language->id !!}" data-id="{!! $language->id !!}" title="Thêm vào lịch sử">{!! $language->listen !!}</span>
                                     <span class="glyphicon glyphicon-volume-up" id="_id{!! $language->id !!}">{!! $language->listen !!}</span>
-                                    <span contenteditable> {!! $language ->word !!} </span> &nbsp;<br>
+                                    <span contenteditable maxlength="50"> {!! $language ->word !!} </span> &nbsp;<br>
                                 @endif
                                 @if(Auth::guest())
                                     <span>{!! $language->listen !!}</span>

@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                <table id="example1" class="table table-bordered table-striped dataTable word--break-word" role="grid"
                 aria-describedby="example1_info">
                   <thead>
                     <tr role="row">
@@ -32,17 +32,17 @@
                     @if(isset($data))
                     @foreach($data as $row)
                     <tr>
-                        <td class="_from text-center">{!! $row['from_text'] !!}</td>
-                        <td class="_to text-center">{!! $row['to_text'] !!} </td>
-                        <td class="type_to text-center">{!! $row['type_to'] !!} </td>
-                        <td class="text-center">{!! $row['from'] !!}-{!! $row['to'] !!}</td>
+                        <td class="_from text-center align--vertical-middle">{!! $row['from_text'] !!}</td>
+                        <td class="_to text-center align--vertical-middle">{!! $row['to_text'] !!} </td>
+                        <td class="type_to text-center align--vertical-middle">{!! $row['type_to'] !!} </td>
+                        <td class="text-center align--vertical-middle">{!! $row['from'] !!}-{!! $row['to'] !!}</td>
                         @if($row['notification'] == 'T')
-                        <td class="text-center"><input type="checkbox" name="notification" class="action" checked></td>
+                        <td class="text-center align--vertical-middle"><input type="checkbox" name="notification" class="action" checked></td>
                         @else
-                        <td class="text-center"><input type="checkbox" name="notification" class="action"></td>
+                        <td class="text-center align--vertical-middle"><input type="checkbox" name="notification" class="action"></td>
                         @endif
 
-                        <td class="text-center">
+                        <td class="text-center align--vertical-middle">
                             <span>
                                 <a class="deleteRecord" data-toggle="tooltip" data-placement="left" title="Xóa!"><i class=" fa fa-trash-o fa-1x" aria-hidden="true"  "></i></a>
                             </span>
