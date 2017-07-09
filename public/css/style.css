@@ -142,7 +142,7 @@ html, body {
     color: white !important;
     float: none;
     height: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif !important;
     line-height: 55px;
     padding: 0 15px;
     text-decoration: none;
@@ -186,7 +186,7 @@ html, body {
     padding-bottom: 15px;
     text-decoration: none;
     text-shadow: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif !important;
     letter-spacing: 1.322px;
     color: #000 !important;
     border-right: 6px solid #000;
@@ -354,6 +354,9 @@ footer p {
 .word--break-word{
     word-wrap: break-word;
     table-layout: fixed;
+}
+.font-style--main{
+    font-family: 'Roboto', sans-serif !important;
 }
 /* /.FONT */
 

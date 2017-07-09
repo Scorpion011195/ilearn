@@ -33,7 +33,7 @@ h1, h2, h3 {
     margin-bottom: 11px;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif !important;
     font-weight: 500;
     line-height: 1.1;
     color: inherit;
@@ -43,5 +43,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 .title {
     font-weight: 700;
-    margin-top: 20px;  
+    margin-top: 20px;
 }

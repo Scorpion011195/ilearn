@@ -87,7 +87,10 @@ class UserController extends Controller
 
     $userHis = new \App\Models\History();
     $userHis->id_history = $user->id_user;
-    $userHis->content = 'Chuc ban may man';
+    $arrHis = array();
+    $arrStart = array('type_to'=>'Thán từ','from'=>'english', 'to'=>'vietnamese', 'from_text'=>'hello','to_text'=>'xin chào','notification'=> 'F');
+    array_push($arrHis, $arrStart);
+    $userHis->content = json_encode($arrHis, JSON_UNESCAPED_UNICODE);
     $userHis->save();
 
     $userSet = new \App\Models\Setting();

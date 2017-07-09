@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 @include('frontend.components.html_header')
-<body>
+<body class="font-style--main">
 	<div class="container-fuild">
 		@include('frontend.components.header')
 		@yield('content')
 		@include('frontend.components.footer-script')
-		@include('frontend.components.footer')		
+		@include('frontend.components.footer')
 	</div>
 </body>
 </html>
