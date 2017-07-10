@@ -94,6 +94,8 @@ class UserController extends Controller
 
     $userSet = new \App\Models\Setting();
     $userSet->id_user = $user->id_user;
+    $userSet->time_to_remind = '5';
+    $userSet->id_reminder = '1';
     $userSet->status = 'OFF';
     $userSet->save();
 
