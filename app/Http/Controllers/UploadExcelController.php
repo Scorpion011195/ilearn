@@ -20,13 +20,16 @@ use Illuminate\Support\MessageBag;
 
 class UploadExcelController extends Controller
 {
+	private $id_mapping_temp;
     public function checkTonTai($tableXXX, $word) {
     	$checkWord = DB::table($tableXXX)
             ->where('word', '=', $word)
             ->get();
-        //dd($checkWord); die;
-         // echo "<pre>"; print_r(count($checkWord)); die;
+        
     	if(count($checkWord) > 0) {
+
+    		$this->id_mapping_temp = $checkWord[0]->id_mapping;
+
     		return true;
     	}else{
     	return false;
@@ -42,16 +45,16 @@ class UploadExcelController extends Controller
 		}
 		if($request->hasFile('csvFile')){
 			$path = $request->file('csvFile')->getRealPath();
-
 			$data = Excel::load($path, function($reader) {})->get();
 			$list = array();
 			$error = false;
 			$listTable = array();
+			$arrayDataTemp = null;
 			if(!empty($data) && $data->count()){
+				$arrayDataTemp = null;
 				$id_mapping = DictionaryManagementController::getMaxIdMapping() + 1;
 				foreach ($data as $key => $value) {
 					$word = array("type" => $value->type, "word" => $value->word);
-					$insert = null;
 					$insert = [
 						'word' => json_encode($word,JSON_UNESCAPED_UNICODE),
 						// 'word' => json_decode($word),
@@ -61,29 +64,35 @@ class UploadExcelController extends Controller
 						'created_at' => date('Y-m-d H:i:s'),
 						'updated_at' => date('Y-m-d H:i:s'),
 					];
-
 					if ($value ->language == "" || $value ->language == "End") {
 						if($error == false) {
-							$this->doInsert($list, $listTable);
+							$this->doInsert($list, $listTable, false);
 							$id_mapping++;
 							$list = array();
 							$listTable = array();
 						}
 						else {
-							$error = false;
-							$list = array();
-							$listTable = array();
+							$this->doInsert($list, $listTable, true);
+						 	$error = false;
+						 	$list = array();
+						 	$listTable = array();
 						}
 						continue;
 					}
 					else {
-						if($this->checkTonTai($value->language, json_encode($word)))
+						if($this->checkTonTai($value->language, json_encode($word,JSON_UNESCAPED_UNICODE)))
 						{
+							$arrayDataTemp['flagInsert'] = '0'; 
 							$error = true;
 						}
+						else {
+							$arrayDataTemp['flagInsert'] = '1'; 
+						}
 						array_push($list, $insert);
-						array_push($listTable, $value->language);
+						$arrayDataTemp['langue'] = $value->language;
+						array_push($listTable, $arrayDataTemp);
 					}
+					 
 				}
 				// echo 'Upload file successfully'; exit;
 				$successful['text'] = 'info';
@@ -91,11 +100,19 @@ class UploadExcelController extends Controller
 			}
 		}
 	}
-	private function doInsert($list, $listTable) {
-		$index = 0;
-		foreach ($list as $key) {
-			DB::table($listTable[$index])->insert($key);
-			$index++;
-		}
+	private function doInsert($list, $listTable, $isHaveData) {
+			//echo '<pre>'; print_r($listTable); exit; 
+			$index = 0;
+			foreach ($list as $key) {
+				if($listTable[$index]['flagInsert'] == '1') {
+					if($isHaveData) {
+						$key['id_mapping'] = $this->id_mapping_temp;	
+					}
+					DB::table($listTable[$index]['langue'])->insert($key);
+				}
+				$index++;
+			}
+
 	}
+
 }
