@@ -398,8 +398,16 @@ class DictionaryManagementController extends Controller
 
     // Check validate input
     static function checkValidate($input){
-        $pattern = "/<.*script.*>/";
-        if(preg_match($pattern, $input)){
+        $pattern1 = "/<.*script.*>/";
+        $isScript = preg_match($pattern1, $input);
+
+        $pattern2 = "/'/";
+        $isInva2 = preg_match($pattern2, $input);
+
+        $pattern3 = '/"/';
+        $isInva3 = preg_match($pattern3, $input);
+
+        if($isScript||$isInva2||$isInva3){
             //echo "Invalidate!";
             return false;
         }
