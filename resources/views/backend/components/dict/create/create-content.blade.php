@@ -76,7 +76,7 @@
             <div class="input-group">
               <span class="input-group-addon">Nghĩa</span>
               <input size="30" id="msg" required maxlength="50" type="text" class="form-control" name="_txtnghia" placeholder="xin chào"
-              @if (!$errors->has('_txtnghia'))
+              @if (!$errors->has('_txttu')&&!$errors->has('_txtnghia'))
                 value="{!! old('_txtnghia') !!}"
               @endif >
             </div>
