@@ -63,7 +63,7 @@
           <div class="col-sm-6 {{ $errors->has('_txttu') ? ' has-error' : '' }}">
             <div class="input-group ">
               <span class="input-group-addon">Từ</span>
-              <input size="30" id="msg" type="text" class="form-control" name="_txttu" placeholder="hello" value="{!! old('_txttu') !!}" required maxlength="50">
+              <input size="30" required maxlength="50" id="msg" type="text" class="form-control" name="_txttu" placeholder="hello" value="{!! old('_txttu') !!}">
             </div>
             @if ($errors->has('_txttu'))
             <span class="glyphicon glyphicon-warning-sign help-block--color-apple-blossom"></span>   <strong class="help-block--color-apple-blossom">{!! $errors->first('_txttu') !!}</strong>
@@ -72,7 +72,7 @@
           <div class="col-sm-6 {{ ($errors->has('_txtnghia')&&!($errors->has('_txttu'))) ? ' has-error' : '' }}">
             <div class="input-group">
               <span class="input-group-addon">Nghĩa</span>
-              <input size="30" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="xin chào" value="{!! old('_txtnghia') !!}" required maxlength="50">
+              <input size="30" required maxlength="50" id="msg" type="text" class="form-control" name="_txtnghia" placeholder="xin chào" value="{!! old('_txtnghia') !!}">
             </div>
             @if ($errors->has('_txtnghia')&&!($errors->has('_txttu')))
             <span class="glyphicon glyphicon-warning-sign help-block--color-apple-blossom"></span>   <strong class="help-block--color-apple-blossom">{!! $errors->first('_txtnghia') !!}</strong>
@@ -83,7 +83,7 @@
         <div class="row">
           <div class="col-sm-6 {{ $errors->has('_tatu') ? ' has-error' : '' }}">
             <lable ><span class="glyphicon glyphicon-info-sign"></span>  Giải thích</lable>
-            <textarea class="form-control" placeholder="Giải thích" name="_tatu" id="_gtFrom">{{ old('_tatu') }}</textarea>
+            <textarea class="form-control" placeholder="Giải thích" name="_tatu" id="_gtFrom">{!! old('_tatu') !!}</textarea>
             <script type="text/javascript">CKEDITOR.replace( '_gtFrom',{
               enterMode: Number(2),
             }); </script>
@@ -95,7 +95,7 @@
           </div>
           <div class="col-sm-6 {{ $errors->has('_tanghia') ? ' has-error' : '' }}">
             <lable ><span class="glyphicon glyphicon-info-sign"></span>  Giải thích</lable>
-            <textarea class="form-control" placeholder="Giải thích" name="_tanghia" id="_gtTo">{{ old('_tanghia') }}</textarea>
+            <textarea class="form-control" placeholder="Giải thích" name="_tanghia" id="_gtTo">{!! old('_tanghia') !!}</textarea>
             <script type="text/javascript">CKEDITOR.replace( '_gtTo',{
               enterMode: Number(2),
             }); </script>
